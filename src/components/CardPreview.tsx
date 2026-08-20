@@ -264,43 +264,27 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                     style={{
                       objectPosition: '50% 20%',
                       WebkitMaskImage:
-                        'radial-gradient(ellipse 62% 58% at 50% 55%, #000 87%, transparent 100%)',
+                        'radial-gradient(ellipse 82% 78% at 50% 46%, #000 64%, rgba(0,0,0,0.6) 84%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%)',
                       maskImage:
-                        'radial-gradient(ellipse 62% 58% at 50% 55%, #000 87%, transparent 100%)'
+                        'radial-gradient(ellipse 82% 78% at 50% 46%, #000 64%, rgba(0,0,0,0.6) 84%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%)',
+                      WebkitMaskComposite: 'destination-in',
+                      maskComposite: 'intersect'
                     }}
                   />
                 </div>
               )}
-              <div
-                className="absolute left-0 right-0 bottom-0 h-[26cqh] pointer-events-none z-10"
-                style={{
-                  background: themeGradient,
-                  WebkitMaskImage: 'linear-gradient(to top, #000 0%, transparent 100%)',
-                  maskImage: 'linear-gradient(to top, #000 0%, transparent 100%)'
-                }}
-              />
             </>
           )}
 
-          {/* Scrims */}
+          {/* Subtle text readability scrim only at bottom edge */}
           <div
-            className="absolute left-0 right-0 bottom-0 h-[18cqh] pointer-events-none z-10"
+            className="absolute left-0 right-0 bottom-0 h-[14cqh] pointer-events-none z-10 opacity-70"
             style={{
               backgroundImage: scrimCss,
-              WebkitMaskImage: 'linear-gradient(to top, #000 0%, #000 75%, transparent 100%)',
-              maskImage: 'linear-gradient(to top, #000 0%, #000 75%, transparent 100%)'
+              WebkitMaskImage: 'linear-gradient(to top, #000 0%, transparent 100%)',
+              maskImage: 'linear-gradient(to top, #000 0%, transparent 100%)'
             }}
           />
-          {spreukBoven && (
-            <div
-              className="absolute left-0 right-0 top-0 h-[14cqh] pointer-events-none z-10"
-              style={{
-                backgroundImage: topScrimCss,
-                WebkitMaskImage: 'linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%)',
-                maskImage: 'linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%)'
-              }}
-            />
-          )}
 
           {/* Spreuk Top */}
           {spreukBoven && (
