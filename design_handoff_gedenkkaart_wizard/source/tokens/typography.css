@@ -1,0 +1,36 @@
+:root {
+  --text-micro: 10px;      /* 700, hoofdletters, +0.2em */
+  --text-caption: 0.8125rem;
+  --text-label: 0.9375rem; /* 500 */
+  --text-body-size: 1.0625rem;
+  --text-lead: 1.375rem;   /* 300 */
+  --text-h4: 1.25rem;
+  --text-h3: 1.5rem;
+  --text-h2: 2.5rem;
+  --text-h1: 3.25rem;
+  --text-display: 4rem;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --leading-tight: 1.05;
+  --leading-heading: 1.1;
+  --leading-snug: 1.2;
+  --leading-lead: 1.6;
+  --leading-body: 1.75;
+
+  --tracking-micro: 0.2em;
+  --tracking-h1: -0.025em;
+  --tracking-h2: -0.02em;
+  --tracking-display: -0.03em;
+
+  --measure-body: 66ch;
+  --measure-lead: 54ch;
+  --measure-title: 20ch;
+}
+
+/* Drukmaten: micro 7,5 pt, display 38 pt, h1 30 pt, h2 24 pt, h3 15 pt,
+   inleidende regel 13 pt, broodtekst 11 pt op 17 pt, label 9,5 pt,
+   bijschrift 8,5 pt. Wie twijfelt tussen twee maten kiest de grootste. */

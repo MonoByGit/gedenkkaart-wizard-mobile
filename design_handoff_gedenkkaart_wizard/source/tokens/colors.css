@@ -1,0 +1,111 @@
+/* Zes neutrale waarden, geen accentkleur. Alles wat gekleurd oogt in een
+   Memortium-uiting hoort in het portret te zitten en nergens anders.
+   Waarden en namen komen letterlijk uit app/styles/theme.css van memortium.nl. */
+
+:root {
+  --background: #fcfcfd;
+  --foreground: #1a1a1e;
+  --primary: #2d2d3a;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f1f4;
+  --secondary-foreground: #1a1a1e;
+  --muted: rgba(45, 45, 58, 0.03);
+  --muted-foreground: #6b6b7a;
+  --accent: rgba(45, 45, 58, 0.05);
+  --accent-foreground: #1a1a1e;
+  --border: rgba(45, 45, 58, 0.06);
+  --border-strong: rgba(45, 45, 58, 0.14);
+  --card: rgba(255, 255, 255, 0.5);
+  --card-foreground: #1a1a1e;
+  --popover: rgba(255, 255, 255, 0.8);
+  --popover-foreground: #1a1a1e;
+  --input: transparent;
+  --input-background: rgba(45, 45, 58, 0.02);
+  --switch-background: #e2e2e8;
+  --ring: rgba(45, 45, 58, 0.15);
+  --destructive: #943d3d;
+  --destructive-foreground: #ffffff;
+
+  /* zijbalk, uit theme.css. Alleen in het portaal in gebruik. */
+  --sidebar: rgba(255, 255, 255, 0.6);
+  --sidebar-foreground: #1a1a1e;
+  --sidebar-primary: #2d2d3a;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: rgba(45, 45, 58, 0.05);
+  --sidebar-accent-foreground: #1a1a1e;
+  --sidebar-border: rgba(45, 45, 58, 0.06);
+  --sidebar-ring: rgba(45, 45, 58, 0.15);
+
+  /* semantische aliassen */
+  --surface-page: var(--background);
+  --surface-card: var(--secondary);
+  --surface-inverse: var(--primary);
+  --text-body: var(--foreground);
+  --text-muted: var(--muted-foreground);
+  --text-inverse: var(--secondary);
+
+  /* de primaire knop is de tekstkleur, niet --primary */
+  --cta: #1a1a1e;
+  --cta-foreground: #fcfcfd;
+
+  /* glas: uitsluitend boven beeld of textuur */
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(0, 0, 0, 0.04);
+  --glass-nav-bg: rgba(255, 255, 255, 0.85);
+  --glass-nav-border: rgba(0, 0, 0, 0.1);
+
+  /* de achtergrond is niet vlak, maar heel licht gelaagd */
+  --surface-page-image:
+    radial-gradient(circle at 50% -20%, rgba(45, 45, 58, 0.03), transparent 60%),
+    linear-gradient(180deg, rgba(252, 252, 253, 0.98), rgba(248, 248, 250, 0.95));
+}
+
+/* Donkere modus: dezelfde regels, andere waarden. Druk kent geen donkere modus. */
+.dark,
+[data-theme="dark"] {
+  --background: #18181b;
+  --foreground: #f4f4f5;
+  --primary: #e4e4e7;
+  --primary-foreground: #18181b;
+  --secondary: #27272a;
+  --secondary-foreground: #ededed;
+  --muted: rgba(63, 63, 70, 0.34);
+  --muted-foreground: #a1a1aa;
+  --accent: rgba(63, 63, 70, 0.45);
+  --accent-foreground: #ededed;
+  --border: rgba(63, 63, 70, 0.7);
+  --border-strong: rgba(244, 244, 245, 0.16);
+  --card: rgba(39, 39, 42, 0.72);
+  --card-foreground: #f4f4f5;
+  --popover: rgba(30, 30, 30, 0.92);
+  --popover-foreground: #ededed;
+  --input: rgba(39, 39, 42, 0.75);
+  --input-background: rgba(39, 39, 42, 0.5);
+  --ring: rgba(161, 161, 170, 0.35);
+  --destructive: #ff453a;
+  --sidebar: rgba(24, 24, 27, 0.78);
+  --sidebar-foreground: #f4f4f5;
+  --sidebar-primary: #e4e4e7;
+  --sidebar-primary-foreground: #18181b;
+  --sidebar-accent: rgba(63, 63, 70, 0.45);
+  --sidebar-accent-foreground: #ededed;
+  --sidebar-border: rgba(63, 63, 70, 0.7);
+  --sidebar-ring: rgba(161, 161, 170, 0.35);
+  --cta: #f4f4f5;
+  --cta-foreground: #18181b;
+  --glass-bg: rgba(24, 24, 27, 0.74);
+  --glass-border: rgba(63, 63, 70, 0.55);
+  --glass-nav-bg: rgba(24, 24, 27, 0.85);
+  --glass-nav-border: rgba(255, 255, 255, 0.1);
+  --surface-page-image:
+    radial-gradient(circle at 50% -20%, rgba(244, 244, 245, 0.04), transparent 60%),
+    linear-gradient(180deg, #18181b, #161618);
+}
+
+/* Richtwaarden voor druk, FOGRA51 coated. Laat de drukker proefdrukken.
+   --background        papierwit, geen inkt
+   --foreground        K100 klein, 40 / 30 / 30 / 100 groot
+   --primary  #2d2d3a  72 / 63 / 50 / 71
+   --secondary #f0f1f4  3 / 2 / 1 / 0
+   --muted-foreground  60 / 50 / 38 / 12
+   --border            0,25 mm lijn in 8% zwart */

@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/shape.css">
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/levenslied.css">
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/base.css">
+  <link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/styles.css">
+  <script src="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/_ds_bundle.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,600&family=Marcellus&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=Merriweather:wght@400;700&family=Montserrat:wght@500;600&family=Raleway:wght@400;500&family=Great+Vibes&display=swap">
+  <style>
+    body{margin:0;background:var(--background);}
+    textarea{resize:none !important;}
+    @keyframes sheetUp{from{transform:translate(-50%,16px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+    @keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+  </style>
+</helmet>
+
+<div style="{{ pageOuterStyle }}">
+  <div style="{{ shellStyle }}">
+
+    <sc-if value="{{ isStap1 }}" hint-placeholder-val="{{ true }}">
+    <div style="{{ scrollAreaStyle }}">
+      <div style="padding:28px 24px 4px;">
+        <span style="{{ microLabelStyle }}">Stap 1 van 3</span>
+        <h1 style="margin:10px 0 0;font-family:var(--font-family);font-size:1.75rem;font-weight:var(--weight-bold);line-height:var(--leading-snug);letter-spacing:-0.01em;color:var(--foreground);">Drie keuzes, dan staat de kaart</h1>
+        <p style="margin:10px 0 0;font-family:var(--font-family);font-size:1rem;line-height:var(--leading-lead);color:var(--muted-foreground);max-width:34ch;">Formaat, foto en thema. Wat u daarna schrijft, doet u zo op de kaart zelf.</p>
+      </div>
+
+      <div style="padding:24px 24px 0;">
+        <button type="button" onClick="{{ openPreviewLightbox }}" aria-label="Kaart groter bekijken" style="{{ previewFrameStyle }}">
+          <div style="{{ struct.outer }}">
+            <sc-if value="{{ struct.showPhotoFull }}"><div style="{{ struct.frameOuterMat }}"><div style="{{ struct.frameInner }}"></div></div></sc-if>
+            <sc-if value="{{ struct.showFullVrijgezet }}"><div style="{{ struct.tintLayer }}"><img src="assets/nana-cutout.png" alt="" style="{{ struct.cutoutFill }}"/></div></sc-if>
+            <sc-if value="{{ struct.showSfeer }}"><div style="{{ struct.sfeerLayer }}"></div></sc-if>
+            <sc-if value="{{ struct.showFrame }}">
+              <div style="{{ struct.frameOuterMat }}">
+                <div style="{{ struct.frameInner }}"><sc-if value="{{ struct.showCutout }}"><img src="assets/nana-cutout.png" alt="" style="{{ struct.cutoutFill }}"/></sc-if></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ struct.showSplit }}">
+              <div style="{{ struct.splitLeft }}"><sc-if value="{{ struct.showCutout }}"><div style="{{ struct.cutoutWrapSplitStruct }}"><img src="assets/nana-cutout.png" alt="" style="{{ struct.cutoutFillSplit }}"/></div></sc-if></div>
+              <div style="{{ struct.splitRight }}"></div>
+            </sc-if>
+            <div style="{{ struct.spreukWrap }}"><span style="{{ struct.textSpreukStyle }}">{{ spreuk }}</span></div>
+            <div style="{{ struct.bottomWrap }}">
+              <span style="{{ struct.textNaamStyle }}">{{ naam }}</span>
+              <span style="{{ struct.textDataStyle }}">{{ dataDisplay }}</span>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div style="padding:32px 24px 8px;">
+        <span style="{{ sectionLabelStyle }}">Formaat</span>
+        <div style="display:flex;gap:28px;margin-top:14px;">
+          <button type="button" onClick="{{ setFormaatEnkel }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;border:none;background:transparent;padding:6px 4px;cursor:pointer;">
+            <div style="width:26px;height:36px;border-radius:3px;border:1.5px solid var(--muted-foreground);"></div>
+            <span style="font-family:var(--font-family);font-size:0.875rem;font-weight:var(--weight-medium);color:var(--foreground);">Enkel</span>
+            <sc-if value="{{ isEnkel }}"><div style="width:18px;height:2px;background:var(--foreground);border-radius:1px;"></div></sc-if>
+            <sc-if value="{{ !isEnkel }}"><div style="width:18px;height:2px;background:transparent;"></div></sc-if>
+          </button>
+          <button type="button" onClick="{{ setFormaatGevouwen }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;border:none;background:transparent;padding:6px 4px;cursor:pointer;">
+            <div style="display:flex;gap:3px;">
+              <div style="width:13px;height:36px;border-radius:3px 0 0 3px;border:1.5px solid var(--muted-foreground);border-right:none;"></div>
+              <div style="width:13px;height:36px;border-radius:0 3px 3px 0;border:1.5px solid var(--muted-foreground);border-left:none;"></div>
+            </div>
+            <span style="font-family:var(--font-family);font-size:0.875rem;font-weight:var(--weight-medium);color:var(--foreground);">Gevouwen</span>
+            <sc-if value="{{ isGevouwen }}"><div style="width:18px;height:2px;background:var(--foreground);border-radius:1px;"></div></sc-if>
+            <sc-if value="{{ !isGevouwen }}"><div style="width:18px;height:2px;background:transparent;"></div></sc-if>
+          </button>
+        </div>
+        <p style="{{ tileHintStyle }}">{{ formaatHint }}</p>
+      </div>
+
+      <div style="padding:32px 24px 8px;">
+        <span style="{{ sectionLabelStyle }}">De foto</span>
+        <div style="display:flex;gap:14px;margin-top:14px;">
+          <button type="button" onClick="{{ setSmaakVolledig }}" style="flex:1;border:none;background:transparent;padding:0;cursor:pointer;text-align:center;">
+            <div style="position:relative;width:100%;aspect-ratio:3/4;border-radius:calc(var(--radius) - 4px);overflow:hidden;background:var(--secondary);box-shadow:var(--shadow-card);border:2px solid {{ volledigSelectedBorder }};box-sizing:border-box;">
+              <img src="assets/nana-volledig.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+            </div>
+            <span style="display:block;margin-top:8px;font-family:var(--font-family);font-size:0.8125rem;font-weight:var(--weight-medium);color:var(--foreground);">Volledige foto</span>
+          </button>
+          <button type="button" onClick="{{ setSmaakVrijgezet }}" style="flex:1;border:none;background:transparent;padding:0;cursor:pointer;text-align:center;">
+            <div style="position:relative;width:100%;aspect-ratio:3/4;border-radius:calc(var(--radius) - 4px);overflow:hidden;background-image:linear-gradient(45deg,#e4e4e7 25%,transparent 25%),linear-gradient(-45deg,#e4e4e7 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e4e4e7 75%),linear-gradient(-45deg,transparent 75%,#e4e4e7 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;background-color:#fafafa;box-shadow:var(--shadow-card);border:2px solid {{ vrijgezetSelectedBorder }};box-sizing:border-box;">
+              <img src="assets/nana-cutout.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"/>
+            </div>
+            <span style="display:block;margin-top:8px;font-family:var(--font-family);font-size:0.8125rem;font-weight:var(--weight-medium);color:var(--foreground);">Vrijgezet op thema</span>
+          </button>
+        </div>
+        <p style="{{ tileHintStyle }}">{{ smaakHint }}</p>
+      </div>
+
+      <div style="padding:32px 24px 8px;">
+        <span style="{{ sectionLabelStyle }}">Indeling</span>
+        <div style="display:flex;gap:28px;margin-top:14px;flex-wrap:wrap;">
+          <button type="button" onClick="{{ setIndelingVolledig }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;border:none;background:transparent;padding:6px 4px;cursor:pointer;">
+            <div style="display:flex;align-items:center;justify-content:center;height:36px;">
+              <div style="position:relative;box-sizing:border-box;width:26px;height:36px;border-radius:3px;border:1.5px solid var(--muted-foreground);">
+                <div style="position:absolute;left:5px;right:5px;bottom:8px;height:1.5px;background:var(--muted-foreground);"></div>
+              </div>
+            </div>
+            <span style="font-family:var(--font-family);font-size:0.875rem;font-weight:var(--weight-medium);color:var(--foreground);">Volledig</span>
+            <sc-if value="{{ indelingIsVolledig }}"><div style="width:18px;height:2px;background:var(--foreground);border-radius:1px;"></div></sc-if>
+            <sc-if value="{{ !indelingIsVolledig }}"><div style="width:18px;height:2px;background:transparent;"></div></sc-if>
+          </button>
+          <button type="button" onClick="{{ setIndelingKader }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;border:none;background:transparent;padding:6px 4px;cursor:pointer;">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:36px;">
+              <div style="width:22px;height:16px;border-radius:2px;border:1.5px solid var(--muted-foreground);"></div>
+              <div style="width:14px;height:1.5px;background:var(--muted-foreground);"></div>
+            </div>
+            <span style="font-family:var(--font-family);font-size:0.875rem;font-weight:var(--weight-medium);color:var(--foreground);">In kader</span>
+            <sc-if value="{{ indelingIsKader }}"><div style="width:18px;height:2px;background:var(--foreground);border-radius:1px;"></div></sc-if>
+            <sc-if value="{{ !indelingIsKader }}"><div style="width:18px;height:2px;background:transparent;"></div></sc-if>
+          </button>
+          <button type="button" onClick="{{ setIndelingNaastTekst }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;border:none;background:transparent;padding:6px 4px;cursor:pointer;">
+            <div style="display:flex;align-items:center;gap:5px;height:36px;">
+              <div style="width:9px;height:32px;border-radius:2px;border:1.5px solid var(--muted-foreground);"></div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="width:14px;height:1.5px;background:var(--muted-foreground);"></div>
+                <div style="width:14px;height:1.5px;background:var(--muted-foreground);"></div>
+                <div style="width:9px;height:1.5px;background:var(--muted-foreground);"></div>
+              </div>
+            </div>
+            <span style="font-family:var(--font-family);font-size:0.875rem;font-weight:var(--weight-medium);color:var(--foreground);">Naast tekst</span>
+            <sc-if value="{{ indelingIsNaastTekst }}"><div style="width:18px;height:2px;background:var(--foreground);border-radius:1px;"></div></sc-if>
+            <sc-if value="{{ !indelingIsNaastTekst }}"><div style="width:18px;height:2px;background:transparent;"></div></sc-if>
+          </button>
+          <sc-if value="{{ isGevouwen }}">
+          <button type="button" onClick="{{ setIndelingSfeerVoorop }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;border:none;background:transparent;padding:6px 4px;cursor:pointer;">
+            <div style="position:relative;width:26px;height:36px;border-radius:3px;border:1.5px dashed var(--muted-foreground);">
+              <div style="position:absolute;left:5px;right:5px;bottom:8px;height:1.5px;background:var(--muted-foreground);"></div>
+            </div>
+            <span style="font-family:var(--font-family);font-size:0.875rem;font-weight:var(--weight-medium);color:var(--foreground);">Sfeer voorop</span>
+            <sc-if value="{{ indelingIsSfeerVoorop }}"><div style="width:18px;height:2px;background:var(--foreground);border-radius:1px;"></div></sc-if>
+            <sc-if value="{{ !indelingIsSfeerVoorop }}"><div style="width:18px;height:2px;background:transparent;"></div></sc-if>
+          </button>
+          </sc-if>
+        </div>
+        <p style="{{ tileHintStyle }}">{{ indelingHint }}</p>
+      </div>
+
+      <div style="padding:32px 24px 8px;">
+        <span style="{{ sectionLabelStyle }}">Thema</span>
+        <p style="margin:8px 0 0;font-family:var(--font-family);font-size:0.9375rem;color:var(--muted-foreground);">Het thema bepaalt het beeld op de hele kaart.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;">
+          <sc-for list="{{ themesList }}" as="t" hint-placeholder-count="4">
+            <button type="button" onClick="{{ t.onClick }}" style="{{ t.tileStyle }}">
+              <div style="{{ t.swatchStyle }}">
+                <sc-if value="{{ t.selected }}"><span style="{{ checkBadgeStyle }}"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="12px,12px" name="check" size="12"></x-import></span></sc-if>
+              </div>
+              <span style="{{ t.labelStyle }}">{{ t.naam }}</span>
+              <span style="{{ t.moodStyle }}">{{ t.mood }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="{{ ctaBarStyle }}">
+      <sc-if value="{{ !themaChosen }}"><span style="font-family:var(--font-family);font-size:0.8125rem;color:var(--muted-foreground);margin-bottom:8px;display:block;">Kies eerst een thema.</span></sc-if>
+      <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="100%,52px" variant="primary" disabled="{{ !themaChosen }}" onClick="{{ goToStap2 }}" style="width:100%;">Naar de kaart</x-import>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isStap2Or3 }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:20px 20px 0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <button type="button" onClick="{{ stapBackAction }}" aria-label="Terug" style="display:flex;align-items:center;gap:6px;background:none;border:none;padding:6px 2px;cursor:pointer;color:var(--foreground);font-family:var(--font-family);font-size:0.9375rem;font-weight:var(--weight-medium);">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="18px,18px" name="arrow-left" size="18"></x-import>
+            {{ stapBackLabel }}
+          </button>
+          <sc-if value="{{ !locked }}"><button type="button" onClick="{{ openLockDialog }}" style="background:none;border:1px solid var(--border-strong);border-radius:var(--radius-pill);padding:8px 16px;font-family:var(--font-family);font-size:0.8125rem;font-weight:var(--weight-medium);color:var(--foreground);cursor:pointer;">Vastzetten</button></sc-if>
+          <sc-if value="{{ locked }}"><button type="button" onClick="{{ openLockDialog }}" style="background:var(--secondary);border:1px solid transparent;border-radius:var(--radius-pill);padding:8px 16px;font-family:var(--font-family);font-size:0.8125rem;font-weight:var(--weight-bold);letter-spacing:0.02em;color:var(--foreground);cursor:pointer;">Vastgezet</button></sc-if>
+        </div>
+
+        <sc-if value="{{ isStap3 }}">
+          <h1 style="margin:18px 0 0;font-family:var(--font-family);font-size:1.5rem;font-weight:var(--weight-bold);line-height:var(--leading-snug);letter-spacing:-0.01em;color:var(--foreground);text-align:center;">Klaar voor de drukker</h1>
+          <p style="margin:8px 0 0;font-family:var(--font-family);font-size:0.9375rem;line-height:var(--leading-lead);color:var(--muted-foreground);text-align:center;">Controleer voor- en achterkant nog eenmaal. Zo gaat de kaart in productie.</p>
+        </sc-if>
+        <div style="display:flex;justify-content:center;margin-top:16px;">
+          <div style="display:inline-flex;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;gap:2px;">
+            <button type="button" onClick="{{ setSideVoor }}" style="{{ voorTabStyle }}">Voorkant</button>
+            <sc-if value="{{ isGevouwen }}"><button type="button" onClick="{{ setSideBinnen }}" style="{{ binnenTabStyle }}">Binnenzijde</button></sc-if>
+            <button type="button" onClick="{{ setSideAchter }}" style="{{ achterTabStyle }}">Achterkant</button>
+          </div>
+        </div>
+      </div>
+
+      <sc-if value="{{ sideIsVoor }}">
+      <div style="{{ cardWrapStyle }}" onClick="{{ closeFullscreenOnBackdrop }}">
+        <sc-if value="{{ fullscreenOpen }}"><button type="button" onClick="{{ toggleFullscreen }}" aria-label="Sluiten" style="position:absolute;top:20px;right:20px;z-index:2;background:rgba(255,255,255,.92);border:none;border-radius:999px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="18px,18px" name="x" size="18"></x-import></button></sc-if>
+        <div style="{{ card.outer }}" onClick="{{ openCardFullscreen }}">
+
+          <sc-if value="{{ indelingIsVolledig }}">
+            <sc-if value="{{ isVolledigeFoto }}">
+              <div style="{{ card.matBg }}"></div>
+              <div style="{{ card.frameBox }}">
+                <sc-if value="{{ showDemoPhoto }}"><img src="assets/nana-volledig.jpg" alt="" style="{{ card.frameImg }}"/></sc-if>
+                <sc-if value="{{ !showDemoPhoto }}"><div style="{{ card.promiseWrapFramed }}"><div style="{{ card.promiseDot }}"></div><span style="{{ card.promiseTextSmall }}">Portret volgt binnen 24 uur.</span></div></sc-if>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isVrijgezet }}">
+              <div style="{{ card.themeFull }}"></div>
+              <sc-if value="{{ showDemoPhoto }}"><div style="{{ card.cutoutWrap }}"><img src="assets/nana-cutout.png" alt="" style="{{ card.cutoutImg }}"/></div></sc-if>
+              <div style="{{ card.cutoutBottomFade }}"></div>
+            </sc-if>
+            <div style="{{ card.scrim }}"></div>
+            <sc-if value="{{ spreukBoven }}"><div style="{{ card.topScrim }}"></div></sc-if>
+            <sc-if value="{{ spreukBoven }}"><div style="{{ card.spreukTopWrap }}"><div onClick="{{ openSheetSpreuk }}" style="{{ card.spreukTopBlock }}"><sc-if value="{{ spreukEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een spreuk toe te voegen</span></sc-if><sc-if value="{{ !spreukEmpty }}"><span style="{{ card.spreukTopStyle }}">{{ spreuk }}</span></sc-if></div></div></sc-if>
+            <div style="{{ card.clusterOverlay }}">
+              <sc-if value="{{ spreukOnder }}"><div onClick="{{ openSheetSpreuk }}" style="{{ card.spreukBlock }}"><sc-if value="{{ spreukEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een spreuk toe te voegen</span></sc-if><sc-if value="{{ !spreukEmpty }}"><span style="{{ card.spreukStyle }}">{{ spreuk }}</span></sc-if></div></sc-if>
+              <div onClick="{{ openSheetNaam }}" style="{{ card.naamBlock }}"><sc-if value="{{ naamEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de naam toe te voegen</span></sc-if><sc-if value="{{ !naamEmpty }}"><span style="{{ card.naamStyle }}">{{ naam }}</span></sc-if></div>
+              <div onClick="{{ openSheetData }}" style="{{ card.dataBlock }}"><sc-if value="{{ dataEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de data toe te voegen</span></sc-if><sc-if value="{{ !dataEmpty }}"><span style="{{ card.dataStyle }}">{{ dataDisplay }}</span></sc-if></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ indelingIsKader }}">
+            <div style="{{ card.matBg }}"></div>
+            <sc-if value="{{ spreukBoven }}"><div style="{{ card.spreukTopWrap }}"><div onClick="{{ openSheetSpreuk }}" style="{{ card.spreukTopBlock }}"><sc-if value="{{ spreukEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een spreuk toe te voegen</span></sc-if><sc-if value="{{ !spreukEmpty }}"><span style="{{ card.spreukTopStyle }}">{{ spreuk }}</span></sc-if></div></div></sc-if>
+            <div style="{{ card.frameBox }}">
+              <sc-if value="{{ isVolledigeFoto }}">
+                <sc-if value="{{ showDemoPhoto }}"><img src="assets/nana-volledig.jpg" alt="" style="{{ card.frameImg }}"/></sc-if>
+                <sc-if value="{{ !showDemoPhoto }}"><div style="{{ card.promiseWrapFramed }}"><div style="{{ card.promiseDot }}"></div><span style="{{ card.promiseTextSmall }}">Portret volgt binnen 24 uur.</span></div></sc-if>
+              </sc-if>
+              <sc-if value="{{ isVrijgezet }}">
+                <sc-if value="{{ showDemoPhoto }}"><div style="{{ card.cutoutWrapFramed }}"><img src="assets/nana-cutout.png" alt="" style="{{ card.cutoutImg }}"/></div></sc-if>
+              </sc-if>
+            </div>
+            <div style="{{ card.clusterFlow }}">
+              <sc-if value="{{ spreukOnder }}"><div onClick="{{ openSheetSpreuk }}" style="{{ card.spreukBlock }}"><sc-if value="{{ spreukEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een spreuk toe te voegen</span></sc-if><sc-if value="{{ !spreukEmpty }}"><span style="{{ card.spreukStyle }}">{{ spreuk }}</span></sc-if></div></sc-if>
+              <div onClick="{{ openSheetNaam }}" style="{{ card.naamBlock }}"><sc-if value="{{ naamEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de naam toe te voegen</span></sc-if><sc-if value="{{ !naamEmpty }}"><span style="{{ card.naamStyle }}">{{ naam }}</span></sc-if></div>
+              <div onClick="{{ openSheetData }}" style="{{ card.dataBlock }}"><sc-if value="{{ dataEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de data toe te voegen</span></sc-if><sc-if value="{{ !dataEmpty }}"><span style="{{ card.dataStyle }}">{{ dataDisplay }}</span></sc-if></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ indelingIsNaastTekst }}">
+            <div style="{{ card.splitRow }}">
+              <div style="{{ card.splitPhoto }}">
+                <sc-if value="{{ isVolledigeFoto }}">
+                  <sc-if value="{{ showDemoPhoto }}"><img src="assets/nana-volledig.jpg" alt="" style="{{ card.splitImg }}"/></sc-if>
+                  <sc-if value="{{ !showDemoPhoto }}"><div style="{{ card.promiseWrapFramed }}"><div style="{{ card.promiseDot }}"></div><span style="{{ card.promiseTextSmall }}">Portret volgt binnen 24 uur.</span></div></sc-if>
+                </sc-if>
+                <sc-if value="{{ isVrijgezet }}">
+                  <div style="{{ card.themeFrameBg }}"></div>
+                  <sc-if value="{{ showDemoPhoto }}"><div style="{{ card.cutoutWrapSplit }}"><img src="assets/nana-cutout.png" alt="" style="{{ card.cutoutImgSplit }}"/></div></sc-if>
+                </sc-if>
+              </div>
+              <div style="{{ card.splitTextCol }}">
+                <div onClick="{{ openSheetSpreuk }}" style="{{ card.spreukBlock }}"><sc-if value="{{ spreukEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een spreuk toe te voegen</span></sc-if><sc-if value="{{ !spreukEmpty }}"><span style="{{ card.spreukStyle }}">{{ spreuk }}</span></sc-if></div>
+                <div onClick="{{ openSheetNaam }}" style="{{ card.naamBlock }}"><sc-if value="{{ naamEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de naam toe te voegen</span></sc-if><sc-if value="{{ !naamEmpty }}"><span style="{{ card.naamStyle }}">{{ naam }}</span></sc-if></div>
+                <div onClick="{{ openSheetData }}" style="{{ card.dataBlock }}"><sc-if value="{{ dataEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de data toe te voegen</span></sc-if><sc-if value="{{ !dataEmpty }}"><span style="{{ card.dataStyle }}">{{ dataDisplay }}</span></sc-if></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ indelingIsSfeerVoorop }}">
+            <div style="{{ card.themeFull }}"></div>
+            <div style="{{ card.scrim }}"></div>
+            <sc-if value="{{ sfeerZinIsBoven }}"><div style="{{ card.topScrim }}"></div></sc-if>
+            <div style="{{ card.spreukFloatWrap }}"><div onClick="{{ openSheetSpreuk }}" style="{{ card.spreukTopBlock }}"><sc-if value="{{ spreukEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een spreuk toe te voegen</span></sc-if><sc-if value="{{ !spreukEmpty }}"><span style="{{ card.spreukTopStyle }}">{{ spreuk }}</span></sc-if></div></div>
+            <div style="{{ card.clusterOverlay }}">
+              <div onClick="{{ openSheetNaam }}" style="{{ card.naamBlock }}"><sc-if value="{{ naamEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de naam toe te voegen</span></sc-if><sc-if value="{{ !naamEmpty }}"><span style="{{ card.naamStyle }}">{{ naam }}</span></sc-if></div>
+              <div onClick="{{ openSheetData }}" style="{{ card.dataBlock }}"><sc-if value="{{ dataEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de data toe te voegen</span></sc-if><sc-if value="{{ !dataEmpty }}"><span style="{{ card.dataStyle }}">{{ dataDisplay }}</span></sc-if></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ ornamentIsRand }}"><div style="{{ card.ornamentRand }}"></div></sc-if>
+          <sc-if value="{{ ornamentIsWaas }}"><div style="{{ card.ornamentWaas }}"></div></sc-if>
+          <sc-if value="{{ ornamentIsHoeken }}">
+            <div style="{{ card.hoekTL }}"></div><div style="{{ card.hoekTR }}"></div><div style="{{ card.hoekBL }}"></div><div style="{{ card.hoekBR }}"></div>
+          </sc-if>
+        </div>
+      </div>
+
+      <sc-if value="{{ !fullscreenOpen }}">
+      <div style="padding:14px 24px 0;text-align:center;">
+        <span style="font-family:var(--font-family);font-size:0.8125rem;color:var(--muted-foreground);">Precies zoals u het hier ziet, komt de kaart ook gedrukt uit.</span>
+      </div>
+      <sc-if value="{{ !isStap3 }}"><div style="display:flex;gap:10px;padding:20px 24px 28px;">
+        <button type="button" onClick="{{ openSheetStijl }}" disabled="{{ locked }}" style="{{ toolBtnStyle }}">Stijl</button>
+        <button type="button" onClick="{{ openSheetThema }}" disabled="{{ locked }}" style="{{ toolBtnStyle }}">Thema &amp; sfeer</button>
+      </div></sc-if>
+      <sc-if value="{{ locked }}"><div style="padding:0 24px 28px;"><span style="font-family:var(--font-family);font-size:0.8125rem;color:var(--muted-foreground);">De uitvaartbegeleider heeft het ontwerp vastgezet. U kunt de woorden nog altijd aanpassen.</span></div></sc-if>
+      </sc-if>
+      </sc-if>
+
+      <sc-if value="{{ sideIsBinnen }}">
+        <sc-if value="{{ !binnenZoom }}">
+          <div style="padding:20px 24px 0;">
+            <div style="{{ card.spreadRow }}">
+              <div style="{{ card.spreadHalf }}" onClick="{{ setBinnenLinks }}">
+                <div style="{{ card.binnenBg }}"></div>
+                <div style="{{ card.binnenTextWrap }}">
+                  <sc-if value="{{ binnenTekstEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een tekst toe te voegen</span></sc-if>
+                  <sc-if value="{{ !binnenTekstEmpty }}"><span style="{{ card.binnenTekstStyle }}">{{ binnenTekst }}</span></sc-if>
+                  <sc-if value="{{ afsluitingEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een afsluiting toe te voegen</span></sc-if>
+                  <sc-if value="{{ !afsluitingEmpty }}"><span style="{{ card.afsluitingStyle }}">{{ afsluitingTekst }}</span></sc-if>
+                </div>
+              </div>
+              <div style="{{ card.spreadHalf }}" onClick="{{ setBinnenRechts }}">
+                <div style="{{ card.binnenBg }}"></div>
+                <div style="{{ card.praktischWrap }}">
+                  <div style="{{ card.praktischItemLocatie }}">
+                    <span style="{{ card.praktischLabel }}">Locatie</span>
+                    <sc-if value="{{ locatieEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de locatie toe te voegen</span></sc-if>
+                    <sc-if value="{{ !locatieEmpty }}"><span style="{{ card.praktischValue }}">{{ locatieTekst }}</span></sc-if>
+                  </div>
+                  <div style="{{ card.praktischItemDatum }}">
+                    <span style="{{ card.praktischLabel }}">Datum &amp; tijd</span>
+                    <sc-if value="{{ datumTijdEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om datum en tijd toe te voegen</span></sc-if>
+                    <sc-if value="{{ !datumTijdEmpty }}"><span style="{{ card.praktischValue }}">{{ datumTijdTekst }}</span></sc-if>
+                  </div>
+                  <div style="{{ card.praktischItemSamenzijn }}">
+                    <span style="{{ card.praktischLabel }}">Samenzijn</span>
+                    <sc-if value="{{ samenzijnEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om toe te voegen, indien van toepassing</span></sc-if>
+                    <sc-if value="{{ !samenzijnEmpty }}"><span style="{{ card.praktischValue }}">{{ samenzijnTekst }}</span></sc-if>
+                  </div>
+                  <div style="{{ card.praktischItemInzameling }}">
+                    <span style="{{ card.praktischLabel }}">Inzameling</span>
+                    <sc-if value="{{ inzamelingEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om toe te voegen, indien van toepassing</span></sc-if>
+                    <sc-if value="{{ !inzamelingEmpty }}"><span style="{{ card.praktischValue }}">{{ inzamelingTekst }}</span></sc-if>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:14px 24px 0;text-align:center;">
+            <span style="font-family:var(--font-family);font-size:0.8125rem;color:var(--muted-foreground);">Tik op een pagina om die te bewerken.</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ binnenZoom }}">
+          <div style="padding:20px 24px 0;">
+            <button type="button" onClick="{{ closeBinnenZoom }}" style="display:flex;align-items:center;gap:6px;background:none;border:none;padding:2px;cursor:pointer;color:var(--muted-foreground);font-family:var(--font-family);font-size:0.8125rem;font-weight:var(--weight-medium);">
+              <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="16px,16px" name="arrow-left" size="16"></x-import>
+              Beide pagina's
+            </button>
+          </div>
+          <div style="padding:12px 24px 0;">
+            <div style="{{ card.outer }}">
+              <div style="{{ card.binnenBg }}"></div>
+              <sc-if value="{{ binnenSideIsLinks }}">
+                <div style="{{ card.binnenTextWrap }}">
+                  <div onClick="{{ openSheetBinnenSafe }}" style="{{ card.binnenBlock }}">
+                    <sc-if value="{{ binnenTekstEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een tekst toe te voegen</span></sc-if>
+                    <sc-if value="{{ !binnenTekstEmpty }}"><span style="{{ card.binnenTekstStyle }}">{{ binnenTekst }}</span></sc-if>
+                  </div>
+                  <div onClick="{{ openSheetAfsluitingSafe }}" style="{{ card.afsluitingBlock }}">
+                    <sc-if value="{{ afsluitingEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om een afsluiting toe te voegen</span></sc-if>
+                    <sc-if value="{{ !afsluitingEmpty }}"><span style="{{ card.afsluitingStyle }}">{{ afsluitingTekst }}</span></sc-if>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ binnenSideIsRechts }}">
+                <div style="{{ card.praktischWrap }}">
+                  <div onClick="{{ openSheetPraktischSafe }}" style="{{ card.praktischItemLocatie }}">
+                    <span style="{{ card.praktischLabel }}">Locatie</span>
+                    <sc-if value="{{ locatieEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om de locatie toe te voegen</span></sc-if>
+                    <sc-if value="{{ !locatieEmpty }}"><span style="{{ card.praktischValue }}">{{ locatieTekst }}</span></sc-if>
+                  </div>
+                  <div onClick="{{ openSheetPraktischSafe }}" style="{{ card.praktischItemDatum }}">
+                    <span style="{{ card.praktischLabel }}">Datum &amp; tijd</span>
+                    <sc-if value="{{ datumTijdEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om datum en tijd toe te voegen</span></sc-if>
+                    <sc-if value="{{ !datumTijdEmpty }}"><span style="{{ card.praktischValue }}">{{ datumTijdTekst }}</span></sc-if>
+                  </div>
+                  <div onClick="{{ openSheetPraktischSafe }}" style="{{ card.praktischItemSamenzijn }}">
+                    <span style="{{ card.praktischLabel }}">Samenzijn</span>
+                    <sc-if value="{{ samenzijnEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om toe te voegen, indien van toepassing</span></sc-if>
+                    <sc-if value="{{ !samenzijnEmpty }}"><span style="{{ card.praktischValue }}">{{ samenzijnTekst }}</span></sc-if>
+                  </div>
+                  <div onClick="{{ openSheetPraktischSafe }}" style="{{ card.praktischItemInzameling }}">
+                    <span style="{{ card.praktischLabel }}">Inzameling</span>
+                    <sc-if value="{{ inzamelingEmpty }}"><span style="{{ card.placeholderStyle }}">Tik om toe te voegen, indien van toepassing</span></sc-if>
+                    <sc-if value="{{ !inzamelingEmpty }}"><span style="{{ card.praktischValue }}">{{ inzamelingTekst }}</span></sc-if>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+          <div style="padding:14px 24px 0;text-align:center;">
+            <span style="font-family:var(--font-family);font-size:0.8125rem;color:var(--muted-foreground);">Precies zoals u het hier ziet, komt de kaart ook gedrukt uit.</span>
+          </div>
+          <sc-if value="{{ !isStap3 }}"><div style="display:flex;gap:10px;padding:20px 24px 28px;">
+            <sc-if value="{{ binnenSideIsLinks }}"><button type="button" onClick="{{ openSheetBinnen }}" disabled="{{ locked }}" style="{{ toolBtnStyle }}">Tekst</button></sc-if>
+            <sc-if value="{{ binnenSideIsRechts }}"><button type="button" onClick="{{ openSheetPraktisch }}" disabled="{{ locked }}" style="{{ toolBtnStyle }}">Praktische informatie</button></sc-if>
+          </div></sc-if>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ sideIsAchter }}">
+        <div style="padding:20px 24px 0;">
+          <div style="{{ card.outer }}">
+            <div style="{{ card.achterBg }}"></div>
+            <sc-if value="{{ !geenNamenOpKaart }}">
+              <div style="{{ card.achterNamenWrap }}">
+                <div onClick="{{ openSheetFamilieSafe }}" style="{{ card.achterNamenBlock }}">
+                  <span style="{{ card.achterKopregelStyle }}">{{ kopregel }}</span>
+                  <sc-for list="{{ namenDisplay }}" as="rij" hint-placeholder-count="4">
+                    <sc-if value="{{ rij.indented }}"><div style="{{ card.achterNaamRowIndent }}"><span style="{{ rij.crossStyle }}">†</span><span>{{ rij.naam }}</span></div></sc-if>
+                    <sc-if value="{{ !rij.indented }}"><div style="{{ card.achterNaamRow }}"><span style="{{ rij.crossStyle }}">†</span><span>{{ rij.naam }}</span></div></sc-if>
+                  </sc-for>
+                  <sc-if value="{{ samenvattendeRegel }}"><span style="{{ card.achterSamenvattendStyle }}">{{ samenvattendeRegel }}</span></sc-if>
+                  <sc-if value="{{ bredereKring }}"><span style="{{ card.achterKleinStyle }}">{{ bredereKring }}</span></sc-if>
+                  <sc-if value="{{ deFamilies }}"><span style="{{ card.achterKleinStyle }}">{{ deFamilies }}</span></sc-if>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ ornamentIsRand }}"><div style="{{ card.ornamentRand }}"></div></sc-if>
+            <sc-if value="{{ ornamentIsWaas }}"><div style="{{ card.ornamentWaas }}"></div></sc-if>
+            <sc-if value="{{ ornamentIsHoeken }}">
+              <div style="{{ card.hoekTL }}"></div><div style="{{ card.hoekTR }}"></div><div style="{{ card.hoekBL }}"></div><div style="{{ card.hoekBR }}"></div>
+            </sc-if>
+          </div>
+        </div>
+        <div style="padding:14px 24px 0;text-align:center;">
+          <span style="font-family:var(--font-family);font-size:0.8125rem;color:var(--muted-foreground);">Precies zoals u het hier ziet, komt de kaart ook gedrukt uit.</span>
+        </div>
+        <sc-if value="{{ !isStap3 }}"><div style="display:flex;gap:10px;padding:20px 24px 28px;">
+          <button type="button" onClick="{{ openSheetFamilie }}" disabled="{{ locked }}" style="{{ toolBtnStyle }}">Namen</button>
+        </div></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ isStap2 }}">
+        <div style="{{ ctaBarStyle }}">
+          <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="100%,52px" variant="primary" onClick="{{ goToStap3 }}" style="width:100%;">Naar overzicht</x-import>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isStap3 }}">
+        <div style="{{ ctaBarStyle }}">
+          <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="100%,52px" variant="primary" onClick="{{ confirmBestelling }}" style="width:100%;">Bevestigen</x-import>
+        </div>
+      </sc-if>
+    </sc-if>
+
+    <sc-if value="{{ isVoltooid }}">
+      <div style="min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 32px;gap:18px;">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--secondary);display:flex;align-items:center;justify-content:center;">
+          <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="28px,28px" name="check" size="28"></x-import>
+        </div>
+        <h1 style="margin:0;font-family:var(--font-family);font-size:1.5rem;font-weight:var(--weight-bold);color:var(--foreground);">De kaart is bevestigd</h1>
+        <p style="margin:0;max-width:34ch;font-family:var(--font-family);font-size:0.9375rem;line-height:var(--leading-lead);color:var(--muted-foreground);">Deze gaat zo in productie. U ontvangt een bevestiging zodra de kaarten klaar zijn.</p>
+        <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="auto,52px" variant="secondary" onClick="{{ goToStap1 }}" style="margin-top:10px;">Terug naar het begin</x-import>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ sheetOpen }}">
+      <sc-if value="{{ sheetHasBackdrop }}"><div onClick="{{ closeSheet }}" style="position:fixed;inset:0;background:transparent;z-index:90;"></div></sc-if>
+      <div style="{{ sheetStyle }}">
+        <div style="width:36px;height:4px;border-radius:999px;background:var(--border-strong);margin:0 auto 20px;"></div>
+        <button type="button" onClick="{{ closeSheet }}" aria-label="Sluiten" style="position:absolute;top:24px;right:24px;background:none;border:none;padding:4px;cursor:pointer;color:var(--muted-foreground);">
+          <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="18px,18px" name="x" size="19"></x-import>
+        </button>
+
+        <sc-if value="{{ sheetIsNaam }}">
+          <span style="{{ microLabelStyle }}">Voorkant</span>
+          <h2 style="{{ sheetTitleStyle }}">De naam</h2>
+          <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,80px" label="Naam" placeholder="Voor- en achternaam" value="{{ naam }}" onChange="{{ updateNaam }}" max-length="{{ naamMaxLength }}" hint="{{ naamCharsHint }}" style="margin-top:48px;"></x-import>
+          <div style="{{ sectionLabelStyleMT56 }}">Grootte</div>
+          <div style="display:flex;gap:6px;margin-top:8px;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;">
+            <sc-for list="{{ naamSizeOptions }}" as="s" hint-placeholder-count="3">
+              <button type="button" onClick="{{ s.onClick }}" style="{{ s.pillStyle }}">{{ s.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetIsData }}">
+          <span style="{{ microLabelStyle }}">Voorkant</span>
+          <h2 style="{{ sheetTitleStyle }}">De data</h2>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-top:48px;">
+            <div>
+              <div style="{{ sectionLabelStyleMB8 }}">Geboren</div>
+              <button type="button" onClick="{{ geborenPicker.toggle }}" style="{{ geborenPicker.triggerStyle }}">
+                <span style="{{ geborenPicker.displayStyle }}">{{ geborenPicker.displayText }}</span>
+                <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="18px,18px" name="calendar" size="18"></x-import>
+              </button>
+              <sc-if value="{{ geborenPicker.open }}">
+                <div style="{{ calendarPanelStyle }}">
+                  <div style="{{ calendarHeaderStyle }}">
+                    <button type="button" onClick="{{ geborenPicker.prevMonth }}" style="{{ calendarNavBtnStyle }}"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="16px,16px" name="arrow-left" size="16"></x-import></button>
+                    <span style="{{ calendarMonthLabelStyle }}">{{ geborenPicker.monthLabel }}</span>
+                    <button type="button" onClick="{{ geborenPicker.nextMonth }}" style="{{ calendarNavBtnStyle }}"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="16px,16px" name="arrow-right" size="16"></x-import></button>
+                  </div>
+                  <div style="{{ calendarGridStyle }}">
+                    <sc-for list="{{ weekDayLabels }}" as="wd" hint-placeholder-count="7"><span style="{{ calendarWeekDayStyle }}">{{ wd.label }}</span></sc-for>
+                  </div>
+                  <div style="{{ calendarGridStyle }}">
+                    <sc-for list="{{ geborenPicker.cells }}" as="c" hint-placeholder-count="42"><button type="button" onClick="{{ c.onClick }}" style="{{ c.cellStyle }}">{{ c.label }}</button></sc-for>
+                  </div>
+                  <div style="{{ calendarFooterStyle }}">
+                    <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="auto,32px" variant="text" onClick="{{ geborenPicker.clear }}" style="height:auto;padding:0;font-size:0.8125rem;">Wissen</x-import>
+                    <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="auto,32px" variant="text" onClick="{{ geborenPicker.today }}" style="height:auto;padding:0;font-size:0.8125rem;">Vandaag</x-import>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+            <div>
+              <div style="{{ sectionLabelStyleMB8 }}">Overleden</div>
+              <button type="button" onClick="{{ overlijdenPicker.toggle }}" style="{{ overlijdenPicker.triggerStyle }}">
+                <span style="{{ overlijdenPicker.displayStyle }}">{{ overlijdenPicker.displayText }}</span>
+                <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="18px,18px" name="calendar" size="18"></x-import>
+              </button>
+              <sc-if value="{{ overlijdenPicker.open }}">
+                <div style="{{ calendarPanelStyle }}">
+                  <div style="{{ calendarHeaderStyle }}">
+                    <button type="button" onClick="{{ overlijdenPicker.prevMonth }}" style="{{ calendarNavBtnStyle }}"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="16px,16px" name="arrow-left" size="16"></x-import></button>
+                    <span style="{{ calendarMonthLabelStyle }}">{{ overlijdenPicker.monthLabel }}</span>
+                    <button type="button" onClick="{{ overlijdenPicker.nextMonth }}" style="{{ calendarNavBtnStyle }}"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="16px,16px" name="arrow-right" size="16"></x-import></button>
+                  </div>
+                  <div style="{{ calendarGridStyle }}">
+                    <sc-for list="{{ weekDayLabels }}" as="wd" hint-placeholder-count="7"><span style="{{ calendarWeekDayStyle }}">{{ wd.label }}</span></sc-for>
+                  </div>
+                  <div style="{{ calendarGridStyle }}">
+                    <sc-for list="{{ overlijdenPicker.cells }}" as="c" hint-placeholder-count="42"><button type="button" onClick="{{ c.onClick }}" style="{{ c.cellStyle }}">{{ c.label }}</button></sc-for>
+                  </div>
+                  <div style="{{ calendarFooterStyle }}">
+                    <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="auto,32px" variant="text" onClick="{{ overlijdenPicker.clear }}" style="height:auto;padding:0;font-size:0.8125rem;">Wissen</x-import>
+                    <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="auto,32px" variant="text" onClick="{{ overlijdenPicker.today }}" style="height:auto;padding:0;font-size:0.8125rem;">Vandaag</x-import>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+          <div style="{{ sectionLabelStyleMT56 }}">Grootte</div>
+          <div style="display:flex;gap:6px;margin-top:8px;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;">
+            <sc-for list="{{ dataSizeOptions }}" as="s" hint-placeholder-count="3">
+              <button type="button" onClick="{{ s.onClick }}" style="{{ s.pillStyle }}">{{ s.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetIsSpreuk }}">
+          <span style="{{ microLabelStyle }}">Voorkant</span>
+          <h2 style="{{ sheetTitleStyle }}">Een spreuk</h2>
+          <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.TextareaField" hint-size="100%,110px" label="Spreuk of korte tekst" placeholder="Bijvoorbeeld een dichtregel of gedachte" value="{{ spreuk }}" onChange="{{ updateSpreuk }}" max-length="{{ spreukMaxLength }}" hint="{{ spreukCharsHint }}" rows="3" style="margin-top:48px;"></x-import>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Kies een formulering</div>
+          <div style="display:flex;gap:8px;margin-top:8px;overflow-x:auto;">
+            <sc-for list="{{ toneOptions }}" as="tn" hint-placeholder-count="4">
+              <button type="button" onClick="{{ tn.onClick }}" style="{{ tn.tabStyle }}">{{ tn.label }}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;margin-bottom:4px;">
+            <sc-for list="{{ phrasesList }}" as="p" hint-placeholder-count="3">
+              <button type="button" onClick="{{ p.onClick }}" style="text-align:left;font-family:var(--font-family);font-size:0.9375rem;color:var(--foreground);background:var(--secondary);border:none;border-radius:var(--radius);padding:14px 18px;cursor:pointer;">{{ p.text }}</button>
+            </sc-for>
+          </div>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Plaats van de spreuk</div>
+          <div style="display:flex;gap:6px;margin-top:8px;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;">
+            <button type="button" onClick="{{ setSpreukBoven }}" style="{{ spreukPositieBovenPill }}">Bovenaan de kaart</button>
+            <button type="button" onClick="{{ setSpreukOnder }}" style="{{ spreukPositieOnderPill }}">Onderaan de kaart</button>
+          </div>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Grootte</div>
+          <div style="display:flex;gap:6px;margin-top:8px;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;">
+            <sc-for list="{{ spreukSizeOptions }}" as="s" hint-placeholder-count="3">
+              <button type="button" onClick="{{ s.onClick }}" style="{{ s.pillStyle }}">{{ s.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetIsBinnen }}">
+          <span style="{{ microLabelStyle }}">Binnenzijde</span>
+          <h2 style="{{ sheetTitleStyle }}">De binnentekst</h2>
+          <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.TextareaField" hint-size="100%,160px" label="Tekst voor de binnenzijde" placeholder="Bijvoorbeeld een gedicht, gedachte of dankwoord" value="{{ binnenTekst }}" onChange="{{ updateBinnenTekst }}" maxLength="{{ binnenMaxLength }}" hint="{{ binnenCharsHint }}"></x-import>
+          <div style="margin-top:24px;">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,80px" label="Afsluiting" placeholder="Bijvoorbeeld: uit naam van de familie" value="{{ afsluitingTekst }}" onChange="{{ updateAfsluitingTekst }}"></x-import>
+          </div>
+          <div style="{{ sectionLabelStyleMT56 }}">Grootte</div>
+          <div style="display:flex;gap:6px;margin-top:8px;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;">
+            <sc-for list="{{ binnenSizeOptions }}" as="s" hint-placeholder-count="3">
+              <button type="button" onClick="{{ s.onClick }}" style="{{ s.pillStyle }}">{{ s.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetIsFamilie }}">
+          <span style="{{ microLabelStyle }}">Achterkant</span>
+          <h2 style="{{ sheetTitleStyle }}">Uit naam van</h2>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;margin-top:32px;padding:16px 18px;border:1px solid var(--border-strong);border-radius:var(--radius);">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Switch" hint-size="auto,26px" checked="{{ geenNamenOpKaart }}" onChange="{{ toggleGeenNamen }}"></x-import>
+            <div>
+              <span style="font-family:var(--font-family);font-size:0.9375rem;font-weight:var(--weight-medium);color:var(--foreground);display:block;">Geen namen op de kaart</span>
+              <span style="font-family:var(--font-family);font-size:0.8125rem;color:var(--muted-foreground);display:block;margin-top:2px;">Bij grote of samengestelde families is één regel soms passender.</span>
+            </div>
+          </div>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Kopregel</div>
+          <div style="margin-top:8px;">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,80px" label="" placeholder="Bijvoorbeeld: Dit melden u bedroefd:" value="{{ kopregel }}" onChange="{{ updateKopregel }}"></x-import>
+          </div>
+
+          <div style="{{ sectionLabelStyleMT56 }}">De namen</div>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;">
+            <sc-for list="{{ namenSheetRows }}" as="rij" hint-placeholder-count="4">
+              <div style="border:1px solid var(--border-strong);border-radius:var(--radius);padding:14px 16px;">
+                <sc-if value="{{ rij.parentLabel }}"><span style="font-family:var(--font-family);font-size:0.75rem;color:var(--muted-foreground);display:block;margin-bottom:6px;">{{ rij.parentLabel }}</span></sc-if>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <sc-if value="{{ rij.canOutdent }}"><button type="button" onClick="{{ rij.onOutdent }}" aria-label="Naar boven niveau" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid var(--border-strong);border-radius:999px;background:none;cursor:pointer;flex-shrink:0;"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="14px,14px" name="chevron-right" size="14"></x-import></button></sc-if>
+                  <sc-if value="{{ rij.canIndent }}"><button type="button" onClick="{{ rij.onIndent }}" aria-label="Onder vorige naam plaatsen" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid var(--border-strong);border-radius:999px;background:none;cursor:pointer;flex-shrink:0;"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="14px,14px" name="chevron-down" size="14"></x-import></button></sc-if>
+                  <div style="flex:1;">
+                    <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,52px" label="" placeholder="Voor- en achternaam" value="{{ rij.naam }}" onChange="{{ rij.onChangeNaam }}"></x-import>
+                  </div>
+                  <button type="button" onClick="{{ rij.onRemove }}" aria-label="Verwijderen" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:none;background:none;cursor:pointer;color:var(--muted-foreground);flex-shrink:0;"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="16px,16px" name="x" size="16"></x-import></button>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;">
+                  <div style="flex:1;">
+                    <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,44px" label="" placeholder="Relatie, bijvoorbeeld echtgenote of zoon" value="{{ rij.relatie }}" onChange="{{ rij.onChangeRelatie }}"></x-import>
+                  </div>
+                  <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Checkbox" hint-size="auto,24px" label="Is overleden" checked="{{ rij.overleden }}" onChange="{{ rij.onToggleOverleden }}"></x-import>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <button type="button" onClick="{{ addNaam }}" style="margin-top:14px;background:none;border:none;padding:4px 0;cursor:pointer;color:var(--foreground);font-family:var(--font-family);font-size:0.9375rem;font-weight:var(--weight-medium);text-align:left;">+ Naam toevoegen</button>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Samenvattende regel</div>
+          <div style="margin-top:8px;">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,80px" label="" placeholder="Bijvoorbeeld: broers en zussen" value="{{ samenvattendeRegel }}" onChange="{{ updateSamenvattendeRegel }}"></x-import>
+          </div>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Bredere kring</div>
+          <div style="margin-top:8px;">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,80px" label="" placeholder="Bijvoorbeeld: haar zus, schoonbroers, neven en nichten" value="{{ bredereKring }}" onChange="{{ updateBredereKring }}"></x-import>
+          </div>
+
+          <div style="{{ sectionLabelStyleMT56 }}">De families</div>
+          <div style="margin-top:8px;">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,80px" label="" placeholder="Bijvoorbeeld: de families Bakker en Steenhaut" value="{{ deFamilies }}" onChange="{{ updateDeFamilies }}"></x-import>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetIsPraktisch }}">
+          <span style="{{ microLabelStyle }}">Binnenzijde, rechterpagina</span>
+          <h2 style="{{ sheetTitleStyle }}">Praktische informatie</h2>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-top:32px;">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.TextareaField" hint-size="100%,90px" label="Locatie &amp; adres" placeholder="Naam van de locatie, straat, postcode en plaats" value="{{ locatieTekst }}" onChange="{{ updateLocatieTekst }}"></x-import>
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Field" hint-size="100%,80px" label="Datum &amp; tijd" placeholder="Bijvoorbeeld: donderdag 28 augustus 2026, 14:00 uur" value="{{ datumTijdTekst }}" onChange="{{ updateDatumTijdTekst }}"></x-import>
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.TextareaField" hint-size="100%,90px" label="Uitnodiging tot samenzijn" placeholder="Bijvoorbeeld: na de plechtigheid is er gelegenheid tot samenzijn" value="{{ samenzijnTekst }}" onChange="{{ updateSamenzijnTekst }}"></x-import>
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.TextareaField" hint-size="100%,90px" label="Inzameling of goed doel" placeholder="Bijvoorbeeld: in plaats van bloemen graag een bijdrage aan" value="{{ inzamelingTekst }}" onChange="{{ updateInzamelingTekst }}"></x-import>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetIsStijl }}">
+          <span style="{{ microLabelStyle }}">Stijl</span>
+          <h2 style="{{ sheetTitleStyle }}">Stijl van de kaart</h2>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Uitstraling</div>
+          <div style="display:flex;gap:6px;margin-top:8px;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;">
+            <button type="button" onClick="{{ setUitstralingAuto }}" style="{{ uitstralingAutoPill }}">Automatisch</button>
+            <button type="button" onClick="{{ setUitstralingDonker }}" style="{{ uitstralingDonkerPill }}">Donker</button>
+            <button type="button" onClick="{{ setUitstralingLicht }}" style="{{ uitstralingLichtPill }}">Licht</button>
+          </div>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Uitlijning</div>
+          <div style="display:flex;gap:6px;margin-top:8px;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;">
+            <button type="button" onClick="{{ setUitlijningLinks }}" style="{{ uitlijningLinksPill }}">Links</button>
+            <button type="button" onClick="{{ setUitlijningCentrum }}" style="{{ uitlijningCentrumPill }}">Gecentreerd</button>
+            <button type="button" onClick="{{ setUitlijningRechts }}" style="{{ uitlijningRechtsPill }}">Rechts</button>
+          </div>
+
+          <sc-if value="{{ indelingIsSfeerVoorop }}">
+            <div style="{{ sectionLabelStyleMT56 }}">Plaats van het zinnetje</div>
+            <div style="display:flex;gap:6px;margin-top:8px;background:var(--secondary);border-radius:var(--radius-pill);padding:4px;">
+              <button type="button" onClick="{{ setSfeerZinBoven }}" style="{{ sfeerZinBovenPill }}">Boven</button>
+              <button type="button" onClick="{{ setSfeerZinTussenin }}" style="{{ sfeerZinTusseninPill }}">Tussenin</button>
+              <button type="button" onClick="{{ setSfeerZinMidden }}" style="{{ sfeerZinMiddenPill }}">Midden</button>
+            </div>
+          </sc-if>
+
+          <div style="{{ sectionLabelStyleMT56MB8 }}">Lettertype</div>
+          <div style="position:relative;">
+            <button type="button" onClick="{{ toggleFontDropdown }}" style="{{ fontTriggerStyle }}">
+              <span style="display:flex;flex-direction:column;gap:3px;">
+                <span style="{{ fontTriggerPreviewStyle }}">Voornaam Achternaam</span>
+                <span style="{{ fontTriggerNameStyle }}">{{ fontPairingLabel }}</span>
+              </span>
+              <span style="{{ chevronRotateStyle }}"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="18px,18px" name="chevron-down" size="18"></x-import></span>
+            </button>
+            <sc-if value="{{ fontDropdownOpen }}">
+              <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+                <sc-for list="{{ pairingsList }}" as="f" hint-placeholder-count="8">
+                  <button type="button" onClick="{{ f.onClick }}" style="{{ f.tileStyle }}">
+                    <span style="{{ f.previewStyle }}">Voornaam Achternaam</span>
+                    <span style="{{ f.nameStyle }}">{{ f.label }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetIsThema }}">
+          <span style="{{ microLabelStyle }}">Thema &amp; sfeer</span>
+          <h2 style="{{ sheetTitleStyle }}">Thema en sfeer</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;">
+            <sc-for list="{{ themesList }}" as="t" hint-placeholder-count="4">
+              <button type="button" onClick="{{ t.onClick }}" style="{{ t.tileStyle }}">
+                <div style="{{ t.swatchStyle }}"><sc-if value="{{ t.selected }}"><span style="{{ checkBadgeStyle }}"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="12px,12px" name="check" size="12"></x-import></span></sc-if></div>
+                <span style="{{ t.labelStyle }}">{{ t.naam }}</span>
+                <span style="{{ t.moodStyle }}">{{ t.mood }}</span>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="{{ sectionLabelStyleMT56 }}">Ornament</div>
+          <p style="margin:8px 0 0;font-family:var(--font-family);font-size:0.875rem;color:var(--muted-foreground);">Lichte versiering, nooit over het portret.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+            <sc-for list="{{ ornamentList }}" as="o" hint-placeholder-count="4">
+              <button type="button" onClick="{{ o.onClick }}" style="{{ o.rowStyle }}">
+                <span>
+                  <span style="{{ o.labelStyle }}">{{ o.label }}</span>
+                  <span style="{{ o.hintStyle }}">{{ o.hint }}</span>
+                </span>
+                <sc-if value="{{ o.selected }}"><span style="{{ o.checkStyle }}"><x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="14px,14px" name="check" size="14"></x-import></span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ lockDialogOpen }}">
+      <div style="position:fixed;inset:0;z-index:101;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;">
+        <div style="pointer-events:auto;background:var(--background);border-radius:var(--radius-lg) var(--radius-lg) 0 0;box-shadow:var(--shadow-nav);padding:28px 24px 32px;width:100%;max-width:480px;display:flex;flex-direction:column;gap:14px;margin-top:-64px;">
+          <span style="{{ microLabelStyle }}">{{ lockDialogLabel }}</span>
+          <h2 style="{{ sheetTitleStyle }}">{{ lockDialogTitle }}</h2>
+          <p style="margin:0;font-family:var(--font-family);font-size:1rem;color:var(--foreground);line-height:var(--leading-body);">{{ lockDialogDescription }}</p>
+          <div style="display:flex;gap:10px;margin-top:6px;">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="auto,52px" variant="secondary" onClick="{{ closeLockDialog }}" style="flex:1;">Annuleren</x-import>
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" hint-size="auto,52px" variant="primary" onClick="{{ confirmLockToggle }}" style="flex:1;">{{ lockDialogConfirmLabel }}</x-import>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ previewLightboxOpen }}">
+      <div onClick="{{ closePreviewLightbox }}" style="position:fixed;inset:0;z-index:110;background:rgba(26,26,30,.72);display:flex;align-items:center;justify-content:center;padding:32px;">
+        <button type="button" onClick="{{ closePreviewLightbox }}" aria-label="Sluiten" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,.92);border:none;border-radius:999px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+          <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" hint-size="18px,18px" name="x" size="18"></x-import>
+        </button>
+        <div onClick="{{ stopPropagation }}" style="width:min(80vw,340px);">
+          <div style="{{ struct.outer }}">
+            <sc-if value="{{ struct.showPhotoFull }}"><div style="{{ struct.frameOuterMat }}"><div style="{{ struct.frameInner }}"></div></div></sc-if>
+            <sc-if value="{{ struct.showFullVrijgezet }}"><div style="{{ struct.tintLayer }}"><img src="assets/nana-cutout.png" alt="" style="{{ struct.cutoutFill }}"/></div></sc-if>
+            <sc-if value="{{ struct.showSfeer }}"><div style="{{ struct.sfeerLayer }}"></div></sc-if>
+            <sc-if value="{{ struct.showFrame }}">
+              <div style="{{ struct.frameOuterMat }}">
+                <div style="{{ struct.frameInner }}"><sc-if value="{{ struct.showCutout }}"><img src="assets/nana-cutout.png" alt="" style="{{ struct.cutoutFill }}"/></sc-if></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ struct.showSplit }}">
+              <div style="{{ struct.splitLeft }}"><sc-if value="{{ struct.showCutout }}"><div style="{{ struct.cutoutWrapSplitStruct }}"><img src="assets/nana-cutout.png" alt="" style="{{ struct.cutoutFillSplit }}"/></div></sc-if></div>
+              <div style="{{ struct.splitRight }}"></div>
+            </sc-if>
+            <div style="{{ struct.spreukWrap }}"><span style="{{ struct.textSpreukStyle }}">{{ spreuk }}</span></div>
+            <div style="{{ struct.bottomWrap }}">
+              <span style="{{ struct.textNaamStyle }}">{{ naam }}</span>
+              <span style="{{ struct.textDataStyle }}">{{ dataDisplay }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  THEMES = [
+    { id:'avondwater', naam:'Avondwater', mood:'Rustig water bij het vallen van de avond.', bg:'linear-gradient(158deg,#182430 0%,#2f4a63 42%,#5e6f5f 76%,#c99f6c 100%)', matLight:'#eaeff3', matDark:'#1b2732', dark:true },
+    { id:'nachtbloem', naam:'Nachtbloem', mood:'Een bloem die opent in het donker.', bg:'linear-gradient(158deg,#1c1521 0%,#3a2740 42%,#583349 76%,#7b4f57 100%)', matLight:'#f0ecef', matDark:'#241a29', dark:true },
+    { id:'stilte', naam:'Stilte', mood:'Licht, ademend, zonder onrust.', bg:'linear-gradient(158deg,#e6e8ec 0%,#eef0f1 55%,#f4f2ec 100%)', matLight:'#f2f3f4', matDark:'#3a3d42', dark:false },
+    { id:'veldbloei', naam:'Veldbloei', mood:'Gras en bloei in zacht ochtendlicht.', bg:'linear-gradient(158deg,#3f4c34 0%,#7a8355 42%,#b6ac77 76%,#e7dbaf 100%)', matLight:'#eeeee2', matDark:'#333921', dark:true },
+    { id:'waterlicht', naam:'Waterlicht', mood:'Het licht dat op stil water valt.', bg:"url('assets/theme-waterlicht.jpg') center/cover no-repeat", matLight:'#eef1f0', matDark:'#26333a', dark:false },
+    { id:'late-bloei', naam:'Late bloei', mood:'Bloemen die de tijd hebben doorstaan.', bg:"url('assets/theme-late-bloei.jpg') center/cover no-repeat", matLight:'#eef0f0', matDark:'#2e3438', dark:false },
+    { id:'verre-oever', naam:'Verre oever', mood:'Een pad dat oplost in het water.', bg:"url('assets/theme-verre-oever.jpg') center/cover no-repeat", matLight:'#eef0ef', matDark:'#2b2b2b', dark:true },
+    { id:'witte-dahlia', naam:'Witte dahlia', mood:'Een laatste boeket bij het raam.', bg:"url('assets/theme-witte-dahlia.jpg') center/cover no-repeat", matLight:'#f1f0ec', matDark:'#2c2a26', dark:false }
+  ];
+  PAIRINGS = [
+    { id:'ingetogen', label:'Ingetogen', naamFamily:'"EB Garamond",serif', naamWeight:500, naamStyle:'italic', naamMult:1, dataFamily:'"EB Garamond",serif', dataWeight:400, spreukFamily:'"EB Garamond",serif' },
+    { id:'klassiek', label:'Klassiek', naamFamily:'"Playfair Display",serif', naamWeight:600, naamStyle:'normal', naamMult:1, dataFamily:'"Lora",serif', dataWeight:400, spreukFamily:'"Lora",serif' },
+    { id:'sereen', label:'Sereen', naamFamily:'"Cormorant Garamond",serif', naamWeight:600, naamStyle:'italic', naamMult:1.08, dataFamily:'"EB Garamond",serif', dataWeight:400, spreukFamily:'"EB Garamond",serif' },
+    { id:'statig', label:'Statig', naamFamily:'"Marcellus",serif', naamWeight:400, naamStyle:'normal', naamMult:1, naamTracking:'0.03em', dataFamily:'"Crimson Pro",serif', dataWeight:400, spreukFamily:'"Crimson Pro",serif' },
+    { id:'warm', label:'Warm', naamFamily:'"Merriweather",serif', naamWeight:700, naamStyle:'normal', naamMult:0.92, dataFamily:'"Merriweather",serif', dataWeight:400, spreukFamily:'"Merriweather",serif' },
+    { id:'helder', label:'Helder', naamFamily:'"Montserrat",sans-serif', naamWeight:600, naamStyle:'normal', naamMult:0.86, naamTransform:'uppercase', naamTracking:'0.05em', dataFamily:'"Lora",serif', dataWeight:400, spreukFamily:'"Lora",serif' },
+    { id:'modern', label:'Modern', naamFamily:'"Raleway",sans-serif', naamWeight:500, naamStyle:'normal', naamMult:0.95, naamTracking:'0.01em', dataFamily:'"Crimson Pro",serif', dataWeight:400, spreukFamily:'"Crimson Pro",serif' },
+    { id:'sierlijk', label:'Sierlijk', naamFamily:'"Great Vibes",cursive', naamWeight:400, naamStyle:'normal', naamMult:1.35, dataFamily:'"EB Garamond",serif', dataWeight:400, spreukFamily:'"EB Garamond",serif' }
+  ];
+  ORNAMENTS = [
+    { id:'geen', label:'Geen', hint:'Geen versiering, alleen het beeld.' },
+    { id:'rand', label:'Rand', hint:'Een fijne lijn rond de kaart.' },
+    { id:'hoeken', label:'Hoeken', hint:'Zachte accenten in de hoeken.' },
+    { id:'waas', label:'Waas', hint:'Een lichte gloed rond de randen.' }
+  ];
+  PHRASES = {
+    algemeen: ['In liefde en dankbaarheid.', 'Met liefde herdacht.', 'Een leven vol warmte.'],
+    ziekte: ['Rust nu, na een lange strijd.', 'De rust die u verdiende.', 'Moe, maar niet verslagen.'],
+    onverwacht: ['Zo onverwacht, zo vroeg.', 'Midden in het leven weggenomen.', 'Geen woorden voor dit verlies.'],
+    religieus: ['In Gods hand geborgen.', 'Tot wij elkaar weerzien.', 'De Heer is mijn herder.']
+  };
+  MONTHS = ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+  MAX_NAAM = { klein:48, normaal:36, groot:26 };
+  MAX_SPREUK = { klein:95, normaal:72, groot:55 };
+  MAX_BINNEN = { klein:600, normaal:420, groot:280 };
+
+  state = {
+    screen: 'stap1',
+    formaat: 'enkel',
+    smaak: 'volledige-foto',
+    indeling: 'volledig',
+    thema: null,
+    side: 'voor',
+    uitstraling: 'automatisch',
+    uitlijning: 'gecentreerd',
+    spreukPositie: 'boven',
+    sfeerZinPositie: 'boven',
+    fontPairing: 'klassiek',
+    ornament: 'geen',
+    naam: 'Johanna van der Berg', dataGeboorte: '1938-03-12', dataOverlijden: '2026-08-04', spreuk: 'Dit is een voorbeeldzinnetje, u past het aan naar eigen woorden.',
+    binnenTekst: 'Dit is een voorbeeldtekst voor de binnenzijde, u past hem aan naar eigen woorden.',
+    binnenZoom: null,
+    locatieTekst: 'Aula "Het Rustpunt", Kerkstraat 12, 1234 AB Voorburg',
+    datumTijdTekst: 'Donderdag 28 augustus 2026, aanvang 14:00 uur',
+    samenzijnTekst: 'Na de plechtigheid is er gelegenheid tot samenzijn in de ontvangstruimte.',
+    inzamelingTekst: 'In plaats van bloemen wordt een bijdrage op prijs gesteld voor het Longfonds.',
+    afsluitingTekst: 'Uit naam van de familie.',
+    geenNamenOpKaart: false,
+    kopregel: 'Dit melden u bedroefd:',
+    familieNamen: [
+      { id:1, naam:'Vincent de Bruyne', relatie:'', overleden:false, parentId:null },
+      { id:2, naam:'Jenny de Bruyne', relatie:'', overleden:false, parentId:null },
+      { id:3, naam:'Jocelyne de Vries', relatie:'', overleden:false, parentId:2 },
+      { id:4, naam:'Mickey de Bruyne', relatie:'', overleden:false, parentId:2 }
+    ],
+    samenvattendeRegel: 'broers en zussen',
+    bredereKring: '',
+    deFamilies: '',
+    datePickerOpen: null, pickerMonth: null,
+    sizes: { naam:'normaal', data:'normaal', spreuk:'normaal', binnen:'normaal' },
+    spreukTone: 'algemeen',
+    activeSheet: null,
+    locked: false,
+    lockDialogOpen: false,
+    fullscreenOpen: false,
+    previewLightboxOpen: false,
+    showDemoPhoto: true
+  };
+
+  ptcqw(v){ return (Math.round(v*1.3333*100/397*100)/100) + 'cqw'; }
+
+  setFormaatEnkel = () => this.setState(s => ({ formaat:'enkel', indeling: s.indeling==='sfeer-voorop' ? 'volledig' : s.indeling }));
+  setFormaatGevouwen = () => this.setState({ formaat:'gevouwen' });
+  setSmaakVolledig = () => this.setState({ smaak:'volledige-foto' });
+  setSmaakVrijgezet = () => this.setState({ smaak:'vrijgezet' });
+  setIndelingVolledig = () => this.setState({ indeling:'volledig' });
+  setIndelingKader = () => this.setState({ indeling:'kader' });
+  setIndelingNaastTekst = () => this.setState({ indeling:'naast-tekst' });
+  setIndelingSfeerVoorop = () => this.setState({ indeling:'sfeer-voorop' });
+  goToStap2 = () => this.setState({ screen:'stap2' });
+  goToStap1 = () => this.setState({ screen:'stap1' });
+  goToStap3 = () => this.setState({ screen:'stap3' });
+  confirmBestelling = () => this.setState({ screen:'voltooid' });
+  setSideVoor = () => this.setState({ side:'voor' });
+  setSideBinnen = () => this.setState({ side:'binnen' });
+  setSideAchter = () => this.setState({ side:'achter' });
+  openSheetNaam = () => this.setState({ activeSheet:'naam' });
+  openSheetData = () => this.setState({ activeSheet:'data' });
+  openSheetSpreuk = () => this.setState({ activeSheet:'spreuk' });
+  openSheetBinnen = () => this.setState({ activeSheet:'binnen' });
+  setBinnenLinks = () => this.setState({ binnenZoom:'links' });
+  setBinnenRechts = () => this.setState({ binnenZoom:'rechts' });
+  closeBinnenZoom = () => this.setState({ binnenZoom:null });
+  openSheetPraktisch = () => this.setState({ activeSheet:'praktisch' });
+  openSheetPraktischSafe = (e) => { e.stopPropagation(); this.setState({ activeSheet:'praktisch' }); };
+  updateLocatieTekst = (e) => this.setState({ locatieTekst:e.target.value });
+  updateDatumTijdTekst = (e) => this.setState({ datumTijdTekst:e.target.value });
+  updateSamenzijnTekst = (e) => this.setState({ samenzijnTekst:e.target.value });
+  updateInzamelingTekst = (e) => this.setState({ inzamelingTekst:e.target.value });
+  updateAfsluitingTekst = (e) => this.setState({ afsluitingTekst:e.target.value });
+  updateFamilieNamenTekst = (e) => this.setState({ familieNamenTekst:e.target.value });
+  openSheetFamilie = () => this.setState({ activeSheet:'familie' });
+  openSheetFamilieSafe = (e) => { e.stopPropagation(); this.setState({ activeSheet:'familie' }); };
+  toggleGeenNamen = () => this.setState(s => ({ geenNamenOpKaart: !s.geenNamenOpKaart }));
+  updateKopregel = (e) => this.setState({ kopregel:e.target.value });
+  updateSamenvattendeRegel = (e) => this.setState({ samenvattendeRegel:e.target.value });
+  updateBredereKring = (e) => this.setState({ bredereKring:e.target.value });
+  updateDeFamilies = (e) => this.setState({ deFamilies:e.target.value });
+  addNaam = () => this.setState(s => ({ familieNamen: [...s.familieNamen, { id: Date.now(), naam:'', relatie:'', overleden:false, parentId:null }] }));
+  removeNaam = (id) => this.setState(s => ({ familieNamen: s.familieNamen.filter(n => n.id !== id && n.parentId !== id) }));
+  updateNaamVeld = (id, key, value) => this.setState(s => ({ familieNamen: s.familieNamen.map(n => n.id === id ? { ...n, [key]: value } : n) }));
+  toggleNaamOverleden = (id) => this.setState(s => ({ familieNamen: s.familieNamen.map(n => n.id === id ? { ...n, overleden: !n.overleden } : n) }));
+  indentNaam = (id) => this.setState(s => {
+    const idx = s.familieNamen.findIndex(n => n.id === id);
+    let prevTop = null;
+    for (let i = idx - 1; i >= 0; i--) { if (!s.familieNamen[i].parentId) { prevTop = s.familieNamen[i].id; break; } }
+    if (!prevTop) return {};
+    return { familieNamen: s.familieNamen.map(n => n.id === id ? { ...n, parentId: prevTop } : n) };
+  });
+  outdentNaam = (id) => this.setState(s => ({ familieNamen: s.familieNamen.map(n => n.id === id ? { ...n, parentId: null } : n) }));
+  openSheetAfsluitingSafe = (e) => { e.stopPropagation(); this.setState({ activeSheet:'binnen' }); };
+  openSheetNaamSafe = (e) => { e.stopPropagation(); this.setState({ activeSheet:'naam' }); };
+  openSheetDataSafe = (e) => { e.stopPropagation(); this.setState({ activeSheet:'data' }); };
+  openSheetSpreukSafe = (e) => { e.stopPropagation(); this.setState({ activeSheet:'spreuk' }); };
+  openSheetBinnenSafe = (e) => { e.stopPropagation(); this.setState({ activeSheet:'binnen' }); };
+  openSheetStijl = () => { if (!this.state.locked) { this.setState({ activeSheet:'stijl' }); window.scrollTo(0,0); } };
+  openSheetThema = () => { if (!this.state.locked) { this.setState({ activeSheet:'thema' }); window.scrollTo(0,0); } };
+  setFontPairingByLabel = (e) => { const p = this.PAIRINGS.find(p => p.label === e.target.value); if (p) this.setState({ fontPairing:p.id }); };
+  toggleFontDropdown = () => this.setState(s => ({ fontDropdownOpen: !s.fontDropdownOpen }));
+  closeSheet = () => this.setState({ activeSheet:null });
+  setUitstralingAuto = () => this.setState({ uitstraling:'automatisch' });
+  setUitstralingLicht = () => this.setState({ uitstraling:'licht' });
+  setUitstralingDonker = () => this.setState({ uitstraling:'donker' });
+  setUitlijningLinks = () => this.setState({ uitlijning:'links' });
+  setUitlijningCentrum = () => this.setState({ uitlijning:'gecentreerd' });
+  setUitlijningRechts = () => this.setState({ uitlijning:'rechts' });
+  setSpreukBoven = () => this.setState({ spreukPositie:'boven' });
+  setSpreukOnder = () => this.setState({ spreukPositie:'onder' });
+  setSfeerZinBoven = () => this.setState({ sfeerZinPositie:'boven' });
+  setSfeerZinTussenin = () => this.setState({ sfeerZinPositie:'tussenin' });
+  setSfeerZinMidden = () => this.setState({ sfeerZinPositie:'midden' });
+  setFontPairing = (id) => this.setState({ fontPairing:id });
+  setOrnament = (id) => this.setState({ ornament:id });
+  setSize = (block, val) => this.setState(s => {
+    const sizes = { ...s.sizes, [block]: val };
+    const next = { sizes };
+    if (block === 'naam') next.naam = s.naam.slice(0, this.MAX_NAAM[val]);
+    if (block === 'spreuk') next.spreuk = s.spreuk.slice(0, this.MAX_SPREUK[val]);
+    if (block === 'binnen') next.binnenTekst = s.binnenTekst.slice(0, this.MAX_BINNEN[val]);
+    return next;
+  });
+  updateNaam = (e) => this.setState(s => ({ naam:e.target.value.slice(0, this.MAX_NAAM[s.sizes.naam]) }));
+  updateSpreuk = (e) => this.setState(s => ({ spreuk:e.target.value.slice(0, this.MAX_SPREUK[s.sizes.spreuk]) }));
+  updateBinnenTekst = (e) => this.setState(s => ({ binnenTekst:e.target.value.slice(0, this.MAX_BINNEN[s.sizes.binnen]) }));
+  updateDataGeboorte = (e) => this.setState({ dataGeboorte:e.target.value });
+  updateDataOverlijden = (e) => this.setState({ dataOverlijden:e.target.value });
+  todayIso = () => { const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
+  toggleDatePicker = (key) => this.setState(s => {
+    if (s.datePickerOpen === key) return { datePickerOpen:null };
+    const base = s[key] || this.todayIso();
+    return { datePickerOpen:key, pickerMonth: base.slice(0,7) };
+  });
+  shiftPickerMonth = (delta) => this.setState(s => {
+    const [y,m] = s.pickerMonth.split('-').map(Number);
+    const d = new Date(y, m-1+delta, 1);
+    return { pickerMonth: d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0') };
+  });
+  pickDate = (key, iso) => this.setState({ [key]: iso, datePickerOpen:null });
+  clearDate = (key) => this.setState({ [key]: '', datePickerOpen:null });
+  setPickerToday = (key) => this.setState({ [key]: this.todayIso(), datePickerOpen:null });
+  buildCalendarCells(monthIso, selectedIso, key){
+    const [y,m] = monthIso.split('-').map(Number);
+    const startOffset = (new Date(y, m-1, 1).getDay() + 6) % 7;
+    const daysInMonth = new Date(y, m, 0).getDate();
+    const prevLast = new Date(y, m-1, 0).getDate();
+    const todayIso = this.todayIso();
+    const cells = [];
+    for (let i=0;i<42;i++){
+      const dayNum = i - startOffset + 1;
+      let cellDate, inMonth;
+      if (dayNum < 1){ cellDate = new Date(y, m-2, prevLast+dayNum); inMonth = false; }
+      else if (dayNum > daysInMonth){ cellDate = new Date(y, m, dayNum-daysInMonth); inMonth = false; }
+      else { cellDate = new Date(y, m-1, dayNum); inMonth = true; }
+      const iso = cellDate.getFullYear()+'-'+String(cellDate.getMonth()+1).padStart(2,'0')+'-'+String(cellDate.getDate()).padStart(2,'0');
+      const isSelected = inMonth && iso === selectedIso;
+      const isToday = iso === todayIso;
+      cells.push({
+        key: key+'-'+i,
+        label: String(cellDate.getDate()),
+        onClick: inMonth ? (() => this.pickDate(key, iso)) : (() => {}),
+        cellStyle: {
+          display:'flex', alignItems:'center', justifyContent:'center', height:'38px', borderRadius:'999px',
+          fontFamily:'var(--font-family)', fontSize:'0.875rem', fontWeight: isSelected ? 'var(--weight-bold)' : 'var(--weight-regular)',
+          color: !inMonth ? 'var(--muted-foreground)' : (isSelected ? 'var(--primary-foreground)' : 'var(--foreground)'),
+          background: isSelected ? 'var(--primary)' : 'transparent',
+          boxShadow: (isToday && !isSelected) ? 'inset 0 0 0 1px var(--border-strong)' : 'none',
+          opacity: !inMonth ? 0.45 : 1, cursor: inMonth ? 'pointer' : 'default', border:'none'
+        }
+      });
+    }
+    return cells;
+  }
+  buildPicker(key){
+    const s = this.state;
+    const isOpen = s.datePickerOpen === key;
+    const value = s[key];
+    const monthIso = isOpen ? (s.pickerMonth || (value || this.todayIso()).slice(0,7)) : null;
+    const cells = isOpen ? this.buildCalendarCells(monthIso, value, key) : [];
+    let monthLabel = '';
+    if (monthIso){ const [yy,mm] = monthIso.split('-').map(Number); monthLabel = this.MONTHS[mm-1] + ' ' + yy; }
+    return {
+      open: isOpen, cells, monthLabel,
+      displayText: value ? this.formatDate(value) : 'Kies een datum',
+      isEmpty: !value,
+      toggle: () => this.toggleDatePicker(key),
+      triggerStyle: { display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%', padding:'0 22px', height:'52px', boxSizing:'border-box', border:'1px solid ' + (isOpen ? 'var(--primary)' : 'var(--border-strong)'), borderRadius:'26px', background:'var(--background)', cursor:'pointer', fontFamily:'var(--font-family)' },
+      displayStyle: { fontSize:'1rem', fontWeight:'var(--weight-regular)', color: value ? 'var(--foreground)' : 'var(--muted-foreground)' },
+      prevMonth: () => this.shiftPickerMonth(-1), nextMonth: () => this.shiftPickerMonth(1),
+      clear: () => this.clearDate(key), today: () => this.setPickerToday(key)
+    };
+  }
+  setTone = (t) => this.setState({ spreukTone:t });
+  insertPhrase = (text) => this.setState({ spreuk:text });
+  toggleDemoPhoto = () => this.setState(s => ({ showDemoPhoto: !s.showDemoPhoto }));
+  openLockDialog = () => this.setState({ lockDialogOpen:true });
+  closeLockDialog = () => this.setState({ lockDialogOpen:false });
+  confirmLockToggle = () => this.setState(s => ({ locked: !s.locked, lockDialogOpen:false }));
+  toggleFullscreen = () => this.setState(s => ({ fullscreenOpen: !s.fullscreenOpen }));
+  openPreviewLightbox = () => this.setState({ previewLightboxOpen:true });
+  closePreviewLightbox = () => this.setState({ previewLightboxOpen:false });
+  stopPropagation = (e) => e.stopPropagation();
+
+  buildNamenDisplay(list){
+    const rows = [];
+    const crossStyle = (n) => ({ width:'0.8em', fontSize:'0.78em', display:'inline-block', textAlign:'right', flexShrink:0, visibility: n.overleden ? 'visible' : 'hidden' });
+    list.filter(n => !n.parentId).forEach(top => {
+      rows.push({ id: top.id, naam: top.naam, overleden: top.overleden, relatie: top.relatie, indented: false, crossStyle: crossStyle(top) });
+      list.filter(n => n.parentId === top.id).forEach(child => {
+        rows.push({ id: child.id, naam: child.naam, overleden: child.overleden, relatie: child.relatie, indented: true, crossStyle: crossStyle(child) });
+      });
+    });
+    return rows;
+  }
+  formatDate(iso){
+    if (!iso) return '';
+    const parts = iso.split('-');
+    if (parts.length !== 3) return '';
+    const d = parseInt(parts[2],10), m = parseInt(parts[1],10)-1, y = parts[0];
+    return d + ' ' + this.MONTHS[m] + ' ' + y;
+  }
+
+  sideTabStyle(active){
+    return { flexShrink:0, fontFamily:'var(--font-family)', fontSize:'0.875rem', fontWeight:'var(--weight-medium)', padding:'9px 18px', borderRadius:'var(--radius-pill)', cursor:'pointer', border: active ? '1px solid transparent' : '1px solid var(--border-strong)', background: active ? 'var(--primary)' : 'transparent', color: active ? 'var(--primary-foreground)' : 'var(--foreground)' };
+  }
+  pillTabStyle(active){
+    return { flex:1, border:'none', borderRadius:'var(--radius-pill)', padding:'8px 16px', cursor:'pointer', fontFamily:'var(--font-family)', fontSize:'0.8125rem', fontWeight:'var(--weight-medium)', background: active ? 'var(--background)' : 'transparent', color: active ? 'var(--foreground)' : 'var(--muted-foreground)', boxShadow: active ? 'var(--shadow-card)' : 'none', transition:'all var(--duration-ui) ease' };
+  }
+
+  renderVals(){
+    const s = this.state;
+    const isEnkel = s.formaat === 'enkel';
+    const isGevouwen = s.formaat === 'gevouwen';
+    const isVolledigeFoto = s.smaak === 'volledige-foto';
+    const isVrijgezet = s.smaak === 'vrijgezet';
+    const thema = this.THEMES.find(t => t.id === s.thema) || null;
+    const themaChosen = !!thema;
+    const isSheetPersistent = !!s.activeSheet;
+    const pairing = this.PAIRINGS.find(p => p.id === s.fontPairing) || this.PAIRINGS[1];
+
+    const mode = s.uitstraling === 'automatisch' ? ((isVolledigeFoto || isVrijgezet) ? 'donker' : 'licht') : s.uitstraling;
+    const isLichtMode = mode === 'licht';
+    const textColor = isLichtMode ? '#1a1a1e' : '#fcfcfd';
+    const placeholderColor = isLichtMode ? 'rgba(26,26,30,.42)' : 'rgba(252,252,253,.55)';
+    const scrimCss = isLichtMode
+      ? 'linear-gradient(to top, rgba(252,252,253,.72) 0%, rgba(252,252,253,.5) 38%, rgba(252,252,253,.18) 72%, rgba(252,252,253,0) 100%)'
+      : 'linear-gradient(to top, rgba(20,17,22,.54) 0%, rgba(20,17,22,.36) 38%, rgba(20,17,22,.12) 72%, rgba(20,17,22,0) 100%)';
+    const topScrimCss = isLichtMode
+      ? 'linear-gradient(to bottom, rgba(252,252,253,.7) 0%, rgba(252,252,253,.46) 40%, rgba(252,252,253,.15) 76%, rgba(252,252,253,0) 100%)'
+      : 'linear-gradient(to bottom, rgba(20,17,22,.51) 0%, rgba(20,17,22,.33) 40%, rgba(20,17,22,.11) 76%, rgba(20,17,22,0) 100%)';
+    const scrimBlur = {};
+    const matBgColor = thema ? (isLichtMode ? thema.matLight : thema.matDark) : (isLichtMode ? '#f0f1f4' : '#27272a');
+    const themeGradient = thema ? thema.bg : 'linear-gradient(158deg,#cfd2d8,#eceef0)';
+
+    const alignCss = s.uitlijning === 'links' ? 'left' : s.uitlijning === 'rechts' ? 'right' : 'center';
+    const alignItemsCss = s.uitlijning === 'links' ? 'flex-start' : s.uitlijning === 'rechts' ? 'flex-end' : 'center';
+
+    const sizePt = { naam:{klein:20,normaal:26,groot:32}, data:{klein:10,normaal:12,groot:14}, spreuk:{klein:12,normaal:14,groot:17}, binnen:{klein:12,normaal:14,groot:17} };
+    const naamPt = sizePt.naam[s.sizes.naam] * (pairing.naamMult || 1);
+    const dataPt = sizePt.data[s.sizes.data];
+    const spreukPt = sizePt.spreuk[s.sizes.spreuk];
+    const binnenPt = sizePt.binnen[s.sizes.binnen];
+
+    const activeRing = (block) => s.activeSheet === block ? ('0 0 0 2px ' + (isLichtMode ? 'rgba(26,26,30,.55)' : 'rgba(252,252,253,.75)')) : 'none';
+    const editHintColor = isLichtMode ? 'rgba(26,26,30,.16)' : 'rgba(252,252,253,.22)';
+    const editHint = (filled) => (filled && !s.fullscreenOpen) ? { borderBottom:'1px dashed ' + editHintColor } : {};
+
+    const textShadowCss = isLichtMode ? '0 0 6px rgba(252,252,253,.4)' : '0 0 6px rgba(20,17,22,.4)';
+    const naamStyle = { fontFamily: pairing.naamFamily, fontWeight: pairing.naamWeight, fontStyle: pairing.naamStyle || 'normal', textTransform: pairing.naamTransform || 'none', letterSpacing: pairing.naamTracking || 'normal', fontSize: this.ptcqw(naamPt), color: textColor, textAlign: alignCss, lineHeight:1.15, display:'block', overflowWrap:'anywhere', wordBreak:'break-word', textShadow: textShadowCss };
+    const dataStyle = { fontFamily: pairing.dataFamily, fontWeight: pairing.dataWeight, fontSize: this.ptcqw(dataPt), color: textColor, textAlign: alignCss, letterSpacing:'0.02em', display:'block', overflowWrap:'anywhere', wordBreak:'break-word', textShadow: textShadowCss };
+    const spreukStyle = { fontFamily: pairing.spreukFamily, fontStyle:'italic', fontSize: this.ptcqw(spreukPt), color: textColor, textAlign: alignCss, lineHeight:1.35, display:'block', overflowWrap:'anywhere', wordBreak:'break-word', whiteSpace:'pre-wrap', textShadow: textShadowCss };
+    const placeholderStyle = { fontFamily:'"EB Garamond",serif', fontStyle:'italic', fontSize: this.ptcqw(13), color: placeholderColor, textAlign: alignCss, display:'block' };
+
+    const naamBlock = { cursor:'pointer', boxShadow: activeRing('naam'), borderRadius:'1cqw', order:2, padding:'0.6cqw 1.2cqw', ...editHint(!!s.naam) };
+    const dataBlock = { cursor:'pointer', boxShadow: activeRing('data'), borderRadius:'1cqw', order:3, padding:'0.6cqw 1.2cqw', marginTop:'0.15cqh', ...editHint(!!(s.dataGeboorte || s.dataOverlijden)) };
+    const spreukBlock = { cursor:'pointer', boxShadow: activeRing('spreuk'), borderRadius:'1cqw', order: s.spreukPositie === 'boven' ? 1 : 4, padding:'0.8cqw 1.2cqw', marginBottom: s.spreukPositie === 'boven' ? '0.6cqh' : 0, marginTop: s.spreukPositie === 'onder' ? '0.6cqh' : 0, ...editHint(!!s.spreuk) };
+    const spreukTopStyle = { fontFamily: pairing.spreukFamily, fontStyle:'italic', fontWeight:300, fontSize: this.ptcqw(spreukPt), color: textColor, textAlign: alignCss, lineHeight:1.35, display:'block', textShadow: textShadowCss, overflowWrap:'anywhere', wordBreak:'break-word', whiteSpace:'pre-wrap' };
+    const spreukTopBlock = { cursor:'pointer', boxShadow: activeRing('spreuk'), borderRadius:'1cqw', padding:'0.8cqw 1.2cqw', ...editHint(!!s.spreuk) };
+    const spreukTopWrap = { position:'absolute', left:0, right:0, top:'6.8cqw', display:'flex', justifyContent: alignItemsCss, padding:'0 6cqw', boxSizing:'border-box' };
+    const forceSpreukBoven = s.smaak==='vrijgezet' && (s.indeling==='volledig' || s.indeling==='kader');
+    const sfeerZinTop = s.sfeerZinPositie === 'midden' ? '50%' : s.sfeerZinPositie === 'tussenin' ? '30%' : '6.8cqw';
+    const sfeerZinTransform = s.sfeerZinPositie === 'midden' ? 'translateY(-50%)' : 'none';
+    const spreukFloatWrap = { position:'absolute', left:0, right:0, top: sfeerZinTop, transform: sfeerZinTransform, display:'flex', justifyContent: alignItemsCss, padding:'0 6cqw', boxSizing:'border-box' };
+    const clusterBase = { display:'flex', flexDirection:'column', alignItems: alignItemsCss, gap:'0' };
+
+    const card = {
+      outer: { position:'relative', width: s.fullscreenOpen ? 'min(88vw,420px,62.5vh)' : (isSheetPersistent ? 'auto' : '100%'), height: isSheetPersistent && !s.fullscreenOpen ? '20vh' : 'auto', aspectRatio:'397 / 559', containerType:'inline-size', overflow:'hidden', borderRadius:'var(--radius-inset)', background:'var(--secondary)', boxShadow:'var(--shadow-card)' },
+      fillImg: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 20%' },
+      promiseWrap: { position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'3cqw', padding:'10cqw', background:'var(--secondary)', textAlign:'center' },
+      promiseWrapFramed: { position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'2.4cqw', padding:'8cqw', background:'var(--secondary)', textAlign:'center' },
+      promiseDot: { width:'16cqw', height:'16cqw', borderRadius:'50%', background:'var(--border-strong)', animation:'breathe 2200ms ease-in-out infinite' },
+      promiseText: { fontFamily:'var(--font-family)', fontSize:'3.4cqw', color:'var(--muted-foreground)', lineHeight:1.5, maxWidth:'70cqw' },
+      promiseTextSmall: { fontFamily:'var(--font-family)', fontSize:'3.1cqw', color:'var(--muted-foreground)', lineHeight:1.4, maxWidth:'75cqw' },
+      themeFull: { position:'absolute', inset:0, background: themeGradient },
+      cutoutWrap: { position:'absolute', inset:0 },
+      cutoutWrapFramed: { position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center' },
+      cutoutImg: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 20%', WebkitMaskImage:'radial-gradient(ellipse 62% 58% at 50% 55%, #000 87%, transparent 100%)', maskImage:'radial-gradient(ellipse 62% 58% at 50% 55%, #000 87%, transparent 100%)' },
+      cutoutBottomFade: { position:'absolute', left:0, right:0, bottom:0, height:'26cqh', background: themeGradient, WebkitMaskImage:'linear-gradient(to top, #000 0%, transparent 100%)', maskImage:'linear-gradient(to top, #000 0%, transparent 100%)', pointerEvents:'none' },
+      cutoutWrapSplit: { position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', overflow:'hidden', WebkitMaskImage:'linear-gradient(to bottom, transparent 0%, #000 10%, #000 88%, transparent 100%)', maskImage:'linear-gradient(to bottom, transparent 0%, #000 10%, #000 88%, transparent 100%)' },
+      cutoutImgSplit: { height:'94%', width:'auto', maxWidth:'none', display:'block' },
+      scrim: { position:'absolute', left:0, right:0, bottom:0, height:'14cqh', backgroundImage: scrimCss, pointerEvents:'none', ...scrimBlur, WebkitMaskImage:'linear-gradient(to top, #000 0%, #000 75%, transparent 100%)', maskImage:'linear-gradient(to top, #000 0%, #000 75%, transparent 100%)' },
+      topScrim: { position:'absolute', left:0, right:0, top:0, height:'14cqh', backgroundImage: topScrimCss, pointerEvents:'none', ...scrimBlur, WebkitMaskImage:'linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%)', maskImage:'linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%)' },
+      clusterOverlay: { ...clusterBase, position:'absolute', left:0, right:0, bottom:0, padding:'7cqw 6cqw' },
+      matBg: { position:'absolute', inset:0, background: thema ? themeGradient : matBgColor },
+      achterBg: { position:'absolute', inset:0, background: thema ? themeGradient : 'var(--secondary)' },
+      achterNamenWrap: { position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'10cqw', boxSizing:'border-box' },
+      achterNamenBlock: { cursor:'pointer', boxShadow: activeRing('familie'), borderRadius:'1cqw', padding:'0.8cqw 1.4cqw', textAlign:'center', ...editHint(!s.geenNamenOpKaart) },
+      achterKopregelStyle: { fontFamily: pairing.dataFamily, fontWeight:'var(--weight-bold)', fontSize:this.ptcqw(11), color: textColor, textShadow: textShadowCss, display:'block', textAlign:'center' },
+      achterNaamRow: { fontFamily: pairing.dataFamily, fontWeight:400, fontSize:this.ptcqw(13), color: textColor, textShadow: textShadowCss, display:'flex', alignItems:'baseline', justifyContent:'center', gap:'0.15em', lineHeight:1.55, marginTop:'0.4cqh' },
+      achterNaamRowIndent: { fontFamily: pairing.dataFamily, fontWeight:400, fontSize:this.ptcqw(11.5), color: textColor, textShadow: textShadowCss, display:'flex', alignItems:'baseline', justifyContent:'center', gap:'0.15em', lineHeight:1.5, opacity:0.88 },
+      achterSamenvattendStyle: { fontFamily: pairing.spreukFamily, fontStyle:'italic', fontWeight:300, fontSize:this.ptcqw(12.5), color: textColor, textShadow: textShadowCss, display:'block', textAlign:'center', marginTop:'0.8cqh' },
+      achterKleinStyle: { fontFamily:'var(--font-family)', fontWeight:400, fontSize:this.ptcqw(9.5), color: textColor, textShadow: textShadowCss, display:'block', textAlign:'center', opacity:0.75, marginTop:'0.4cqh' },
+      binnenBg: { position:'absolute', inset:0, background: thema ? matBgColor : 'var(--secondary)' },
+      binnenTextWrap: { position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems: alignItemsCss, justifyContent:'center', padding:'10cqw 9cqw', boxSizing:'border-box' },
+      binnenBlock: { cursor:'pointer', boxShadow: activeRing('binnen'), borderRadius:'1cqw', padding:'0.8cqw 1.2cqw', ...editHint(!!s.binnenTekst) },
+      binnenTekstStyle: { fontFamily: pairing.spreukFamily, fontStyle:'italic', fontWeight:300, fontSize: this.ptcqw(binnenPt), color: textColor, textAlign: alignCss, lineHeight:1.6, display:'block', whiteSpace:'pre-wrap', overflowWrap:'anywhere', wordBreak:'break-word' },
+      praktischWrap: { position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems: alignItemsCss, justifyContent:'space-evenly', padding:'12cqw 9cqw', boxSizing:'border-box' },
+      praktischItemBase: { cursor:'pointer', boxShadow: activeRing('praktisch'), borderRadius:'1cqw', padding:'0.4cqw 1cqw', maxWidth:'88cqw' },
+      praktischItemLocatie: { cursor:'pointer', boxShadow: activeRing('praktisch'), borderRadius:'1cqw', padding:'0.4cqw 1cqw', maxWidth:'88cqw', ...editHint(!!s.locatieTekst) },
+      praktischItemDatum: { cursor:'pointer', boxShadow: activeRing('praktisch'), borderRadius:'1cqw', padding:'0.4cqw 1cqw', maxWidth:'88cqw', ...editHint(!!s.datumTijdTekst) },
+      praktischItemSamenzijn: { cursor:'pointer', boxShadow: activeRing('praktisch'), borderRadius:'1cqw', padding:'0.4cqw 1cqw', maxWidth:'88cqw', ...editHint(!!s.samenzijnTekst) },
+      praktischItemInzameling: { cursor:'pointer', boxShadow: activeRing('praktisch'), borderRadius:'1cqw', padding:'0.4cqw 1cqw', maxWidth:'88cqw', ...editHint(!!s.inzamelingTekst) },
+      praktischLabel: { fontFamily:'var(--font-family)', fontSize:this.ptcqw(8), fontWeight:'var(--weight-bold)', textTransform:'uppercase', letterSpacing:'0.08em', color: textColor, opacity:0.55, display:'block', textAlign: alignCss },
+      praktischValue: { fontFamily: pairing.dataFamily, fontWeight:400, fontSize:this.ptcqw(11.5), color: textColor, opacity:0.88, textAlign: alignCss, lineHeight:1.5, display:'block', marginTop:'0.25cqh', whiteSpace:'pre-wrap', overflowWrap:'anywhere', wordBreak:'break-word' },
+      afsluitingStyle: { fontFamily: pairing.dataFamily, fontWeight:400, fontSize:this.ptcqw(11), color: textColor, opacity:0.82, textAlign: alignCss, lineHeight:1.5, display:'block', marginTop:'2.4cqh', whiteSpace:'pre-wrap', overflowWrap:'anywhere', wordBreak:'break-word' },
+      afsluitingBlock: { cursor:'pointer', boxShadow: activeRing('afsluiting'), borderRadius:'1cqw', padding:'0.6cqw 1.2cqw', marginTop:'2cqh', ...editHint(!!s.afsluitingTekst) },
+      spreadRow: { display:'flex', gap:'4%', justifyContent:'center', alignItems:'flex-start' },
+      spreadHalf: { position:'relative', width:'48%', aspectRatio:'397 / 559', borderRadius:'var(--radius-inset)', overflow:'hidden', background:'var(--secondary)', boxShadow:'var(--shadow-card)', containerType:'inline-size', cursor:'pointer' },
+      frameBox: { position:'absolute', left:'5cqw', right:'5cqw', top:'11cqw', height:'58cqh', borderRadius:'1.5cqw', overflow:'hidden', boxShadow:'none', background: isVrijgezet ? 'transparent' : '#e9eaef' },
+      frameImg: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 26%' },
+      splitImg: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 22%' },
+      themeFrameBg: { position:'absolute', inset:0, background: themeGradient },
+      clusterFlow: { ...clusterBase, position:'absolute', left:0, right:0, bottom:0, padding:'5cqw 6cqw 6cqw' },
+      splitRow: { position:'absolute', inset:0, display:'flex' },
+      splitPhoto: { position:'relative', width:'42%', height:'100%', background:'#e9eaef', overflow:'hidden' },
+      splitTextCol: { ...clusterBase, width:'58%', height:'100%', justifyContent:'center', padding:'6cqw', background: matBgColor, boxSizing:'border-box' },
+      naamBlock, dataBlock, spreukBlock, spreukTopStyle, spreukTopBlock, spreukTopWrap, spreukFloatWrap,
+      naamStyle, dataStyle, spreukStyle, placeholderStyle,
+      ornamentRand: { position:'absolute', inset:'3cqw', border:'1px solid ' + (isLichtMode ? 'rgba(255,255,255,.55)' : 'rgba(255,255,255,.28)'), borderRadius:'1.6cqw', pointerEvents:'none' },
+      ornamentWaas: { position:'absolute', inset:0, background:'radial-gradient(ellipse 70% 60% at 50% 45%, transparent 55%, rgba(255,255,255,.16) 100%)', pointerEvents:'none' },
+      hoekTL: { position:'absolute', top:'4cqw', left:'4cqw', width:'9cqw', height:'9cqw', borderTop:'1px solid rgba(255,255,255,.6)', borderLeft:'1px solid rgba(255,255,255,.6)', pointerEvents:'none' },
+      hoekTR: { position:'absolute', top:'4cqw', right:'4cqw', width:'9cqw', height:'9cqw', borderTop:'1px solid rgba(255,255,255,.6)', borderRight:'1px solid rgba(255,255,255,.6)', pointerEvents:'none' },
+      hoekBL: { position:'absolute', bottom:'4cqw', left:'4cqw', width:'9cqw', height:'9cqw', borderBottom:'1px solid rgba(255,255,255,.6)', borderLeft:'1px solid rgba(255,255,255,.6)', pointerEvents:'none' },
+      hoekBR: { position:'absolute', bottom:'4cqw', right:'4cqw', width:'9cqw', height:'9cqw', borderBottom:'1px solid rgba(255,255,255,.6)', borderRight:'1px solid rgba(255,255,255,.6)', pointerEvents:'none' }
+    };
+
+    const themesList = this.THEMES.map(t => ({
+      id:t.id, naam:t.naam, mood:t.mood, selected: s.thema === t.id, onClick: () => this.setState({ thema:t.id }),
+      tileStyle: { display:'flex', flexDirection:'column', gap:'8px', padding:0, border: s.thema===t.id ? '2px solid var(--primary)' : '2px solid transparent', borderRadius:'var(--radius)', background:'var(--background)', cursor:'pointer', overflow:'hidden', textAlign:'left' },
+      swatchStyle: { position:'relative', width:'100%', aspectRatio:'4/3', background:t.bg, borderRadius:'calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0' },
+      labelStyle: { fontFamily:'var(--font-family)', fontSize:'0.9375rem', fontWeight:'var(--weight-medium)', color:'var(--foreground)', padding:'10px 12px 0' },
+      moodStyle: { fontFamily:'var(--font-family)', fontSize:'0.8125rem', color:'var(--muted-foreground)', padding:'0 12px 12px', lineHeight:1.4 }
+    }));
+
+    const sizeLabelMap = { klein:'Klein', normaal:'Normaal', groot:'Groot' };
+    const mkSizeOptions = (block) => ['klein','normaal','groot'].map(v => ({ id:v, label:sizeLabelMap[v], selected: s.sizes[block]===v, onClick: () => this.setSize(block, v), pillStyle: this.pillTabStyle(s.sizes[block]===v) }));
+
+    const pairingsList = this.PAIRINGS.map(p => ({
+      id:p.id, label:p.label, onClick: () => { this.setFontPairing(p.id); this.setState({ fontDropdownOpen:false }); },
+      tileStyle: { display:'flex', flexDirection:'column', gap:'4px', padding:'16px 18px', border: s.fontPairing===p.id ? '1px solid var(--primary)' : '1px solid var(--border-strong)', background: s.fontPairing===p.id ? 'var(--accent)' : 'var(--background)', borderRadius:'var(--radius)', cursor:'pointer', textAlign:'left' },
+      previewStyle: { fontFamily:p.naamFamily, fontWeight:p.naamWeight, fontStyle:p.naamStyle||'normal', textTransform:p.naamTransform||'none', letterSpacing:p.naamTracking||'normal', fontSize:'1.3rem', color:'var(--foreground)' },
+      nameStyle: { fontFamily:'var(--font-family)', fontSize:'0.8125rem', color:'var(--muted-foreground)', fontWeight:'var(--weight-medium)' }
+    }));
+
+    const namenDisplay = this.buildNamenDisplay(s.familieNamen);
+    const namenSheetRows = s.familieNamen.map((n, idx) => {
+      const indented = !!n.parentId;
+      const parent = indented ? s.familieNamen.find(p => p.id === n.parentId) : null;
+      let canIndent = false;
+      if (!indented) { for (let i = idx - 1; i >= 0; i--) { if (!s.familieNamen[i].parentId) { canIndent = true; break; } } }
+      return {
+        id:n.id, naam:n.naam, relatie:n.relatie, overleden:n.overleden,
+        indented, parentLabel: parent ? ('Onder ' + parent.naam) : null,
+        canIndent, canOutdent: indented,
+        onChangeNaam: (e) => this.updateNaamVeld(n.id, 'naam', e.target.value),
+        onChangeRelatie: (e) => this.updateNaamVeld(n.id, 'relatie', e.target.value),
+        onToggleOverleden: () => this.toggleNaamOverleden(n.id),
+        onRemove: () => this.removeNaam(n.id),
+        onIndent: () => this.indentNaam(n.id),
+        onOutdent: () => this.outdentNaam(n.id)
+      };
+    });
+
+    const ornamentList = this.ORNAMENTS.map(o => {
+      const selected = s.ornament===o.id;
+      return {
+        id:o.id, label:o.label, hint:o.hint, selected, onClick: () => this.setOrnament(o.id),
+        rowStyle: { display:'flex', alignItems:'center', justifyContent:'space-between', gap:'12px', width:'100%', textAlign:'left', padding:'16px 18px', border:'1px solid ' + (selected ? 'var(--primary)' : 'var(--border-strong)'), borderRadius:'var(--radius)', background:'var(--background)', cursor:'pointer', fontFamily:'var(--font-family)' },
+        labelStyle: { display:'block', fontSize:'0.9375rem', fontWeight:'var(--weight-medium)', color:'var(--foreground)' },
+        hintStyle: { display:'block', marginTop:'2px', fontSize:'0.8125rem', color:'var(--muted-foreground)' },
+        checkStyle: { width:'22px', height:'22px', borderRadius:'50%', background:'var(--primary)', color:'var(--primary-foreground)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }
+      };
+    });
+    const toneDefs = [ {id:'algemeen',label:'Algemeen'}, {id:'ziekte',label:'Na ziekte'}, {id:'onverwacht',label:'Onverwacht'}, {id:'religieus',label:'Religieus'} ];
+    const toneOptions = toneDefs.map(t => ({ id:t.id, label:t.label, onClick: () => this.setTone(t.id), tabStyle: this.sideTabStyle(s.spreukTone===t.id) }));
+    const phrasesList = (this.PHRASES[s.spreukTone]||[]).map(text => ({ text, onClick: () => this.insertPhrase(text) }));
+    const dataDisplay = [this.formatDate(s.dataGeboorte), this.formatDate(s.dataOverlijden)].filter(Boolean).join(' – ');
+
+    const formaatHint = isEnkel ? 'Eén kaart, voorkant en achterkant.' : 'Kaart met een binnenzijde erbij.';
+    const smaakHint = isVolledigeFoto ? 'Het beeld van de plechtigheid, persoon en achtergrond als één geheel.' : 'Wij zetten het portret vrij en plaatsen het op een van onze themabeelden.';
+    const volledigSelectedBorder = isVolledigeFoto ? 'var(--primary)' : 'transparent';
+    const vrijgezetSelectedBorder = isVrijgezet ? 'var(--primary)' : 'transparent';
+    const indelingHint = { volledig:'De foto vult de hele kaart.', kader:'De foto staat in een kader, met de tekst erna.', 'naast-tekst':'Foto en tekst naast elkaar.', 'sfeer-voorop':'Het themabeeld vult de voorkant, het portret komt binnenin.' }[s.indeling];
+
+    return {
+      isStap1: s.screen==='stap1', isStap2: s.screen==='stap2', isStap3: s.screen==='stap3', isStap2Or3: s.screen==='stap2' || s.screen==='stap3', isVoltooid: s.screen==='voltooid',
+      stapBackLabel: s.screen==='stap3' ? 'Stap 3 van 3' : 'Stap 2 van 3', stapBackAction: s.screen==='stap3' ? this.goToStap2 : this.goToStap1,
+      goToStap3: this.goToStap3, confirmBestelling: this.confirmBestelling,
+      isEnkel, isGevouwen, isVolledigeFoto, isVrijgezet,
+      setFormaatEnkel: this.setFormaatEnkel, setFormaatGevouwen: this.setFormaatGevouwen,
+      setSmaakVolledig: this.setSmaakVolledig, setSmaakVrijgezet: this.setSmaakVrijgezet,
+      setIndelingVolledig: this.setIndelingVolledig, setIndelingKader: this.setIndelingKader, setIndelingNaastTekst: this.setIndelingNaastTekst, setIndelingSfeerVoorop: this.setIndelingSfeerVoorop,
+      indelingIsVolledig: s.indeling==='volledig', indelingIsKader: s.indeling==='kader', indelingIsNaastTekst: s.indeling==='naast-tekst', indelingIsSfeerVoorop: s.indeling==='sfeer-voorop',
+      formaatHint, indelingHint, smaakHint, volledigSelectedBorder, vrijgezetSelectedBorder, tileHintStyle: { marginTop:'12px', fontFamily:'var(--font-family)', fontSize:'0.8125rem', color:'var(--muted-foreground)' },
+      themesList, themaChosen,
+      checkBadgeStyle: { position:'absolute', top:'8px', right:'8px', width:'22px', height:'22px', borderRadius:'50%', background:'var(--primary)', color:'var(--primary-foreground)', display:'flex', alignItems:'center', justifyContent:'center' },
+      goToStap2: this.goToStap2, goToStap1: this.goToStap1,
+      microLabelStyle: { fontFamily:'var(--font-family)', fontSize:'var(--text-micro)', fontWeight:'var(--weight-bold)', textTransform:'uppercase', letterSpacing:'var(--tracking-micro)', color:'var(--muted-foreground)' },
+      sectionLabelStyle: { fontFamily:'var(--font-family)', fontSize:'var(--text-micro)', fontWeight:'var(--weight-bold)', textTransform:'uppercase', letterSpacing:'var(--tracking-micro)', color:'var(--muted-foreground)' },
+      sectionLabelStyleMT56: { fontFamily:'var(--font-family)', fontSize:'var(--text-micro)', fontWeight:'var(--weight-bold)', textTransform:'uppercase', letterSpacing:'var(--tracking-micro)', color:'var(--muted-foreground)', display:'block', marginTop:'56px' },
+      sectionLabelStyleMT56MB8: { fontFamily:'var(--font-family)', fontSize:'var(--text-micro)', fontWeight:'var(--weight-bold)', textTransform:'uppercase', letterSpacing:'var(--tracking-micro)', color:'var(--muted-foreground)', display:'block', marginTop:'56px', marginBottom:'8px' },
+      sectionLabelStyleMB8: { fontFamily:'var(--font-family)', fontSize:'var(--text-micro)', fontWeight:'var(--weight-bold)', textTransform:'uppercase', letterSpacing:'var(--tracking-micro)', color:'var(--muted-foreground)', display:'block', marginBottom:'8px' },
+      pageOuterStyle: { minHeight:'100vh', background:'var(--surface-page-image), var(--background)', display:'flex', justifyContent:'center' },
+      shellStyle: { width:'100%', maxWidth:'480px', minHeight:'100vh', background:'var(--background)', position:'relative', boxShadow:'var(--shadow-nav)', display:'flex', flexDirection:'column', overflowX:'hidden' },
+      scrollAreaStyle: { paddingBottom:'8px' },
+      previewFrameStyle: { width:'46%', margin:'0 auto', display:'block', border:'none', background:'transparent', padding:0, cursor:'pointer' },
+      struct: this.buildStruct(s, isVolledigeFoto, isVrijgezet, themeGradient, thema),
+      previewLightboxOpen: s.previewLightboxOpen, openPreviewLightbox: this.openPreviewLightbox, closePreviewLightbox: this.closePreviewLightbox, stopPropagation: this.stopPropagation,
+      ctaBarStyle: { background:'var(--background)', borderTop:'1px solid var(--border)', padding:'16px 24px 24px' },
+      sideIsVoor: s.side==='voor', sideIsBinnen: s.side==='binnen', sideIsAchter: s.side==='achter',
+      voorTabStyle: this.pillTabStyle(s.side==='voor'), binnenTabStyle: this.pillTabStyle(s.side==='binnen'), achterTabStyle: this.pillTabStyle(s.side==='achter'),
+      setSideVoor: this.setSideVoor, setSideBinnen: this.setSideBinnen, setSideAchter: this.setSideAchter,
+      locked: s.locked, openLockDialog: this.openLockDialog,
+      cardWrapStyle: s.fullscreenOpen
+        ? { position:'fixed', inset:0, zIndex:100, background:'rgba(26,26,30,.7)', display:'flex', alignItems:'center', justifyContent:'center', padding:'32px' }
+        : isSheetPersistent
+          ? { padding:'6px 24px 0', display:'flex', justifyContent:'center' }
+          : { padding:'20px 24px 0' },
+      fullscreenOpen: s.fullscreenOpen, toggleFullscreen: this.toggleFullscreen,
+      card,
+      openSheetNaam: this.openSheetNaamSafe, openSheetData: this.openSheetDataSafe, openSheetSpreuk: this.openSheetSpreukSafe,
+      openCardFullscreen: (e) => { e.stopPropagation(); if (!s.fullscreenOpen) this.toggleFullscreen(); },
+      closeFullscreenOnBackdrop: () => { if (s.fullscreenOpen) this.toggleFullscreen(); },
+      naam: s.naam, naamEmpty: !s.naam,
+      naamMaxLength: this.MAX_NAAM[s.sizes.naam], naamCharsHint: (this.MAX_NAAM[s.sizes.naam] - s.naam.length) + ' van ' + this.MAX_NAAM[s.sizes.naam] + ' tekens over',
+      spreukMaxLength: this.MAX_SPREUK[s.sizes.spreuk], spreukCharsHint: (this.MAX_SPREUK[s.sizes.spreuk] - s.spreuk.length) + ' van ' + this.MAX_SPREUK[s.sizes.spreuk] + ' tekens over',
+      binnenTekst: s.binnenTekst, binnenTekstEmpty: !s.binnenTekst, updateBinnenTekst: this.updateBinnenTekst, openSheetBinnen: this.openSheetBinnen, openSheetBinnenSafe: this.openSheetBinnenSafe,
+      binnenSideIsLinks: s.binnenZoom==='links', binnenSideIsRechts: s.binnenZoom==='rechts', setBinnenLinks: this.setBinnenLinks, setBinnenRechts: this.setBinnenRechts,
+      binnenZoom: s.binnenZoom, closeBinnenZoom: this.closeBinnenZoom,
+      openSheetPraktisch: this.openSheetPraktisch, openSheetPraktischSafe: this.openSheetPraktischSafe, sheetIsPraktisch: s.activeSheet==='praktisch',
+      locatieTekst: s.locatieTekst, datumTijdTekst: s.datumTijdTekst, samenzijnTekst: s.samenzijnTekst, inzamelingTekst: s.inzamelingTekst,
+      locatieEmpty: !s.locatieTekst, datumTijdEmpty: !s.datumTijdTekst, samenzijnEmpty: !s.samenzijnTekst, inzamelingEmpty: !s.inzamelingTekst,
+      afsluitingTekst: s.afsluitingTekst, afsluitingEmpty: !s.afsluitingTekst, updateAfsluitingTekst: this.updateAfsluitingTekst, openSheetAfsluitingSafe: this.openSheetAfsluitingSafe,
+      geenNamenOpKaart: s.geenNamenOpKaart, toggleGeenNamen: this.toggleGeenNamen,
+      kopregel: s.kopregel, updateKopregel: this.updateKopregel,
+      namenDisplay, namenSheetRows, addNaam: this.addNaam,
+      samenvattendeRegel: s.samenvattendeRegel, updateSamenvattendeRegel: this.updateSamenvattendeRegel,
+      bredereKring: s.bredereKring, updateBredereKring: this.updateBredereKring,
+      deFamilies: s.deFamilies, updateDeFamilies: this.updateDeFamilies,
+      openSheetFamilie: this.openSheetFamilie, openSheetFamilieSafe: this.openSheetFamilieSafe, sheetIsFamilie: s.activeSheet==='familie',
+      updateLocatieTekst: this.updateLocatieTekst, updateDatumTijdTekst: this.updateDatumTijdTekst, updateSamenzijnTekst: this.updateSamenzijnTekst, updateInzamelingTekst: this.updateInzamelingTekst,
+      binnenMaxLength: this.MAX_BINNEN[s.sizes.binnen], binnenCharsHint: (this.MAX_BINNEN[s.sizes.binnen] - s.binnenTekst.length) + ' van ' + this.MAX_BINNEN[s.sizes.binnen] + ' tekens over',
+      spreuk: s.spreuk, spreukEmpty: !s.spreuk,
+      dataDisplay, dataEmpty: !dataDisplay,
+      showDemoPhoto: s.showDemoPhoto, toggleDemoPhoto: this.toggleDemoPhoto,
+      demoPhotoLabel: s.showDemoPhoto ? 'Voorbeeldfoto verbergen' : 'Voorbeeldfoto tonen',
+      ornamentIsRand: s.ornament==='rand' && s.indeling!=='kader' && s.smaak!=='vrijgezet', ornamentIsWaas: s.ornament==='waas' && s.indeling!=='kader' && s.smaak!=='vrijgezet', ornamentIsHoeken: s.ornament==='hoeken' && s.indeling!=='kader' && s.smaak!=='vrijgezet',
+      openSheetStijl: this.openSheetStijl, openSheetThema: this.openSheetThema,
+      toolBtnStyle: { flex:1, fontFamily:'var(--font-family)', fontSize:'0.9375rem', fontWeight:'var(--weight-medium)', color:'var(--foreground)', background:'var(--background)', border:'1px solid var(--border-strong)', borderRadius:'var(--radius-pill)', height:'var(--control-height)', cursor: s.locked ? 'not-allowed':'pointer', opacity: s.locked?0.5:1 },
+      sheetOpen: !!s.activeSheet, closeSheet: this.closeSheet,
+      sheetIsNaam: s.activeSheet==='naam', sheetIsData: s.activeSheet==='data', sheetIsSpreuk: s.activeSheet==='spreuk', sheetIsStijl: s.activeSheet==='stijl', sheetIsThema: s.activeSheet==='thema', sheetIsBinnen: s.activeSheet==='binnen',
+      sheetIsPersistent: isSheetPersistent,
+      sheetHasBackdrop: !!s.activeSheet,
+      sheetStyle: isSheetPersistent
+        ? { position:'fixed', left:'50%', bottom:0, transform:'translate(-50%,0)', width:'100%', maxWidth:'480px', height:'56vh', overflowY:'auto', background:'var(--background)', borderRadius:'var(--radius-lg) var(--radius-lg) 0 0', boxShadow:'var(--shadow-nav)', padding:'20px 24px 40px', zIndex:95, borderTop:'1px solid var(--border)' }
+        : { position:'fixed', left:'50%', bottom:0, transform:'translate(-50%,0)', width:'100%', maxWidth:'480px', maxHeight:'82vh', overflowY:'auto', background:'var(--background)', borderRadius:'var(--radius-lg) var(--radius-lg) 0 0', boxShadow:'var(--shadow-nav)', padding:'20px 24px 40px', zIndex:95, animation:'sheetUp 260ms var(--ease-premium)' },
+      sheetTitleStyle: { margin:'8px 0 0', fontFamily:'var(--font-family)', fontSize:'var(--text-h3)', fontWeight:'var(--weight-bold)', color:'var(--foreground)', letterSpacing:'-0.01em' },
+      updateNaam: this.updateNaam, updateSpreuk: this.updateSpreuk, updateDataGeboorte: this.updateDataGeboorte, updateDataOverlijden: this.updateDataOverlijden,
+      dataGeboorte: s.dataGeboorte, dataOverlijden: s.dataOverlijden,
+      geborenPicker: this.buildPicker('dataGeboorte'), overlijdenPicker: this.buildPicker('dataOverlijden'),
+      weekDayLabels: [{label:'M'},{label:'D'},{label:'W'},{label:'D'},{label:'V'},{label:'Z'},{label:'Z'}],
+      calendarPanelStyle: { marginTop:'10px', padding:'16px', border:'1px solid var(--border)', borderRadius:'var(--radius)', background:'var(--background)' },
+      calendarHeaderStyle: { display:'flex', alignItems:'center', justifyContent:'space-between' },
+      calendarMonthLabelStyle: { fontFamily:'var(--font-family)', fontSize:'0.9375rem', fontWeight:'var(--weight-bold)', color:'var(--foreground)', textTransform:'capitalize' },
+      calendarNavBtnStyle: { display:'flex', alignItems:'center', justifyContent:'center', width:'32px', height:'32px', borderRadius:'999px', border:'1px solid var(--border-strong)', background:'transparent', color:'var(--foreground)', cursor:'pointer' },
+      calendarGridStyle: { display:'grid', gridTemplateColumns:'repeat(7,1fr)', marginTop:'12px' },
+      calendarWeekDayStyle: { display:'flex', alignItems:'center', justifyContent:'center', height:'28px', fontFamily:'var(--font-family)', fontSize:'0.75rem', fontWeight:'var(--weight-medium)', color:'var(--muted-foreground)' },
+      calendarFooterStyle: { display:'flex', justifyContent:'space-between', marginTop:'12px', paddingTop:'12px', borderTop:'1px solid var(--border)' },
+      naamSizeOptions: mkSizeOptions('naam'), dataSizeOptions: mkSizeOptions('data'), spreukSizeOptions: mkSizeOptions('spreuk'), binnenSizeOptions: mkSizeOptions('binnen'),
+      toneOptions, phrasesList,
+      spreukBoven: forceSpreukBoven || s.spreukPositie==='boven', spreukOnder: !forceSpreukBoven && s.spreukPositie==='onder', setSpreukBoven: this.setSpreukBoven, setSpreukOnder: this.setSpreukOnder,
+      spreukPositieBovenPill: this.pillTabStyle(s.spreukPositie==='boven'), spreukPositieOnderPill: this.pillTabStyle(s.spreukPositie==='onder'),
+      sfeerZinIsBoven: s.sfeerZinPositie==='boven', sfeerZinIsTussenin: s.sfeerZinPositie==='tussenin', sfeerZinIsMidden: s.sfeerZinPositie==='midden',
+      setSfeerZinBoven: this.setSfeerZinBoven, setSfeerZinTussenin: this.setSfeerZinTussenin, setSfeerZinMidden: this.setSfeerZinMidden,
+      sfeerZinBovenPill: this.pillTabStyle(s.sfeerZinPositie==='boven'), sfeerZinTusseninPill: this.pillTabStyle(s.sfeerZinPositie==='tussenin'), sfeerZinMiddenPill: this.pillTabStyle(s.sfeerZinPositie==='midden'),
+      uitstralingIsAuto: s.uitstraling==='automatisch', uitstralingIsLicht: s.uitstraling==='licht', uitstralingIsDonker: s.uitstraling==='donker',
+      setUitstralingAuto: this.setUitstralingAuto, setUitstralingLicht: this.setUitstralingLicht, setUitstralingDonker: this.setUitstralingDonker,
+      uitstralingAutoPill: this.pillTabStyle(s.uitstraling==='automatisch'), uitstralingLichtPill: this.pillTabStyle(s.uitstraling==='licht'), uitstralingDonkerPill: this.pillTabStyle(s.uitstraling==='donker'),
+      uitlijningIsLinks: s.uitlijning==='links', uitlijningIsCentrum: s.uitlijning==='gecentreerd', uitlijningIsRechts: s.uitlijning==='rechts',
+      setUitlijningLinks: this.setUitlijningLinks, setUitlijningCentrum: this.setUitlijningCentrum, setUitlijningRechts: this.setUitlijningRechts,
+      uitlijningLinksPill: this.pillTabStyle(s.uitlijning==='links'), uitlijningCentrumPill: this.pillTabStyle(s.uitlijning==='gecentreerd'), uitlijningRechtsPill: this.pillTabStyle(s.uitlijning==='rechts'),
+      fontPairingLabel: pairing.label, fontPairingOptions: this.PAIRINGS.map(p => p.label), setFontPairingByLabel: this.setFontPairingByLabel,
+      fontDropdownOpen: s.fontDropdownOpen, toggleFontDropdown: this.toggleFontDropdown,
+      fontTriggerStyle: { display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%', padding:'16px 20px', border:'1px solid var(--border-strong)', borderRadius:'var(--radius)', background:'var(--background)', cursor:'pointer', boxSizing:'border-box', textAlign:'left' },
+      fontTriggerPreviewStyle: { fontFamily:pairing.naamFamily, fontWeight:pairing.naamWeight, fontStyle:pairing.naamStyle||'normal', textTransform:pairing.naamTransform||'none', letterSpacing:pairing.naamTracking||'normal', fontSize:'1.2rem', color:'var(--foreground)' },
+      fontTriggerNameStyle: { fontFamily:'var(--font-family)', fontSize:'0.8125rem', color:'var(--muted-foreground)', fontWeight:'var(--weight-medium)' },
+      chevronRotateStyle: { display:'flex', transform: s.fontDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition:'transform 200ms var(--ease-premium)', color:'var(--muted-foreground)', flexShrink:0 },
+      pairingsList, ornamentList,
+      lockDialogOpen: s.lockDialogOpen, closeLockDialog: this.closeLockDialog, confirmLockToggle: this.confirmLockToggle,
+      lockDialogLabel: s.locked ? 'Ontgrendelen' : 'Vastzetten',
+      lockDialogTitle: s.locked ? 'Ontwerp weer openen?' : 'Ontwerp vastzetten?',
+      lockDialogDescription: s.locked ? 'De familie kan dan opnieuw thema, indeling en stijl aanpassen.' : 'De familie past dan alleen nog de woorden op de kaart aan.',
+      lockDialogConfirmLabel: s.locked ? 'Openen' : 'Vastzetten'
+    };
+  }
+
+  buildStruct(s, isVolledigeFoto, isVrijgezet, themeGradient, thema){
+    const outer = { position:'relative', width:'100%', aspectRatio:'397/559', borderRadius:'10%', overflow:'hidden', background:'var(--secondary)', boxShadow:'var(--shadow-card)' };
+    const bar = (w,h,bottom,left) => ({ position:'absolute', left:left+'%', bottom:bottom+'%', width:w+'%', height:h+'%', borderRadius:'3px', background:'rgba(255,255,255,.55)' });
+    const checkerboard = { backgroundImage:'linear-gradient(45deg,#e4e4e7 25%,transparent 25%),linear-gradient(-45deg,#e4e4e7 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e4e4e7 75%),linear-gradient(-45deg,transparent 75%,#e4e4e7 75%)', backgroundSize:'16px 16px', backgroundPosition:'0 0,0 8px,8px -8px,-8px 0', backgroundColor:'#fafafa' };
+    const photoBg = { backgroundImage:'url(assets/nana-volledig.jpg)', backgroundSize:'cover', backgroundPosition:'center top' };
+    const photoBgKader = { backgroundImage:'url(assets/nana-volledig.jpg)', backgroundSize:'cover', backgroundPosition:'50% 26%' };
+    const photoBgSplit = { backgroundImage:'url(assets/nana-volledig.jpg)', backgroundSize:'cover', backgroundPosition:'50% 22%' };
+    const themeOrChecker = thema ? { background: thema.bg } : checkerboard;
+    const themeOrGray = { background: thema ? thema.bg : 'linear-gradient(160deg,#cfd2d8,#eceef0)' };
+    const cutoutFill = { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 20%', WebkitMaskImage:'radial-gradient(ellipse 62% 58% at 50% 55%, #000 87%, transparent 100%)', maskImage:'radial-gradient(ellipse 62% 58% at 50% 55%, #000 87%, transparent 100%)' };
+    const cutoutWrapSplitStruct = { position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', overflow:'hidden', WebkitMaskImage:'linear-gradient(to bottom, transparent 0%, #000 10%, #000 88%, transparent 100%)', maskImage:'linear-gradient(to bottom, transparent 0%, #000 10%, #000 88%, transparent 100%)' };
+    const cutoutFillSplit = { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 22%' };
+
+    const photoFullLayer = isVolledigeFoto ? { position:'absolute', inset:0, ...photoBg } : {};
+    const tintLayer = { position:'absolute', inset:0, overflow:'hidden', ...themeOrChecker };
+    const sfeerLayer = { position:'absolute', inset:0, ...themeOrGray };
+    const frameOuterMat = { position:'absolute', inset:0, background: thema ? themeGradient : 'var(--secondary)' };
+    const frameInner = isVolledigeFoto
+      ? { position:'absolute', left:'14%', right:'14%', top:'20%', height:'56%', borderRadius:'6%', overflow:'hidden', ...photoBgKader }
+      : { position:'absolute', left:'14%', right:'14%', top:'20%', height:'56%', borderRadius:'6%', overflow:'hidden' };
+    const splitLeft = isVolledigeFoto
+      ? { position:'absolute', left:0, top:0, bottom:0, width:'42%', overflow:'hidden', ...photoBgSplit }
+      : { position:'absolute', left:0, top:0, bottom:0, width:'42%', overflow:'hidden', ...themeOrChecker };
+    const splitRight = { position:'absolute', right:0, top:0, bottom:0, width:'58%', background: thema ? thema.matLight : 'var(--secondary)' };
+    const isNaast = s.indeling==='naast-tekst';
+    const textShadow = '0 1px 5px rgba(20,17,20,.55)';
+    const spreukWrap = isNaast
+      ? { position:'absolute', left:'46%', right:'6%', top:'14%', textAlign:'center' }
+      : { position:'absolute', left:'10%', right:'10%', top:'6.8%', textAlign:'center' };
+    const bottomWrap = isNaast
+      ? { position:'absolute', left:'46%', right:'6%', top:'60%', display:'flex', flexDirection:'column', alignItems:'center', gap:'2%', textAlign:'center' }
+      : { position:'absolute', left:'8%', right:'8%', bottom:'6%', display:'flex', flexDirection:'column', alignItems:'center', gap:'1.5%', textAlign:'center' };
+    const textNaamStyle = isNaast
+      ? { fontFamily:'"Playfair Display",serif', fontWeight:600, fontSize:'0.85rem', color:'#232329', lineHeight:1.15 }
+      : { fontFamily:'"Playfair Display",serif', fontWeight:600, fontSize:'0.85rem', color:'#fff', textShadow, lineHeight:1.15 };
+    const textDataStyle = isNaast
+      ? { fontFamily:'var(--font-family)', fontSize:'0.5rem', color:'#4a4a55', letterSpacing:'0.02em' }
+      : { fontFamily:'var(--font-family)', fontSize:'0.5rem', color:'#fff', textShadow, letterSpacing:'0.02em' };
+    const textSpreukStyle = isNaast
+      ? { fontFamily:'"EB Garamond",serif', fontStyle:'italic', fontSize:'0.7rem', color:'#4a4a55', lineHeight:1.35 }
+      : { fontFamily:'"EB Garamond",serif', fontStyle:'italic', fontSize:'0.7rem', color:'#fff', textShadow, lineHeight:1.35 };
+    return {
+      outer,
+      showPhotoFull: s.indeling==='volledig' && isVolledigeFoto,
+      photoFullLayer,
+      showFullVrijgezet: s.indeling==='volledig' && isVrijgezet,
+      tintLayer, cutoutFill,
+      showSfeer: s.indeling==='sfeer-voorop',
+      sfeerLayer,
+      showCutout: isVrijgezet,
+      showFrame: s.indeling==='kader', frameOuterMat, frameInner,
+      showSplit: isNaast, splitLeft, splitRight, cutoutWrapSplitStruct, cutoutFillSplit,
+      spreukWrap, bottomWrap, textNaamStyle, textDataStyle, textSpreukStyle
+    };
+  }
+}
+</script>
+</body>
+</html>

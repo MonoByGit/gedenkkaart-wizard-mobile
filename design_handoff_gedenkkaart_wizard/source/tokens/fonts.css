@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,400&display=swap");
+
+/* Nunito Sans is de enige huisletter. Koppen en broodtekst delen dezelfde
+   letter; het onderscheid zit uitsluitend in gewicht en grootte.
+   EB Garamond staat in de codebase van memortium.nl maar wordt precies
+   een keer gebruikt en hoort niet in nieuw werk. */
+
+:root {
+  --font-family: "Nunito Sans", system-ui, sans-serif;
+  --font-heading: "Nunito Sans", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
