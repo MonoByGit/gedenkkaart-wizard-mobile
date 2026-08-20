@@ -878,53 +878,84 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
 
       {zoomSide === 'links' ? (
         s.indeling === 'sfeer-voorop' ? (
-          /* SFEER-VOOROP: Photo is required and prominently presented on inside left page */
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-[7cqw] box-border z-10">
-            <div className="w-[76%] aspect-[3/4] rounded-[1.6cqw] overflow-hidden shadow-[0_6px_24px_rgba(0,0,0,0.14)] border border-[rgba(45,45,58,0.12)] bg-[#ffffff] relative">
-              {s.showDemoPhoto ? (
+          /* SFEER-VOOROP: 100% Full-page portrait photo (volledig pagina) */
+          <div className="absolute inset-0 z-10 overflow-hidden">
+            {isVolledigeFoto ? (
+              s.showDemoPhoto ? (
                 <img
-                  src={
-                    isVolledigeFoto
-                      ? s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"
-                      : s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"
-                  }
+                  src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
                   alt="Portret"
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                   style={{ objectPosition: '50% 20%' }}
                 />
               ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2cqw] p-[4cqw] text-center bg-[#f0f1f4]">
-                  <div className="w-[12cqw] h-[12cqw] rounded-full bg-[rgba(45,45,58,0.14)] animate-pulse" />
-                  <span className="text-[2.8cqw] text-[#6b6b7a]">Portret volgt.</span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2.4cqw] p-[8cqw] bg-[#f0f1f4] text-center">
+                  <div className="w-[16cqw] h-[16cqw] rounded-full bg-[rgba(45,45,58,0.14)] animate-pulse" />
+                  <span className="text-[3.1cqw] text-[#6b6b7a]">Portret volgt binnen 24 uur.</span>
                 </div>
-              )}
-            </div>
-            {/* Optional text or caption under photo */}
-            <div
-              onClick={(e) => handleAction(e, 'binnen')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[3.5cqw] cursor-pointer text-center max-w-[86cqw]"
-              style={{
-                boxShadow: activeRing('binnen'),
-                ...editHint(!!s.binnenTekst)
-              }}
-            >
-              {!s.binnenTekst ? (
-                <span style={placeholderStyle}>Tik om een gedicht of onderschrift toe te voegen</span>
-              ) : (
-                <span
+              )
+            ) : (
+              <>
+                <div
+                  className="absolute inset-0"
+                  style={{ background: thema ? themeGradient : undefined }}
+                >
+                  {!thema && <div className="absolute inset-0 checkerboard-pattern" />}
+                </div>
+                {s.showDemoPhoto && (
+                  <div className="absolute inset-0 overflow-hidden">
+                    <img
+                      src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
+                      alt="Vrijgezet portret"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{
+                        objectPosition: '50% 20%',
+                        WebkitMaskImage:
+                          'radial-gradient(ellipse 82% 80% at 50% 46%, #000 68%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.35) 92%, transparent 100%), linear-gradient(to bottom, #000 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                        maskImage:
+                          'radial-gradient(ellipse 82% 80% at 50% 46%, #000 68%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.35) 92%, transparent 100%), linear-gradient(to bottom, #000 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                        WebkitMaskComposite: 'destination-in',
+                        maskComposite: 'intersect'
+                      }}
+                    />
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* Bottom Scrim & Caption Overlay if text is present */}
+            {s.binnenTekst && (
+              <div
+                className="absolute left-0 right-0 bottom-0 p-[7cqw_6cqw] pt-[14cqw] flex flex-col items-center justify-end z-20"
+                style={{
+                  background:
+                    'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.35) 60%, transparent 100%)'
+                }}
+              >
+                <div
+                  onClick={(e) => handleAction(e, 'binnen')}
+                  className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer text-center max-w-[88cqw]"
                   style={{
-                    fontFamily: pairing.spreukFamily,
-                    fontStyle: 'italic',
-                    fontSize: ptcqw(10.5),
-                    color: textColor,
-                    lineHeight: 1.45,
-                    display: 'block'
+                    boxShadow: activeRing('binnen'),
+                    ...editHint(true)
                   }}
                 >
-                  {s.binnenTekst}
-                </span>
-              )}
-            </div>
+                  <span
+                    style={{
+                      fontFamily: pairing.spreukFamily,
+                      fontStyle: 'italic',
+                      fontSize: ptcqw(10.5),
+                      color: '#ffffff',
+                      lineHeight: 1.45,
+                      display: 'block',
+                      textShadow: '0 1px 3px rgba(0,0,0,0.6)'
+                    }}
+                  >
+                    {s.binnenTekst}
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           /* Normal text inside left: Poetic & dignified layout */
@@ -1163,32 +1194,72 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
         )}
 
         {s.indeling === 'sfeer-voorop' ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-[5cqw] box-border pointer-events-none z-10">
-            <div className="w-[78%] aspect-[3/4] rounded-[1.2cqw] overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[rgba(45,45,58,0.1)] bg-[#ffffff]">
-              <img
-                src={
-                  isVolledigeFoto
-                    ? s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"
-                    : s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"
-                }
-                alt="Portret"
-                className="w-full h-full object-cover"
-                style={{ objectPosition: '50% 20%' }}
-              />
-            </div>
+          <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
+            {isVolledigeFoto ? (
+              s.showDemoPhoto ? (
+                <img
+                  src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
+                  alt="Portret"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ objectPosition: '50% 20%' }}
+                />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2cqw] p-[4cqw] bg-[#f0f1f4] text-center">
+                  <div className="w-[12cqw] h-[12cqw] rounded-full bg-[rgba(45,45,58,0.14)] animate-pulse" />
+                  <span className="text-[2.8cqw] text-[#6b6b7a]">Portret volgt.</span>
+                </div>
+              )
+            ) : (
+              <>
+                <div
+                  className="absolute inset-0"
+                  style={{ background: thema ? themeGradient : undefined }}
+                >
+                  {!thema && <div className="absolute inset-0 checkerboard-pattern" />}
+                </div>
+                {s.showDemoPhoto && (
+                  <div className="absolute inset-0 overflow-hidden">
+                    <img
+                      src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
+                      alt="Vrijgezet portret"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{
+                        objectPosition: '50% 20%',
+                        WebkitMaskImage:
+                          'radial-gradient(ellipse 82% 80% at 50% 46%, #000 68%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.35) 92%, transparent 100%), linear-gradient(to bottom, #000 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                        maskImage:
+                          'radial-gradient(ellipse 82% 80% at 50% 46%, #000 68%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.35) 92%, transparent 100%), linear-gradient(to bottom, #000 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                        WebkitMaskComposite: 'destination-in',
+                        maskComposite: 'intersect'
+                      }}
+                    />
+                  </div>
+                )}
+              </>
+            )}
+
             {s.binnenTekst && (
-              <span
-                className="mt-[2.5cqw] block text-center line-clamp-2 opacity-85"
+              <div
+                className="absolute left-0 right-0 bottom-0 p-[5cqw_4cqw] pt-[10cqw] flex flex-col items-center justify-end z-20"
                 style={{
-                  fontFamily: pairing.spreukFamily,
-                  fontStyle: 'italic',
-                  fontSize: ptcqw(9.5),
-                  color: textColor,
-                  lineHeight: 1.35
+                  background:
+                    'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.35) 60%, transparent 100%)'
                 }}
               >
-                {s.binnenTekst}
-              </span>
+                <span
+                  className="block text-center line-clamp-2"
+                  style={{
+                    fontFamily: pairing.spreukFamily,
+                    fontStyle: 'italic',
+                    fontSize: ptcqw(9.5),
+                    color: '#ffffff',
+                    lineHeight: 1.35,
+                    textShadow: '0 1px 3px rgba(0,0,0,0.6)'
+                  }}
+                >
+                  {s.binnenTekst}
+                </span>
+              </div>
             )}
           </div>
         ) : (

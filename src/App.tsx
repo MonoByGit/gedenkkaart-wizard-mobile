@@ -386,6 +386,8 @@ export const App: React.FC = () => {
             binnenTekst={state.binnenTekst}
             afsluitingTekst={state.afsluitingTekst}
             size={state.sizes.binnen}
+            indeling={state.indeling}
+            spreuk={state.spreuk}
             onChangeBinnenTekst={(val: string) => setState((s) => ({ ...s, binnenTekst: val }))}
             onChangeAfsluitingTekst={(val: string) => setState((s) => ({ ...s, afsluitingTekst: val }))}
             onChangeSize={(size) => setSize('binnen', size)}
