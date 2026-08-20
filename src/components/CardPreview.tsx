@@ -138,10 +138,8 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
     display: 'block'
   };
 
-  const forceSpreukBoven =
-    s.smaak === 'vrijgezet' && (s.indeling === 'volledig' || s.indeling === 'kader');
-  const spreukBoven = forceSpreukBoven || s.spreukPositie === 'boven';
-  const spreukOnder = !forceSpreukBoven && s.spreukPositie === 'onder';
+  const spreukBoven = s.spreukPositie === 'boven';
+  const spreukOnder = s.spreukPositie === 'onder';
 
   const sfeerZinTop =
     s.sfeerZinPositie === 'midden' ? '50%' : s.sfeerZinPositie === 'tussenin' ? '30%' : '6.8cqw';
@@ -192,25 +190,12 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
       );
     }
     if (s.ornament === 'hoeken') {
-      const cornerBorder = isLichtMode ? 'rgba(0,0,0,.25)' : 'rgba(255,255,255,.6)';
       return (
-        <div className="absolute inset-0 pointer-events-none z-20">
-          <div
-            className="absolute top-[4cqw] left-[4cqw] w-[9cqw] h-[9cqw]"
-            style={{ borderTop: `1px solid ${cornerBorder}`, borderLeft: `1px solid ${cornerBorder}` }}
-          />
-          <div
-            className="absolute top-[4cqw] right-[4cqw] w-[9cqw] h-[9cqw]"
-            style={{ borderTop: `1px solid ${cornerBorder}`, borderRight: `1px solid ${cornerBorder}` }}
-          />
-          <div
-            className="absolute bottom-[4cqw] left-[4cqw] w-[9cqw] h-[9cqw]"
-            style={{ borderBottom: `1px solid ${cornerBorder}`, borderLeft: `1px solid ${cornerBorder}` }}
-          />
-          <div
-            className="absolute bottom-[4cqw] right-[4cqw] w-[9cqw] h-[9cqw]"
-            style={{ borderBottom: `1px solid ${cornerBorder}`, borderRight: `1px solid ${cornerBorder}` }}
-          />
+        <div className="absolute inset-[3.5cqw] pointer-events-none z-20">
+          <div className="absolute top-0 left-0 w-[4cqw] h-[4cqw] border-t border-l border-[rgba(45,45,58,0.3)]" />
+          <div className="absolute top-0 right-0 w-[4cqw] h-[4cqw] border-t border-r border-[rgba(45,45,58,0.3)]" />
+          <div className="absolute bottom-0 left-0 w-[4cqw] h-[4cqw] border-b border-l border-[rgba(45,45,58,0.3)]" />
+          <div className="absolute bottom-0 right-0 w-[4cqw] h-[4cqw] border-b border-r border-[rgba(45,45,58,0.3)]" />
         </div>
       );
     }
@@ -262,7 +247,13 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                     alt="Vrijgezet portret"
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{
-                      objectPosition: '50% 20%'
+                      objectPosition: '50% 20%',
+                      WebkitMaskImage:
+                        'radial-gradient(ellipse 82% 80% at 50% 46%, #000 68%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.35) 92%, transparent 100%), linear-gradient(to bottom, #000 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                      maskImage:
+                        'radial-gradient(ellipse 82% 80% at 50% 46%, #000 68%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.35) 92%, transparent 100%), linear-gradient(to bottom, #000 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                      WebkitMaskComposite: 'destination-in',
+                      maskComposite: 'intersect'
                     }}
                   />
                 </div>
@@ -512,7 +503,15 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                       src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover"
-                      style={{ objectPosition: '50% 20%' }}
+                      style={{
+                        objectPosition: '50% 20%',
+                        WebkitMaskImage:
+                          'radial-gradient(ellipse 82% 80% at 50% 46%, #000 68%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.35) 92%, transparent 100%), linear-gradient(to bottom, #000 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                        maskImage:
+                          'radial-gradient(ellipse 82% 80% at 50% 46%, #000 68%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.35) 92%, transparent 100%), linear-gradient(to bottom, #000 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                        WebkitMaskComposite: 'destination-in',
+                        maskComposite: 'intersect'
+                      }}
                     />
                   </div>
                 )}
@@ -612,7 +611,13 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover"
                       style={{
-                        objectPosition: '50% 20%'
+                        objectPosition: '50% 20%',
+                        WebkitMaskImage:
+                          'radial-gradient(ellipse 90% 85% at 50% 48%, #000 70%, rgba(0,0,0,0.85) 82%, rgba(0,0,0,0.4) 92%, transparent 100%), linear-gradient(to right, #000 80%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                        maskImage:
+                          'radial-gradient(ellipse 90% 85% at 50% 48%, #000 70%, rgba(0,0,0,0.85) 82%, rgba(0,0,0,0.4) 92%, transparent 100%), linear-gradient(to right, #000 80%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+                        WebkitMaskComposite: 'destination-in',
+                        maskComposite: 'intersect'
                       }}
                     />
                   </div>
