@@ -860,20 +860,33 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
       onClick={(e) => handleAction(e)}
       className="relative w-full aspect-[397/559] rounded-[1rem] overflow-hidden shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)] select-none"
       style={{
-        background: thema ? themeGradient : matBgColor,
+        background: matBgColor,
         containerType: 'inline-size'
       }}
     >
-      {/* Atmosphere scrim for text readability */}
+      {/* 50% Zoomed Theme + Frosted Glass & Matte Paper Layer */}
       {thema && (
-        <div
-          className="absolute inset-0 pointer-events-none z-0"
-          style={{
-            background: isLichtMode
-              ? 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.88) 100%)'
-              : 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(15,15,20,0.65) 0%, rgba(15,15,20,0.85) 100%)'
-          }}
-        />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div
+            className="absolute inset-[-25%] w-[150%] h-[150%]"
+            style={{
+              background: themeGradient,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'blur(2px)'
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isLichtMode
+                ? 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(255,255,255,0.76) 0%, rgba(255,255,255,0.88) 100%)'
+                : 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(20,18,24,0.72) 0%, rgba(20,18,24,0.86) 100%)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)'
+            }}
+          />
+        </div>
       )}
 
       {zoomSide === 'links' ? (
@@ -1177,20 +1190,33 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
         onClick={() => (onZoomBinnen ? onZoomBinnen('links') : null)}
         className="relative w-[48%] aspect-[397/559] rounded-[1rem] overflow-hidden shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)] cursor-pointer select-none"
         style={{
-          background: thema ? themeGradient : matBgColor,
+          background: matBgColor,
           containerType: 'inline-size'
         }}
       >
-        {/* Atmosphere scrim */}
+        {/* 50% Zoomed Theme + Frosted Glass Layer */}
         {thema && (
-          <div
-            className="absolute inset-0 pointer-events-none z-0"
-            style={{
-              background: isLichtMode
-                ? 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.88) 100%)'
-                : 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(15,15,20,0.65) 0%, rgba(15,15,20,0.85) 100%)'
-            }}
-          />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            <div
+              className="absolute inset-[-25%] w-[150%] h-[150%]"
+              style={{
+                background: themeGradient,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                filter: 'blur(2px)'
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: isLichtMode
+                  ? 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(255,255,255,0.76) 0%, rgba(255,255,255,0.88) 100%)'
+                  : 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(20,18,24,0.72) 0%, rgba(20,18,24,0.86) 100%)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)'
+              }}
+            />
+          </div>
         )}
 
         {s.indeling === 'sfeer-voorop' ? (
@@ -1316,20 +1342,33 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
         onClick={() => (onZoomBinnen ? onZoomBinnen('rechts') : null)}
         className="relative w-[48%] aspect-[397/559] rounded-[1rem] overflow-hidden shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)] cursor-pointer select-none"
         style={{
-          background: thema ? themeGradient : matBgColor,
+          background: matBgColor,
           containerType: 'inline-size'
         }}
       >
-        {/* Atmosphere scrim */}
+        {/* 50% Zoomed Theme + Frosted Glass Layer */}
         {thema && (
-          <div
-            className="absolute inset-0 pointer-events-none z-0"
-            style={{
-              background: isLichtMode
-                ? 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.88) 100%)'
-                : 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(15,15,20,0.65) 0%, rgba(15,15,20,0.85) 100%)'
-            }}
-          />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            <div
+              className="absolute inset-[-25%] w-[150%] h-[150%]"
+              style={{
+                background: themeGradient,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                filter: 'blur(2px)'
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: isLichtMode
+                  ? 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(255,255,255,0.76) 0%, rgba(255,255,255,0.88) 100%)'
+                  : 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(20,18,24,0.72) 0%, rgba(20,18,24,0.86) 100%)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)'
+              }}
+            />
+          </div>
         )}
 
         <div className="absolute inset-0 flex flex-col justify-between p-[8cqw_7cqw] box-border pointer-events-none z-10 text-center">
@@ -1424,20 +1463,32 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
         onClick={(e) => handleAction(e, 'familie')}
         className="relative w-full aspect-[397/559] rounded-[1rem] overflow-hidden shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)] select-none"
         style={{
-          background: thema ? themeGradient : matBgColor,
+          background: matBgColor,
           containerType: 'inline-size'
         }}
       >
-        {/* Subtle background atmosphere scrim for text readability */}
+        {/* Theme Background with Soft Matte Diffusion Layer */}
         {thema && (
-          <div
-            className="absolute inset-0 pointer-events-none z-0"
-            style={{
-              background: isLichtMode
-                ? 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.88) 100%)'
-                : 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(15,15,20,0.65) 0%, rgba(15,15,20,0.85) 100%)'
-            }}
-          />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            <div
+              className="absolute inset-0"
+              style={{
+                background: themeGradient,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: isLichtMode
+                  ? 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(255,255,255,0.76) 0%, rgba(255,255,255,0.90) 100%)'
+                  : 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(18,16,22,0.75) 0%, rgba(18,16,22,0.88) 100%)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)'
+              }}
+            />
+          </div>
         )}
 
         {!s.geenNamenOpKaart && (
