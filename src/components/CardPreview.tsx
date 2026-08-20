@@ -500,7 +500,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
       {/* INDELING: NAAST-TEKST */}
       {s.indeling === 'naast-tekst' && (
         <div className="absolute inset-0 flex z-10">
-          <div className="relative w-[42%] h-full bg-[#e9eaef] overflow-hidden">
+          <div className="relative w-[44%] h-full bg-[#e9eaef] overflow-hidden">
             {isVolledigeFoto ? (
               s.showDemoPhoto ? (
                 <img
@@ -526,11 +526,20 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                   {!thema && <div className="absolute inset-0 checkerboard-pattern" />}
                 </div>
                 {s.showDemoPhoto && (
-                  <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 overflow-hidden">
                     <img
                       src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
                       alt=""
-                      className="h-[94%] w-auto max-w-none block"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{
+                        objectPosition: '50% 20%',
+                        WebkitMaskImage:
+                          'radial-gradient(ellipse 90% 85% at 50% 48%, #000 68%, rgba(0,0,0,0.6) 88%, transparent 100%), linear-gradient(to right, #000 78%, transparent 100%)',
+                        maskImage:
+                          'radial-gradient(ellipse 90% 85% at 50% 48%, #000 68%, rgba(0,0,0,0.6) 88%, transparent 100%), linear-gradient(to right, #000 78%, transparent 100%)',
+                        WebkitMaskComposite: 'destination-in',
+                        maskComposite: 'intersect'
+                      }}
                     />
                   </div>
                 )}
@@ -538,8 +547,17 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             )}
           </div>
           <div
-            className="w-[58%] h-full flex flex-col justify-center p-[6cqw] box-border"
-            style={{ background: matBgColor, alignItems: alignItemsCss }}
+            className="w-[56%] h-full flex flex-col justify-center p-[6cqw] box-border"
+            style={{
+              background: thema
+                ? isLichtMode
+                  ? thema.matLight
+                  : thema.matDark
+                : isLichtMode
+                ? '#fafafc'
+                : '#1e1e24',
+              alignItems: alignItemsCss
+            }}
           >
             <div
               onClick={(e) => handleAction(e, 'spreuk')}
