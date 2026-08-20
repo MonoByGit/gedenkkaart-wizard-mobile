@@ -224,24 +224,21 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
         <>
           {isVolledigeFoto ? (
             <>
-              <div className="absolute inset-0" style={{ background: matBgColor }} />
-              <div className="absolute left-[5cqw] right-[5cqw] top-[6cqw] bottom-[6cqw] rounded-[1.5cqw] overflow-hidden">
-                {s.showDemoPhoto ? (
-                  <img
-                    src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
-                    alt="Portret"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ objectPosition: '50% 20%' }}
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2.4cqw] p-[8cqw] bg-[#f0f1f4] text-center">
-                    <div className="w-[16cqw] h-[16cqw] rounded-full bg-[rgba(45,45,58,0.14)] animate-pulse" />
-                    <span className="text-[3.1cqw] text-[#6b6b7a] leading-tight max-w-[75cqw]">
-                      Portret volgt binnen 24 uur.
-                    </span>
-                  </div>
-                )}
-              </div>
+              {s.showDemoPhoto ? (
+                <img
+                  src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
+                  alt="Portret"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ objectPosition: '50% 20%' }}
+                />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2.4cqw] p-[8cqw] bg-[#f0f1f4] text-center">
+                  <div className="w-[16cqw] h-[16cqw] rounded-full bg-[rgba(45,45,58,0.14)] animate-pulse" />
+                  <span className="text-[3.1cqw] text-[#6b6b7a] leading-tight max-w-[75cqw]">
+                    Portret volgt binnen 24 uur.
+                  </span>
+                </div>
+              )}
             </>
           ) : (
             <>
