@@ -406,13 +406,16 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
           <div
             className="absolute inset-0"
             style={{
-              background: thema
-                ? isLichtMode
-                  ? thema.matLight
-                  : thema.matDark
-                : isLichtMode
-                ? '#fafafc'
-                : '#1e1e24'
+              background: thema ? themeGradient : (isLichtMode ? '#fafafc' : '#1e1e24')
+            }}
+          />
+          {/* Readability scrim over theme background */}
+          <div
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{
+              background: isLichtMode
+                ? 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.15) 70%, rgba(255,255,255,0.55) 100%)'
+                : 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0.6) 100%)'
             }}
           />
 
@@ -626,18 +629,27 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             )}
           </div>
           <div
-            className="w-[56%] h-full flex flex-col justify-between py-[12cqw] px-[5cqw] box-border"
+            className="relative w-[56%] h-full flex flex-col justify-between py-[12cqw] px-[5cqw] box-border"
             style={{
               background: thema
-                ? isLichtMode
-                  ? thema.matLight
-                  : thema.matDark
+                ? themeGradient
                 : isLichtMode
                 ? '#fafafc'
                 : '#1e1e24',
               alignItems: alignItemsCss
             }}
           >
+            {/* Scrim for text readability over theme on right column */}
+            {thema && (
+              <div
+                className="absolute inset-0 pointer-events-none z-0"
+                style={{
+                  background: isLichtMode
+                    ? 'rgba(255,255,255,0.4)'
+                    : 'rgba(0,0,0,0.35)'
+                }}
+              />
+            )}
             {spreukBoven ? (
               /* Spreuk Top, Name+Data Bottom */
               <>
@@ -845,73 +857,125 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
       }}
     >
       {zoomSide === 'links' ? (
-        <div
-          className="absolute inset-0 flex flex-col justify-center p-[10cqw_9cqw] box-border"
-          style={{ alignItems: alignItemsCss }}
-        >
-          <div
-            onClick={(e) => handleAction(e, 'binnen')}
-            className="p-[0.8cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
-            style={{
-              boxShadow: activeRing('binnen'),
-              ...editHint(!!s.binnenTekst)
-            }}
-          >
-            {!s.binnenTekst ? (
-              <span style={placeholderStyle}>Tik om een tekst toe te voegen</span>
-            ) : (
-              <span
-                style={{
-                  fontFamily: pairing.spreukFamily,
-                  fontStyle: 'italic',
-                  fontWeight: 300,
-                  fontSize: ptcqw(binnenPt),
-                  color: textColor,
-                  textAlign: alignCss,
-                  lineHeight: 1.6,
-                  display: 'block',
-                  whiteSpace: 'pre-wrap',
-                  overflowWrap: 'anywhere',
-                  wordBreak: 'break-word',
-                  textShadow: textShadowCss
-                }}
-              >
-                {s.binnenTekst}
-              </span>
-            )}
+        s.indeling === 'sfeer-voorop' ? (
+          /* SFEER-VOOROP: Photo is required and prominently presented on inside left page */
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-[6cqw] box-border">
+            <div className="w-[76%] aspect-[3/4] rounded-[1.6cqw] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-[rgba(45,45,58,0.12)] bg-[#ffffff] relative">
+              {s.showDemoPhoto ? (
+                <img
+                  src={
+                    isVolledigeFoto
+                      ? s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"
+                      : s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"
+                  }
+                  alt="Portret"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: '50% 20%' }}
+                />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2cqw] p-[4cqw] text-center bg-[#f0f1f4]">
+                  <div className="w-[12cqw] h-[12cqw] rounded-full bg-[rgba(45,45,58,0.14)] animate-pulse" />
+                  <span className="text-[2.8cqw] text-[#6b6b7a]">Portret volgt.</span>
+                </div>
+              )}
+            </div>
+            {/* Optional text or caption under photo */}
+            <div
+              onClick={(e) => handleAction(e, 'binnen')}
+              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[3cqw] cursor-pointer text-center max-w-[86cqw]"
+              style={{
+                boxShadow: activeRing('binnen'),
+                ...editHint(!!s.binnenTekst)
+              }}
+            >
+              {!s.binnenTekst ? (
+                <span style={placeholderStyle}>Tik om een gedicht of onderschrift toe te voegen</span>
+              ) : (
+                <span
+                  style={{
+                    fontFamily: pairing.spreukFamily,
+                    fontStyle: 'italic',
+                    fontSize: ptcqw(10.5),
+                    color: textColor,
+                    lineHeight: 1.45,
+                    display: 'block'
+                  }}
+                >
+                  {s.binnenTekst}
+                </span>
+              )}
+            </div>
           </div>
+        ) : (
+          /* Normal text inside left */
           <div
-            onClick={(e) => handleAction(e, 'binnen')}
-            className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[2.4cqh] cursor-pointer"
-            style={{
-              boxShadow: activeRing('binnen'),
-              ...editHint(!!s.afsluitingTekst)
-            }}
+            className="absolute inset-0 flex flex-col justify-center p-[10cqw_9cqw] box-border"
+            style={{ alignItems: alignItemsCss }}
           >
-            {!s.afsluitingTekst ? (
-              <span style={placeholderStyle}>Tik om een afsluiting toe te voegen</span>
-            ) : (
-              <span
-                style={{
-                  fontFamily: pairing.dataFamily,
-                  fontWeight: 400,
-                  fontSize: ptcqw(11),
-                  color: textColor,
-                  opacity: 0.82,
-                  textAlign: alignCss,
-                  lineHeight: 1.5,
-                  display: 'block',
-                  whiteSpace: 'pre-wrap',
-                  overflowWrap: 'anywhere',
-                  wordBreak: 'break-word',
-                  textShadow: textShadowCss
-                }}
-              >
-                {s.afsluitingTekst}
-              </span>
-            )}
+            <div
+              onClick={(e) => handleAction(e, 'binnen')}
+              className="p-[0.8cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+              style={{
+                boxShadow: activeRing('binnen'),
+                ...editHint(!!s.binnenTekst)
+              }}
+            >
+              {!s.binnenTekst ? (
+                <span style={placeholderStyle}>Tik om een tekst toe te voegen</span>
+              ) : (
+                <span
+                  style={{
+                    fontFamily: pairing.spreukFamily,
+                    fontStyle: 'italic',
+                    fontWeight: 300,
+                    fontSize: ptcqw(binnenPt),
+                    color: textColor,
+                    textAlign: alignCss,
+                    lineHeight: 1.6,
+                    display: 'block',
+                    whiteSpace: 'pre-wrap',
+                    overflowWrap: 'anywhere',
+                    wordBreak: 'break-word',
+                    textShadow: textShadowCss
+                  }}
+                >
+                  {s.binnenTekst}
+                </span>
+              )}
+            </div>
+            <div
+              onClick={(e) => handleAction(e, 'binnen')}
+              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[2.4cqh] cursor-pointer"
+              style={{
+                boxShadow: activeRing('binnen'),
+                ...editHint(!!s.afsluitingTekst)
+              }}
+            >
+              {!s.afsluitingTekst ? (
+                <span style={placeholderStyle}>Tik om een afsluiting toe te voegen</span>
+              ) : (
+                <span
+                  style={{
+                    fontFamily: pairing.dataFamily,
+                    fontWeight: 400,
+                    fontSize: ptcqw(11),
+                    color: textColor,
+                    opacity: 0.82,
+                    textAlign: alignCss,
+                    lineHeight: 1.5,
+                    display: 'block',
+                    whiteSpace: 'pre-wrap',
+                    overflowWrap: 'anywhere',
+                    wordBreak: 'break-word',
+                    textShadow: textShadowCss
+                  }}
+                >
+                  {s.afsluitingTekst}
+                </span>
+              )}
+            </div>
           </div>
-        </div>
+        )
       ) : (
         <div
           className="absolute inset-0 flex flex-col justify-evenly p-[12cqw_9cqw] box-border"
@@ -1088,45 +1152,76 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
           containerType: 'inline-size'
         }}
       >
-        <div
-          className="absolute inset-0 flex flex-col justify-center p-[8cqw_7cqw] box-border pointer-events-none"
-          style={{ alignItems: alignItemsCss }}
-        >
-          {!s.binnenTekst ? (
-            <span style={placeholderStyle}>Tik om tekst toe te voegen</span>
-          ) : (
-            <span
-              style={{
-                fontFamily: pairing.spreukFamily,
-                fontStyle: 'italic',
-                fontWeight: 300,
-                fontSize: ptcqw(binnenPt),
-                color: textColor,
-                textAlign: alignCss,
-                lineHeight: 1.55,
-                display: 'block',
-                whiteSpace: 'pre-wrap',
-                textShadow: textShadowCss
-              }}
-            >
-              {s.binnenTekst}
-            </span>
-          )}
-          {s.afsluitingTekst && (
-            <span
-              className="mt-[2cqh] block opacity-80"
-              style={{
-                fontFamily: pairing.dataFamily,
-                fontSize: ptcqw(10.5),
-                color: textColor,
-                textAlign: alignCss,
-                textShadow: textShadowCss
-              }}
-            >
-              {s.afsluitingTekst}
-            </span>
-          )}
-        </div>
+        {s.indeling === 'sfeer-voorop' ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-[5cqw] box-border pointer-events-none">
+            <div className="w-[78%] aspect-[3/4] rounded-[1.2cqw] overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[rgba(45,45,58,0.1)] bg-[#ffffff]">
+              <img
+                src={
+                  isVolledigeFoto
+                    ? s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"
+                    : s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"
+                }
+                alt="Portret"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: '50% 20%' }}
+              />
+            </div>
+            {s.binnenTekst && (
+              <span
+                className="mt-[2.5cqw] block text-center line-clamp-2 opacity-85"
+                style={{
+                  fontFamily: pairing.spreukFamily,
+                  fontStyle: 'italic',
+                  fontSize: ptcqw(9.5),
+                  color: textColor,
+                  lineHeight: 1.35
+                }}
+              >
+                {s.binnenTekst}
+              </span>
+            )}
+          </div>
+        ) : (
+          <div
+            className="absolute inset-0 flex flex-col justify-center p-[8cqw_7cqw] box-border pointer-events-none"
+            style={{ alignItems: alignItemsCss }}
+          >
+            {!s.binnenTekst ? (
+              <span style={placeholderStyle}>Tik om tekst toe te voegen</span>
+            ) : (
+              <span
+                style={{
+                  fontFamily: pairing.spreukFamily,
+                  fontStyle: 'italic',
+                  fontWeight: 300,
+                  fontSize: ptcqw(binnenPt),
+                  color: textColor,
+                  textAlign: alignCss,
+                  lineHeight: 1.55,
+                  display: 'block',
+                  whiteSpace: 'pre-wrap',
+                  textShadow: textShadowCss
+                }}
+              >
+                {s.binnenTekst}
+              </span>
+            )}
+            {s.afsluitingTekst && (
+              <span
+                className="mt-[2cqh] block opacity-80"
+                style={{
+                  fontFamily: pairing.dataFamily,
+                  fontSize: ptcqw(10.5),
+                  color: textColor,
+                  textAlign: alignCss,
+                  textShadow: textShadowCss
+                }}
+              >
+                {s.afsluitingTekst}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Right Spread Page */}
