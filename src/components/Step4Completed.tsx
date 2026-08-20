@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 
 interface Step4CompletedProps {
   onRestart: () => void;
+  onGoHome: () => void;
 }
 
-export const Step4Completed: React.FC<Step4CompletedProps> = ({ onRestart }) => {
+export const Step4Completed: React.FC<Step4CompletedProps> = ({ onRestart, onGoHome }) => {
   useEffect(() => {
     // Elegant soft celebratory confetti bursts
     const count = 200;
@@ -77,16 +78,29 @@ export const Step4Completed: React.FC<Step4CompletedProps> = ({ onRestart }) => 
         Deze gaat zo in productie. U ontvangt een bevestiging zodra de kaarten klaar zijn.
       </motion.p>
 
-      <motion.button
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.35 }}
-        type="button"
-        onClick={onRestart}
-        className="mt-4 px-6 h-[52px] rounded-[999px] bg-[#f0f1f4] text-[#1a1a1e] font-medium text-[0.9375rem] hover:bg-[rgba(45,45,58,0.08)] transition-all cursor-pointer"
-      >
-        Terug naar het begin
-      </motion.button>
+      <div className="flex flex-col w-full max-w-[280px] gap-3 mt-4">
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          type="button"
+          onClick={onGoHome}
+          className="w-full h-[52px] rounded-[999px] bg-[#2d2d3a] text-white font-bold text-[0.9375rem] hover:bg-[#1a1a1e] transition-all cursor-pointer shadow-md"
+        >
+          Naar de overzichtshub
+        </motion.button>
+
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 }}
+          type="button"
+          onClick={onRestart}
+          className="w-full h-[48px] rounded-[999px] bg-[#f0f1f4] text-[#1a1a1e] font-medium text-[0.875rem] hover:bg-[rgba(45,45,58,0.08)] transition-all cursor-pointer"
+        >
+          Kaart opnieuw bewerken
+        </motion.button>
+      </div>
     </div>
   );
 };

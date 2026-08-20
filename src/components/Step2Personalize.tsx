@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Home, Bookmark } from 'lucide-react';
 import { CardPreview } from './CardPreview';
 import { WizardState, Side, ActiveSheet } from '../types/wizard';
 
@@ -7,6 +7,8 @@ interface Step2PersonalizeProps {
   state: WizardState;
   onBack: () => void;
   onNext: () => void;
+  onGoHome: () => void;
+  onSaveCreation: () => void;
   onSetSide: (side: Side) => void;
   onOpenSheet: (sheet: ActiveSheet) => void;
   onZoomBinnen: (side: 'links' | 'rechts' | null) => void;
@@ -17,6 +19,8 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
   state: s,
   onBack,
   onNext,
+  onGoHome,
+  onSaveCreation,
   onSetSide,
   onOpenSheet,
   onZoomBinnen,
@@ -28,27 +32,48 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
     <div className="flex flex-col min-h-full pb-28">
       {/* Top Bar */}
       <div className="px-5 pt-5 flex items-center justify-between">
-        <button
-          type="button"
-          onClick={onBack}
-          aria-label="Terug naar Stap 1"
-          className="flex items-center gap-2 bg-transparent border-none py-1.5 text-[#1a1a1e] font-medium text-[0.9375rem] cursor-pointer hover:opacity-75 transition-opacity"
-        >
-          <ArrowLeft size={18} />
-          <span>Stap 2 van 3</span>
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={onGoHome}
+            aria-label="Naar overzicht"
+            className="w-8 h-8 rounded-full bg-[#f0f1f4] flex items-center justify-center text-[#1a1a1e] hover:bg-[rgba(45,45,58,0.1)] transition-colors cursor-pointer"
+          >
+            <Home size={15} />
+          </button>
+          <button
+            type="button"
+            onClick={onBack}
+            aria-label="Terug naar Stap 1"
+            className="flex items-center gap-1.5 bg-transparent border-none py-1.5 text-[#1a1a1e] font-medium text-[0.9375rem] cursor-pointer hover:opacity-75 transition-opacity"
+          >
+            <ArrowLeft size={16} />
+            <span>Stap 2 van 3</span>
+          </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={onOpenLockDialog}
-          className={`px-4 py-2 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
-            s.locked
-              ? 'bg-[#f0f1f4] text-[#1a1a1e] font-bold tracking-wide'
-              : 'border border-[rgba(45,45,58,0.14)] text-[#1a1a1e] hover:bg-[rgba(45,45,58,0.04)]'
-          }`}
-        >
-          {s.locked ? 'Vastgezet' : 'Vastzetten'}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onSaveCreation}
+            className="px-3 py-1.5 rounded-[999px] border border-[rgba(45,45,58,0.14)] text-[0.8125rem] font-medium text-[#1a1a1e] hover:bg-[#f0f1f4] transition-all cursor-pointer flex items-center gap-1"
+          >
+            <Bookmark size={13} />
+            <span>Opslaan</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={onOpenLockDialog}
+            className={`px-3.5 py-1.5 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
+              s.locked
+                ? 'bg-[#f0f1f4] text-[#1a1a1e] font-bold tracking-wide'
+                : 'border border-[rgba(45,45,58,0.14)] text-[#1a1a1e] hover:bg-[rgba(45,45,58,0.04)]'
+            }`}
+          >
+            {s.locked ? 'Vastgezet' : 'Vastzetten'}
+          </button>
+        </div>
       </div>
 
       {/* Segmented Side Tabs */}

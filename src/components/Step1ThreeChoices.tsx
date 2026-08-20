@@ -1,5 +1,4 @@
-import React from 'react';
-import { Check } from 'lucide-react';
+import { Check, Home } from 'lucide-react';
 import { CardPreview } from './CardPreview';
 import { WizardState, Formaat, Smaak, Indeling } from '../types/wizard';
 import { THEMES } from '../constants/wizard';
@@ -12,6 +11,7 @@ interface Step1ThreeChoicesProps {
   onSetThema: (t: string) => void;
   onOpenLightbox: () => void;
   onNext: () => void;
+  onGoHome: () => void;
 }
 
 export const Step1ThreeChoices: React.FC<Step1ThreeChoicesProps> = ({
@@ -21,7 +21,8 @@ export const Step1ThreeChoices: React.FC<Step1ThreeChoicesProps> = ({
   onSetIndeling,
   onSetThema,
   onOpenLightbox,
-  onNext
+  onNext,
+  onGoHome
 }) => {
   const isEnkel = s.formaat === 'enkel';
   const isGevouwen = s.formaat === 'gevouwen';
@@ -45,11 +46,21 @@ export const Step1ThreeChoices: React.FC<Step1ThreeChoicesProps> = ({
   return (
     <div className="flex flex-col min-h-full pb-24">
       {/* Header section */}
-      <div className="px-6 pt-7 pb-1">
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6b6b7a] block">
-          Stap 1 van 3
-        </span>
-        <h1 className="mt-2.5 text-[1.75rem] font-bold tracking-[-0.01em] text-[#1a1a1e] leading-[1.2]">
+      <div className="px-6 pt-6 pb-1">
+        <div className="flex items-center justify-between mb-1">
+          <button
+            type="button"
+            onClick={onGoHome}
+            className="flex items-center gap-1.5 text-[0.8125rem] text-[#6b6b7a] hover:text-[#1a1a1e] font-medium py-1 transition-colors cursor-pointer"
+          >
+            <Home size={15} />
+            <span>Overzicht</span>
+          </button>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6b6b7a]">
+            Stap 1 van 3
+          </span>
+        </div>
+        <h1 className="mt-2 text-[1.75rem] font-bold tracking-[-0.01em] text-[#1a1a1e] leading-[1.2]">
           Drie keuzes, dan staat de kaart
         </h1>
         <p className="mt-2.5 text-[1rem] text-[#6b6b7a] leading-relaxed max-w-[34ch]">
@@ -131,7 +142,7 @@ export const Step1ThreeChoices: React.FC<Step1ThreeChoicesProps> = ({
               }`}
             >
               <img
-                src="/assets/nana-volledig.jpg"
+                src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
                 alt="Volledige foto"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -155,7 +166,7 @@ export const Step1ThreeChoices: React.FC<Step1ThreeChoicesProps> = ({
               }`}
             >
               <img
-                src="/assets/nana-cutout.png"
+                src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
                 alt="Vrijgezet op thema"
                 className="absolute inset-0 w-full h-full object-cover object-top"
               />

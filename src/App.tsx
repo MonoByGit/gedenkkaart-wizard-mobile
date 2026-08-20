@@ -1,6 +1,33 @@
-import React, { useState } from 'react';
-import { WizardState, Formaat, Smaak, Indeling, Side, ActiveSheet, SizeOption, SpreukTone, SpreukPositie, SfeerZinPositie, Uitstraling, Uitlijning, FontPairingId, OrnamentId, FamilieLid } from './types/wizard';
-import { INITIAL_STATE, MAX_NAAM, MAX_SPREUK, MAX_BINNEN } from './constants/wizard';
+import React, { useState, useEffect } from 'react';
+import {
+  WizardState,
+  Formaat,
+  Smaak,
+  Indeling,
+  Side,
+  ActiveSheet,
+  SizeOption,
+  SpreukTone,
+  SpreukPositie,
+  SfeerZinPositie,
+  Uitstraling,
+  Uitlijning,
+  FontPairingId,
+  OrnamentId,
+  FamilieLid,
+  PersonaDef,
+  SavedCreation
+} from './types/wizard';
+import {
+  INITIAL_STATE,
+  INITIAL_SAVED_CREATIONS,
+  PERSONAS,
+  THEMES,
+  MAX_NAAM,
+  MAX_SPREUK,
+  MAX_BINNEN
+} from './constants/wizard';
+import { HomeScreen } from './components/HomeScreen';
 import { Step1ThreeChoices } from './components/Step1ThreeChoices';
 import { Step2Personalize } from './components/Step2Personalize';
 import { Step3Overview } from './components/Step3Overview';
@@ -17,8 +44,97 @@ import { SheetThema } from './components/BottomSheets/SheetThema';
 import { DialogLock } from './components/BottomSheets/DialogLock';
 import { ModalLightbox } from './components/BottomSheets/ModalLightbox';
 
+const CREATIONS_KEY = 'memortium_saved_creations';
+
 export const App: React.FC = () => {
   const [state, setState] = useState<WizardState>(INITIAL_STATE);
+  const [saveToast, setSaveToast] = useState<string | null>(null);
+
+  // Load saved creations from localStorage with fallback
+  const [creations, setCreations] = useState<SavedCreation[]>(() => {
+    try {
+      const stored = localStorage.getItem(CREATIONS_KEY);
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch (e) {
+      console.error('Error loading creations from localStorage', e);
+    }
+    return INITIAL_SAVED_CREATIONS;
+  });
+
+  // Save creations to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(CREATIONS_KEY, JSON.stringify(creations));
+    } catch (e) {
+      console.error('Error saving creations to localStorage', e);
+    }
+  }, [creations]);
+
+  const showToast = (msg: string) => {
+    setSaveToast(msg);
+    setTimeout(() => setSaveToast(null), 3000);
+  };
+
+  // Select Persona from Home Screen
+  const handleSelectPersona = (persona: PersonaDef) => {
+    setState({
+      ...INITIAL_STATE,
+      ...persona.defaultState,
+      personaId: persona.id,
+      photoVolledigUrl: persona.photoVolledigUrl,
+      photoCutoutUrl: persona.photoCutoutUrl,
+      screen: 'stap1'
+    } as WizardState);
+  };
+
+  // Open existing creation
+  const handleOpenCreation = (creation: SavedCreation) => {
+    setState({
+      ...creation.state,
+      screen: 'stap2'
+    });
+  };
+
+  // Save current creation
+  const handleSaveCurrentCreation = () => {
+    const themeObj = THEMES.find((t) => t.id === state.thema);
+    const themeName = themeObj ? themeObj.naam : 'Eigen stijl';
+    const title = `${state.naam || 'Gedenkkaart'} — ${state.formaat === 'enkel' ? 'Enkel' : 'Gevouwen'} (${themeName})`;
+    
+    const now = new Date();
+    const timeStr = `Vandaag, ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+    const newCreation: SavedCreation = {
+      id: `creation-${Date.now()}`,
+      createdAt: timeStr,
+      personaId: state.personaId,
+      title,
+      state: { ...state, screen: 'stap2' }
+    };
+
+    setCreations((prev) => [newCreation, ...prev]);
+    showToast('Kaart opgeslagen in Mijn Creaties!');
+  };
+
+  // Delete creation
+  const handleDeleteCreation = (id: string) => {
+    setCreations((prev) => prev.filter((c) => c.id !== id));
+    showToast('Kaart verwijderd');
+  };
+
+  // Duplicate creation
+  const handleDuplicateCreation = (creation: SavedCreation) => {
+    const copy: SavedCreation = {
+      ...creation,
+      id: `creation-${Date.now()}`,
+      createdAt: 'Zojuist gedupliceerd',
+      title: `${creation.title} (kopie)`
+    };
+    setCreations((prev) => [copy, ...prev]);
+    showToast('Kopie gemaakt in Mijn Creaties!');
+  };
 
   // State modification helpers
   const setFormaat = (formaat: Formaat) => {
@@ -99,17 +215,14 @@ export const App: React.FC = () => {
   const indentNaam = (id: number) => {
     setState((s) => {
       const idx = s.familieNamen.findIndex((n) => n.id === id);
-      let prevTop: number | null = null;
-      for (let i = idx - 1; i >= 0; i--) {
-        if (!s.familieNamen[i].parentId) {
-          prevTop = s.familieNamen[i].id;
-          break;
-        }
-      }
-      if (!prevTop) return s;
+      if (idx <= 0) return s;
+      const prev = s.familieNamen[idx - 1];
+      const targetParentId = prev.parentId !== null ? prev.parentId : prev.id;
       return {
         ...s,
-        familieNamen: s.familieNamen.map((n) => (n.id === id ? { ...n, parentId: prevTop } : n))
+        familieNamen: s.familieNamen.map((n) =>
+          n.id === id ? { ...n, parentId: targetParentId } : n
+        )
       };
     });
   };
@@ -121,13 +234,41 @@ export const App: React.FC = () => {
     }));
   };
 
-  const closeSheet = () => setState((s) => ({ ...s, activeSheet: null }));
+  const openSheet = (sheet: ActiveSheet) => {
+    if (state.locked) return;
+    setState((s) => ({ ...s, activeSheet: sheet }));
+  };
+
+  const closeSheet = () => {
+    setState((s) => ({ ...s, activeSheet: null }));
+  };
+
+  const goToHome = () => {
+    setState((s) => ({ ...s, screen: 'home', activeSheet: null }));
+  };
 
   return (
-    <div className="min-h-screen bg-[var(--surface-page-image)] flex justify-center selection:bg-[rgba(45,45,58,0.15)]">
-      {/* Mobile App Shell */}
-      <div className="w-full max-w-[480px] min-h-screen bg-[#fcfcfd] shadow-[0_25px_60px_rgba(0,0,0,0.1)] relative flex flex-col overflow-x-hidden">
-        {/* Screen 1: Stap 1 */}
+    <div className="relative min-h-screen bg-[var(--surface-canvas)] flex justify-center selection:bg-[#c99f6c]/30">
+      {/* Toast Notification */}
+      {saveToast && (
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] px-4 py-2.5 rounded-full bg-[#2d2d3a] text-white text-[0.8125rem] font-medium shadow-lg animate-bounce">
+          {saveToast}
+        </div>
+      )}
+
+      <div className="w-full max-w-[430px] min-h-screen bg-[var(--surface-page-image)] shadow-2xl relative flex flex-col">
+        {/* SCREEN 0: Home / Hub */}
+        {state.screen === 'home' && (
+          <HomeScreen
+            creations={creations}
+            onSelectPersona={handleSelectPersona}
+            onOpenCreation={handleOpenCreation}
+            onDeleteCreation={handleDeleteCreation}
+            onDuplicateCreation={handleDuplicateCreation}
+          />
+        )}
+
+        {/* SCREEN 1: Stap 1 (Drie keuzes) */}
         {state.screen === 'stap1' && (
           <Step1ThreeChoices
             state={state}
@@ -136,52 +277,54 @@ export const App: React.FC = () => {
             onSetIndeling={setIndeling}
             onSetThema={setThema}
             onOpenLightbox={() => setState((s) => ({ ...s, previewLightboxOpen: true }))}
-            onNext={() => setState((s) => ({ ...s, screen: 'stap2' }))}
+            onNext={() => setState((s) => ({ ...s, screen: 'stap2', side: 'voor' }))}
+            onGoHome={goToHome}
           />
         )}
 
-        {/* Screen 2: Stap 2 */}
+        {/* SCREEN 2: Stap 2 (Personaliseren) */}
         {state.screen === 'stap2' && (
           <Step2Personalize
             state={state}
             onBack={() => setState((s) => ({ ...s, screen: 'stap1' }))}
-            onNext={() => setState((s) => ({ ...s, screen: 'stap3' }))}
+            onNext={() => setState((s) => ({ ...s, screen: 'stap3', side: 'voor' }))}
+            onGoHome={goToHome}
+            onSaveCreation={handleSaveCurrentCreation}
             onSetSide={setSide}
-            onOpenSheet={(sheet) => {
-              if (!state.locked || sheet === 'naam' || sheet === 'data' || sheet === 'spreuk' || sheet === 'binnen' || sheet === 'praktisch' || sheet === 'familie') {
-                setState((s) => ({ ...s, activeSheet: sheet }));
-              }
-            }}
+            onOpenSheet={openSheet}
             onZoomBinnen={(side) => setState((s) => ({ ...s, binnenZoom: side }))}
             onOpenLockDialog={() => setState((s) => ({ ...s, lockDialogOpen: true }))}
           />
         )}
 
-        {/* Screen 3: Stap 3 */}
+        {/* SCREEN 3: Stap 3 (Overzicht) */}
         {state.screen === 'stap3' && (
           <Step3Overview
             state={state}
             onBack={() => setState((s) => ({ ...s, screen: 'stap2' }))}
             onConfirm={() => setState((s) => ({ ...s, screen: 'voltooid' }))}
+            onGoHome={goToHome}
             onSetSide={setSide}
             onZoomBinnen={(side) => setState((s) => ({ ...s, binnenZoom: side }))}
             onOpenLockDialog={() => setState((s) => ({ ...s, lockDialogOpen: true }))}
           />
         )}
 
-        {/* Screen 4: Voltooid */}
+        {/* SCREEN 4: Voltooid */}
         {state.screen === 'voltooid' && (
           <Step4Completed
             onRestart={() => setState((s) => ({ ...s, screen: 'stap1' }))}
+            onGoHome={goToHome}
           />
         )}
 
-        {/* BOTTOM SHEETS */}
+        {/* --- BOTTOM SHEETS --- */}
+
         {/* 1. Sheet Naam */}
         <BottomSheetContainer
           isOpen={state.activeSheet === 'naam'}
           onClose={closeSheet}
-          category="Voorkant"
+          category="Tekst"
           title="De naam"
         >
           <SheetNaam
@@ -196,15 +339,15 @@ export const App: React.FC = () => {
         <BottomSheetContainer
           isOpen={state.activeSheet === 'data'}
           onClose={closeSheet}
-          category="Voorkant"
-          title="De data"
+          category="Tekst"
+          title="Data"
         >
           <SheetData
             dataGeboorte={state.dataGeboorte}
             dataOverlijden={state.dataOverlijden}
             size={state.sizes.data}
-            onChangeGeboorte={(val) => setState((s) => ({ ...s, dataGeboorte: val }))}
-            onChangeOverlijden={(val) => setState((s) => ({ ...s, dataOverlijden: val }))}
+            onChangeGeboorte={(val: string) => setState((s) => ({ ...s, dataGeboorte: val }))}
+            onChangeOverlijden={(val: string) => setState((s) => ({ ...s, dataOverlijden: val }))}
             onChangeSize={(size) => setSize('data', size)}
           />
         </BottomSheetContainer>
@@ -213,19 +356,19 @@ export const App: React.FC = () => {
         <BottomSheetContainer
           isOpen={state.activeSheet === 'spreuk'}
           onClose={closeSheet}
-          category="Voorkant"
-          title="Een spreuk"
+          category="Tekst"
+          title="Spreuk of regel"
         >
           <SheetSpreuk
             spreuk={state.spreuk}
+            size={state.sizes.spreuk}
             spreukTone={state.spreukTone}
             spreukPositie={state.spreukPositie}
-            size={state.sizes.spreuk}
             forceBoven={
               state.smaak === 'vrijgezet' &&
               (state.indeling === 'volledig' || state.indeling === 'kader')
             }
-            onChangeSpreuk={(val) => setState((s) => ({ ...s, spreuk: val }))}
+            onChangeSpreuk={(val: string) => setState((s) => ({ ...s, spreuk: val }))}
             onChangeTone={(tone: SpreukTone) => setState((s) => ({ ...s, spreukTone: tone }))}
             onChangePositie={(pos: SpreukPositie) =>
               setState((s) => ({ ...s, spreukPositie: pos }))
@@ -234,19 +377,19 @@ export const App: React.FC = () => {
           />
         </BottomSheetContainer>
 
-        {/* 4. Sheet Binnen */}
+        {/* 4. Sheet Binnenzijde */}
         <BottomSheetContainer
           isOpen={state.activeSheet === 'binnen'}
           onClose={closeSheet}
-          category="Binnenzijde"
-          title="De binnentekst"
+          category="Tekst"
+          title="Binnenzijde"
         >
           <SheetBinnen
             binnenTekst={state.binnenTekst}
             afsluitingTekst={state.afsluitingTekst}
             size={state.sizes.binnen}
-            onChangeBinnenTekst={(val) => setState((s) => ({ ...s, binnenTekst: val }))}
-            onChangeAfsluitingTekst={(val) => setState((s) => ({ ...s, afsluitingTekst: val }))}
+            onChangeBinnenTekst={(val: string) => setState((s) => ({ ...s, binnenTekst: val }))}
+            onChangeAfsluitingTekst={(val: string) => setState((s) => ({ ...s, afsluitingTekst: val }))}
             onChangeSize={(size) => setSize('binnen', size)}
           />
         </BottomSheetContainer>
@@ -255,7 +398,7 @@ export const App: React.FC = () => {
         <BottomSheetContainer
           isOpen={state.activeSheet === 'praktisch'}
           onClose={closeSheet}
-          category="Binnenzijde, rechterpagina"
+          category="Tekst"
           title="Praktische informatie"
         >
           <SheetPraktisch
@@ -274,8 +417,8 @@ export const App: React.FC = () => {
         <BottomSheetContainer
           isOpen={state.activeSheet === 'familie'}
           onClose={closeSheet}
-          category="Achterkant"
-          title="Uit naam van"
+          category="Namen"
+          title="Familie en betrokkenen"
         >
           <SheetFamilie
             geenNamenOpKaart={state.geenNamenOpKaart}

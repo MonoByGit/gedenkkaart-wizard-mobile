@@ -228,7 +228,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
               <div className="absolute left-[5cqw] right-[5cqw] top-[6cqw] bottom-[6cqw] rounded-[1.5cqw] overflow-hidden">
                 {s.showDemoPhoto ? (
                   <img
-                    src="/assets/nana-volledig.jpg"
+                    src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
                     alt="Portret"
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{ objectPosition: '50% 20%' }}
@@ -256,7 +256,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
               {s.showDemoPhoto && (
                 <div className="absolute inset-0 overflow-hidden">
                   <img
-                    src="/assets/nana-cutout.png"
+                    src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
                     alt="Vrijgezet portret"
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{
@@ -411,7 +411,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             {isVolledigeFoto ? (
               s.showDemoPhoto ? (
                 <img
-                  src="/assets/nana-volledig.jpg"
+                  src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{ objectPosition: '50% 26%' }}
@@ -426,7 +426,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
               s.showDemoPhoto && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <img
-                    src="/assets/nana-cutout.png"
+                    src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
                     alt=""
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{ objectPosition: '50% 20%' }}
@@ -495,7 +495,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             {isVolledigeFoto ? (
               s.showDemoPhoto ? (
                 <img
-                  src="/assets/nana-volledig.jpg"
+                  src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{ objectPosition: '50% 22%' }}
@@ -519,7 +519,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                 {s.showDemoPhoto && (
                   <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                     <img
-                      src="/assets/nana-cutout.png"
+                      src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
                       alt=""
                       className="h-[94%] w-auto max-w-none block"
                     />

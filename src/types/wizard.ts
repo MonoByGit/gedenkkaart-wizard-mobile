@@ -1,4 +1,4 @@
-export type Screen = 'stap1' | 'stap2' | 'stap3' | 'voltooid';
+export type Screen = 'home' | 'stap1' | 'stap2' | 'stap3' | 'voltooid';
 export type Formaat = 'enkel' | 'gevouwen';
 export type Smaak = 'volledige-foto' | 'vrijgezet';
 export type Indeling = 'volledig' | 'kader' | 'naast-tekst' | 'sfeer-voorop';
@@ -52,8 +52,30 @@ export interface OrnamentDef {
   hint: string;
 }
 
+export interface PersonaDef {
+  id: 'nana' | 'carien' | 'richard';
+  naam: string;
+  tagline: string;
+  avatarUrl: string;
+  photoVolledigUrl: string;
+  photoCutoutUrl: string;
+  photoBeforeUrl?: string;
+  defaultState: Partial<WizardState>;
+}
+
+export interface SavedCreation {
+  id: string;
+  createdAt: string;
+  personaId: string;
+  title: string;
+  state: WizardState;
+}
+
 export interface WizardState {
   screen: Screen;
+  personaId: 'nana' | 'carien' | 'richard';
+  photoVolledigUrl: string;
+  photoCutoutUrl: string;
   formaat: Formaat;
   smaak: Smaak;
   indeling: Indeling;
