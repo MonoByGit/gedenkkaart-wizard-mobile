@@ -1302,8 +1302,29 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
   );
 
   // 3. BACK SIDE RENDERING
+  // 3. BACK SIDE RENDERING (De Nabestaanden / Familie)
   const renderBack = () => {
     const parentList = s.familieNamen.filter((n) => !n.parentId);
+    const totalLines =
+      s.familieNamen.length +
+      (s.kopregel ? 1 : 0) +
+      (s.samenvattendeRegel ? 1 : 0) +
+      (s.bredereKring ? 1 : 0) +
+      (s.deFamilies ? 1 : 0);
+
+    // Adaptive scale based on number of names and sections
+    const isDense = totalLines >= 10;
+    const isMedium = totalLines >= 5 && totalLines < 10;
+
+    const kopregelPt = isDense ? 10.5 : isMedium ? 12 : 13.5;
+    const parentPt = isDense ? 10.5 : isMedium ? 12 : 14;
+    const childPt = isDense ? 9.5 : isMedium ? 11 : 12.5;
+    const rolePt = isDense ? 8.5 : isMedium ? 9.5 : 10.5;
+    const closingPt = isDense ? 10 : isMedium ? 11.5 : 13;
+    const familyPt = isDense ? 8.5 : isMedium ? 9.5 : 10.5;
+
+    const groupGap = isDense ? 'gap-[0.5cqh]' : isMedium ? 'gap-[0.8cqh]' : 'gap-[1.2cqh]';
+    const childGap = isDense ? 'gap-[0.2cqh]' : 'gap-[0.35cqh]';
 
     return (
       <div
@@ -1314,90 +1335,132 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
           containerType: 'inline-size'
         }}
       >
+        {/* Subtle background atmosphere scrim for text readability */}
+        {thema && (
+          <div
+            className="absolute inset-0 pointer-events-none z-0"
+            style={{
+              background: isLichtMode
+                ? 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.88) 100%)'
+                : 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(15,15,20,0.65) 0%, rgba(15,15,20,0.85) 100%)'
+            }}
+          />
+        )}
+
         {!s.geenNamenOpKaart && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-[10cqw] box-border z-10">
+          <div className="absolute inset-0 flex flex-col justify-between p-[9cqw_8cqw] box-border z-10">
+            {/* TOP: Kopregel */}
             <div
-              className="p-[0.8cqw_1.4cqw] rounded-[1cqw] text-center w-full max-w-[86cqw] cursor-pointer"
+              onClick={(e) => handleAction(e, 'familie')}
+              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer text-center"
               style={{
                 boxShadow: activeRing('familie'),
-                ...editHint(true)
+                ...editHint(!!s.kopregel)
               }}
             >
-              {s.kopregel && (
+              {s.kopregel ? (
                 <span
-                  className="block font-bold text-center mb-[0.6cqh]"
+                  className="block font-medium italic leading-relaxed tracking-wide opacity-90"
                   style={{
-                    fontFamily: pairing.dataFamily,
-                    fontSize: ptcqw(11),
+                    fontFamily: pairing.spreukFamily,
+                    fontSize: ptcqw(kopregelPt),
                     color: textColor,
                     textShadow: textShadowCss
                   }}
                 >
                   {s.kopregel}
                 </span>
+              ) : (
+                <span style={placeholderStyle}>Tik om een kopregel toe te voegen</span>
               )}
+            </div>
 
-              {/* Family rows list */}
-              <div className="flex flex-col gap-[0.35cqh] my-[0.8cqh]">
+            {/* MIDDLE: Family List (Structured Centered Block with Inward Alignment) */}
+            <div
+              className="flex-1 flex flex-col justify-center my-[1.5cqh] max-h-[62cqh] overflow-hidden"
+            >
+              <div
+                className={`flex flex-col ${groupGap} w-full max-w-[88cqw] mx-auto`}
+                style={{ textAlign: alignCss }}
+              >
                 {parentList.map((top) => {
                   const children = s.familieNamen.filter((c) => c.parentId === top.id);
                   return (
                     <div key={top.id} className="flex flex-col">
+                      {/* Parent / Main line */}
                       <div
-                        className="flex items-baseline justify-center gap-[0.2em] leading-snug"
+                        className="leading-snug flex flex-wrap items-baseline gap-x-[0.35em]"
                         style={{
+                          justifyContent: alignItemsCss,
                           fontFamily: pairing.dataFamily,
-                          fontWeight: 400,
-                          fontSize: ptcqw(12.5),
+                          fontSize: ptcqw(parentPt),
                           color: textColor,
                           textShadow: textShadowCss
                         }}
                       >
                         {top.overleden && (
-                          <span className="text-[0.8em] font-light">†</span>
+                          <span className="font-serif text-[0.85em] opacity-80 select-none">†</span>
                         )}
-                        <span>{top.naam || 'Voor- en achternaam'}</span>
+                        <span className="font-semibold tracking-tight">
+                          {top.naam || 'Voor- en achternaam'}
+                        </span>
                         {top.relatie && (
-                          <span className="opacity-70 text-[0.85em]">
-                            ({top.relatie})
+                          <span
+                            className="opacity-70 font-normal italic text-[0.85em]"
+                            style={{ fontFamily: pairing.spreukFamily, fontSize: ptcqw(rolePt) }}
+                          >
+                            {top.relatie}
                           </span>
                         )}
                       </div>
 
-                      {children.map((child) => (
-                        <div
-                          key={child.id}
-                          className="flex items-baseline justify-center gap-[0.2em] leading-snug opacity-90 pl-[2cqw]"
-                          style={{
-                            fontFamily: pairing.dataFamily,
-                            fontWeight: 400,
-                            fontSize: ptcqw(11),
-                            color: textColor,
-                            textShadow: textShadowCss
-                          }}
-                        >
-                          {child.overleden && (
-                            <span className="text-[0.8em] font-light">†</span>
-                          )}
-                          <span>{child.naam || 'Voor- en achternaam'}</span>
-                          {child.relatie && (
-                            <span className="opacity-70 text-[0.85em]">
-                              ({child.relatie})
-                            </span>
-                          )}
+                      {/* Indented Children */}
+                      {children.length > 0 && (
+                        <div className={`flex flex-col ${childGap} mt-[0.3cqh] ${alignCss === 'left' ? 'pl-[4cqw]' : alignCss === 'right' ? 'pr-[4cqw]' : ''}`}>
+                          {children.map((child) => (
+                            <div
+                              key={child.id}
+                              className="leading-snug flex flex-wrap items-baseline gap-x-[0.3em] opacity-90"
+                              style={{
+                                justifyContent: alignItemsCss,
+                                fontFamily: pairing.dataFamily,
+                                fontSize: ptcqw(childPt),
+                                color: textColor,
+                                textShadow: textShadowCss
+                              }}
+                            >
+                              {child.overleden && (
+                                <span className="font-serif text-[0.85em] opacity-80 select-none">†</span>
+                              )}
+                              <span className="font-normal">
+                                {child.naam || 'Voor- en achternaam'}
+                              </span>
+                              {child.relatie && (
+                                <span
+                                  className="opacity-65 font-normal italic text-[0.85em]"
+                                  style={{ fontFamily: pairing.spreukFamily, fontSize: ptcqw(rolePt) }}
+                                >
+                                  {child.relatie}
+                                </span>
+                              )}
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      )}
                     </div>
                   );
                 })}
               </div>
+            </div>
 
+            {/* BOTTOM: Closing phrases (Samenvattend, Kring, Families) */}
+            <div className="flex flex-col gap-[0.3cqh] text-center pt-[0.5cqh]">
               {s.samenvattendeRegel && (
                 <span
-                  className="block italic text-center mt-[0.8cqh] font-light"
+                  className="block italic font-medium leading-relaxed opacity-95"
                   style={{
                     fontFamily: pairing.spreukFamily,
-                    fontSize: ptcqw(12.5),
+                    fontSize: ptcqw(closingPt),
                     color: textColor,
                     textShadow: textShadowCss
                   }}
@@ -1408,10 +1471,10 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
 
               {s.bredereKring && (
                 <span
-                  className="block text-center mt-[0.4cqh] opacity-75"
+                  className="block opacity-75 leading-normal"
                   style={{
-                    fontFamily: 'var(--font-family)',
-                    fontSize: ptcqw(9.5),
+                    fontFamily: pairing.dataFamily,
+                    fontSize: ptcqw(familyPt),
                     color: textColor,
                     textShadow: textShadowCss
                   }}
@@ -1422,10 +1485,10 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
 
               {s.deFamilies && (
                 <span
-                  className="block text-center mt-[0.4cqh] opacity-75"
+                  className="block opacity-75 leading-normal"
                   style={{
-                    fontFamily: 'var(--font-family)',
-                    fontSize: ptcqw(9.5),
+                    fontFamily: pairing.dataFamily,
+                    fontSize: ptcqw(familyPt),
                     color: textColor,
                     textShadow: textShadowCss
                   }}

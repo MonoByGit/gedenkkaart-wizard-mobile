@@ -110,85 +110,91 @@ export const SheetFamilie: React.FC<SheetFamilieProps> = ({
                 }
 
                 return (
-                  <div
-                    key={lid.id}
-                    className={`border border-[rgba(45,45,58,0.14)] rounded-[1.5rem] p-4 bg-[#fcfcfd] transition-all ${
-                      indented ? 'ml-6 bg-[rgba(45,45,58,0.02)]' : ''
-                    }`}
-                  >
-                    {parent && (
-                      <span className="text-[0.75rem] text-[#6b6b7a] block mb-2 font-medium">
-                        Onder {parent.naam || 'naam'}
-                      </span>
-                    )}
+                    <div
+                      key={lid.id}
+                      className={`border rounded-[1.5rem] p-4 transition-all ${
+                        indented
+                          ? 'border-[#2d2d3a]/25 bg-[rgba(45,45,58,0.03)] ml-5 relative'
+                          : 'border-[rgba(45,45,58,0.14)] bg-[#fcfcfd]'
+                      }`}
+                    >
+                      {/* Tree connector indicator */}
+                      {parent && (
+                        <div className="flex items-center gap-1.5 text-[0.75rem] text-[#6b6b7a] mb-2.5 font-medium">
+                          <span className="text-[#2d2d3a] font-bold">↳</span>
+                          <span>Ingesprongen onder <strong className="text-[#1a1a1e] font-semibold">{parent.naam || 'bovenstaande naam'}</strong></span>
+                        </div>
+                      )}
 
-                    <div className="flex items-center gap-2">
-                      {indented ? (
+                      <div className="flex items-center gap-2">
+                        {indented ? (
+                          <button
+                            type="button"
+                            onClick={() => onOutdentNaam(lid.id)}
+                            title="Plaats op gelijk niveau"
+                            className="h-8 px-2.5 rounded-full border border-[rgba(45,45,58,0.16)] bg-white flex items-center gap-1 text-[0.75rem] font-medium text-[#4a4a58] hover:text-[#1a1a1e] shrink-0 cursor-pointer shadow-xs"
+                          >
+                            <ChevronRight size={13} />
+                            <span>Naar links</span>
+                          </button>
+                        ) : canIndent ? (
+                          <button
+                            type="button"
+                            onClick={() => onIndentNaam(lid.id)}
+                            title="Inspringen als kind/gezinslid"
+                            className="h-8 px-2.5 rounded-full border border-[rgba(45,45,58,0.16)] bg-white flex items-center gap-1 text-[0.75rem] font-medium text-[#4a4a58] hover:text-[#1a1a1e] shrink-0 cursor-pointer shadow-xs"
+                          >
+                            <ChevronDown size={13} />
+                            <span>Inspringen</span>
+                          </button>
+                        ) : null}
+
+                        <div className="flex-1">
+                          <input
+                            type="text"
+                            value={lid.naam}
+                            onChange={(e) =>
+                              onUpdateNaamVeld(lid.id, 'naam', e.target.value)
+                            }
+                            placeholder={indented ? "Naam kind / gezinslid" : "Voor- en achternaam"}
+                            className="w-full h-[46px] px-4 rounded-[23px] bg-[#ffffff] border border-[rgba(45,45,58,0.12)] text-[0.9375rem] text-[#1a1a1e] placeholder:text-[#6b6b7a] focus:outline-none focus:border-[#2d2d3a]"
+                          />
+                        </div>
+
                         <button
                           type="button"
-                          onClick={() => onOutdentNaam(lid.id)}
-                          aria-label="Naar bovenliggend niveau"
-                          className="w-7 h-7 rounded-full border border-[rgba(45,45,58,0.14)] flex items-center justify-center text-[#6b6b7a] hover:text-[#1a1a1e] shrink-0 cursor-pointer"
+                          onClick={() => onRemoveNaam(lid.id)}
+                          aria-label="Verwijderen"
+                          className="w-7 h-7 rounded-full flex items-center justify-center text-[#6b6b7a] hover:text-[#943d3d] shrink-0 cursor-pointer"
                         >
-                          <ChevronRight size={14} />
+                          <X size={16} />
                         </button>
-                      ) : canIndent ? (
-                        <button
-                          type="button"
-                          onClick={() => onIndentNaam(lid.id)}
-                          aria-label="Inspringen onder vorige naam"
-                          className="w-7 h-7 rounded-full border border-[rgba(45,45,58,0.14)] flex items-center justify-center text-[#6b6b7a] hover:text-[#1a1a1e] shrink-0 cursor-pointer"
-                        >
-                          <ChevronDown size={14} />
-                        </button>
-                      ) : null}
-
-                      <div className="flex-1">
-                        <input
-                          type="text"
-                          value={lid.naam}
-                          onChange={(e) =>
-                            onUpdateNaamVeld(lid.id, 'naam', e.target.value)
-                          }
-                          placeholder="Voor- en achternaam"
-                          className="w-full h-[46px] px-4 rounded-[23px] bg-[#ffffff] border border-[rgba(45,45,58,0.12)] text-[0.9375rem] text-[#1a1a1e] placeholder:text-[#6b6b7a] focus:outline-none focus:border-[#2d2d3a]"
-                        />
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={() => onRemoveNaam(lid.id)}
-                        aria-label="Verwijderen"
-                        className="w-7 h-7 rounded-full flex items-center justify-center text-[#6b6b7a] hover:text-[#943d3d] shrink-0 cursor-pointer"
-                      >
-                        <X size={16} />
-                      </button>
-                    </div>
+                      <div className="flex items-center justify-between gap-3 mt-3">
+                        <div className="flex-1">
+                          <input
+                            type="text"
+                            value={lid.relatie}
+                            onChange={(e) =>
+                              onUpdateNaamVeld(lid.id, 'relatie', e.target.value)
+                            }
+                            placeholder="Relatie (bijv. echtgenoot, zoon, etc.)"
+                            className="w-full h-[38px] px-3.5 rounded-[19px] bg-[#ffffff] border border-[rgba(45,45,58,0.1)] text-[0.875rem] text-[#1a1a1e] placeholder:text-[#6b6b7a] focus:outline-none focus:border-[#2d2d3a]"
+                          />
+                        </div>
 
-                    <div className="flex items-center justify-between gap-3 mt-3">
-                      <div className="flex-1">
-                        <input
-                          type="text"
-                          value={lid.relatie}
-                          onChange={(e) =>
-                            onUpdateNaamVeld(lid.id, 'relatie', e.target.value)
-                          }
-                          placeholder="Relatie, bijv. zoon of dochter"
-                          className="w-full h-[38px] px-3.5 rounded-[19px] bg-[#ffffff] border border-[rgba(45,45,58,0.1)] text-[0.875rem] text-[#1a1a1e] placeholder:text-[#6b6b7a] focus:outline-none focus:border-[#2d2d3a]"
-                        />
+                        <label className="flex items-center gap-2 text-[0.8125rem] text-[#1a1a1e] cursor-pointer shrink-0">
+                          <input
+                            type="checkbox"
+                            checked={lid.overleden}
+                            onChange={() => onToggleOverleden(lid.id)}
+                            className="w-4 h-4 rounded text-[#2d2d3a] border-[rgba(45,45,58,0.2)] focus:ring-0 cursor-pointer"
+                          />
+                          <span>Overleden (†)</span>
+                        </label>
                       </div>
-
-                      <label className="flex items-center gap-2 text-[0.8125rem] text-[#1a1a1e] cursor-pointer shrink-0">
-                        <input
-                          type="checkbox"
-                          checked={lid.overleden}
-                          onChange={() => onToggleOverleden(lid.id)}
-                          className="w-4 h-4 rounded text-[#2d2d3a] border-[rgba(45,45,58,0.2)] focus:ring-0 cursor-pointer"
-                        />
-                        <span>Is overleden (†)</span>
-                      </label>
                     </div>
-                  </div>
                 );
               })}
             </div>
