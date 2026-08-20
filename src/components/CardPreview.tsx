@@ -513,12 +513,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
               )
             ) : (
               <>
-                <div
-                  className="absolute inset-0"
-                  style={{ background: thema ? themeGradient : undefined }}
-                >
-                  {!thema && <div className="absolute inset-0 checkerboard-pattern" />}
-                </div>
+                {!thema && <div className="absolute inset-0 checkerboard-pattern" />}
                 {s.showDemoPhoto && (
                   <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                     <img
@@ -600,8 +595,12 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
 
       {/* INDELING: NAAST-TEKST */}
       {s.indeling === 'naast-tekst' && (
-        <div className="absolute inset-0 flex z-10">
-          <div className="relative w-[44%] h-full bg-[#e9eaef] overflow-hidden">
+        <div
+          className="absolute inset-0 flex z-10"
+          style={{ background: thema ? themeGradient : (isLichtMode ? '#fafafc' : '#1e1e24') }}
+        >
+          {/* Left Column (Photo) */}
+          <div className="relative w-[44%] h-full overflow-hidden" style={{ background: isVolledigeFoto ? '#e9eaef' : 'transparent' }}>
             {isVolledigeFoto ? (
               s.showDemoPhoto ? (
                 <img
@@ -618,14 +617,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
               )
             ) : (
               <>
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: thema ? themeGradient : undefined
-                  }}
-                >
-                  {!thema && <div className="absolute inset-0 checkerboard-pattern" />}
-                </div>
+                {!thema && <div className="absolute inset-0 checkerboard-pattern" />}
                 {s.showDemoPhoto && (
                   <div className="absolute inset-0 overflow-hidden">
                     <img
@@ -647,18 +639,15 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
               </>
             )}
           </div>
+
+          {/* Right Column (Text) */}
           <div
             className="relative w-[56%] h-full flex flex-col justify-between py-[12cqw] px-[5cqw] box-border"
             style={{
-              background: thema
-                ? themeGradient
-                : isLichtMode
-                ? '#fafafc'
-                : '#1e1e24',
               alignItems: alignItemsCss
             }}
           >
-            {/* Scrim for text readability over theme on right column */}
+            {/* Scrim for text readability over continuous theme */}
             {thema && (
               <div
                 className="absolute inset-0 pointer-events-none z-0"
