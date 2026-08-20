@@ -165,6 +165,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
             isMini={isSheetOpen}
             onOpenSheet={onOpenSheet}
             onZoomBinnen={onZoomBinnen}
+            onCardClick={onOpenLightbox}
           />
         </div>
 
