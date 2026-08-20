@@ -852,15 +852,27 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
       onClick={(e) => handleAction(e)}
       className="relative w-full aspect-[397/559] rounded-[1rem] overflow-hidden shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)] select-none"
       style={{
-        background: matBgColor,
+        background: thema ? themeGradient : matBgColor,
         containerType: 'inline-size'
       }}
     >
+      {/* Atmosphere scrim for text readability */}
+      {thema && (
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            background: isLichtMode
+              ? 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.88) 100%)'
+              : 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(15,15,20,0.65) 0%, rgba(15,15,20,0.85) 100%)'
+          }}
+        />
+      )}
+
       {zoomSide === 'links' ? (
         s.indeling === 'sfeer-voorop' ? (
           /* SFEER-VOOROP: Photo is required and prominently presented on inside left page */
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-[6cqw] box-border">
-            <div className="w-[76%] aspect-[3/4] rounded-[1.6cqw] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-[rgba(45,45,58,0.12)] bg-[#ffffff] relative">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-[7cqw] box-border z-10">
+            <div className="w-[76%] aspect-[3/4] rounded-[1.6cqw] overflow-hidden shadow-[0_6px_24px_rgba(0,0,0,0.14)] border border-[rgba(45,45,58,0.12)] bg-[#ffffff] relative">
               {s.showDemoPhoto ? (
                 <img
                   src={
@@ -882,7 +894,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             {/* Optional text or caption under photo */}
             <div
               onClick={(e) => handleAction(e, 'binnen')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[3cqw] cursor-pointer text-center max-w-[86cqw]"
+              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[3.5cqw] cursor-pointer text-center max-w-[86cqw]"
               style={{
                 boxShadow: activeRing('binnen'),
                 ...editHint(!!s.binnenTekst)
@@ -907,21 +919,24 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             </div>
           </div>
         ) : (
-          /* Normal text inside left */
-          <div
-            className="absolute inset-0 flex flex-col justify-center p-[10cqw_9cqw] box-border"
-            style={{ alignItems: alignItemsCss }}
-          >
+          /* Normal text inside left: Poetic & dignified layout */
+          <div className="absolute inset-0 flex flex-col justify-between p-[10cqw_9cqw] box-border z-10">
+            {/* Top decorative anchor */}
+            <div className="flex justify-center pt-[1cqh]">
+              <div className="w-[12cqw] h-[1px] bg-current opacity-20" />
+            </div>
+
+            {/* Core poem/thought */}
             <div
               onClick={(e) => handleAction(e, 'binnen')}
-              className="p-[0.8cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+              className="p-[0.8cqw_1.2cqw] rounded-[1cqw] cursor-pointer my-auto text-center"
               style={{
                 boxShadow: activeRing('binnen'),
                 ...editHint(!!s.binnenTekst)
               }}
             >
               {!s.binnenTekst ? (
-                <span style={placeholderStyle}>Tik om een tekst toe te voegen</span>
+                <span style={placeholderStyle}>Tik om een gedicht of persoonlijke herinnering toe te voegen</span>
               ) : (
                 <span
                   style={{
@@ -931,7 +946,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                     fontSize: ptcqw(binnenPt),
                     color: textColor,
                     textAlign: alignCss,
-                    lineHeight: 1.6,
+                    lineHeight: 1.65,
                     display: 'block',
                     whiteSpace: 'pre-wrap',
                     overflowWrap: 'anywhere',
@@ -943,198 +958,173 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                 </span>
               )}
             </div>
+
+            {/* Bottom closing line */}
             <div
               onClick={(e) => handleAction(e, 'binnen')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[2.4cqh] cursor-pointer"
+              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] pb-[1cqh] cursor-pointer text-center"
               style={{
                 boxShadow: activeRing('binnen'),
                 ...editHint(!!s.afsluitingTekst)
               }}
             >
-              {!s.afsluitingTekst ? (
-                <span style={placeholderStyle}>Tik om een afsluiting toe te voegen</span>
-              ) : (
+              {s.afsluitingTekst ? (
                 <span
                   style={{
                     fontFamily: pairing.dataFamily,
                     fontWeight: 400,
-                    fontSize: ptcqw(11),
+                    fontSize: ptcqw(11.5),
                     color: textColor,
-                    opacity: 0.82,
+                    opacity: 0.85,
                     textAlign: alignCss,
                     lineHeight: 1.5,
                     display: 'block',
                     whiteSpace: 'pre-wrap',
-                    overflowWrap: 'anywhere',
-                    wordBreak: 'break-word',
                     textShadow: textShadowCss
                   }}
                 >
                   {s.afsluitingTekst}
                 </span>
+              ) : (
+                <span style={{ ...placeholderStyle, fontSize: ptcqw(10) }}>Tik voor afsluiting</span>
               )}
             </div>
           </div>
         )
       ) : (
-        <div
-          className="absolute inset-0 flex flex-col justify-evenly p-[12cqw_9cqw] box-border"
-          style={{ alignItems: alignItemsCss }}
-        >
-          <div
-            onClick={(e) => handleAction(e, 'praktisch')}
-            className="p-[0.4cqw_1cqw] rounded-[1cqw] max-w-[88cqw] cursor-pointer"
-            style={{
-              boxShadow: activeRing('praktisch'),
-              ...editHint(!!s.locatieTekst)
-            }}
-          >
+        /* Right page: Ceremonial Announcement Narrative */
+        <div className="absolute inset-0 flex flex-col justify-between p-[9cqw_8cqw] box-border z-10">
+          {/* Header */}
+          <div className="text-center pt-[1cqh]">
             <span
-              className="block font-bold uppercase tracking-[0.08em] opacity-55"
+              className="block font-bold uppercase tracking-[0.14em] opacity-60 text-[0.8em]"
               style={{
-                fontFamily: 'var(--font-family)',
-                fontSize: ptcqw(8),
+                fontFamily: pairing.dataFamily,
+                fontSize: ptcqw(8.5),
                 color: textColor,
-                textAlign: alignCss
+                textShadow: textShadowCss
               }}
             >
-              Locatie
+              De Afscheidsplechtigheid
             </span>
-            {!s.locatieTekst ? (
-              <span style={placeholderStyle}>Tik om locatie toe te voegen</span>
-            ) : (
-              <span
-                className="block mt-[0.25cqh] leading-relaxed opacity-90"
+          </div>
+
+          {/* Ceremony Core Details (Date/Time + Location) */}
+          <div className="flex flex-col gap-[1.8cqh] my-auto text-center">
+            {/* Datum & Tijd (Primary Focus) */}
+            <div
+              onClick={(e) => handleAction(e, 'praktisch')}
+              className="p-[0.6cqw_1cqw] rounded-[1cqw] cursor-pointer"
+              style={{
+                boxShadow: activeRing('praktisch'),
+                ...editHint(!!s.datumTijdTekst)
+              }}
+            >
+              {s.datumTijdTekst ? (
+                <span
+                  className="block font-semibold leading-snug tracking-tight"
+                  style={{
+                    fontFamily: pairing.dataFamily,
+                    fontSize: ptcqw(13.5),
+                    color: textColor,
+                    textShadow: textShadowCss
+                  }}
+                >
+                  {s.datumTijdTekst}
+                </span>
+              ) : (
+                <span style={placeholderStyle}>Tik om datum &amp; tijd toe te voegen</span>
+              )}
+            </div>
+
+            {/* Locatie & Adres */}
+            <div
+              onClick={(e) => handleAction(e, 'praktisch')}
+              className="p-[0.6cqw_1cqw] rounded-[1cqw] cursor-pointer"
+              style={{
+                boxShadow: activeRing('praktisch'),
+                ...editHint(!!s.locatieTekst)
+              }}
+            >
+              {s.locatieTekst ? (
+                <span
+                  className="block leading-relaxed opacity-90"
+                  style={{
+                    fontFamily: pairing.dataFamily,
+                    fontSize: ptcqw(11.5),
+                    color: textColor,
+                    whiteSpace: 'pre-wrap',
+                    textShadow: textShadowCss
+                  }}
+                >
+                  {s.locatieTekst}
+                </span>
+              ) : (
+                <span style={placeholderStyle}>Tik om locatie toe te voegen</span>
+              )}
+            </div>
+
+            {/* Hairline Divider */}
+            {(s.samenzijnTekst || s.inzamelingTekst) && (
+              <div className="flex justify-center my-[0.5cqh]">
+                <div className="w-[16cqw] h-[1px] bg-current opacity-20" />
+              </div>
+            )}
+
+            {/* Samenzijn */}
+            {s.samenzijnTekst && (
+              <div
+                onClick={(e) => handleAction(e, 'praktisch')}
+                className="p-[0.4cqw_1cqw] rounded-[1cqw] cursor-pointer"
                 style={{
-                  fontFamily: pairing.dataFamily,
-                  fontWeight: 400,
-                  fontSize: ptcqw(11.5),
-                  color: textColor,
-                  textAlign: alignCss,
-                  whiteSpace: 'pre-wrap',
-                  textShadow: textShadowCss
+                  boxShadow: activeRing('praktisch'),
+                  ...editHint(!!s.samenzijnTekst)
                 }}
               >
-                {s.locatieTekst}
-              </span>
+                <span
+                  className="block leading-relaxed opacity-85 italic"
+                  style={{
+                    fontFamily: pairing.spreukFamily,
+                    fontSize: ptcqw(11),
+                    color: textColor,
+                    whiteSpace: 'pre-wrap',
+                    textShadow: textShadowCss
+                  }}
+                >
+                  {s.samenzijnTekst}
+                </span>
+              </div>
+            )}
+
+            {/* Inzameling / Goed Doel */}
+            {s.inzamelingTekst && (
+              <div
+                onClick={(e) => handleAction(e, 'praktisch')}
+                className="p-[0.4cqw_1cqw] rounded-[1cqw] cursor-pointer"
+                style={{
+                  boxShadow: activeRing('praktisch'),
+                  ...editHint(!!s.inzamelingTekst)
+                }}
+              >
+                <span
+                  className="block leading-normal opacity-75 text-[0.9em]"
+                  style={{
+                    fontFamily: pairing.dataFamily,
+                    fontSize: ptcqw(9.5),
+                    color: textColor,
+                    whiteSpace: 'pre-wrap',
+                    textShadow: textShadowCss
+                  }}
+                >
+                  {s.inzamelingTekst}
+                </span>
+              </div>
             )}
           </div>
 
-          <div
-            onClick={(e) => handleAction(e, 'praktisch')}
-            className="p-[0.4cqw_1cqw] rounded-[1cqw] max-w-[88cqw] cursor-pointer"
-            style={{
-              boxShadow: activeRing('praktisch'),
-              ...editHint(!!s.datumTijdTekst)
-            }}
-          >
-            <span
-              className="block font-bold uppercase tracking-[0.08em] opacity-55"
-              style={{
-                fontFamily: 'var(--font-family)',
-                fontSize: ptcqw(8),
-                color: textColor,
-                textAlign: alignCss
-              }}
-            >
-              Datum &amp; tijd
-            </span>
-            {!s.datumTijdTekst ? (
-              <span style={placeholderStyle}>Tik om datum &amp; tijd toe te voegen</span>
-            ) : (
-              <span
-                className="block mt-[0.25cqh] leading-relaxed opacity-90"
-                style={{
-                  fontFamily: pairing.dataFamily,
-                  fontWeight: 400,
-                  fontSize: ptcqw(11.5),
-                  color: textColor,
-                  textAlign: alignCss,
-                  whiteSpace: 'pre-wrap',
-                  textShadow: textShadowCss
-                }}
-              >
-                {s.datumTijdTekst}
-              </span>
-            )}
-          </div>
-
-          <div
-            onClick={(e) => handleAction(e, 'praktisch')}
-            className="p-[0.4cqw_1cqw] rounded-[1cqw] max-w-[88cqw] cursor-pointer"
-            style={{
-              boxShadow: activeRing('praktisch'),
-              ...editHint(!!s.samenzijnTekst)
-            }}
-          >
-            <span
-              className="block font-bold uppercase tracking-[0.08em] opacity-55"
-              style={{
-                fontFamily: 'var(--font-family)',
-                fontSize: ptcqw(8),
-                color: textColor,
-                textAlign: alignCss
-              }}
-            >
-              Samenzijn
-            </span>
-            {!s.samenzijnTekst ? (
-              <span style={placeholderStyle}>Tik om toe te voegen, indien van toepassing</span>
-            ) : (
-              <span
-                className="block mt-[0.25cqh] leading-relaxed opacity-90"
-                style={{
-                  fontFamily: pairing.dataFamily,
-                  fontWeight: 400,
-                  fontSize: ptcqw(11.5),
-                  color: textColor,
-                  textAlign: alignCss,
-                  whiteSpace: 'pre-wrap',
-                  textShadow: textShadowCss
-                }}
-              >
-                {s.samenzijnTekst}
-              </span>
-            )}
-          </div>
-
-          <div
-            onClick={(e) => handleAction(e, 'praktisch')}
-            className="p-[0.4cqw_1cqw] rounded-[1cqw] max-w-[88cqw] cursor-pointer"
-            style={{
-              boxShadow: activeRing('praktisch'),
-              ...editHint(!!s.inzamelingTekst)
-            }}
-          >
-            <span
-              className="block font-bold uppercase tracking-[0.08em] opacity-55"
-              style={{
-                fontFamily: 'var(--font-family)',
-                fontSize: ptcqw(8),
-                color: textColor,
-                textAlign: alignCss
-              }}
-            >
-              Inzameling
-            </span>
-            {!s.inzamelingTekst ? (
-              <span style={placeholderStyle}>Tik om toe te voegen, indien van toepassing</span>
-            ) : (
-              <span
-                className="block mt-[0.25cqh] leading-relaxed opacity-90"
-                style={{
-                  fontFamily: pairing.dataFamily,
-                  fontWeight: 400,
-                  fontSize: ptcqw(11.5),
-                  color: textColor,
-                  textAlign: alignCss,
-                  whiteSpace: 'pre-wrap',
-                  textShadow: textShadowCss
-                }}
-              >
-                {s.inzamelingTekst}
-              </span>
-            )}
+          {/* Bottom subtle grounding line */}
+          <div className="flex justify-center pb-[1cqh]">
+            <div className="w-[8cqw] h-[1px] bg-current opacity-15" />
           </div>
         </div>
       )}
@@ -1148,12 +1138,24 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
         onClick={() => (onZoomBinnen ? onZoomBinnen('links') : null)}
         className="relative w-[48%] aspect-[397/559] rounded-[1rem] overflow-hidden shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)] cursor-pointer select-none"
         style={{
-          background: matBgColor,
+          background: thema ? themeGradient : matBgColor,
           containerType: 'inline-size'
         }}
       >
+        {/* Atmosphere scrim */}
+        {thema && (
+          <div
+            className="absolute inset-0 pointer-events-none z-0"
+            style={{
+              background: isLichtMode
+                ? 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.88) 100%)'
+                : 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(15,15,20,0.65) 0%, rgba(15,15,20,0.85) 100%)'
+            }}
+          />
+        )}
+
         {s.indeling === 'sfeer-voorop' ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-[5cqw] box-border pointer-events-none">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-[5cqw] box-border pointer-events-none z-10">
             <div className="w-[78%] aspect-[3/4] rounded-[1.2cqw] overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[rgba(45,45,58,0.1)] bg-[#ffffff]">
               <img
                 src={
@@ -1182,44 +1184,50 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             )}
           </div>
         ) : (
-          <div
-            className="absolute inset-0 flex flex-col justify-center p-[8cqw_7cqw] box-border pointer-events-none"
-            style={{ alignItems: alignItemsCss }}
-          >
-            {!s.binnenTekst ? (
-              <span style={placeholderStyle}>Tik om tekst toe te voegen</span>
-            ) : (
-              <span
-                style={{
-                  fontFamily: pairing.spreukFamily,
-                  fontStyle: 'italic',
-                  fontWeight: 300,
-                  fontSize: ptcqw(binnenPt),
-                  color: textColor,
-                  textAlign: alignCss,
-                  lineHeight: 1.55,
-                  display: 'block',
-                  whiteSpace: 'pre-wrap',
-                  textShadow: textShadowCss
-                }}
-              >
-                {s.binnenTekst}
-              </span>
-            )}
-            {s.afsluitingTekst && (
-              <span
-                className="mt-[2cqh] block opacity-80"
-                style={{
-                  fontFamily: pairing.dataFamily,
-                  fontSize: ptcqw(10.5),
-                  color: textColor,
-                  textAlign: alignCss,
-                  textShadow: textShadowCss
-                }}
-              >
-                {s.afsluitingTekst}
-              </span>
-            )}
+          <div className="absolute inset-0 flex flex-col justify-between p-[8cqw_7cqw] box-border pointer-events-none z-10">
+            <div className="flex justify-center pt-[0.5cqh]">
+              <div className="w-[10cqw] h-[1px] bg-current opacity-20" />
+            </div>
+
+            <div className="my-auto text-center">
+              {!s.binnenTekst ? (
+                <span style={placeholderStyle}>Tik om tekst toe te voegen</span>
+              ) : (
+                <span
+                  style={{
+                    fontFamily: pairing.spreukFamily,
+                    fontStyle: 'italic',
+                    fontWeight: 300,
+                    fontSize: ptcqw(binnenPt),
+                    color: textColor,
+                    textAlign: alignCss,
+                    lineHeight: 1.6,
+                    display: 'block',
+                    whiteSpace: 'pre-wrap',
+                    textShadow: textShadowCss
+                  }}
+                >
+                  {s.binnenTekst}
+                </span>
+              )}
+            </div>
+
+            <div className="text-center pb-[0.5cqh]">
+              {s.afsluitingTekst && (
+                <span
+                  className="block opacity-85"
+                  style={{
+                    fontFamily: pairing.dataFamily,
+                    fontSize: ptcqw(10.5),
+                    color: textColor,
+                    textAlign: alignCss,
+                    textShadow: textShadowCss
+                  }}
+                >
+                  {s.afsluitingTekst}
+                </span>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -1229,72 +1237,78 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
         onClick={() => (onZoomBinnen ? onZoomBinnen('rechts') : null)}
         className="relative w-[48%] aspect-[397/559] rounded-[1rem] overflow-hidden shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)] cursor-pointer select-none"
         style={{
-          background: matBgColor,
+          background: thema ? themeGradient : matBgColor,
           containerType: 'inline-size'
         }}
       >
-        <div
-          className="absolute inset-0 flex flex-col justify-evenly p-[10cqw_7cqw] box-border pointer-events-none"
-          style={{ alignItems: alignItemsCss }}
-        >
-          <div>
+        {/* Atmosphere scrim */}
+        {thema && (
+          <div
+            className="absolute inset-0 pointer-events-none z-0"
+            style={{
+              background: isLichtMode
+                ? 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.88) 100%)'
+                : 'radial-gradient(ellipse 90% 90% at 50% 50%, rgba(15,15,20,0.65) 0%, rgba(15,15,20,0.85) 100%)'
+            }}
+          />
+        )}
+
+        <div className="absolute inset-0 flex flex-col justify-between p-[8cqw_7cqw] box-border pointer-events-none z-10 text-center">
+          <div className="pt-[0.5cqh]">
             <span
-              className="block font-bold uppercase tracking-[0.08em] opacity-55"
-              style={{ fontFamily: 'var(--font-family)', fontSize: ptcqw(7.5), color: textColor }}
+              className="block font-bold uppercase tracking-[0.14em] opacity-60 text-[0.8em]"
+              style={{ fontFamily: pairing.dataFamily, fontSize: ptcqw(7.5), color: textColor }}
             >
-              Locatie
-            </span>
-            <span
-              className="block mt-[0.2cqh] opacity-90 line-clamp-2"
-              style={{
-                fontFamily: pairing.dataFamily,
-                fontSize: ptcqw(10.5),
-                color: textColor,
-                textAlign: alignCss
-              }}
-            >
-              {s.locatieTekst || 'Aula "Het Rustpunt"...'}
+              De Plechtigheid
             </span>
           </div>
 
-          <div>
-            <span
-              className="block font-bold uppercase tracking-[0.08em] opacity-55"
-              style={{ fontFamily: 'var(--font-family)', fontSize: ptcqw(7.5), color: textColor }}
-            >
-              Datum &amp; tijd
-            </span>
-            <span
-              className="block mt-[0.2cqh] opacity-90 line-clamp-2"
-              style={{
-                fontFamily: pairing.dataFamily,
-                fontSize: ptcqw(10.5),
-                color: textColor,
-                textAlign: alignCss
-              }}
-            >
-              {s.datumTijdTekst || 'Donderdag 28 augustus...'}
-            </span>
+          <div className="flex flex-col gap-[1.2cqh] my-auto">
+            {s.datumTijdTekst && (
+              <span
+                className="block font-semibold line-clamp-2"
+                style={{
+                  fontFamily: pairing.dataFamily,
+                  fontSize: ptcqw(12),
+                  color: textColor,
+                  textShadow: textShadowCss
+                }}
+              >
+                {s.datumTijdTekst}
+              </span>
+            )}
+
+            {s.locatieTekst && (
+              <span
+                className="block opacity-90 line-clamp-2"
+                style={{
+                  fontFamily: pairing.dataFamily,
+                  fontSize: ptcqw(10.5),
+                  color: textColor,
+                  textShadow: textShadowCss
+                }}
+              >
+                {s.locatieTekst}
+              </span>
+            )}
+
+            {s.samenzijnTekst && (
+              <span
+                className="block opacity-80 italic line-clamp-2 pt-[0.4cqh]"
+                style={{
+                  fontFamily: pairing.spreukFamily,
+                  fontSize: ptcqw(10),
+                  color: textColor,
+                  textShadow: textShadowCss
+                }}
+              >
+                {s.samenzijnTekst}
+              </span>
+            )}
           </div>
 
-          <div>
-            <span
-              className="block font-bold uppercase tracking-[0.08em] opacity-55"
-              style={{ fontFamily: 'var(--font-family)', fontSize: ptcqw(7.5), color: textColor }}
-            >
-              Samenzijn
-            </span>
-            <span
-              className="block mt-[0.2cqh] opacity-90 line-clamp-2"
-              style={{
-                fontFamily: pairing.dataFamily,
-                fontSize: ptcqw(10.5),
-                color: textColor,
-                textAlign: alignCss
-              }}
-            >
-              {s.samenzijnTekst || 'Gelegenheid tot samenzijn...'}
-            </span>
+          <div className="flex justify-center pb-[0.5cqh]">
+            <div className="w-[8cqw] h-[1px] bg-current opacity-15" />
           </div>
         </div>
       </div>
