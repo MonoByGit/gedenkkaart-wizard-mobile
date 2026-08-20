@@ -612,13 +612,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover"
                       style={{
-                        objectPosition: '50% 20%',
-                        WebkitMaskImage:
-                          'radial-gradient(ellipse 90% 85% at 50% 48%, #000 68%, rgba(0,0,0,0.6) 88%, transparent 100%), linear-gradient(to right, #000 78%, transparent 100%)',
-                        maskImage:
-                          'radial-gradient(ellipse 90% 85% at 50% 48%, #000 68%, rgba(0,0,0,0.6) 88%, transparent 100%), linear-gradient(to right, #000 78%, transparent 100%)',
-                        WebkitMaskComposite: 'destination-in',
-                        maskComposite: 'intersect'
+                        objectPosition: '50% 20%'
                       }}
                     />
                   </div>
@@ -627,7 +621,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             )}
           </div>
           <div
-            className="w-[56%] h-full flex flex-col justify-center p-[6cqw] box-border"
+            className="w-[56%] h-full flex flex-col justify-between py-[12cqw] px-[5cqw] box-border"
             style={{
               background: thema
                 ? isLichtMode
@@ -639,48 +633,105 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
               alignItems: alignItemsCss
             }}
           >
-            <div
-              onClick={(e) => handleAction(e, 'spreuk')}
-              className="p-[0.8cqw_1.2cqw] rounded-[1cqw] mb-[1.2cqh] cursor-pointer"
-              style={{
-                boxShadow: activeRing('spreuk'),
-                ...editHint(!!s.spreuk)
-              }}
-            >
-              {!s.spreuk ? (
-                <span style={placeholderStyle}>Tik om spreuk toe te voegen</span>
-              ) : (
-                <span style={spreukStyle}>{s.spreuk}</span>
-              )}
-            </div>
-            <div
-              onClick={(e) => handleAction(e, 'naam')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
-              style={{
-                boxShadow: activeRing('naam'),
-                ...editHint(!!s.naam)
-              }}
-            >
-              {!s.naam ? (
-                <span style={placeholderStyle}>Tik om naam toe te voegen</span>
-              ) : (
-                <span style={naamStyle}>{s.naam}</span>
-              )}
-            </div>
-            <div
-              onClick={(e) => handleAction(e, 'data')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[0.2cqh] cursor-pointer"
-              style={{
-                boxShadow: activeRing('data'),
-                ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
-              }}
-            >
-              {!dataDisplay ? (
-                <span style={placeholderStyle}>Tik om data toe te voegen</span>
-              ) : (
-                <span style={dataStyle}>{dataDisplay}</span>
-              )}
-            </div>
+            {spreukBoven ? (
+              /* Spreuk Top, Name+Data Bottom */
+              <>
+                <div
+                  onClick={(e) => handleAction(e, 'spreuk')}
+                  className="p-[0.6cqw_1cqw] rounded-[1cqw] cursor-pointer"
+                  style={{
+                    boxShadow: activeRing('spreuk'),
+                    ...editHint(!!s.spreuk)
+                  }}
+                >
+                  {!s.spreuk ? (
+                    <span style={placeholderStyle}>Tik om spreuk toe te voegen</span>
+                  ) : (
+                    <span style={spreukStyle}>{s.spreuk}</span>
+                  )}
+                </div>
+
+                <div className="flex flex-col" style={{ alignItems: alignItemsCss }}>
+                  <div
+                    onClick={(e) => handleAction(e, 'naam')}
+                    className="p-[0.5cqw_1cqw] rounded-[1cqw] cursor-pointer"
+                    style={{
+                      boxShadow: activeRing('naam'),
+                      ...editHint(!!s.naam)
+                    }}
+                  >
+                    {!s.naam ? (
+                      <span style={placeholderStyle}>Tik om naam toe te voegen</span>
+                    ) : (
+                      <span style={naamStyle}>{s.naam}</span>
+                    )}
+                  </div>
+                  <div
+                    onClick={(e) => handleAction(e, 'data')}
+                    className="p-[0.4cqw_1cqw] rounded-[1cqw] mt-[0.5cqw] cursor-pointer"
+                    style={{
+                      boxShadow: activeRing('data'),
+                      ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
+                    }}
+                  >
+                    {!dataDisplay ? (
+                      <span style={placeholderStyle}>Tik om data toe te voegen</span>
+                    ) : (
+                      <span style={dataStyle}>{dataDisplay}</span>
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : (
+              /* Name+Data Top, Spreuk Bottom */
+              <>
+                <div className="flex flex-col" style={{ alignItems: alignItemsCss }}>
+                  <div
+                    onClick={(e) => handleAction(e, 'naam')}
+                    className="p-[0.5cqw_1cqw] rounded-[1cqw] cursor-pointer"
+                    style={{
+                      boxShadow: activeRing('naam'),
+                      ...editHint(!!s.naam)
+                    }}
+                  >
+                    {!s.naam ? (
+                      <span style={placeholderStyle}>Tik om naam toe te voegen</span>
+                    ) : (
+                      <span style={naamStyle}>{s.naam}</span>
+                    )}
+                  </div>
+                  <div
+                    onClick={(e) => handleAction(e, 'data')}
+                    className="p-[0.4cqw_1cqw] rounded-[1cqw] mt-[0.5cqw] cursor-pointer"
+                    style={{
+                      boxShadow: activeRing('data'),
+                      ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
+                    }}
+                  >
+                    {!dataDisplay ? (
+                      <span style={placeholderStyle}>Tik om data toe te voegen</span>
+                    ) : (
+                      <span style={dataStyle}>{dataDisplay}</span>
+                    )}
+                  </div>
+                </div>
+
+                <div
+                  onClick={(e) => handleAction(e, 'spreuk')}
+                  className="p-[0.6cqw_1cqw] rounded-[1cqw] cursor-pointer"
+                  style={{
+                    boxShadow: activeRing('spreuk'),
+                    ...editHint(!!s.spreuk)
+                  }}
+                >
+                  {!s.spreuk ? (
+                    <span style={placeholderStyle}>Tik om spreuk toe te voegen</span>
+                  ) : (
+                    <span style={spreukStyle}>{s.spreuk}</span>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
