@@ -71,7 +71,19 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
     spreuk: { klein: 12, normaal: 14, groot: 17 },
     binnen: { klein: 12, normaal: 14, groot: 17 }
   };
-  const naamPt = sizePt.naam[s.sizes.naam] * (pairing.naamMult || 1);
+
+  // Dynamic name auto-scaling for long Dutch names to prevent ugly wrapping
+  const nameLength = s.naam.trim().length;
+  const nameLengthMult =
+    nameLength > 28
+      ? 0.78
+      : nameLength > 22
+      ? 0.86
+      : nameLength > 16
+      ? 0.94
+      : 1.0;
+
+  const naamPt = sizePt.naam[s.sizes.naam] * (pairing.naamMult || 1) * nameLengthMult;
   const dataPt = sizePt.data[s.sizes.data];
   const spreukPt = sizePt.spreuk[s.sizes.spreuk];
   const binnenPt = sizePt.binnen[s.sizes.binnen];
@@ -95,10 +107,12 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
     fontSize: ptcqw(naamPt),
     color: textColor,
     textAlign: alignCss,
-    lineHeight: 1.15,
+    lineHeight: 1.18,
     display: 'block',
-    overflowWrap: 'anywhere',
-    wordBreak: 'break-word',
+    textWrap: 'balance' as any,
+    overflowWrap: 'break-word',
+    wordBreak: 'normal',
+    hyphens: 'none',
     textShadow: textShadowCss
   };
 
@@ -107,24 +121,29 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
     fontWeight: pairing.dataWeight,
     fontSize: ptcqw(dataPt),
     color: textColor,
+    opacity: 0.88,
     textAlign: alignCss,
-    letterSpacing: '0.02em',
+    letterSpacing: '0.03em',
+    lineHeight: 1.3,
     display: 'block',
-    overflowWrap: 'anywhere',
-    wordBreak: 'break-word',
+    textWrap: 'balance' as any,
+    overflowWrap: 'break-word',
+    wordBreak: 'normal',
     textShadow: textShadowCss
   };
 
   const spreukStyle: React.CSSProperties = {
     fontFamily: pairing.spreukFamily,
     fontStyle: 'italic',
+    fontWeight: pairing.spreukWeight || 400,
     fontSize: ptcqw(spreukPt),
     color: textColor,
     textAlign: alignCss,
-    lineHeight: 1.35,
+    lineHeight: 1.4,
     display: 'block',
-    overflowWrap: 'anywhere',
-    wordBreak: 'break-word',
+    textWrap: 'balance' as any,
+    overflowWrap: 'break-word',
+    wordBreak: 'normal',
     whiteSpace: 'pre-wrap',
     textShadow: textShadowCss
   };
