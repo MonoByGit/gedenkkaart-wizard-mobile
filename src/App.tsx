@@ -451,6 +451,7 @@ export const App: React.FC = () => {
           title="Stijl van de kaart"
         >
           <SheetStijl
+            naam={state.naam}
             uitstraling={state.uitstraling}
             uitlijning={state.uitlijning}
             spreukPositie={state.spreukPositie}

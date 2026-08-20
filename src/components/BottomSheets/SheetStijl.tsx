@@ -11,6 +11,7 @@ import {
 import { PAIRINGS } from '../../constants/wizard';
 
 interface SheetStijlProps {
+  naam: string;
   uitstraling: Uitstraling;
   uitlijning: Uitlijning;
   spreukPositie: SpreukPositie;
@@ -25,6 +26,7 @@ interface SheetStijlProps {
 }
 
 export const SheetStijl: React.FC<SheetStijlProps> = ({
+  naam,
   uitstraling,
   uitlijning,
   spreukPositie,
@@ -38,7 +40,8 @@ export const SheetStijl: React.FC<SheetStijlProps> = ({
   onChangeFontPairing
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const selectedPairing = PAIRINGS.find((p) => p.id === fontPairing) || PAIRINGS[1];
+  const selectedPairing = PAIRINGS.find((p) => p.id === fontPairing) || PAIRINGS[0];
+  const displayName = naam.trim() || 'Voornaam Achternaam';
 
   return (
     <div className="flex flex-col gap-7">
@@ -162,20 +165,21 @@ export const SheetStijl: React.FC<SheetStijlProps> = ({
         </div>
       )}
 
-      {/* Lettertype selectie */}
+      {/* Lettertype selectie (Font Pairing: Headline + Paired Body) */}
       <div className="flex flex-col gap-2">
         <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6b6b7a]">
-          Lettertype
+          Typografie &amp; Font Combinatie
         </label>
         <div className="relative">
+          {/* Active selection preview trigger */}
           <button
             type="button"
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="w-full p-4 rounded-[1.5rem] bg-[#fcfcfd] border border-[rgba(45,45,58,0.14)] flex items-center justify-between text-left transition-all cursor-pointer"
+            className="w-full p-4 rounded-[1.5rem] bg-[#fcfcfd] border border-[rgba(45,45,58,0.14)] flex items-center justify-between text-left transition-all cursor-pointer hover:border-[rgba(45,45,58,0.25)]"
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-0.5">
               <span
-                className="text-[1.25rem] text-[#1a1a1e]"
+                className="text-[1.25rem] text-[#1a1a1e] leading-snug"
                 style={{
                   fontFamily: selectedPairing.naamFamily,
                   fontWeight: selectedPairing.naamWeight,
@@ -184,22 +188,31 @@ export const SheetStijl: React.FC<SheetStijlProps> = ({
                   letterSpacing: selectedPairing.naamTracking || 'normal'
                 }}
               >
-                Voornaam Achternaam
+                {displayName}
               </span>
-              <span className="text-[0.8125rem] text-[#6b6b7a] font-medium mt-0.5">
-                {selectedPairing.label}
+              <span
+                className="text-[0.875rem] text-[#4a4a58] italic"
+                style={{
+                  fontFamily: selectedPairing.spreukFamily || selectedPairing.dataFamily
+                }}
+              >
+                "{selectedPairing.sampleText}"
+              </span>
+              <span className="text-[0.6875rem] text-[#6b6b7a] font-medium uppercase tracking-wider mt-1">
+                {selectedPairing.label} • {selectedPairing.pairingDescription}
               </span>
             </div>
             <ChevronDown
               size={18}
-              className={`text-[#6b6b7a] transition-transform duration-200 ${
+              className={`text-[#6b6b7a] shrink-0 ml-2 transition-transform duration-200 ${
                 dropdownOpen ? 'rotate-180' : ''
               }`}
             />
           </button>
 
+          {/* Expanded font pairing list */}
           {dropdownOpen && (
-            <div className="flex flex-col gap-2 mt-2 max-h-[300px] overflow-y-auto pr-1">
+            <div className="flex flex-col gap-2.5 mt-2.5 max-h-[340px] overflow-y-auto pr-1">
               {PAIRINGS.map((p) => {
                 const isSelected = fontPairing === p.id;
                 return (
@@ -210,26 +223,48 @@ export const SheetStijl: React.FC<SheetStijlProps> = ({
                       onChangeFontPairing(p.id);
                       setDropdownOpen(false);
                     }}
-                    className={`flex flex-col p-4 rounded-[1.5rem] text-left transition-all cursor-pointer ${
+                    className={`flex flex-col p-4 rounded-[1.5rem] text-left transition-all cursor-pointer relative ${
                       isSelected
-                        ? 'border border-[#2d2d3a] bg-[rgba(45,45,58,0.04)]'
-                        : 'border border-[rgba(45,45,58,0.1)] bg-[#ffffff] hover:bg-[#f0f1f4]'
+                        ? 'border-2 border-[#2d2d3a] bg-[rgba(45,45,58,0.04)] shadow-sm'
+                        : 'border border-[rgba(45,45,58,0.12)] bg-[#ffffff] hover:bg-[#f0f1f4]'
                     }`}
                   >
+                    {/* 1. Headline (Person's dynamic name) */}
+                    <div className="flex items-baseline justify-between w-full">
+                      <span
+                        className="text-[1.3rem] text-[#1a1a1e] leading-snug"
+                        style={{
+                          fontFamily: p.naamFamily,
+                          fontWeight: p.naamWeight,
+                          fontStyle: p.naamStyle || 'normal',
+                          textTransform: p.naamTransform || 'none',
+                          letterSpacing: p.naamTracking || 'normal'
+                        }}
+                      >
+                        {displayName}
+                      </span>
+                      {isSelected && (
+                        <div className="w-5 h-5 rounded-full bg-[#2d2d3a] text-white flex items-center justify-center shrink-0 ml-2">
+                          <Check size={12} strokeWidth={3} />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* 2. Body / Spreuk sample in paired font */}
                     <span
-                      className="text-[1.3rem] text-[#1a1a1e]"
+                      className="text-[0.875rem] text-[#4a4a58] mt-1 italic leading-relaxed"
                       style={{
-                        fontFamily: p.naamFamily,
-                        fontWeight: p.naamWeight,
-                        fontStyle: p.naamStyle || 'normal',
-                        textTransform: p.naamTransform || 'none',
-                        letterSpacing: p.naamTracking || 'normal'
+                        fontFamily: p.spreukFamily || p.dataFamily,
+                        fontWeight: p.spreukWeight || 400,
+                        fontStyle: p.spreukStyle || 'italic'
                       }}
                     >
-                      Voornaam Achternaam
+                      "{p.sampleText}"
                     </span>
-                    <span className="text-[0.8125rem] text-[#6b6b7a] font-medium mt-1">
-                      {p.label}
+
+                    {/* 3. Description & Font names */}
+                    <span className="text-[0.6875rem] text-[#6b6b7a] font-medium uppercase tracking-wider mt-1.5 pt-1.5 border-t border-[rgba(45,45,58,0.08)]">
+                      {p.label} • {p.pairingDescription}
                     </span>
                   </button>
                 );

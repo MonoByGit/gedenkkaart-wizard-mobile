@@ -35,6 +35,8 @@ export interface ThemeDef {
 export interface FontPairingDef {
   id: FontPairingId;
   label: string;
+  pairingDescription: string;
+  sampleText: string;
   naamFamily: string;
   naamWeight: number;
   naamStyle?: 'normal' | 'italic';
@@ -43,7 +45,10 @@ export interface FontPairingDef {
   naamTracking?: string;
   dataFamily: string;
   dataWeight: number;
+  dataStyle?: 'normal' | 'italic';
   spreukFamily: string;
+  spreukWeight?: number;
+  spreukStyle?: 'normal' | 'italic';
 }
 
 export interface OrnamentDef {
