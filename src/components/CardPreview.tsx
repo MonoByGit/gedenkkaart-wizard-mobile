@@ -60,6 +60,13 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
     : '#27272a';
   const themeGradient = thema ? thema.bg : 'linear-gradient(158deg,#cfd2d8,#eceef0)';
 
+  // Atmosphere Background (Theme or Photo Ambient Mood)
+  const atmosphereBg = thema
+    ? thema.bg
+    : s.showDemoPhoto || s.photoVolledigUrl
+    ? `url('${s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}') center/cover no-repeat`
+    : 'linear-gradient(158deg,#cfd2d8,#eceef0)';
+
   const alignCss: React.CSSProperties['textAlign'] =
     s.uitlijning === 'links' ? 'left' : s.uitlijning === 'rechts' ? 'right' : 'center';
   const alignItemsCss: React.CSSProperties['alignItems'] =
@@ -864,30 +871,28 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
         containerType: 'inline-size'
       }}
     >
-      {/* 50% Zoomed Theme + Frosted Glass & Matte Paper Layer */}
-      {thema && (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div
-            className="absolute inset-[-25%] w-[150%] h-[150%]"
-            style={{
-              background: themeGradient,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              filter: 'blur(2px)'
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: isLichtMode
-                ? 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(255,255,255,0.76) 0%, rgba(255,255,255,0.88) 100%)'
-                : 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(20,18,24,0.72) 0%, rgba(20,18,24,0.86) 100%)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)'
-            }}
-          />
-        </div>
-      )}
+      {/* 50% Zoomed Atmosphere + Frosted Glass Layer */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div
+          className="absolute inset-[-25%] w-[150%] h-[150%]"
+          style={{
+            background: atmosphereBg,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 30%',
+            filter: 'blur(8px) saturate(1.12) brightness(1.05)'
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: isLichtMode
+              ? 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.65) 100%)'
+              : 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(18,16,22,0.40) 0%, rgba(18,16,22,0.64) 100%)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)'
+          }}
+        />
+      </div>
 
       {zoomSide === 'links' ? (
         s.indeling === 'sfeer-voorop' ? (
@@ -1194,30 +1199,28 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
           containerType: 'inline-size'
         }}
       >
-        {/* 50% Zoomed Theme + Frosted Glass Layer */}
-        {thema && (
-          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-            <div
-              className="absolute inset-[-25%] w-[150%] h-[150%]"
-              style={{
-                background: themeGradient,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                filter: 'blur(2px)'
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: isLichtMode
-                  ? 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(255,255,255,0.76) 0%, rgba(255,255,255,0.88) 100%)'
-                  : 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(20,18,24,0.72) 0%, rgba(20,18,24,0.86) 100%)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)'
-              }}
-            />
-          </div>
-        )}
+        {/* 50% Zoomed Atmosphere + Frosted Glass Layer */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div
+            className="absolute inset-[-25%] w-[150%] h-[150%]"
+            style={{
+              background: atmosphereBg,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 30%',
+              filter: 'blur(8px) saturate(1.12) brightness(1.05)'
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isLichtMode
+                ? 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.65) 100%)'
+                : 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(18,16,22,0.40) 0%, rgba(18,16,22,0.64) 100%)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)'
+            }}
+          />
+        </div>
 
         {s.indeling === 'sfeer-voorop' ? (
           <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
@@ -1346,30 +1349,28 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
           containerType: 'inline-size'
         }}
       >
-        {/* 50% Zoomed Theme + Frosted Glass Layer */}
-        {thema && (
-          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-            <div
-              className="absolute inset-[-25%] w-[150%] h-[150%]"
-              style={{
-                background: themeGradient,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                filter: 'blur(2px)'
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: isLichtMode
-                  ? 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(255,255,255,0.76) 0%, rgba(255,255,255,0.88) 100%)'
-                  : 'radial-gradient(ellipse 95% 90% at 50% 50%, rgba(20,18,24,0.72) 0%, rgba(20,18,24,0.86) 100%)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)'
-              }}
-            />
-          </div>
-        )}
+        {/* 50% Zoomed Atmosphere + Frosted Glass Layer */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div
+            className="absolute inset-[-25%] w-[150%] h-[150%]"
+            style={{
+              background: atmosphereBg,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 30%',
+              filter: 'blur(8px) saturate(1.12) brightness(1.05)'
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isLichtMode
+                ? 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.65) 100%)'
+                : 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(18,16,22,0.40) 0%, rgba(18,16,22,0.64) 100%)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)'
+            }}
+          />
+        </div>
 
         <div className="absolute inset-0 flex flex-col justify-between p-[8cqw_7cqw] box-border pointer-events-none z-10 text-center">
           <div className="pt-[0.5cqh]">
@@ -1467,29 +1468,28 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
           containerType: 'inline-size'
         }}
       >
-        {/* Theme Background with Soft Matte Diffusion Layer */}
-        {thema && (
-          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-            <div
-              className="absolute inset-0"
-              style={{
-                background: themeGradient,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: isLichtMode
-                  ? 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(255,255,255,0.76) 0%, rgba(255,255,255,0.90) 100%)'
-                  : 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(18,16,22,0.75) 0%, rgba(18,16,22,0.88) 100%)',
-                backdropFilter: 'blur(8px)',
-                WebkitBackdropFilter: 'blur(8px)'
-              }}
-            />
-          </div>
-        )}
+        {/* Atmosphere Background with Soft Frosted Diffusion Layer */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              background: atmosphereBg,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 30%',
+              filter: 'blur(6px) saturate(1.08) brightness(1.03)'
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isLichtMode
+                ? 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0.70) 100%)'
+                : 'radial-gradient(ellipse 92% 90% at 50% 50%, rgba(18,16,22,0.45) 0%, rgba(18,16,22,0.68) 100%)',
+              backdropFilter: 'blur(6px)',
+              WebkitBackdropFilter: 'blur(6px)'
+            }}
+          />
+        </div>
 
         {!s.geenNamenOpKaart && (
           <div className="absolute inset-0 flex flex-col justify-between p-[9cqw_8cqw] box-border z-10">
