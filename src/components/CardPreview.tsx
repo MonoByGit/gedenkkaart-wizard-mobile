@@ -262,13 +262,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                     alt="Vrijgezet portret"
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{
-                      objectPosition: '50% 20%',
-                      WebkitMaskImage:
-                        'radial-gradient(ellipse 82% 78% at 50% 46%, #000 64%, rgba(0,0,0,0.6) 84%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%)',
-                      maskImage:
-                        'radial-gradient(ellipse 82% 78% at 50% 46%, #000 64%, rgba(0,0,0,0.6) 84%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%)',
-                      WebkitMaskComposite: 'destination-in',
-                      maskComposite: 'intersect'
+                      objectPosition: '50% 20%'
                     }}
                   />
                 </div>
@@ -276,9 +270,19 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             </>
           )}
 
-          {/* Subtle text readability scrim only at bottom edge */}
+          {/* Top Edge Readability Scrim (if text is at top) */}
           <div
-            className="absolute left-0 right-0 bottom-0 h-[14cqh] pointer-events-none z-10 opacity-70"
+            className="absolute left-0 right-0 top-0 h-[16cqh] pointer-events-none z-10 opacity-60"
+            style={{
+              backgroundImage: scrimCss,
+              WebkitMaskImage: 'linear-gradient(to bottom, #000 0%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, #000 0%, transparent 100%)'
+            }}
+          />
+
+          {/* Bottom Edge Readability Scrim (if text is at bottom) */}
+          <div
+            className="absolute left-0 right-0 bottom-0 h-[18cqh] pointer-events-none z-10 opacity-70"
             style={{
               backgroundImage: scrimCss,
               WebkitMaskImage: 'linear-gradient(to top, #000 0%, transparent 100%)',
@@ -286,8 +290,9 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             }}
           />
 
-          {/* Spreuk Top */}
-          {spreukBoven && (
+          {/* --- TOP ZONE --- */}
+          {spreukBoven ? (
+            /* Spreuk at the TOP */
             <div
               className="absolute left-0 right-0 top-[6.8cqw] px-[6cqw] flex z-20 box-border"
               style={{ justifyContent: alignItemsCss }}
@@ -307,17 +312,54 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                 )}
               </div>
             </div>
+          ) : (
+            /* Naam + Data at the TOP */
+            <div
+              className="absolute left-0 right-0 top-[6.8cqw] px-[6cqw] flex flex-col z-20 box-border"
+              style={{ alignItems: alignItemsCss }}
+            >
+              <div
+                onClick={(e) => handleAction(e, 'naam')}
+                className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+                style={{
+                  boxShadow: activeRing('naam'),
+                  ...editHint(!!s.naam)
+                }}
+              >
+                {!s.naam ? (
+                  <span style={placeholderStyle}>Tik om de naam toe te voegen</span>
+                ) : (
+                  <span style={naamStyle}>{s.naam}</span>
+                )}
+              </div>
+
+              <div
+                onClick={(e) => handleAction(e, 'data')}
+                className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[0.15cqh] cursor-pointer"
+                style={{
+                  boxShadow: activeRing('data'),
+                  ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
+                }}
+              >
+                {!dataDisplay ? (
+                  <span style={placeholderStyle}>Tik om de data toe te voegen</span>
+                ) : (
+                  <span style={dataStyle}>{dataDisplay}</span>
+                )}
+              </div>
+            </div>
           )}
 
-          {/* Cluster Overlay (bottom) */}
+          {/* --- BOTTOM ZONE --- */}
           <div
             className="absolute left-0 right-0 bottom-0 p-[7cqw_6cqw] flex flex-col z-20"
             style={{ alignItems: alignItemsCss }}
           >
-            {spreukOnder && (
+            {spreukOnder ? (
+              /* Spreuk at the BOTTOM */
               <div
                 onClick={(e) => handleAction(e, 'spreuk')}
-                className="p-[0.8cqw_1.2cqw] rounded-[1cqw] mb-[0.6cqh] cursor-pointer"
+                className="p-[0.8cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
                 style={{
                   boxShadow: activeRing('spreuk'),
                   ...editHint(!!s.spreuk)
@@ -329,37 +371,40 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                   <span style={spreukStyle}>{s.spreuk}</span>
                 )}
               </div>
+            ) : (
+              /* Naam + Data at the BOTTOM */
+              <>
+                <div
+                  onClick={(e) => handleAction(e, 'naam')}
+                  className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+                  style={{
+                    boxShadow: activeRing('naam'),
+                    ...editHint(!!s.naam)
+                  }}
+                >
+                  {!s.naam ? (
+                    <span style={placeholderStyle}>Tik om de naam toe te voegen</span>
+                  ) : (
+                    <span style={naamStyle}>{s.naam}</span>
+                  )}
+                </div>
+
+                <div
+                  onClick={(e) => handleAction(e, 'data')}
+                  className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[0.15cqh] cursor-pointer"
+                  style={{
+                    boxShadow: activeRing('data'),
+                    ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
+                  }}
+                >
+                  {!dataDisplay ? (
+                    <span style={placeholderStyle}>Tik om de data toe te voegen</span>
+                  ) : (
+                    <span style={dataStyle}>{dataDisplay}</span>
+                  )}
+                </div>
+              </>
             )}
-
-            <div
-              onClick={(e) => handleAction(e, 'naam')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
-              style={{
-                boxShadow: activeRing('naam'),
-                ...editHint(!!s.naam)
-              }}
-            >
-              {!s.naam ? (
-                <span style={placeholderStyle}>Tik om de naam toe te voegen</span>
-              ) : (
-                <span style={naamStyle}>{s.naam}</span>
-              )}
-            </div>
-
-            <div
-              onClick={(e) => handleAction(e, 'data')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[0.15cqh] cursor-pointer"
-              style={{
-                boxShadow: activeRing('data'),
-                ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
-              }}
-            >
-              {!dataDisplay ? (
-                <span style={placeholderStyle}>Tik om de data toe te voegen</span>
-              ) : (
-                <span style={dataStyle}>{dataDisplay}</span>
-              )}
-            </div>
           </div>
         </>
       )}
@@ -380,12 +425,12 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             }}
           />
 
-          {/* Top text: Spreuk (boven) */}
-          {spreukBoven && (
-            <div
-              className="absolute left-0 right-0 top-[4.5cqw] px-[6cqw] flex z-20 box-border"
-              style={{ justifyContent: alignItemsCss }}
-            >
+          {/* Top text above frame */}
+          <div
+            className="absolute left-0 right-0 top-[4.5cqw] px-[6cqw] flex flex-col z-20 box-border"
+            style={{ alignItems: alignItemsCss }}
+          >
+            {spreukBoven ? (
               <div
                 onClick={(e) => handleAction(e, 'spreuk')}
                 className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer max-w-[88cqw]"
@@ -400,8 +445,39 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                   <span style={spreukStyle}>{s.spreuk}</span>
                 )}
               </div>
-            </div>
-          )}
+            ) : (
+              <>
+                <div
+                  onClick={(e) => handleAction(e, 'naam')}
+                  className="p-[0.4cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+                  style={{
+                    boxShadow: activeRing('naam'),
+                    ...editHint(!!s.naam)
+                  }}
+                >
+                  {!s.naam ? (
+                    <span style={placeholderStyle}>Tik om de naam toe te voegen</span>
+                  ) : (
+                    <span style={naamStyle}>{s.naam}</span>
+                  )}
+                </div>
+                <div
+                  onClick={(e) => handleAction(e, 'data')}
+                  className="p-[0.3cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+                  style={{
+                    boxShadow: activeRing('data'),
+                    ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
+                  }}
+                >
+                  {!dataDisplay ? (
+                    <span style={placeholderStyle}>Tik om data toe te voegen</span>
+                  ) : (
+                    <span style={dataStyle}>{dataDisplay}</span>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
 
           {/* Centered Photo Frame Box */}
           <div
@@ -444,15 +520,15 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             )}
           </div>
 
-          {/* Bottom text: Spreuk (if onder) + Naam + Data */}
+          {/* Bottom text below frame */}
           <div
             className="absolute left-0 right-0 bottom-[4cqw] px-[6cqw] flex flex-col items-center justify-center z-20"
             style={{ alignItems: alignItemsCss }}
           >
-            {spreukOnder && (
+            {spreukOnder ? (
               <div
                 onClick={(e) => handleAction(e, 'spreuk')}
-                className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mb-[1cqw] cursor-pointer max-w-[88cqw]"
+                className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer max-w-[88cqw]"
                 style={{
                   boxShadow: activeRing('spreuk'),
                   ...editHint(!!s.spreuk)
@@ -464,35 +540,39 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                   <span style={spreukStyle}>{s.spreuk}</span>
                 )}
               </div>
+            ) : (
+              <>
+                <div
+                  onClick={(e) => handleAction(e, 'naam')}
+                  className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+                  style={{
+                    boxShadow: activeRing('naam'),
+                    ...editHint(!!s.naam)
+                  }}
+                >
+                  {!s.naam ? (
+                    <span style={placeholderStyle}>Tik om de naam toe te voegen</span>
+                  ) : (
+                    <span style={naamStyle}>{s.naam}</span>
+                  )}
+                </div>
+
+                <div
+                  onClick={(e) => handleAction(e, 'data')}
+                  className="p-[0.4cqw_1.2cqw] rounded-[1cqw] mt-[0.5cqw] cursor-pointer"
+                  style={{
+                    boxShadow: activeRing('data'),
+                    ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
+                  }}
+                >
+                  {!dataDisplay ? (
+                    <span style={placeholderStyle}>Tik om de data toe te voegen</span>
+                  ) : (
+                    <span style={dataStyle}>{dataDisplay}</span>
+                  )}
+                </div>
+              </>
             )}
-            <div
-              onClick={(e) => handleAction(e, 'naam')}
-              className="p-[0.5cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
-              style={{
-                boxShadow: activeRing('naam'),
-                ...editHint(!!s.naam)
-              }}
-            >
-              {!s.naam ? (
-                <span style={placeholderStyle}>Tik om de naam toe te voegen</span>
-              ) : (
-                <span style={naamStyle}>{s.naam}</span>
-              )}
-            </div>
-            <div
-              onClick={(e) => handleAction(e, 'data')}
-              className="p-[0.4cqw_1.2cqw] rounded-[1cqw] mt-[0.5cqw] cursor-pointer"
-              style={{
-                boxShadow: activeRing('data'),
-                ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
-              }}
-            >
-              {!dataDisplay ? (
-                <span style={placeholderStyle}>Tik om de data toe te voegen</span>
-              ) : (
-                <span style={dataStyle}>{dataDisplay}</span>
-              )}
-            </div>
           </div>
         </>
       )}

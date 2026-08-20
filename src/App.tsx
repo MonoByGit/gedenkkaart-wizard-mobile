@@ -365,10 +365,7 @@ export const App: React.FC = () => {
             size={state.sizes.spreuk}
             spreukTone={state.spreukTone}
             spreukPositie={state.spreukPositie}
-            forceBoven={
-              state.smaak === 'vrijgezet' &&
-              (state.indeling === 'volledig' || state.indeling === 'kader')
-            }
+            forceBoven={false}
             onChangeSpreuk={(val: string) => setState((s) => ({ ...s, spreuk: val }))}
             onChangeTone={(tone: SpreukTone) => setState((s) => ({ ...s, spreukTone: tone }))}
             onChangePositie={(pos: SpreukPositie) =>
@@ -431,16 +428,18 @@ export const App: React.FC = () => {
             onToggleGeenNamen={() =>
               setState((s) => ({ ...s, geenNamenOpKaart: !s.geenNamenOpKaart }))
             }
-            onChangeKopregel={(val) => setState((s) => ({ ...s, kopregel: val }))}
+            onChangeKopregel={(val: string) => setState((s) => ({ ...s, kopregel: val }))}
             onAddNaam={addNaam}
             onRemoveNaam={removeNaam}
             onUpdateNaamVeld={updateNaamVeld}
             onToggleOverleden={toggleNaamOverleden}
             onIndentNaam={indentNaam}
             onOutdentNaam={outdentNaam}
-            onChangeSamenvattend={(val) => setState((s) => ({ ...s, samenvattendeRegel: val }))}
-            onChangeBredereKring={(val) => setState((s) => ({ ...s, bredereKring: val }))}
-            onChangeDeFamilies={(val) => setState((s) => ({ ...s, deFamilies: val }))}
+            onChangeSamenvattend={(val: string) =>
+              setState((s) => ({ ...s, samenvattendeRegel: val }))
+            }
+            onChangeBredereKring={(val: string) => setState((s) => ({ ...s, bredereKring: val }))}
+            onChangeDeFamilies={(val: string) => setState((s) => ({ ...s, deFamilies: val }))}
           />
         </BottomSheetContainer>
 
@@ -454,6 +453,7 @@ export const App: React.FC = () => {
           <SheetStijl
             uitstraling={state.uitstraling}
             uitlijning={state.uitlijning}
+            spreukPositie={state.spreukPositie}
             sfeerZinPositie={state.sfeerZinPositie}
             fontPairing={state.fontPairing}
             indeling={state.indeling}
@@ -462,6 +462,9 @@ export const App: React.FC = () => {
             }
             onChangeUitlijning={(val: Uitlijning) =>
               setState((s) => ({ ...s, uitlijning: val }))
+            }
+            onChangeSpreukPositie={(val: SpreukPositie) =>
+              setState((s) => ({ ...s, spreukPositie: val }))
             }
             onChangeSfeerZinPositie={(val: SfeerZinPositie) =>
               setState((s) => ({ ...s, sfeerZinPositie: val }))

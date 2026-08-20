@@ -3,6 +3,7 @@ import { ChevronDown, Check } from 'lucide-react';
 import {
   Uitstraling,
   Uitlijning,
+  SpreukPositie,
   SfeerZinPositie,
   FontPairingId,
   Indeling
@@ -12,11 +13,13 @@ import { PAIRINGS } from '../../constants/wizard';
 interface SheetStijlProps {
   uitstraling: Uitstraling;
   uitlijning: Uitlijning;
+  spreukPositie: SpreukPositie;
   sfeerZinPositie: SfeerZinPositie;
   fontPairing: FontPairingId;
   indeling: Indeling;
   onChangeUitstraling: (val: Uitstraling) => void;
   onChangeUitlijning: (val: Uitlijning) => void;
+  onChangeSpreukPositie: (val: SpreukPositie) => void;
   onChangeSfeerZinPositie: (val: SfeerZinPositie) => void;
   onChangeFontPairing: (val: FontPairingId) => void;
 }
@@ -24,11 +27,13 @@ interface SheetStijlProps {
 export const SheetStijl: React.FC<SheetStijlProps> = ({
   uitstraling,
   uitlijning,
+  spreukPositie,
   sfeerZinPositie,
   fontPairing,
   indeling,
   onChangeUitstraling,
   onChangeUitlijning,
+  onChangeSpreukPositie,
   onChangeSfeerZinPositie,
   onChangeFontPairing
 }) => {
@@ -36,7 +41,38 @@ export const SheetStijl: React.FC<SheetStijlProps> = ({
   const selectedPairing = PAIRINGS.find((p) => p.id === fontPairing) || PAIRINGS[1];
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-7">
+      {/* Tekstvolgorde / Positie (Spreuk & Naam cluster) */}
+      <div className="flex flex-col gap-2">
+        <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6b6b7a]">
+          Tekstvolgorde
+        </label>
+        <div className="flex bg-[#f0f1f4] rounded-[999px] p-1 gap-1">
+          <button
+            type="button"
+            onClick={() => onChangeSpreukPositie('boven')}
+            className={`flex-1 py-2 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
+              spreukPositie === 'boven'
+                ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)]'
+                : 'text-[#6b6b7a] hover:text-[#1a1a1e]'
+            }`}
+          >
+            Spreuk boven, naam onder
+          </button>
+          <button
+            type="button"
+            onClick={() => onChangeSpreukPositie('onder')}
+            className={`flex-1 py-2 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
+              spreukPositie === 'onder'
+                ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)]'
+                : 'text-[#6b6b7a] hover:text-[#1a1a1e]'
+            }`}
+          >
+            Naam boven, spreuk onder
+          </button>
+        </div>
+      </div>
+
       {/* Uitstraling */}
       <div className="flex flex-col gap-2">
         <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6b6b7a]">
