@@ -30,14 +30,19 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
   // Uitstraling mode
   const effectiveMode =
     s.uitstraling === 'automatisch'
-      ? isVolledigeFoto || isVrijgezet
-        ? 'donker'
+      ? (s.indeling === 'volledig' || s.indeling === 'sfeer-voorop')
+        ? (isVolledigeFoto || isVrijgezet ? 'donker' : 'licht')
         : 'licht'
       : s.uitstraling;
   const isLichtMode = effectiveMode === 'licht';
   const textColor = isLichtMode ? '#1a1a1e' : '#fcfcfd';
   const placeholderColor = isLichtMode ? 'rgba(26,26,30,.42)' : 'rgba(252,252,253,.55)';
-  const textShadowCss = isLichtMode ? '0 0 6px rgba(252,252,253,.4)' : '0 0 6px rgba(20,17,22,.55)';
+  const textShadowCss =
+    s.indeling === 'volledig'
+      ? isLichtMode
+        ? '0 0 6px rgba(252,252,253,.4)'
+        : '0 0 6px rgba(20,17,22,.55)'
+      : 'none';
 
   const scrimCss = isLichtMode
     ? 'linear-gradient(to top, rgba(252,252,253,.75) 0%, rgba(252,252,253,.5) 38%, rgba(252,252,253,.18) 72%, rgba(252,252,253,0) 100%)'
@@ -378,15 +383,28 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
       {/* INDELING: KADER */}
       {s.indeling === 'kader' && (
         <>
-          <div className="absolute inset-0" style={{ background: matBgColor }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: thema
+                ? isLichtMode
+                  ? thema.matLight
+                  : thema.matDark
+                : isLichtMode
+                ? '#fafafc'
+                : '#1e1e24'
+            }}
+          />
+
+          {/* Top text: Spreuk (boven) */}
           {spreukBoven && (
             <div
-              className="absolute left-0 right-0 top-[5.5cqw] px-[6cqw] flex z-20 box-border"
+              className="absolute left-0 right-0 top-[4.5cqw] px-[6cqw] flex z-20 box-border"
               style={{ justifyContent: alignItemsCss }}
             >
               <div
                 onClick={(e) => handleAction(e, 'spreuk')}
-                className="p-[0.8cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+                className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer max-w-[88cqw]"
                 style={{
                   boxShadow: activeRing('spreuk'),
                   ...editHint(!!s.spreuk)
@@ -401,8 +419,9 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             </div>
           )}
 
+          {/* Centered Photo Frame Box */}
           <div
-            className="absolute left-[5cqw] right-[5cqw] top-[13cqw] h-[54cqh] rounded-[1.5cqw] overflow-hidden z-10"
+            className="absolute left-[16cqw] right-[16cqw] top-[18cqw] aspect-[3/4] rounded-[1.2cqw] overflow-hidden z-10 shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-[rgba(45,45,58,0.1)]"
             style={{ background: isVrijgezet ? 'transparent' : '#e9eaef' }}
           >
             {isVolledigeFoto ? (
@@ -411,36 +430,45 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
                   src={s.photoVolledigUrl || "/assets/persons/Nana_After_Portrait.jpg"}
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover"
-                  style={{ objectPosition: '50% 26%' }}
+                  style={{ objectPosition: '50% 20%' }}
                 />
               ) : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2.4cqw] p-[8cqw] bg-[#f0f1f4] text-center">
-                  <div className="w-[16cqw] h-[16cqw] rounded-full bg-[rgba(45,45,58,0.14)] animate-pulse" />
-                  <span className="text-[3.1cqw] text-[#6b6b7a]">Portret volgt binnen 24 uur.</span>
+                  <div className="w-[14cqw] h-[14cqw] rounded-full bg-[rgba(45,45,58,0.14)] animate-pulse" />
+                  <span className="text-[3cqw] text-[#6b6b7a]">Portret volgt binnen 24 uur.</span>
                 </div>
               )
             ) : (
-              s.showDemoPhoto && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <img
-                    src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ objectPosition: '50% 20%' }}
-                  />
+              <>
+                <div
+                  className="absolute inset-0"
+                  style={{ background: thema ? themeGradient : undefined }}
+                >
+                  {!thema && <div className="absolute inset-0 checkerboard-pattern" />}
                 </div>
-              )
+                {s.showDemoPhoto && (
+                  <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                    <img
+                      src={s.photoCutoutUrl || "/assets/persons/Nana_After_Portrait_cutout.png"}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{ objectPosition: '50% 20%' }}
+                    />
+                  </div>
+                )}
+              </>
             )}
           </div>
 
+          {/* Bottom text: Spreuk (if onder) + Naam + Data */}
           <div
-            className="absolute left-0 right-0 bottom-0 p-[4cqw_6cqw_5cqw] flex flex-col z-20"
+            className="absolute left-0 right-0 bottom-[4cqw] px-[6cqw] flex flex-col items-center justify-center z-20"
             style={{ alignItems: alignItemsCss }}
           >
             {spreukOnder && (
               <div
                 onClick={(e) => handleAction(e, 'spreuk')}
-                className="p-[0.8cqw_1.2cqw] rounded-[1cqw] mb-[0.6cqh] cursor-pointer"
+                className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mb-[1cqw] cursor-pointer max-w-[88cqw]"
                 style={{
                   boxShadow: activeRing('spreuk'),
                   ...editHint(!!s.spreuk)
@@ -455,7 +483,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             )}
             <div
               onClick={(e) => handleAction(e, 'naam')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
+              className="p-[0.5cqw_1.2cqw] rounded-[1cqw] cursor-pointer"
               style={{
                 boxShadow: activeRing('naam'),
                 ...editHint(!!s.naam)
@@ -469,7 +497,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             </div>
             <div
               onClick={(e) => handleAction(e, 'data')}
-              className="p-[0.6cqw_1.2cqw] rounded-[1cqw] mt-[0.15cqh] cursor-pointer"
+              className="p-[0.4cqw_1.2cqw] rounded-[1cqw] mt-[0.5cqw] cursor-pointer"
               style={{
                 boxShadow: activeRing('data'),
                 ...editHint(!!(s.dataGeboorte || s.dataOverlijden))
