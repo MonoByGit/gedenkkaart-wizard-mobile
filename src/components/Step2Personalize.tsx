@@ -13,6 +13,7 @@ interface Step2PersonalizeProps {
   onOpenSheet: (sheet: ActiveSheet) => void;
   onZoomBinnen: (side: 'links' | 'rechts' | null) => void;
   onOpenLockDialog: () => void;
+  onOpenLightbox: () => void;
 }
 
 export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
@@ -24,14 +25,16 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
   onSetSide,
   onOpenSheet,
   onZoomBinnen,
-  onOpenLockDialog
+  onOpenLockDialog,
+  onOpenLightbox
 }) => {
   const isGevouwen = s.formaat === 'gevouwen';
+  const isSheetOpen = !!s.activeSheet;
 
   return (
     <div className="flex flex-col min-h-full pb-28">
       {/* Top Bar */}
-      <div className="px-5 pt-5 flex items-center justify-between">
+      <div className="px-5 pt-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -77,7 +80,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
       </div>
 
       {/* Segmented Side Tabs */}
-      <div className="flex justify-center mt-4 px-5">
+      <div className="flex justify-center mt-3 px-5">
         <div className="inline-flex bg-[#f0f1f4] rounded-[999px] p-1 gap-1 w-full max-w-[340px]">
           <button
             type="button"
@@ -85,7 +88,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
               onSetSide('voor');
               onZoomBinnen(null);
             }}
-            className={`flex-1 py-2 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
+            className={`flex-1 py-1.5 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
               s.side === 'voor'
                 ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)]'
                 : 'text-[#6b6b7a] hover:text-[#1a1a1e]'
@@ -101,7 +104,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
                 onSetSide('binnen');
                 onZoomBinnen(null);
               }}
-              className={`flex-1 py-2 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
+              className={`flex-1 py-1.5 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
                 s.side === 'binnen'
                   ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)]'
                   : 'text-[#6b6b7a] hover:text-[#1a1a1e]'
@@ -117,7 +120,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
               onSetSide('achter');
               onZoomBinnen(null);
             }}
-            className={`flex-1 py-2 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
+            className={`flex-1 py-1.5 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
               s.side === 'achter'
                 ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)]'
                 : 'text-[#6b6b7a] hover:text-[#1a1a1e]'
@@ -130,7 +133,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
 
       {/* Inside Zoom Back Button (when zoomed into left or right inside page) */}
       {s.side === 'binnen' && s.binnenZoom && (
-        <div className="px-6 pt-3">
+        <div className="px-6 pt-2">
           <button
             type="button"
             onClick={() => onZoomBinnen(null)}
@@ -142,14 +145,38 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
         </div>
       )}
 
-      {/* Card Canvas */}
-      <div className="px-6 pt-5">
-        <CardPreview
-          state={s}
-          interactive={true}
-          onOpenSheet={onOpenSheet}
-          onZoomBinnen={onZoomBinnen}
-        />
+      {/* Card Canvas: responsive size + tap to lightbox when sheet is open */}
+      <div className={`px-6 flex flex-col items-center transition-all duration-300 ${isSheetOpen ? 'pt-2 pb-1' : 'pt-4'}`}>
+        <div
+          onClick={() => {
+            if (isSheetOpen) {
+              onOpenLightbox();
+            }
+          }}
+          className={`transition-all duration-300 ${
+            isSheetOpen
+              ? 'w-[44vw] max-w-[190px] cursor-pointer hover:scale-[1.02] active:scale-[0.98]'
+              : 'w-full max-w-[340px]'
+          }`}
+        >
+          <CardPreview
+            state={s}
+            interactive={!isSheetOpen}
+            isMini={isSheetOpen}
+            onOpenSheet={onOpenSheet}
+            onZoomBinnen={onZoomBinnen}
+          />
+        </div>
+
+        {isSheetOpen && (
+          <button
+            type="button"
+            onClick={onOpenLightbox}
+            className="mt-1 text-[11px] text-[#6b6b7a] hover:text-[#1a1a1e] font-medium transition-colors cursor-pointer"
+          >
+            Tik op kaart voor ware grootte
+          </button>
+        )}
       </div>
 
       {/* Subtitle / Hint */}

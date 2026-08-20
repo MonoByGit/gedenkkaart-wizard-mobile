@@ -294,6 +294,7 @@ export const App: React.FC = () => {
             onOpenSheet={openSheet}
             onZoomBinnen={(side) => setState((s) => ({ ...s, binnenZoom: side }))}
             onOpenLockDialog={() => setState((s) => ({ ...s, lockDialogOpen: true }))}
+            onOpenLightbox={() => setState((s) => ({ ...s, previewLightboxOpen: true }))}
           />
         )}
 
