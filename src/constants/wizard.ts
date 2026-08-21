@@ -470,7 +470,7 @@ export const PERSONAS: PersonaDef[] = [
 ];
 
 export const INITIAL_STATE: WizardState = {
-  screen: 'home',
+  screen: 'stap1',
   personaId: 'nana',
   photoVolledigUrl: '/assets/persons/Nana_After_Portrait.jpg',
   photoCutoutUrl: '/assets/persons/Nana_After_Portrait_cutout.png',

@@ -248,7 +248,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[var(--surface-canvas)] flex justify-center selection:bg-[#c99f6c]/30">
+    <div className="relative min-h-screen bg-[var(--background)] flex justify-center selection:bg-[#c99f6c]/30">
       {/* Toast Notification */}
       {saveToast && (
         <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] px-4 py-2.5 rounded-full bg-[#2d2d3a] text-white text-[0.8125rem] font-medium shadow-lg animate-bounce">
@@ -256,18 +256,7 @@ export const App: React.FC = () => {
         </div>
       )}
 
-      <div className="w-full max-w-[430px] min-h-screen bg-[var(--surface-page-image)] shadow-2xl relative flex flex-col">
-        {/* SCREEN 0: Home / Hub */}
-        {state.screen === 'home' && (
-          <HomeScreen
-            creations={creations}
-            onSelectPersona={handleSelectPersona}
-            onOpenCreation={handleOpenCreation}
-            onDeleteCreation={handleDeleteCreation}
-            onDuplicateCreation={handleDuplicateCreation}
-          />
-        )}
-
+      <div className="w-full max-w-[480px] min-h-screen bg-[var(--background)] shadow-2xl relative flex flex-col">
         {/* SCREEN 1: Stap 1 (Drie keuzes) */}
         {state.screen === 'stap1' && (
           <Step1ThreeChoices
@@ -278,7 +267,7 @@ export const App: React.FC = () => {
             onSetThema={setThema}
             onOpenLightbox={() => setState((s) => ({ ...s, previewLightboxOpen: true }))}
             onNext={() => setState((s) => ({ ...s, screen: 'stap2', side: 'voor' }))}
-            onGoHome={goToHome}
+            onGoHome={() => setState((s) => ({ ...s, screen: 'stap1' }))}
           />
         )}
 
@@ -288,14 +277,11 @@ export const App: React.FC = () => {
             state={state}
             onBack={() => setState((s) => ({ ...s, screen: 'stap1' }))}
             onNext={() => setState((s) => ({ ...s, screen: 'stap3', side: 'voor' }))}
-            onGoHome={goToHome}
-            onSaveCreation={handleSaveCurrentCreation}
             onSetSide={setSide}
             onOpenSheet={openSheet}
             onZoomBinnen={(side) => setState((s) => ({ ...s, binnenZoom: side }))}
             onOpenLockDialog={() => setState((s) => ({ ...s, lockDialogOpen: true }))}
             onOpenLightbox={() => setState((s) => ({ ...s, previewLightboxOpen: true }))}
-            onUpdateState={(patch) => setState((s) => ({ ...s, ...patch }))}
           />
         )}
 
@@ -305,7 +291,6 @@ export const App: React.FC = () => {
             state={state}
             onBack={() => setState((s) => ({ ...s, screen: 'stap2' }))}
             onConfirm={() => setState((s) => ({ ...s, screen: 'voltooid' }))}
-            onGoHome={goToHome}
             onSetSide={setSide}
             onZoomBinnen={(side) => setState((s) => ({ ...s, binnenZoom: side }))}
             onOpenLockDialog={() => setState((s) => ({ ...s, lockDialogOpen: true }))}
@@ -316,7 +301,6 @@ export const App: React.FC = () => {
         {state.screen === 'voltooid' && (
           <Step4Completed
             onRestart={() => setState((s) => ({ ...s, screen: 'stap1' }))}
-            onGoHome={goToHome}
           />
         )}
 
