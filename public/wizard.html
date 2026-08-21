@@ -167,7 +167,7 @@
 
         <div style="{{ lockNote }}">{{ lockNoteText }}</div>
 
-        <div style="flex:none;padding:0 18px 10px">
+        <div style="flex:none;padding:0 18px 10px;position:relative;z-index:25;background:var(--background)">
           <div style="display:flex;gap:4px;align-items:center;background:var(--secondary);border-radius:999px;padding:4px">
             <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
               <button type="button" onClick="{{ t.tap }}" style="{{ t.style }}">{{ t.label }}</button>
@@ -175,7 +175,7 @@
           </div>
         </div>
 
-        <div ref="{{ stageRef }}" style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:6px 16px 0">
+        <div ref="{{ stageRef }}" style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:6px 16px 0;overflow:hidden;z-index:10">
           <div style="{{ cardShift }}" onClick="{{ shiftTap }}">
             <div style="{{ faceLabelStyle }}">{{ faceLabel }}</div>
             <button type="button" onClick="{{ prevFace }}" style="{{ arrowPrev }}" aria-label="Vorige kant">
@@ -406,7 +406,7 @@ class Component extends DCLogic {
   state = {
     role: this.props.startRole === 'familie' ? 'family' : 'operator',
     format: this.props.startFormat || 'gevouwen', ex: 'greet',
-    page: 'front', cat: 'thema', theme: this.props.startTheme || 'stilte', tint: 0, orn: 'geen', photo: 'volledig',
+    page: 'front', cat: 'thema', theme: this.props.startTheme || 'stilte', tint: 0, orn: "geen", photo: 'volledig',
     lay: { front: 0, inside: 0, back: 0 },
     shape: { front: 'recht', inside: 'recht' },
     align: { front: 'center', inside: 'left', back: 'left' },
@@ -759,7 +759,7 @@ class Component extends DCLogic {
 
   ornBg(kind, ink) {
     const c = (a) => 'rgba(' + ink + ',' + a + ')';
-    if (kind === 'lines') return { backgroundImage: 'repeating-linear-gradient(0deg,' + c(.09) + ' 0 1px, transparent 1px 13px)' };
+    if (kind === "lines") return { display: "none" };
     if (kind === 'hatch') return { backgroundImage: 'repeating-linear-gradient(58deg,' + c(.07) + ' 0 1px, transparent 1px 11px)' };
     if (kind === 'dots') return { backgroundImage: 'radial-gradient(' + c(.13) + ' .8px, transparent 1.1px)', backgroundSize: '15px 15px' };
     if (kind === 'bloom') return { backgroundImage: 'radial-gradient(38% 26% at 78% 16%,' + c(.14) + ', transparent 70%), radial-gradient(30% 22% at 16% 62%,' + c(.11) + ', transparent 72%), radial-gradient(22% 16% at 56% 88%,' + c(.1) + ', transparent 74%)' };
@@ -1346,7 +1346,7 @@ class Component extends DCLogic {
           wrap: thumbWrap(on), pane: pane(on),
           wash: { position: 'absolute', inset: 0, backgroundImage: th.img, backgroundSize: 'cover', backgroundPosition: th.pos || 'center' },
           mini: [], spec: '', specStyle: nothing, label: th.n, labelStyle: label(on),
-          tap: () => this.setState({ theme: k, tint: 0, orn: 'geen' })
+          tap: () => this.setState({ theme: k, tint: 0, orn: "geen" })
         });
       });
     } else if (st.cat === 'indeling') {
@@ -1411,7 +1411,7 @@ class Component extends DCLogic {
         });
       });
       row2Label = 'Ornament';
-      row2.push(this.pill('Geen', st.orn === 'geen', () => this.setState({ orn: 'geen' }), 'none'));
+      row2.push(this.pill('Geen', st.orn === 'geen', () => this.setState({ orn: "geen" }), 'none'));
       t.orn.forEach((o) => {
         row2.push(this.pill(o[0], st.orn === o[0], () => this.setState({ orn: o[0] }), this.ornBg(o[1], ti.scrim)));
       });
@@ -1546,7 +1546,7 @@ class Component extends DCLogic {
     const ratio = cardPage === 'inside' ? 210 / 148 : 105 / 148;
     const twoRow = st.cat === 'sfeer' || st.cat === 'stijl';
     const reserve = stripOpen ? Math.max(st.stripH + 10, twoRow ? 266 : 236) : 12;
-    const availH = st.zoom ? st.stageH - 62 : st.stageH - reserve;
+    const availH = st.zoom ? st.stageH - 62 : Math.max(140, st.stageH - reserve - 30);
     const availW = st.zoom ? st.stageW + 20 : st.stageW - 4;
     const winRatio = half ? 105 / 148 : ratio;
     const winW = Math.max(120, Math.min(availW, availH * winRatio));
@@ -1563,7 +1563,7 @@ class Component extends DCLogic {
 
     const zoomWrap = st.zoom
       ? { position: "fixed", inset: 0, zIndex: 9999, background: "rgba(12,12,16,.96)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "14px", padding: "18px 14px 14px", animation: "memFade .3s ease" }
-      : { position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBottom: reserve + 'px', transition: 'padding .45s cubic-bezier(.16,1,.3,1)' };
+      : { position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBottom: Math.min(reserve, 180) + "px", transition: "padding .45s cubic-bezier(.16,1,.3,1)" };
 
     const tabs = this.pages(st).map((p) => {
       const on = p === (st.zoom ? cardPage : page);
