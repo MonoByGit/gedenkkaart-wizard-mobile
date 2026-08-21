@@ -5,8 +5,6 @@ dist-ssr
 .env*
 .DS_Store
 *.zip
-V3/*.zip
-V3/screenshots/
-V3/uploads/Schermafbeelding*
-public/uploads/Schermafbeelding*
-screenshots/
+V3
+screenshots
+design_handoff_gedenkkaart_wizard
