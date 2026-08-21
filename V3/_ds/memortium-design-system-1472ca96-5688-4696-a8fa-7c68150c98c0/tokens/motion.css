@@ -1,0 +1,7 @@
+:root {
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --duration-cta: 300ms; /* @kind other */
+  --duration-ui: 200ms; /* @kind other */
+  --duration-link: 160ms; /* @kind other */
+  --lift-hover: translateY(-2px); /* @kind other */
+}

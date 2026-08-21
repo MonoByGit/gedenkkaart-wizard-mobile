@@ -1,0 +1,18 @@
+:root {
+  --radius: 1.5rem;      /* 5 mm   basis: velden, kleine kaarten */
+  --radius-lg: 2rem;     /* 8 mm   kaarten en blokken */
+  --radius-xl: 3rem;     /* 12 mm  portretbeeld, grote kaart */
+  --radius-2xl: 4rem;    /* 16 mm  heel sectievlak, slotblok */
+  --radius-inset: 1rem;  /* 4 mm   de beeldinzet */
+  --radius-pill: 999px;  /* knoppen, badges, navigatie */
+
+  --shadow-card: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+  --shadow-cta: 0 10px 30px -10px rgba(26, 26, 30, 0.4);
+  --shadow-nav: 0 25px 60px rgba(0, 0, 0, 0.12);
+  --hairline: 0 0 0 1px #fcfcfd; /* lijn om de beeldinzet, 0,25 mm in druk */
+
+  --blur-subtle: blur(20px) saturate(110%); /* @kind other */
+  --blur-standard: blur(32px) saturate(140%); /* @kind other */
+  --blur-intense: blur(60px) saturate(120%); /* @kind other */
+  --blur-nav: blur(40px) saturate(140%); /* @kind other */
+}

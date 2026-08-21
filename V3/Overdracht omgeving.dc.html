@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/colors.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/typography.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/shape.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/base.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/styles.css">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--background);background-image:var(--surface-page-image);font-family:var(--font-family)}
+  a{color:#1a1a1e}
+  a:hover{color:#6b6b7a}
+</style>
+</helmet>
+
+<article style="max-width:860px;margin:0 auto;padding:80px 56px 120px;display:flex;flex-direction:column;gap:56px;font-family:var(--font-family);color:var(--foreground)">
+
+  <header style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Overdracht &middot; om te laten bouwen</span>
+    <h1 style="margin:0;font-size:40px;font-weight:700;line-height:1.15;text-wrap:pretty">De omgeving van de uitvaartondernemer</h1>
+    <p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:var(--foreground);max-width:62ch;text-wrap:pretty">Bron: <a href="Memortium Omgeving.dc.html">Memortium Omgeving.dc.html</a>, goedgekeurd 21 augustus 2026. Designsysteem Memortium, waarden uit de tokens. Alles hieronder is vastgesteld, behalve wat onder Open staat.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;padding-top:4px">
+      <span style="min-height:32px;padding:0 13px;display:flex;align-items:center;border-radius:999px;background:var(--secondary);border:1px solid var(--border);font-size:11.5px;font-weight:500;color:var(--muted-foreground)">Eén letter, Nunito Sans</span>
+      <span style="min-height:32px;padding:0 13px;display:flex;align-items:center;border-radius:999px;background:var(--secondary);border:1px solid var(--border);font-size:11.5px;font-weight:500;color:var(--muted-foreground)">Geen accentkleur</span>
+      <span style="min-height:32px;padding:0 13px;display:flex;align-items:center;border-radius:999px;background:var(--secondary);border:1px solid var(--border);font-size:11.5px;font-weight:500;color:var(--muted-foreground)">Radius 1.5rem, knoppen zijn pillen</span>
+      <span style="min-height:32px;padding:0 13px;display:flex;align-items:center;border-radius:999px;background:var(--secondary);border:1px solid var(--border);font-size:11.5px;font-weight:500;color:var(--muted-foreground)">Donkere modus via tokens</span>
+    </div>
+  </header>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Wat dit scherm is</span>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:66ch;text-wrap:pretty">Het werkoverzicht van één uitvaartonderneming, accountloos benaderd via een magic link op het e-mailadres van de begeleider. Geen facturatie en geen berichtenmodule: dit is de lijst met dossiers en wat er van u wordt verwacht. Aangemeld in het voorbeeld: Marjan de Wit, Uitvaartzorg De Vijverhof.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:20px">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">De drie weergaven</span>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:66ch;text-wrap:pretty">Eén strip onder de titel, sticky in de scroll, met een verloop van papierkleur naar transparant zodat kaarten eronderdoor verdwijnen zonder harde rand.</p>
+    <div style="display:flex;flex-direction:column;border-radius:24px;border:1px solid var(--border);overflow:hidden">
+      <sc-for list="{{ views }}" as="v" hint-placeholder-count="3">
+        <div style="{{ v.row }}">
+          <span style="font-size:15px;font-weight:700;width:96px;flex:none">{{ v.k }}</span>
+          <span style="font-size:14.5px;line-height:1.6;color:var(--foreground);flex:1;min-width:0;text-wrap:pretty">{{ v.what }}</span>
+          <span style="font-size:12.5px;line-height:1.5;color:var(--muted-foreground);width:150px;flex:none;text-wrap:pretty">{{ v.badge }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:66ch;text-wrap:pretty">Op Open en Alles komt de begeleiderregel erbij: chips Iedereen &middot; n, Marjan de Wit &middot; n, Hans Kluft &middot; n. Op Aan u is die rij verborgen, want dat is per definitie uw eigen werk. Een dossier is dicht maar blijft twee maanden in Alles staan; in die periode kan de ondernemer nog downloaden en bijbestellen. Daarna verhuist het naar het archief en zijn de bestanden verwijderd.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:20px">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">De kaart</span>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:66ch;text-wrap:pretty">Van boven naar onder: portretduim 46&times;61 met radius 14, streepjesrand met initialen zolang er geen foto is, naam in 700, badge rechts uitgelijnd, status in 500, de volgende stap in secundaire tekst, en twee metaregels: de laatste gebeurtenis en de bestelling. Onder de kaart een knoppenrij; rechts in diezelfde rij de ronde chevron die het dossier opent. Die pijl staat bewust niet meer halverhoogte naast de tekst, want daar beloofde hij dat hij iets uitklapt.</p>
+    <div style="display:flex;flex-direction:column;border-radius:24px;border:1px solid var(--border);overflow:hidden">
+      <sc-for list="{{ badges }}" as="b" hint-placeholder-count="5">
+        <div style="{{ b.row }}">
+          <span style="font-size:14.5px;line-height:1.6;flex:1;min-width:0;text-wrap:pretty">{{ b.case }}</span>
+          <span style="{{ b.pill }}">{{ b.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Acties per situatie</span>
+      <sc-for list="{{ actions }}" as="a" hint-placeholder-count="5">
+        <div style="display:flex;gap:16px;align-items:baseline">
+          <span style="font-size:14.5px;font-weight:500;width:210px;flex:none;text-wrap:pretty">{{ a.k }}</span>
+          <span style="font-size:14.5px;line-height:1.65;color:var(--muted-foreground);flex:1;min-width:0;text-wrap:pretty">{{ a.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:32px;background:var(--secondary);border:1px solid var(--border)">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Eén richting, en dat is expres</span>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:64ch;text-wrap:pretty">Wij hebben geen e-mailadres van de familie. Er is dus geen antwoordknop en geen gesprek. De familie meldt iets in de kaartwizard, de ondernemer corrigeert het gegeven of laat het staan, en de familie ziet dat terug in de wizard: de nieuwe waarde, of de aantekening dat het is nagekeken, met datum. Bouw hier geen berichtenkanaal in.</p>
+    <p style="margin:0;font-size:14.5px;line-height:1.7;color:var(--muted-foreground);max-width:64ch;text-wrap:pretty">Het correctieblad kent per veld een tekenteller tegen de ruimte op de kaart: geboorteplaats 34 tekens, geboortedatum 30. De oude waarde blijft in het dossier staan.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:20px">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Prijzen</span>
+    <div style="display:flex;flex-direction:column;border-radius:24px;border:1px solid var(--border);overflow:hidden">
+      <sc-for list="{{ prices }}" as="p" hint-placeholder-count="5">
+        <div style="{{ p.row }}">
+          <span style="font-size:14.5px;font-weight:500;flex:1;min-width:0;text-wrap:pretty">{{ p.k }}</span>
+          <span style="font-size:14.5px;color:var(--muted-foreground);flex:none;width:230px;text-wrap:pretty">{{ p.note }}</span>
+          <span style="font-size:15px;font-weight:700;flex:none;width:70px;text-align:right">{{ p.a }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:0;font-size:14.5px;line-height:1.7;color:var(--muted-foreground);max-width:66ch;text-wrap:pretty">Het kaartendeel van compleet is € 80 en wordt 60/40 verdeeld. Met spoed komt het verschil van € 50 erbovenop, dus compleet met spoed is € 179. Alle bedragen inclusief btw, weergave als € 49. De maandregel onder het archief toont alleen het totaal; de specificatie staat per dossier in het archief.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Het archief</span>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:66ch;text-wrap:pretty">De kop Archief is zelf de knop: label, het aantal dossiers ouder dan twee maanden, en een chevron die 90 graden draait bij openen. Rijen zijn kale regels met naam, datum, bedrag en een chevron, gescheiden door één haarlijn. Een rij opent een blad van onderaf met de bestelgeschiedenis: per regel wat, wanneer en hoeveel, daaronder Samen met de lijn in <code style="font-size:14px">--primary</code> erboven. Geen download en geen actie, want na twee maanden zijn de bestanden verwijderd. Eén knop: Sluiten.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Statusketen</span>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:66ch;text-wrap:pretty">Vastgesteld. Verfijn de labels, niet de keten.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ chain }}" as="s" hint-placeholder-count="9">
+        <span style="min-height:34px;padding:0 14px;display:flex;align-items:center;border-radius:999px;background:var(--secondary);border:1px solid var(--border);font-size:12.5px;font-weight:500;white-space:nowrap">{{ s }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Donkere modus en motie</span>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:66ch;text-wrap:pretty">Donker gaat met <code style="font-size:15px">data-theme="dark"</code> op het schermelement; alle waarden komen uit de kleurtokens en er staan geen losse hexwaarden in het scherm, op de toestelbezel na. De toast draait mee via <code style="font-size:15px">--primary</code> en <code style="font-size:15px">--primary-foreground</code>. Druk kent geen donkere modus.</p>
+    <p style="margin:0;font-size:17px;line-height:1.75;max-width:66ch;text-wrap:pretty">Kaarten komen op in 0,5s op <code style="font-size:15px">cubic-bezier(.16,1,.3,1)</code>, filterwissels in 0,35s, bladen schuiven in 0,5s op dezelfde curve, het balletje pulseert in 2,8s. Verder niets: geen bounce, geen parallax, geen inschuivende secties.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:20px">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Open, graag afstemmen voor de build</span>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ open }}" as="o" hint-placeholder-count="4">
+        <div style="display:flex;gap:16px;align-items:baseline">
+          <span style="font-size:13px;font-weight:700;color:var(--muted-foreground);width:22px;flex:none">{{ o.n }}</span>
+          <span style="font-size:15.5px;line-height:1.7;flex:1;min-width:0;text-wrap:pretty">{{ o.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <footer style="display:flex;flex-direction:column;gap:8px;padding-top:8px;border-top:1px solid var(--border)">
+    <span style="font-size:12.5px;line-height:1.7;color:var(--muted-foreground);text-wrap:pretty">Meegeleverde ontwerpen: <a href="Memortium Omgeving.dc.html">de omgeving</a>, <a href="Memortium Dossier.dc.html">het dossier</a>, <a href="Memortium Wizard.dc.html">de kaartwizard</a> en <a href="Memortium Drukproef.dc.html">de drukproef</a>. Tweaks in de omgeving: startFilter, openVraag, donker, aanUAccent.</span>
+  </footer>
+
+</article>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  renderVals() {
+    const row = (i) => ({
+      display: 'flex', alignItems: 'baseline', gap: '16px', padding: '16px 20px',
+      borderTop: i === 0 ? 'none' : '1px solid var(--border)',
+      background: i % 2 === 0 ? 'transparent' : 'var(--secondary)'
+    });
+    const line = {
+      flex: 'none', padding: '5px 11px', borderRadius: '999px',
+      fontSize: '9px', fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase',
+      border: '1px solid var(--border-strong)', color: 'var(--muted-foreground)', whiteSpace: 'nowrap'
+    };
+    return {
+      views: [
+        { k: 'Aan u', what: 'Dossiers waar de ingelogde begeleider zelf aan zet is, plus dossiers die binnen 7 dagen vervallen.', badge: 'Balletje met aantal, pulserend' },
+        { k: 'Open', what: 'Alles wat nog loopt, van alle begeleiders.', badge: 'Kaal aantal' },
+        { k: 'Alles', what: 'De afgelopen twee maanden, dus ook wat dicht is.', badge: 'Kaal aantal' }
+      ].map((v, i) => Object.assign({}, v, { row: row(i) })),
+
+      badges: [
+        { case: 'Aan zet bij u', label: 'Aan u', fill: true },
+        { case: 'Aan zet bij een collega, voornaam want anders kapt de naam af', label: 'Bij Hans' },
+        { case: 'Wachten op de familie', label: 'Bij de familie' },
+        { case: 'Wachten op Memortium', label: 'Bij ons' },
+        { case: 'Dossier is dicht', label: 'Afgerond' }
+      ].map((b, i) => ({
+        case: b.case, label: b.label, row: row(i),
+        pill: b.fill ? {
+          flex: 'none', padding: '5px 11px', borderRadius: '999px',
+          fontSize: '9px', fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase',
+          background: 'var(--primary)', color: 'var(--primary-foreground)', whiteSpace: 'nowrap'
+        } : line
+      })),
+
+      actions: [
+        { k: 'Melding van de familie', v: 'Gegeven corrigeren (gevuld) en Laten staan (lijn).' },
+        { k: 'Geen foto ontvangen', v: 'Foto sturen.' },
+        { k: 'Dossier van een collega', v: 'Overnemen van [naam]. De collega krijgt er bericht van.' },
+        { k: 'Vervalt binnen 7 dagen', v: 'Alles downloaden, in twee tikken: de eerste tik maakt er Nog een tik en het staat klaar van, dat vervalt na 4 seconden.' },
+        { k: 'Dicht, binnen twee maanden', v: 'Bedankkaart bijbestellen, \u20ac 32, en Bestanden downloaden.' }
+      ],
+
+      prices: [
+        { k: 'Portret, Essentieel', note: 'Binnen 24 uur', a: '\u20ac 49' },
+        { k: 'Portret, Impuls', note: 'Binnen 4 uur, bestellen v\u00f3\u00f3r 14:00', a: '\u20ac 99' },
+        { k: 'Rouwkaart', note: '60 procent van het kaartendeel', a: '\u20ac 48' },
+        { k: 'Bedankkaart', note: '40 procent van het kaartendeel', a: '\u20ac 32' },
+        { k: 'Compleet', note: 'Portret, rouwkaart, bedankkaart', a: '\u20ac 129' },
+        { k: 'Compleet met spoed', note: 'Het verschil van \u20ac 50 erbovenop', a: '\u20ac 179' }
+      ].map((p, i) => Object.assign({}, p, { row: row(i) })),
+
+      chain: [
+        'Dossier aangemaakt', 'Wacht op de foto', 'Het portret wordt bewerkt', 'Het portret is klaar',
+        'Wacht op de familie', 'De kaart wordt gemaakt', 'Het pakket is klaar', 'Gedownload', 'Dicht'
+      ],
+
+      open: [
+        { n: '01', v: 'Het accent op Aan u staat nu op een donker vlak. Warm vlak en warme rand staan klaar met de Levenslied-tinten, maar het systeem zegt: geen accentkleur, alleen Levenslied mag warm worden. Kiezen wij warm, dan is dat een uitbreiding van die regel en hoort hij in het designsysteem te worden vastgelegd.' },
+        { n: '02', v: 'De begeleiderlaag is nu een chipfilter. De vraag is of de onderneming een eigen weergave per begeleider wil, met wie waarop wacht.' },
+        { n: '03', v: 'De toegang is nog niet ontworpen: het invullen van het e-mailadres, het wachtscherm, en een link die is verlopen.' },
+        { n: '04', v: 'De aantallen zijn voorbeelddata: veertien dossiers ouder dan twee maanden en het maandtotaal van \u20ac 374.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/colors.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/typography.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/shape.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/motion.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/levenslied.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/base.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/styles.css">
+<script src="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@400;500&family=Lora:ital,wght@0,400;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Marcellus&family=Crimson+Pro:ital,wght@0,400;1,400&family=Alegreya:ital,wght@0,400;1,400&family=Alegreya+Sans:wght@400;500&family=Tenor+Sans&family=Karla:wght@400;500&family=Spectral:ital,wght@0,400;1,400&family=Italiana&display=swap">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#e7e7ea;font-family:var(--font-family)}
+  a{color:#1a1a1e;text-decoration:none}
+  a:hover{color:#6b6b7a}
+  button{font-family:var(--font-family);-webkit-tap-highlight-color:transparent}
+  button:focus{outline:none}
+  button:focus-visible{outline:1.5px solid rgba(45,45,58,.35);outline-offset:3px}
+  input,textarea{font-family:var(--font-family)}
+  .mem-scroll::-webkit-scrollbar{display:none}
+  .mem-scroll{scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  @keyframes memRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes memFade{from{opacity:0}to{opacity:1}}
+  @keyframes memLift{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<section style="padding:56px 56px 80px;display:flex;flex-direction:column;gap:40px;font-family:var(--font-family)">
+  <div style="display:flex;align-items:flex-start;gap:20px">
+    <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cta-foreground);background:var(--primary);border-radius:999px;padding:9px 16px">1a</span>
+    <div style="display:flex;flex-direction:column;gap:8px;max-width:640px">
+      <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Stap 3 &middot; de drukproef</span>
+      <h1 style="margin:0;font-size:34px;font-weight:700;line-height:1.2;color:var(--foreground);text-wrap:pretty">Alle kanten langs, de drie deelbeelden, en dan de drie acties</h1>
+      <p style="margin:0;font-size:15px;line-height:1.7;color:var(--muted-foreground);text-wrap:pretty">Dezelfde kaartweergave als in de editor, op ware verhouding, met de belofte achter het informatie-icoon. Onder de kaart de deelvarianten die uit de kaartinhoud volgen, en onderaan het pakket dat naar de uitvaartbegeleider gaat.</p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:44px;align-items:flex-start;flex-wrap:wrap">
+
+    <div style="width:414px;height:868px;border-radius:52px;background:#0c0c0f;padding:12px;box-shadow:0 40px 90px -30px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.5);flex:none">
+      <div style="position:relative;width:390px;height:844px;border-radius:41px;overflow:hidden;background:var(--background);background-image:var(--surface-page-image);display:flex;flex-direction:column">
+
+        <div style="height:46px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 6px;font-size:13px;font-weight:500;color:var(--foreground)">
+          <span>21:38</span>
+          <span style="display:flex;gap:6px;align-items:center;opacity:.75">
+            <span style="width:17px;height:10px;border:1px solid currentColor;border-radius:3px;display:block"></span>
+          </span>
+        </div>
+
+        <div style="flex:none;padding:4px 18px 12px;display:flex;align-items:center;gap:12px">
+          <button type="button" onClick="{{ back }}" style="{{ iconBtn }}" aria-label="Terug naar de namencheck">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="arrow-left" size="18" hint-size="18px,18px"></x-import>
+          </button>
+          <div style="display:flex;flex-direction:column;gap:1px;min-width:0;flex:1">
+            <span style="font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Drukproef</span>
+            <span style="font-size:15px;font-weight:700;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ chromeTitle }}</span>
+          </div>
+          <button type="button" onClick="{{ openInfo }}" style="{{ iconBtn }}" aria-label="Over de drukproef">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+          </button>
+        </div>
+
+        <div class="mem-scroll" style="{{ bodyStyle }}">
+
+          <div style="display:flex;flex-direction:column;gap:10px;animation:memRise .5s cubic-bezier(.16,1,.3,1) .06s both">
+            <div style="display:flex;align-items:baseline;gap:10px;padding:0 20px">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--foreground)">De kaart</span>
+              <span style="font-size:11px;color:var(--muted-foreground);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ facesHint }}</span>
+            </div>
+
+            <div class="mem-scroll" onScroll="{{ carScroll }}" style="{{ carStyle }}">
+              <sc-for list="{{ faceCards }}" as="f" hint-placeholder-count="4">
+                <button type="button" onClick="{{ f.tap }}" style="{{ f.wrap }}">
+                  <div style="{{ f.window }}">
+                    <div style="{{ f.card }}">
+                      <div style="{{ f.wash }}"></div>
+                      <div style="{{ f.glass }}"></div>
+                      <div style="{{ f.orn }}"></div>
+                      <sc-for list="{{ f.blocks }}" as="b" hint-placeholder-count="3">
+                        <div style="{{ b.wrap }}">
+                          <div style="{{ b.scrim }}"></div>
+                          <div style="{{ b.inner }}">
+                            <sc-for list="{{ b.lines }}" as="l" hint-placeholder-count="2">
+                              <div style="{{ l.style }}">{{ l.text }}</div>
+                            </sc-for>
+                          </div>
+                        </div>
+                      </sc-for>
+                      <div style="{{ f.fold }}"></div>
+                      <div style="{{ f.edge }}"></div>
+                    </div>
+                  </div>
+                  <div style="{{ f.labelStyle }}">{{ f.label }}</div>
+                </button>
+              </sc-for>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:center;gap:6px;padding-top:2px">
+              <sc-for list="{{ dots }}" as="d" hint-placeholder-count="4">
+                <span style="{{ d.style }}"></span>
+              </sc-for>
+            </div>
+            <span style="{{ enlargeHintStyle }}">{{ enlargeHint }}</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;animation:memRise .5s cubic-bezier(.16,1,.3,1) .12s both">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:0 20px">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--foreground)">Om te delen</span>
+              <span style="font-size:12.5px;line-height:1.6;color:var(--muted-foreground);text-wrap:pretty">Drie beelden, gemaakt uit deze kaart. U kiest wat u nodig hebt.</span>
+            </div>
+
+            <div style="padding:0 20px">
+              <div style="display:flex;gap:4px;background:var(--secondary);border-radius:999px;padding:4px">
+                <sc-for list="{{ shareTabs }}" as="t" hint-placeholder-count="3">
+                  <button type="button" onClick="{{ t.tap }}" style="{{ t.style }}">{{ t.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="{{ shareStage }}">
+              <button type="button" onClick="{{ openShareZoom }}" style="{{ shareBox }}">
+                <div style="{{ shareBack }}"></div>
+                <div style="{{ sharePhoto }}"></div>
+                <div style="{{ shareGrad }}"></div>
+                <div style="{{ shareTextWrap }}">
+                  <sc-for list="{{ shareLines }}" as="l" hint-placeholder-count="0">
+                    <div style="{{ l.style }}">{{ l.text }}</div>
+                  </sc-for>
+                </div>
+                <div style="{{ sharePlaceholder }}">{{ sharePlaceholderText }}</div>
+              </button>
+
+              <div style="display:flex;align-items:center;gap:12px;padding:0 2px">
+                <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0">
+                  <span style="font-size:12.5px;line-height:1.5;color:var(--foreground);text-wrap:pretty">{{ shareHint }}</span>
+                  <span style="font-size:11px;color:var(--muted-foreground)">{{ shareSpec }}</span>
+                </div>
+                <button type="button" onClick="{{ downloadShare }}" style="{{ downloadPill }}">
+                  <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="download" size="15" hint-size="15px,15px"></x-import>
+                  Downloaden
+                </button>
+              </div>
+
+              <sc-if value="{{ isWhatsapp }}" hint-placeholder-val="{{ true }}">
+                <div style="{{ msgCard }}">
+                  <div style="display:flex;align-items:baseline;gap:10px">
+                    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground);flex:1">Het bericht</span>
+                    <button type="button" onClick="{{ copyMsg }}" style="{{ copyPill }}">{{ copyLabel }}</button>
+                  </div>
+                  <p style="{{ msgStyle }}">{{ msgText }}</p>
+                  <span style="font-size:11px;line-height:1.55;color:var(--muted-foreground);text-wrap:pretty">Opgebouwd uit de gegevens op de kaart. U kunt het in WhatsApp nog aanpassen.</span>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="{{ footerStyle }}">
+          <div style="display:flex;align-items:center;gap:8px">
+            <button type="button" onClick="{{ tapSend }}" style="{{ sendPill }}">{{ sendLabel }}</button>
+            <button type="button" onClick="{{ tapDownload }}" style="{{ dlPill }}" aria-label="Alles downloaden">
+              <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="download" size="16" hint-size="16px,16px"></x-import>
+              <span style="{{ dlLabel }}">Alles downloaden</span>
+            </button>
+            <button type="button" onClick="{{ tapAdjust }}" style="{{ adjPill }}" aria-label="Iets aanpassen">
+              <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="arrow-left" size="16" hint-size="16px,16px"></x-import>
+              <span style="{{ adjLabel }}">Iets aanpassen</span>
+            </button>
+          </div>
+          <div style="{{ secCapWrap }}"><span style="{{ secCapStyle }}">{{ secCap }}</span></div>
+        </div>
+
+        <div style="{{ infoStyle }}">
+          <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">De belofte</span>
+          <p style="{{ promiseLine }}">Precies zoals u het hier ziet, komt de kaart ook gedrukt uit.</p>
+          <p style="margin:0;font-size:13.5px;line-height:1.65;color:var(--muted-foreground);text-wrap:pretty">De kanten staan op ware verhouding, met de letters op de maat waarop ze gedrukt worden. Tik op een kant om die groot te bekijken.</p>
+          <span style="font-size:12px;line-height:1.55;color:var(--muted-foreground);text-wrap:pretty">{{ infoSpec }}</span>
+          <button type="button" onClick="{{ closeInfo }}" style="align-self:flex-start;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--border-strong);background:transparent;font-size:12.5px;color:var(--foreground);cursor:pointer;margin-top:2px">Duidelijk</button>
+        </div>
+
+        <div style="{{ zoomWrap }}" onClick="{{ closeZoom }}">
+          <div style="{{ zoomLabelStyle }}">{{ zoomLabel }}</div>
+          <div style="{{ zFaceWindow }}">
+            <div style="{{ zFaceCard }}">
+              <div style="{{ zWash }}"></div>
+              <div style="{{ zGlass }}"></div>
+              <div style="{{ zOrn }}"></div>
+              <sc-for list="{{ zBlocks }}" as="b" hint-placeholder-count="0">
+                <div style="{{ b.wrap }}">
+                  <div style="{{ b.scrim }}"></div>
+                  <div style="{{ b.inner }}">
+                    <sc-for list="{{ b.lines }}" as="l" hint-placeholder-count="0">
+                      <div style="{{ l.style }}">{{ l.text }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+              <div style="{{ zFold }}"></div>
+              <div style="{{ zEdge }}"></div>
+            </div>
+          </div>
+          <div style="{{ zShareBox }}">
+            <div style="{{ shareBack }}"></div>
+            <div style="{{ sharePhoto }}"></div>
+            <div style="{{ shareGrad }}"></div>
+            <div style="{{ shareTextWrap }}">
+              <sc-for list="{{ shareLines }}" as="l" hint-placeholder-count="0">
+                <div style="{{ l.style }}">{{ l.text }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="{{ zoomFootStyle }}">{{ zoomFoot }}</div>
+          <button type="button" onClick="{{ zPrev }}" style="{{ arrowPrev }}" aria-label="Vorige kant">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="arrow-left" size="18" hint-size="18px,18px"></x-import>
+          </button>
+          <button type="button" onClick="{{ zNext }}" style="{{ arrowNext }}" aria-label="Volgende kant">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="arrow-right" size="18" hint-size="18px,18px"></x-import>
+          </button>
+        </div>
+
+        <div style="{{ sheetScrim }}" onClick="{{ closeAdjust }}"></div>
+        <div style="{{ sheetStyle }}">
+          <div style="position:relative;display:flex;flex-direction:column;gap:2px;padding:16px 20px 6px">
+            <span style="width:38px;height:4px;border-radius:999px;background:var(--border-strong);position:absolute;left:50%;top:7px;transform:translateX(-50%)"></span>
+            <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Aanpassen</span>
+            <span style="font-size:17px;font-weight:700;color:var(--foreground)">Waar wilt u naar terug?</span>
+          </div>
+          <div style="display:flex;flex-direction:column;padding:6px 12px 22px">
+            <sc-for list="{{ adjustRows }}" as="r" hint-placeholder-count="3">
+              <button type="button" onClick="{{ r.tap }}" style="{{ r.style }}">
+                <span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;text-align:left">
+                  <span style="font-size:14.5px;font-weight:500;color:var(--foreground)">{{ r.label }}</span>
+                  <span style="font-size:11.5px;line-height:1.5;color:var(--muted-foreground)">{{ r.sub }}</span>
+                </span>
+                <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="chevron-right" size="17" hint-size="17px,17px"></x-import>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="{{ checkWrap }}">
+          <div style="flex:none;display:flex;flex-direction:column;gap:12px;padding:52px 20px 12px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <button type="button" onClick="{{ closeCheck }}" style="{{ iconBtn }}" aria-label="Terug naar de drukproef">
+                <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="arrow-left" size="18" hint-size="18px,18px"></x-import>
+              </button>
+              <div style="display:flex;flex-direction:column;gap:1px;min-width:0;flex:1">
+                <span style="font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-foreground)">Voor het versturen</span>
+                <span style="font-size:15px;font-weight:700;color:var(--foreground)">Kloppen de namen?</span>
+              </div>
+              <span style="{{ progCountStyle }}">{{ progCount }}</span>
+            </div>
+            <div style="{{ progTrack }}"><div style="{{ progFill }}"></div></div>
+          </div>
+
+          <div class="mem-scroll" style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:24px;padding:8px 20px 20px">
+            <p style="margin:0;font-size:13.5px;line-height:1.7;color:var(--muted-foreground);text-wrap:pretty">Deze regels komen zo gedrukt op de kaart. Tik op het rondje als een regel klopt, of op Wijzig om te corrigeren.</p>
+
+            <div style="{{ rightsStyle }}">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">{{ rightsWho }}</span>
+              <span style="font-size:12.5px;line-height:1.65;color:var(--foreground);text-wrap:pretty">{{ rightsText }}</span>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Kerngegevens</span>
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <sc-for list="{{ kernRows }}" as="r" hint-placeholder-count="5">
+                  <div style="{{ r.outer }}">
+                    <div style="{{ r.wrap }}">
+                      <button type="button" onClick="{{ r.toggle }}" style="{{ r.dot }}" aria-label="{{ r.aria }}">
+                        <svg style="{{ r.tick }}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                      </button>
+                      <div style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+                        <span style="{{ r.labelStyle }}">{{ r.label }}</span>
+                        <span onClick="{{ r.focus }}" style="{{ r.text }}">{{ r.value }}</span>
+                        <textarea rows="1" value="{{ r.value }}" onChange="{{ r.change }}" style="{{ r.input }}"></textarea>
+                        <span style="{{ r.counterStyle }}">{{ r.counter }}</span>
+                      </div>
+                      <button type="button" onClick="{{ r.act }}" style="{{ r.actStyle }}">{{ r.actLabel }}</button>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:baseline;gap:10px">
+                <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground);flex:1">{{ namesLabel }}</span>
+                <button type="button" onClick="{{ confirmRest }}" style="{{ restBtn }}">{{ restLabel }}</button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <sc-for list="{{ nameRows }}" as="r" hint-placeholder-count="8">
+                  <div style="{{ r.outer }}">
+                    <div style="{{ r.wrap }}">
+                      <button type="button" onClick="{{ r.toggle }}" style="{{ r.dot }}" aria-label="{{ r.aria }}">
+                        <svg style="{{ r.tick }}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                      </button>
+                      <span style="{{ r.guide }}"></span>
+                      <span onClick="{{ r.focus }}" style="{{ r.text }}">{{ r.value }}</span>
+                      <textarea rows="1" value="{{ r.value }}" onChange="{{ r.change }}" style="{{ r.input }}"></textarea>
+                      <span style="{{ r.dagger }}">&#8224;</span>
+                      <button type="button" onClick="{{ r.act }}" style="{{ r.actStyle }}">{{ r.actLabel }}</button>
+                    </div>
+                    <div style="{{ r.panel }}">
+                      <span style="{{ r.counterStyle }}">{{ r.counter }}</span>
+                      <div style="display:flex;flex-direction:column;gap:6px">
+                        <span style="font-size:11px;line-height:1.5;color:var(--muted-foreground)">{{ r.levelHint }}</span>
+                        <div style="display:flex;gap:4px;background:var(--background);border-radius:999px;padding:4px">
+                          <sc-for list="{{ r.levels }}" as="l" hint-placeholder-count="0">
+                            <button type="button" onClick="{{ l.tap }}" style="{{ l.style }}">{{ l.label }}</button>
+                          </sc-for>
+                        </div>
+                      </div>
+                      <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Switch" label="Dit is een relatieregel" hint="Cursief op de kaart, zoals &ldquo;haar man&rdquo; onder een naam." checked="{{ r.isRel }}" onChange="{{ r.toggleRel }}" hint-size="100%,52px"></x-import>
+                      <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Switch" label="Ook overleden" hint="Achter de naam komt een kruisje." checked="{{ r.isDead }}" onChange="{{ r.toggleDead }}" hint-size="100%,52px"></x-import>
+                      <button type="button" onClick="{{ r.remove }}" style="{{ r.delStyle }}">
+                        <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="x" size="15" hint-size="15px,15px"></x-import>
+                        Regel weghalen
+                      </button>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <button type="button" onClick="{{ addName }}" style="{{ addBtn }}">Naam toevoegen</button>
+            </div>
+
+            <div style="{{ logStyle }}">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">In het dossier</span>
+              <span style="font-size:12px;line-height:1.6;color:var(--muted-foreground);text-wrap:pretty">{{ logIntro }}</span>
+              <sc-for list="{{ logRows }}" as="l" hint-placeholder-count="0">
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                  <span style="flex:none;font-size:11px;color:var(--muted-foreground);padding-top:2px">{{ l.at }}</span>
+                  <span style="flex:1;min-width:0;font-size:12.5px;line-height:1.6;color:var(--foreground);text-wrap:pretty">{{ l.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="{{ checkFootStyle }}">
+            <span style="{{ checkNoteStyle }}">{{ checkNote }}</span>
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" variant="primary" onClick="{{ doSend }}" dc-props="{{ checkSendProps }}" hint-size="100%,48px">{{ checkSendLabel }}</x-import>
+          </div>
+        </div>
+
+        <div style="{{ askScrim }}" onClick="{{ closeAsk }}"></div>
+        <div style="{{ askStyle }}">
+          <div style="position:relative;display:flex;flex-direction:column;gap:2px;padding:16px 20px 4px">
+            <span style="width:38px;height:4px;border-radius:999px;background:var(--border-strong);position:absolute;left:50%;top:7px;transform:translateX(-50%)"></span>
+            <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Vraag aan de uitvaartbegeleider</span>
+            <span style="font-size:17px;font-weight:700;color:var(--foreground)">{{ askTitle }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding:8px 20px 24px">
+            <span style="font-size:12.5px;line-height:1.65;color:var(--muted-foreground);text-wrap:pretty">Deze gegevens komen uit de aangifte, daarom wijzigt de uitvaartbegeleider ze. Uw vraag komt in het dossier te staan.</span>
+            <textarea onChange="{{ askChange }}" value="{{ askValue }}" style="{{ askInput }}"></textarea>
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Button" variant="primary" onClick="{{ sendAsk }}" dc-props="{{ fullProps }}" hint-size="100%,48px">Vraag versturen</x-import>
+          </div>
+        </div>
+
+        <div style="{{ toastStyle }}">{{ toast }}</div>
+      </div>
+    </div>
+
+    <div style="{{ reviewCol }}">
+      <div style="display:flex;flex-direction:column;gap:14px;background:rgba(255,255,255,.6);border:1px solid var(--border);border-radius:32px;padding:26px 24px;box-shadow:0 4px 20px -5px rgba(0,0,0,.05)">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Alleen voor deze review</span>
+        <p style="margin:0;font-size:13px;line-height:1.65;color:var(--muted-foreground);text-wrap:pretty">Deze knoppen zitten niet in het product. Ze zetten de drukproef in een andere stand zodat u alles naast elkaar kunt beoordelen.</p>
+        <sc-for list="{{ reviewGroups }}" as="g" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:12px;font-weight:500;color:var(--foreground)">{{ g.label }}</span>
+            <div style="{{ g.track }}">
+              <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="2">
+                <button type="button" onClick="{{ i.tap }}" style="{{ i.style }}">{{ i.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <div style="height:1px;background:var(--border);margin:4px 0"></div>
+        <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Switch" label="Bewerkte foto is al binnen" hint="{{ photoSwitchHint }}" checked="{{ hasPhoto }}" onChange="{{ togglePhoto }}" hint-size="100%,52px"></x-import>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;padding:0 4px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Wat in deze ronde klaar is</span>
+        <sc-for list="{{ notes }}" as="n" hint-placeholder-count="5">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="width:5px;height:5px;border-radius:999px;background:var(--primary);margin-top:8px;flex:none"></span>
+            <span style="font-size:13px;line-height:1.6;color:var(--foreground);text-wrap:pretty">{{ n }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="flex:1;min-width:420px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">De deelvarianten</span>
+        <span style="font-size:14px;color:var(--foreground)">{{ boardTitle }}</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start">
+        <sc-for list="{{ board }}" as="c" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:10px;width:{{ c.width }}">
+            <div style="{{ c.box }}">
+              <div style="{{ c.back }}"></div>
+              <div style="{{ c.photo }}"></div>
+              <div style="{{ c.grad }}"></div>
+              <div style="{{ c.textWrap }}">
+                <sc-for list="{{ c.lines }}" as="l" hint-placeholder-count="0">
+                  <div style="{{ l.style }}">{{ l.text }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span style="font-size:12px;font-weight:500;color:var(--foreground)">{{ c.label }}</span>
+              <span style="font-size:11px;color:var(--muted-foreground)">{{ c.sub }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:4px 0 0;font-size:12px;line-height:1.6;color:var(--muted-foreground);max-width:520px;text-wrap:pretty">De beschermgradient loopt naar nul uit, dekt het hele tekstblok en stopt onder de kin: de hoogte wordt per formaat berekend uit de kadering van het portret. Liggend past een portret niet beeldvullend zonder dat het gezicht onder de woorden komt, dus daar staat de foto rechts met een zachte overvloei en liggen de woorden op papier.</p>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1480,&quot;height&quot;:1080},&quot;startExample&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;greet&quot;,&quot;carien&quot;,&quot;richard&quot;],&quot;default&quot;:&quot;greet&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Startstand&quot;},&quot;startFormat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;gevouwen&quot;,&quot;enkel&quot;],&quot;default&quot;:&quot;gevouwen&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Startstand&quot;},&quot;startRole&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;begeleider&quot;,&quot;familie&quot;],&quot;default&quot;:&quot;begeleider&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Startstand&quot;},&quot;startTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;foto&quot;,&quot;avondwater&quot;,&quot;nachtbloem&quot;,&quot;stilte&quot;,&quot;veldbloei&quot;,&quot;vederlicht&quot;,&quot;gloed&quot;,&quot;dons&quot;],&quot;default&quot;:&quot;stilte&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Startstand&quot;},&quot;showReview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentatie&quot;}}">
+class Component extends DCLogic {
+  state = {
+    ex: this.props.startExample || 'greet',
+    format: this.props.startFormat || 'gevouwen',
+    theme: this.props.startTheme || 'stilte', tint: 0, orn: 'geen', photo: 'volledig', style: 2,
+    lay: { front: 0, inside: 0, back: 0 },
+    shape: { front: 'recht', inside: 'recht' },
+    align: { front: 'center', inside: 'left', back: 'left' },
+    sizes: {}, edits: {}, hasPhoto: true,
+    face: 0, share: 'whatsapp', fade: 1, zoom: null, zi: 0, sec: null,
+    role: this.props.startRole === 'familie' ? 'family' : 'operator',
+    check: false, ok: {}, editRow: null, editFrom: null, ask: null, askText: '', asked: {}, log: [],
+    info: false, adjust: false, sent: false, copied: false, toast: ''
+  };
+
+  componentWillUnmount() { clearTimeout(this._t); clearTimeout(this._f); clearTimeout(this._c); }
+
+  /* ---------------- data, 1:1 met de editor ---------------- */
+
+  get STYLES() {
+    return [
+      { n: 'Ingetogen', d: '"EB Garamond", serif', b: '"EB Garamond", serif', tr: '.02em' },
+      { n: 'Klassiek', d: '"Playfair Display", serif', b: '"Lora", serif', tr: '.01em' },
+      { n: 'Sereen', d: '"Cormorant Garamond", serif', b: '"EB Garamond", serif', tr: '.05em' },
+      { n: 'Statig', d: '"Marcellus", serif', b: '"Crimson Pro", serif', tr: '.08em', caps: true },
+      { n: 'Warm', d: '"Alegreya", serif', b: '"Alegreya Sans", sans-serif', tr: '.01em' },
+      { n: 'Helder', d: '"Tenor Sans", sans-serif', b: '"Lora", serif', tr: '.10em', caps: true },
+      { n: 'Modern', d: '"Karla", sans-serif', b: '"Spectral", serif', tr: '.02em' },
+      { n: 'Sierlijk', d: '"Italiana", serif', b: '"EB Garamond", serif', tr: '.16em', caps: true }
+    ];
+  }
+
+  get THEMES() {
+    return {
+      foto: {
+        n: 'Uit de foto', portrait: 'nana', derive: true,
+        img: 'linear-gradient(165deg,#e2e7de 0%,#c1cbbe 100%)',
+        orn: [['Waas', 'vignette'], ['Nevel', 'bloom'], ['Lijnen', 'lines']],
+        tints: []
+      },
+      avondwater: {
+        n: 'Avondwater', portrait: 'nana',
+        img: 'url(assets/thema-avondwater.jpg)',
+        orn: [['Vloed', 'lines'], ['Riet', 'hatch'], ['Waas', 'vignette']],
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#eef2f5', ink: '#1d2f3d', soft: 'rgba(29,47,61,.62)', scrim: '14,28,40', chip: 'linear-gradient(150deg,#eef2f5,#c9d6de)' },
+          { n: 'Diepblauw', mode: 'dark', paper: '#28455c', ink: '#eaf1f6', soft: 'rgba(234,241,246,.72)', scrim: '10,26,38', chip: 'linear-gradient(150deg,#3d5c74,#22384c)' },
+          { n: 'Donker', mode: 'dark', paper: '#131b23', ink: '#e7ecf1', soft: 'rgba(231,236,241,.66)', scrim: '6,12,18', chip: 'linear-gradient(150deg,#26333f,#0d1319)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#f4f8fb', ink: '#17293a', soft: 'rgba(23,41,58,.6)', scrim: '14,28,40', lift: '246,250,253', chip: 'linear-gradient(150deg,#ffffff,#dbe8f1)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fbfcfd', ink: '#1d2f3d', soft: 'rgba(29,47,61,.58)', scrim: '14,28,40', chip: 'linear-gradient(150deg,#fdfdfe,#eceff2)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#1a2733', ink: '#e9eef2', soft: 'rgba(233,238,242,.62)', scrim: '10,18,26', chip: 'linear-gradient(150deg,#2b3d4c,#141d26)' }
+        ]
+      },
+      nachtbloem: {
+        n: 'Nachtbloem', portrait: 'carien',
+        img: 'url(assets/thema-nachtbloem.jpg)',
+        orn: [['Ranken', 'dots'], ['Bloesem', 'bloom'], ['Nevel', 'vignette']],
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#eff1f7', ink: '#1e2434', soft: 'rgba(30,36,52,.62)', scrim: '18,24,40', chip: 'linear-gradient(150deg,#eff1f7,#c4cade)' },
+          { n: 'Indigo', mode: 'dark', paper: '#2b3d63', ink: '#eef1f8', soft: 'rgba(238,241,248,.72)', scrim: '16,22,42', chip: 'linear-gradient(150deg,#4a5f8c,#222c48)' },
+          { n: 'Donker', mode: 'dark', paper: '#141826', ink: '#e8eaf1', soft: 'rgba(232,234,241,.66)', scrim: '10,12,22', chip: 'linear-gradient(150deg,#25293a,#101320)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#f5f6fb', ink: '#1a2033', soft: 'rgba(26,32,51,.6)', scrim: '18,24,40', lift: '247,248,253', chip: 'linear-gradient(150deg,#ffffff,#dcdfee)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fcfcfd', ink: '#1e2434', soft: 'rgba(30,36,52,.58)', scrim: '18,24,40', chip: 'linear-gradient(150deg,#fdfdfe,#eceef3)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#1b2033', ink: '#eaecf3', soft: 'rgba(234,236,243,.62)', scrim: '12,16,28', chip: 'linear-gradient(150deg,#2c3350,#151928)' }
+        ]
+      },
+      stilte: {
+        n: 'Stilte', portrait: 'nana',
+        img: 'url(assets/thema-stilte.jpg)',
+        orn: [['Lijnen', 'lines'], ['Nevel', 'vignette'], ['Waas', 'bloom']],
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#f8f8f9', ink: '#212124', soft: 'rgba(33,33,36,.6)', scrim: '38,38,40', chip: 'linear-gradient(150deg,#f8f8f9,#d3d4d6)' },
+          { n: 'Zand', mode: 'light', paper: '#efe7da', ink: '#302a22', soft: 'rgba(48,42,34,.62)', scrim: '52,44,32', chip: 'linear-gradient(150deg,#efe7da,#c9bda9)' },
+          { n: 'Donker', mode: 'dark', paper: '#23211f', ink: '#eeece8', soft: 'rgba(238,236,232,.66)', scrim: '14,13,12', chip: 'linear-gradient(150deg,#38352f,#1b1917)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#f7f8f9', ink: '#1c1c1f', soft: 'rgba(28,28,31,.6)', scrim: '38,38,40', lift: '250,250,251', chip: 'linear-gradient(150deg,#ffffff,#e0e1e3)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fcfcfd', ink: '#212124', soft: 'rgba(33,33,36,.58)', scrim: '38,38,40', chip: 'linear-gradient(150deg,#fdfdfe,#ededee)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#1f1e1d', ink: '#eeedeb', soft: 'rgba(238,237,235,.62)', scrim: '16,15,14', chip: 'linear-gradient(150deg,#34322f,#191817)' }
+        ]
+      },
+      veldbloei: {
+        n: 'Veldbloei', portrait: 'carien',
+        img: 'url(assets/thema-veldbloei.jpg)',
+        orn: [['Veld', 'hatch'], ['Bloesem', 'bloom'], ['Waas', 'vignette']],
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#f7f8f9', ink: '#242a2e', soft: 'rgba(36,42,46,.6)', scrim: '34,42,48', chip: 'linear-gradient(150deg,#f7f8f9,#d6dde1)' },
+          { n: 'Nevelblauw', mode: 'light', paper: '#e8eef2', ink: '#1f2a31', soft: 'rgba(31,42,49,.62)', scrim: '26,38,46', chip: 'linear-gradient(150deg,#e8eef2,#b9cad4)' },
+          { n: 'Zandwit', mode: 'light', paper: '#f3ede3', ink: '#2e2a23', soft: 'rgba(46,42,35,.62)', scrim: '44,38,30', chip: 'linear-gradient(150deg,#f3ede3,#d6c9b4)' },
+          { n: 'Donker', mode: 'dark', paper: '#1f2226', ink: '#eceef0', soft: 'rgba(236,238,240,.66)', scrim: '12,14,16', chip: 'linear-gradient(150deg,#2f343a,#171a1d)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#f5f8f9', ink: '#1e262b', soft: 'rgba(30,38,43,.6)', scrim: '34,42,48', lift: '248,251,252', chip: 'linear-gradient(150deg,#ffffff,#dde6ea)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fcfcfd', ink: '#242a2e', soft: 'rgba(36,42,46,.58)', scrim: '34,42,48', chip: 'linear-gradient(150deg,#fdfdfe,#eceff0)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#1d2226', ink: '#ebeef0', soft: 'rgba(235,238,240,.62)', scrim: '12,16,18', chip: 'linear-gradient(150deg,#2e3438,#171b1e)' }
+        ]
+      },
+      vederlicht: {
+        n: 'Vederlicht', portrait: 'nana',
+        img: 'url(assets/thema-vederlicht.jpg)', pos: '50% 62%',
+        orn: [['Pluim', 'hatch'], ['Waas', 'vignette'], ['Dauw', 'dots']],
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#f7f8f8', ink: '#26292b', soft: 'rgba(38,41,43,.6)', scrim: '40,44,46', chip: 'linear-gradient(150deg,#f7f8f8,#d5d9da)' },
+          { n: 'Linnen', mode: 'light', paper: '#f1efe9', ink: '#2d2a25', soft: 'rgba(45,42,37,.62)', scrim: '46,42,36', chip: 'linear-gradient(150deg,#f1efe9,#d2ccc0)' },
+          { n: 'Donker', mode: 'dark', paper: '#212325', ink: '#eef0f0', soft: 'rgba(238,240,240,.66)', scrim: '12,14,15', chip: 'linear-gradient(150deg,#33363a,#181a1c)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#f8f9f9', ink: '#1f2224', soft: 'rgba(31,34,36,.6)', scrim: '40,44,46', lift: '250,251,251', chip: 'linear-gradient(150deg,#ffffff,#e2e5e6)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fcfcfd', ink: '#26292b', soft: 'rgba(38,41,43,.58)', scrim: '40,44,46', chip: 'linear-gradient(150deg,#fdfdfe,#eeeff0)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#1e2022', ink: '#edeeef', soft: 'rgba(237,238,239,.62)', scrim: '14,16,17', chip: 'linear-gradient(150deg,#313437,#181a1b)' }
+        ]
+      },
+      gloed: {
+        n: 'Gloed', portrait: 'richard',
+        img: 'url(assets/thema-gloed.jpg)', pos: '50% 30%',
+        orn: [['Zonlicht', 'vignette'], ['Pluim', 'hatch'], ['Vonk', 'dots']],
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#f8f4ef', ink: '#302620', soft: 'rgba(48,38,32,.62)', scrim: '48,34,24', chip: 'linear-gradient(150deg,#f8f4ef,#e0cdba)' },
+          { n: 'Amber', mode: 'dark', paper: '#5a3a26', ink: '#f8ede3', soft: 'rgba(248,237,227,.74)', scrim: '40,22,12', chip: 'linear-gradient(150deg,#8a5a36,#4a2e1c)' },
+          { n: 'Donker', mode: 'dark', paper: '#1f1a17', ink: '#f1ebe5', soft: 'rgba(241,235,229,.66)', scrim: '14,10,8', chip: 'linear-gradient(150deg,#38291f,#18120f)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#fbf7f2', ink: '#2a201a', soft: 'rgba(42,32,26,.6)', scrim: '48,34,24', lift: '253,250,246', chip: 'linear-gradient(150deg,#ffffff,#eddfd0)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fdfcfb', ink: '#302620', soft: 'rgba(48,38,32,.58)', scrim: '48,34,24', chip: 'linear-gradient(150deg,#fefdfc,#f0eae3)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#241d18', ink: '#efe8e1', soft: 'rgba(239,232,225,.62)', scrim: '16,12,9', chip: 'linear-gradient(150deg,#3a2e24,#1d1712)' }
+        ]
+      },
+      dons: {
+        n: 'Dons', portrait: 'carien',
+        img: 'url(assets/thema-dons.jpg)',
+        orn: [['Dons', 'bloom'], ['Waas', 'vignette'], ['Pluim', 'hatch']],
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#fafaf9', ink: '#2a2825', soft: 'rgba(42,40,37,.6)', scrim: '44,42,38', chip: 'linear-gradient(150deg,#fafaf9,#dcdad5)' },
+          { n: 'Roomwit', mode: 'light', paper: '#f6f1e9', ink: '#302b24', soft: 'rgba(48,43,36,.62)', scrim: '48,42,34', chip: 'linear-gradient(150deg,#f6f1e9,#dccfbd)' },
+          { n: 'Rookgrijs', mode: 'light', paper: '#eceef0', ink: '#262a2e', soft: 'rgba(38,42,46,.62)', scrim: '36,40,44', chip: 'linear-gradient(150deg,#eceef0,#c6cbd0)' },
+          { n: 'Donker', mode: 'dark', paper: '#232221', ink: '#f0efed', soft: 'rgba(240,239,237,.66)', scrim: '13,12,12', chip: 'linear-gradient(150deg,#363431,#1a1918)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#fbfbfa', ink: '#232120', soft: 'rgba(35,33,32,.6)', scrim: '44,42,38', lift: '253,253,252', chip: 'linear-gradient(150deg,#ffffff,#e6e4e0)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fcfcfc', ink: '#2a2825', soft: 'rgba(42,40,37,.58)', scrim: '44,42,38', chip: 'linear-gradient(150deg,#fdfdfd,#efeeec)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#201f1e', ink: '#eeedec', soft: 'rgba(238,237,236,.62)', scrim: '15,14,14', chip: 'linear-gradient(150deg,#333130,#191818)' }
+        ]
+      }
+    };
+  }
+
+  get PORTRAITS() {
+    return {
+      nana: { full: 'assets/nana.jpg', cut: 'assets/nana-cutout.png', pos: '50% 42%', geo: { ai: 0.7067, eye: 0.405, hair: 0.139, chin: 0.62, ex: 0.46, fy: 0.42 } },
+      carien: { full: 'assets/carien.jpg', cut: 'assets/carien-cutout.png', pos: '50% 38%', geo: { ai: 0.6667, eye: 0.353, hair: 0.108, chin: 0.58, ex: 0.49, fy: 0.38 } },
+      richard: { full: 'assets/richard.jpg', cut: 'assets/richard-cutout.png', pos: '50% 38%', geo: { ai: 0.7067, eye: 0.333, hair: 0.067, chin: 0.60, ex: 0.50, fy: 0.38 } }
+    };
+  }
+
+  get PERSONAS() {
+    return {
+      greet: {
+        who: 'Greet, 22 namen', portrait: 'nana',
+        call: 'Greet van Doorn', name: 'Margaretha Johanna van Doorn-Verheij',
+        partner: 'echtgenote van Hendrik van Doorn',
+        born: 'Zwolle, 14 maart 1946', died: 'Deventer, 8 augustus 2026',
+        aanhef: 'Met liefde en dankbaarheid voor alles wat zij ons gaf, delen wij het overlijden van',
+        spreuk: 'Het licht is uit de kamer,\nniet uit ons hart.',
+        plechtigheid: 'De afscheidsdienst is op vrijdag 14 augustus om 14:00 uur in Uitvaartcentrum De Vijverhof, Bergweg 12 te Deventer.',
+        groet: 'U kunt Greet groeten van 13:15 tot 13:45 uur.',
+        condoleren: 'Na de dienst is er gelegenheid tot condoleren in de ontvangkamer.',
+        online: 'Online condoleren kan via memortium.nl/greet',
+        herinnering: 'Wij denken aan de zomers in de tuin, haar handen in de aarde, en aan alles wat zij ons heeft leren zien.',
+        slot: 'Dank voor alle warmte die u ons geeft.',
+        correspondentie: 'Correspondentieadres: Nachtegaallaan 8, 7412 KP Deventer',
+        head: 'Dit melden u met diepe droefheid:',
+        fam: 'Familie Van Doorn  \u00b7  Familie Verheij',
+        begeleider: 'Uitvaartzorg De Vijverhof',
+        names: [
+          { t: 'Hendrik van Doorn', l: 0 }, { t: 'haar man', l: 1, it: true },
+          { t: 'Anneke en Paul', l: 0 }, { t: 'Sanne', l: 1 }, { t: 'Thijs en Loes', l: 1 }, { t: 'Fenna', l: 2 },
+          { t: 'Marijke', l: 0, x: true }, { t: 'Joost en Karin', l: 0 }, { t: 'Bram', l: 1 }, { t: 'Wies', l: 1 },
+          { t: 'Elske en Ruud', l: 0 }, { t: 'Nout', l: 1 }, { t: 'Fedde', l: 1 }, { t: 'Roos', l: 1 },
+          { t: 'haar kinderen en kleinkinderen', l: 0, it: true },
+          { t: 'Riek Verheij', l: 0 }, { t: 'haar zuster', l: 1, it: true },
+          { t: 'Jan Verheij', l: 0, x: true }, { t: 'Truus van Doorn-Bakker', l: 0 },
+          { t: 'en verder alle neven en nichten', l: 0, it: true }
+        ]
+      },
+      carien: {
+        who: 'Carien, 3 namen', portrait: 'carien',
+        call: 'Carien Bosman', name: 'Carien Bosman-de Vries',
+        partner: 'weduwe van Ton Bosman',
+        born: 'Haarlem, 2 juni 1958', died: 'Bloemendaal, 3 augustus 2026',
+        aanhef: 'In stilte, en met een hart vol herinneringen, laten wij u weten dat is overleden',
+        spreuk: 'Zij liep het liefst\nwaar de wind stond.',
+        plechtigheid: 'Het afscheid is in besloten kring.',
+        groet: '', condoleren: '',
+        online: 'Online condoleren kan via memortium.nl/carien',
+        herinnering: 'Zij hield van de duinen bij avond en van iedereen die zij daar meenam.',
+        slot: 'Wij nemen in stilte afscheid.',
+        correspondentie: 'Correspondentieadres: Duinlaan 14, 2061 XS Bloemendaal',
+        head: 'Dit melden u:', fam: 'Familie Bosman',
+        begeleider: 'Uitvaartzorg Duin en Berg',
+        names: [{ t: 'Sander', l: 0 }, { t: 'Fleur', l: 0 }, { t: 'haar kinderen', l: 0, it: true }]
+      },
+      richard: {
+        who: 'Richard, 40 namen', portrait: 'richard',
+        call: 'Richard Kastelein', name: 'Richard Johannes Kastelein',
+        partner: 'echtgenoot van Mia Kastelein-Peeters',
+        born: 'Sittard, 11 januari 1951', died: 'Maastricht, 6 augustus 2026',
+        aanhef: 'Vol dankbaarheid voor het leven dat hij met ons deelde, geven wij u kennis van het overlijden van',
+        spreuk: 'Wat hij bouwde,\nstaat nog overeind.',
+        plechtigheid: 'De uitvaartdienst is op zaterdag 15 augustus om 10:30 uur in de Sint-Martinuskerk, Kerkplein 3 te Maastricht.',
+        groet: 'U kunt Richard groeten op vrijdag van 19:00 tot 20:00 uur.',
+        condoleren: 'Na de dienst is er gelegenheid tot condoleren in de pastorie.',
+        online: 'Online condoleren kan via memortium.nl/richard',
+        herinnering: 'Zijn werkplaats, zijn koffie om vier uur, zijn geduld met ons allemaal.',
+        slot: 'Wij zijn dankbaar dat wij hem mochten hebben.',
+        correspondentie: 'Correspondentieadres: Ambyerstraat 71, 6225 EE Maastricht',
+        head: 'Dit melden u met diepe droefheid:',
+        fam: 'Familie Kastelein  \u00b7  Familie Peeters',
+        begeleider: 'Uitvaartzorg Sint-Martinus',
+        names: [
+          { t: 'Mia Kastelein-Peeters', l: 0 }, { t: 'zijn vrouw', l: 1, it: true },
+          { t: 'Bart en Ilse', l: 0 }, { t: 'Jorn', l: 1 }, { t: 'Sofie en Tim', l: 1 }, { t: 'Lieve', l: 2 }, { t: 'Otto', l: 2 },
+          { t: 'Ellen en Marc', l: 0 }, { t: 'Daan', l: 1 }, { t: 'Nina', l: 1 }, { t: 'Ties en Fem', l: 1 }, { t: 'Juul', l: 2 },
+          { t: 'Pieter', l: 0, x: true }, { t: 'Hanne en Joris', l: 0 }, { t: 'Bo', l: 1 }, { t: 'Sem', l: 1 }, { t: 'Lotte en Kees', l: 1 }, { t: 'Mees', l: 2 }, { t: 'Roan', l: 2 },
+          { t: 'Frank en Suus', l: 0 }, { t: 'Vera', l: 1 }, { t: 'Wout', l: 1 },
+          { t: 'zijn kinderen, kleinkinderen en achterkleinkinderen', l: 0, it: true },
+          { t: 'Jos Kastelein', l: 0 }, { t: 'Ans Kastelein-Smeets', l: 0 }, { t: 'Wil Peeters', l: 0, x: true },
+          { t: 'Netty Peeters-Janssen', l: 0 }, { t: 'Theo Peeters', l: 0 }, { t: 'Riet Peeters-Coenen', l: 0 },
+          { t: 'zijn broers, zussen, zwagers en schoonzussen', l: 0, it: true },
+          { t: 'Guus en Marja', l: 0 }, { t: 'Loek en Trees', l: 0 }, { t: 'Sjef', l: 0 }, { t: 'Annie', l: 0, x: true },
+          { t: 'Hub en Door', l: 0 }, { t: 'Math en Els', l: 0 }, { t: 'Zef en Bep', l: 0 },
+          { t: 'en alle neven en nichten', l: 0, it: true }
+        ]
+      }
+    };
+  }
+
+  get PHOTO_PALETTES() {
+    return {
+      nana: {
+        tone: 'Zacht groen',
+        img: 'radial-gradient(130% 95% at 28% 16%,#f4f6f1 0%,rgba(244,246,241,0) 58%),radial-gradient(112% 86% at 80% 86%,#6f7a6d 0%,rgba(111,122,109,0) 62%),linear-gradient(165deg,#e2e7de 0%,#c1cbbe 100%)',
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#f4f5f2', ink: '#252723', soft: 'rgba(37,39,35,.6)', scrim: '38,42,36', chip: 'linear-gradient(150deg,#f4f5f2,#d3d8cf)' },
+          { n: 'Zacht groen', mode: 'light', paper: '#e9eee9', ink: '#232a25', soft: 'rgba(35,42,37,.62)', scrim: '32,40,34', chip: 'linear-gradient(150deg,#e9eee9,#bfcbbf)' },
+          { n: 'Donker', mode: 'dark', paper: '#22241f', ink: '#eef0ea', soft: 'rgba(238,240,234,.66)', scrim: '13,15,12', chip: 'linear-gradient(150deg,#343830,#191b17)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#f6f7f4', ink: '#1f211d', soft: 'rgba(31,33,29,.6)', scrim: '38,42,36', lift: '249,250,247', chip: 'linear-gradient(150deg,#ffffff,#e1e5dd)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fcfcfb', ink: '#252723', soft: 'rgba(37,39,35,.58)', scrim: '38,42,36', chip: 'linear-gradient(150deg,#fdfdfc,#eef0eb)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#1f211d', ink: '#edefe9', soft: 'rgba(237,239,233,.62)', scrim: '14,16,13', chip: 'linear-gradient(150deg,#31352d,#181a16)' }
+        ]
+      },
+      carien: {
+        tone: 'Berry',
+        img: 'radial-gradient(125% 92% at 24% 18%,#f7f0ea 0%,rgba(247,240,234,0) 56%),radial-gradient(118% 90% at 82% 84%,#4a2135 0%,rgba(74,33,53,0) 64%),linear-gradient(160deg,#e8dfdb 0%,#bca7ab 100%)',
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#f7f4f6', ink: '#2a2226', soft: 'rgba(42,34,38,.6)', scrim: '44,32,38', chip: 'linear-gradient(150deg,#f7f4f6,#dcd0d7)' },
+          { n: 'Berry', mode: 'dark', paper: '#5d2540', ink: '#f8ecf2', soft: 'rgba(248,236,242,.74)', scrim: '40,14,26', chip: 'linear-gradient(150deg,#873a5e,#4a1c33)' },
+          { n: 'Loofgroen', mode: 'light', paper: '#eaefe8', ink: '#242b23', soft: 'rgba(36,43,35,.62)', scrim: '34,42,32', chip: 'linear-gradient(150deg,#eaefe8,#c2cfbf)' },
+          { n: 'Donker', mode: 'dark', paper: '#221c20', ink: '#f0ecee', soft: 'rgba(240,236,238,.66)', scrim: '14,10,12', chip: 'linear-gradient(150deg,#352c31,#1a1518)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#faf7f9', ink: '#241d21', soft: 'rgba(36,29,33,.6)', scrim: '44,32,38', lift: '252,250,251', chip: 'linear-gradient(150deg,#ffffff,#e8dee4)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fdfcfd', ink: '#2a2226', soft: 'rgba(42,34,38,.58)', scrim: '44,32,38', chip: 'linear-gradient(150deg,#fefdfe,#f0ebee)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#221b1f', ink: '#eeeaec', soft: 'rgba(238,234,236,.62)', scrim: '15,11,13', chip: 'linear-gradient(150deg,#372d33,#1a1417)' }
+        ]
+      },
+      richard: {
+        tone: 'Nachtblauw',
+        img: 'radial-gradient(130% 95% at 30% 14%,#f1f4f7 0%,rgba(241,244,247,0) 58%),radial-gradient(112% 86% at 78% 88%,#26354b 0%,rgba(38,53,75,0) 62%),linear-gradient(168deg,#dfe6ec 0%,#b2bfcb 100%)',
+        tints: [
+          { n: 'Licht', mode: 'light', paper: '#f3f5f7', ink: '#212630', soft: 'rgba(33,38,48,.6)', scrim: '30,38,52', chip: 'linear-gradient(150deg,#f3f5f7,#ccd4dd)' },
+          { n: 'Nachtblauw', mode: 'dark', paper: '#26354b', ink: '#ecf1f7', soft: 'rgba(236,241,247,.73)', scrim: '12,20,32', chip: 'linear-gradient(150deg,#3d5171,#1f2c3e)' },
+          { n: 'Donker', mode: 'dark', paper: '#191c21', ink: '#eceef2', soft: 'rgba(236,238,242,.66)', scrim: '10,12,16', chip: 'linear-gradient(150deg,#2a2f38,#14161a)' },
+          { n: 'Hemels', mode: 'light', inv: true, paper: '#f6f8fa', ink: '#1c212a', soft: 'rgba(28,33,42,.6)', scrim: '30,38,52', lift: '249,251,252', chip: 'linear-gradient(150deg,#ffffff,#dce3ea)' },
+          { n: 'Papier licht', mode: 'light', bare: true, paper: '#fcfcfd', ink: '#212630', soft: 'rgba(33,38,48,.58)', scrim: '30,38,52', chip: 'linear-gradient(150deg,#fdfdfe,#ecEEF1)' },
+          { n: 'Papier donker', mode: 'dark', bare: true, paper: '#1c2027', ink: '#eaedf1', soft: 'rgba(234,237,241,.62)', scrim: '11,14,19', chip: 'linear-gradient(150deg,#2d333d,#161a1f)' }
+        ]
+      }
+    };
+  }
+
+  get SHARES() {
+    return [
+      { k: 'whatsapp', n: 'WhatsApp', ar: 1, spec: '1080 \u00d7 1080 px', file: '-vierkant.jpg', hint: 'De foto los, vierkant en zonder tekst, plus het bericht om door te sturen.' },
+      { k: 'instagram', n: 'Instagram', ar: 0.8, spec: '1080 \u00d7 1350 px', file: '-instagram.jpg', hint: 'De foto met de naam en de data erop.' },
+      { k: 'facebook', n: 'Facebook', ar: 1200 / 627, spec: '1200 \u00d7 627 px', file: '-facebook.jpg', hint: 'Het portret rechts, met alleen de spreuk ernaast.' }
+    ];
+  }
+
+  /* ---------------- helpers ---------------- */
+
+  thFor(st, k) {
+    const base = this.THEMES[k];
+    if (!base || !base.derive) return base;
+    const pal = this.PHOTO_PALETTES[this.con(st).portrait] || this.PHOTO_PALETTES.nana;
+    return Object.assign({}, base, { img: pal.img, pos: 'center', tints: pal.tints, tone: pal.tone });
+  }
+
+  th(st) { return this.thFor(st, st.theme); }
+  ti(st) { const t = this.th(st); return t.tints[Math.min(st.tint, t.tints.length - 1)]; }
+  sy(st) { return this.STYLES[st.style]; }
+  con(st) { return Object.assign({}, this.PERSONAS[st.ex], st.edits[st.ex] || {}); }
+  pages(st) { return st.format === 'gevouwen' ? ['front', 'inside', 'back'] : ['front', 'back']; }
+  pageW(page) { return page === 'inside' ? 210 : 105; }
+  pageLabel(p) { return p === 'front' ? 'Voorkant' : p === 'inside' ? 'Binnenzijde' : 'Achterkant'; }
+  faceName(f) { return f === 'front' ? 'Voorkant' : f === 'left' ? 'Binnenzijde links' : f === 'right' ? 'Binnenzijde rechts' : 'Achterkant'; }
+
+  stepFactorFor(id, v) {
+    if (id === 'spreuk') return v < 0 ? 1 : v === 0 ? 1.15 : v === 1 ? 1.32 : 1.5;
+    return v < 0 ? 0.87 : v > 0 ? 1.15 : 1;
+  }
+
+  step(st, id) { return this.stepFactorFor(id, st.sizes[st.ex + ':' + id] || 0); }
+  fs(st, page, n, id) { return (n * (35.28 / this.pageW(page)) * this.step(st, id)).toFixed(2) + 'cqw'; }
+  gap(page, n) { return (n * (35.28 / this.pageW(page))).toFixed(2) + 'cqw'; }
+  portraitOf(st) { const c = this.con(st); return this.PORTRAITS[c.portrait] || this.PORTRAITS.nana; }
+  frontHasPortrait(st) { return !(st.format === 'gevouwen' && st.lay.front === 5); }
+
+  rgba(hex, a) {
+    const h = hex.replace('#', '');
+    const r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+  }
+
+  framedLayout(st, page) {
+    if (page === 'front') { const RM = { 14: 2, 15: 3, 16: 2, 17: 10, 20: 2, 21: 10, 22: 2, 23: 2 }; const L = RM[st.lay.front] !== undefined ? RM[st.lay.front] : st.lay.front; return [2, 3, 10, 18, 19].indexOf(L) >= 0; }
+    if (page === 'inside') { const L = st.lay.inside; return L >= 10 && L !== 13; }
+    return false;
+  }
+
+  ornBg(kind, ink) {
+    const c = (a) => 'rgba(' + ink + ',' + a + ')';
+    if (kind === 'lines') return { backgroundImage: 'repeating-linear-gradient(0deg,' + c(.09) + ' 0 1px, transparent 1px 13px)' };
+    if (kind === 'hatch') return { backgroundImage: 'repeating-linear-gradient(58deg,' + c(.07) + ' 0 1px, transparent 1px 11px)' };
+    if (kind === 'dots') return { backgroundImage: 'radial-gradient(' + c(.13) + ' .8px, transparent 1.1px)', backgroundSize: '15px 15px' };
+    if (kind === 'bloom') return { backgroundImage: 'radial-gradient(38% 26% at 78% 16%,' + c(.14) + ', transparent 70%), radial-gradient(30% 22% at 16% 62%,' + c(.11) + ', transparent 72%), radial-gradient(22% 16% at 56% 88%,' + c(.1) + ', transparent 74%)' };
+    return { backgroundImage: 'radial-gradient(78% 52% at 50% 104%,' + c(.16) + ', transparent 72%)' };
+  }
+
+  layers(st, page) {
+    const t = this.th(st), ti = this.ti(st);
+    const wash = { position: 'absolute', inset: '-14%', backgroundImage: t.img, backgroundSize: 'cover', backgroundPosition: t.pos || 'center', backgroundRepeat: 'no-repeat' };
+    let glass = { display: 'none' };
+    if (ti.bare) {
+      const o0 = t.orn.find((x) => x[0] === st.orn);
+      return {
+        wash: { display: 'none' },
+        glass: { position: 'absolute', inset: 0, background: ti.paper },
+        orn: o0 ? Object.assign({ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: page === 'front' ? .4 : .5 }, this.ornBg(o0[1], ti.scrim)) : { display: 'none' }
+      };
+    }
+    if (page === 'inside') {
+      wash.filter = 'blur(32px) saturate(128%)';
+      wash.transform = 'scale(1.42)';
+      glass = { position: 'absolute', inset: 0, background: 'linear-gradient(160deg,' + this.rgba(ti.paper, ti.mode === 'dark' ? .58 : .5) + ',' + this.rgba(ti.paper, ti.mode === 'dark' ? .76 : .7) + ')', backdropFilter: 'blur(10px) saturate(118%)', WebkitBackdropFilter: 'blur(10px) saturate(118%)' };
+    } else if (page === 'back') {
+      wash.filter = 'blur(3px) saturate(112%)';
+      wash.transform = 'scale(-1.14,1.14)';
+      glass = { position: 'absolute', inset: 0, background: 'linear-gradient(200deg,' + this.rgba(ti.paper, ti.mode === 'dark' ? .5 : .56) + ',' + this.rgba(ti.paper, ti.mode === 'dark' ? .7 : .74) + ')', backdropFilter: 'blur(4px) saturate(118%)', WebkitBackdropFilter: 'blur(4px) saturate(118%)' };
+    } else if (ti.mode === 'dark') {
+      glass = { position: 'absolute', inset: 0, background: 'linear-gradient(180deg,' + this.rgba(ti.paper, .18) + ',' + this.rgba(ti.paper, .42) + ')' };
+    } else if (st.tint > 0) {
+      glass = { position: 'absolute', inset: 0, background: this.rgba(ti.paper, .28), mixBlendMode: 'screen' };
+    }
+    const o = t.orn.find((x) => x[0] === st.orn);
+    const orn = o ? Object.assign({ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: page === 'front' ? .5 : .75 }, this.ornBg(o[1], ti.scrim)) : { display: 'none' };
+    return { wash: wash, glass: glass, orn: orn };
+  }
+
+  line(st, page, text, o) {
+    o = o || {};
+    const ti = this.ti(st), sy = this.sy(st);
+    const s = {
+      fontFamily: o.display ? sy.d : sy.b,
+      fontSize: this.fs(st, page, o.size || 8, o.id || 'body'),
+      lineHeight: o.lh || (o.display ? 1.15 : 1.55),
+      letterSpacing: o.display ? sy.tr : (o.tr || '.005em'),
+      color: o.soft ? (o.on && !(ti.inv || ti.bare) ? 'rgba(255,255,255,.76)' : ti.soft) : (o.on ? ((ti.inv || ti.bare) ? ti.ink : 'rgba(255,255,255,.94)') : ti.ink),
+      fontStyle: o.it ? 'italic' : 'normal',
+      fontWeight: o.w || 400,
+      textTransform: o.display && sy.caps ? 'uppercase' : 'none',
+      whiteSpace: 'pre-line',
+      overflowWrap: 'break-word',
+      paddingLeft: o.indent ? (o.indent * 1.9) + 'em' : 0,
+      margin: 0
+    };
+    if (o.on && !ti.bare) s.textShadow = ti.inv ? '0 0 7px rgba(' + (ti.lift || '252,252,253') + ',.7),0 0 18px rgba(' + (ti.lift || '252,252,253') + ',.45)' : '0 1px 10px rgba(' + ti.scrim + ',.5)';
+    return { text: text, style: s };
+  }
+
+  scrim(st, side) {
+    const ti = this.ti(st), inv = !!ti.inv;
+    if (ti.bare) {
+      const p = (a) => this.rgba(ti.paper, a);
+      const g = (dir, a) => 'linear-gradient(to ' + dir + ',' + p(a) + ' 0%,' + p(a - .1) + ' ' + (dir === 'right' ? 40 : 35) + '%,' + p(.38) + ' 59%,' + p(.13) + ' 81%,' + p(0) + ' 100%)';
+      if (side === 'top') return { position: 'absolute', left: 0, right: 0, top: 0, height: '148%', pointerEvents: 'none', background: g('bottom', .72) };
+      if (side === 'left') return { position: 'absolute', left: 0, top: 0, bottom: 0, width: '150%', pointerEvents: 'none', background: g('right', .74) };
+      return { position: 'absolute', left: 0, right: 0, bottom: 0, height: '152%', pointerEvents: 'none', background: g('top', .76) };
+    }
+    const c = (a) => 'rgba(' + (inv ? (ti.lift || '252,252,253') : ti.scrim) + ',' + a + ')';
+    if (side === 'top') {
+      return inv ? {
+        position: 'absolute', left: 0, right: 0, top: 0, height: '148%', pointerEvents: 'none',
+        background: 'linear-gradient(to bottom,' + c(.72) + ' 0%,' + c(.62) + ' 34%,' + c(.38) + ' 58%,' + c(.13) + ' 80%,' + c(0) + ' 100%)'
+      } : {
+        position: 'absolute', left: 0, right: 0, top: 0, height: '250%', pointerEvents: 'none',
+        background: 'linear-gradient(to bottom,' + c(.5) + ' 0%,' + c(.3) + ' 28%,' + c(.1) + ' 62%,' + c(0) + ' 100%)'
+      };
+    }
+    if (side === 'left') {
+      return inv ? {
+        position: 'absolute', left: 0, top: 0, bottom: 0, width: '150%', pointerEvents: 'none',
+        background: 'linear-gradient(to right,' + c(.74) + ' 0%,' + c(.64) + ' 40%,' + c(.3) + ' 70%,' + c(0) + ' 100%)'
+      } : {
+        position: 'absolute', left: 0, top: 0, bottom: 0, width: '240%', pointerEvents: 'none',
+        background: 'linear-gradient(to right,' + c(.52) + ' 0%,' + c(.3) + ' 40%,' + c(0) + ' 100%)'
+      };
+    }
+    return inv ? {
+      position: 'absolute', left: 0, right: 0, bottom: 0, height: '152%', pointerEvents: 'none',
+      background: 'linear-gradient(to top,' + c(.76) + ' 0%,' + c(.66) + ' 36%,' + c(.4) + ' 60%,' + c(.14) + ' 82%,' + c(0) + ' 100%)'
+    } : {
+      position: 'absolute', left: 0, right: 0, bottom: 0, height: '245%', pointerEvents: 'none',
+      background: 'linear-gradient(to top,' + c(.7) + ' 0%,' + c(.5) + ' 26%,' + c(.2) + ' 60%,' + c(0) + ' 100%)'
+    };
+  }
+
+  blk(st, page, id, rect, lines, o) {
+    o = o || {};
+    const align = o.align || st.align[page] || 'center';
+    const wrap = Object.assign({
+      position: 'absolute', display: 'flex', flexDirection: 'column',
+      gap: this.gap(page, o.gap == null ? 2.4 : o.gap),
+      textAlign: align,
+      alignItems: align === 'center' ? 'center' : align === 'right' ? 'flex-end' : 'flex-start',
+      justifyContent: o.jc || 'flex-end'
+    }, rect);
+    if (o.pad) wrap.padding = o.pad;
+    if (o.bg) Object.assign(wrap, o.bg);
+    let inner;
+    if (o.cols > 1) {
+      inner = { position: 'relative', display: 'block', columnCount: o.cols, columnGap: this.gap(page, 5), width: '100%', textAlign: align };
+      lines = lines.map((l) => ({ text: l.text, style: Object.assign({}, l.style, { marginBottom: this.gap(page, .9), breakInside: 'avoid' }) }));
+    } else {
+      inner = { position: 'relative', display: 'flex', flexDirection: 'column', gap: this.gap(page, o.gap == null ? 2.4 : o.gap), width: '100%', alignItems: wrap.alignItems, textAlign: align };
+    }
+    return { id: id, wrap: wrap, inner: inner, lines: lines, scrim: o.on ? this.scrim(st, o.scrimSide || 'bottom') : null };
+  }
+
+  rectAspect(page, rect) {
+    const W = this.pageW(page), H = 148;
+    const n = (v) => (v === undefined || v === null) ? 0 : (typeof v === 'number' ? v : parseFloat(v) || 0);
+    if (rect.inset !== undefined) return W / H;
+    const w = rect.width !== undefined ? W * n(rect.width) / 100 : W * (100 - n(rect.left) - n(rect.right)) / 100;
+    const h = rect.height !== undefined ? H * n(rect.height) / 100 : H * (100 - n(rect.top) - n(rect.bottom)) / 100;
+    return (w > 0 && h > 0) ? w / h : W / H;
+  }
+
+  crop(p, ac) {
+    const g = p.geo;
+    if (!g) return { pos: p.pos, chin: .62 };
+    const k = Math.min(1, g.ai / ac);
+    const kx = Math.min(1, ac / g.ai);
+    const clamp = (v) => Math.max(0, Math.min(1, v));
+    let py = g.fy;
+    if (k < 0.995) {
+      const hairMax = (g.hair - 0.045 * k) / (1 - k);
+      const chinMin = (g.chin + 0.03 * k - k) / (1 - k);
+      let v = (g.eye - 0.36 * k) / (1 - k);
+      v = Math.max(v, Math.min(chinMin, hairMax));
+      py = clamp(Math.min(v, hairMax));
+    }
+    const px = kx < 0.995 ? clamp((g.ex - 0.5 * kx) / (1 - kx)) : 0.5;
+    const chin = k < 0.995 ? (g.chin - py * (1 - k)) / k : g.chin;
+    return { pos: (px * 100).toFixed(1) + '% ' + (py * 100).toFixed(1) + '%', chin: chin };
+  }
+
+  framePos(p, page, rect) { return this.crop(p, this.rectAspect(page, rect)).pos; }
+
+  photoBlock(st, page, rect, o) {
+    o = o || {};
+    const p = this.portraitOf(st), ti = this.ti(st);
+    const cut = st.photo === 'vrijgezet';
+    const wrap = Object.assign({ position: 'absolute', overflow: 'hidden' }, rect);
+    if (o.round === 'ovaal') wrap.borderRadius = '50%';
+    else if (o.round === 'boog') wrap.borderRadius = '50% 50% 3% 3% / 34% 34% 3% 3%';
+    else if (o.round) wrap.borderRadius = '3%';
+    if (!st.hasPhoto) {
+      wrap.background = this.rgba(ti.paper, .5);
+      wrap.border = '1px solid ' + this.rgba(ti.ink, .14);
+      wrap.display = 'flex';
+      wrap.alignItems = 'center';
+      wrap.justifyContent = 'center';
+      wrap.padding = '6%';
+      return {
+        id: 'foto', wrap: wrap, inner: { display: 'flex', flexDirection: 'column', gap: this.gap(page, 3), textAlign: 'center', alignItems: 'center' },
+        lines: [this.line(st, page, 'Zodra wij de foto hebben, staat het portret hier binnen 24 uur.', { size: 7, soft: true, it: true, lh: 1.6 })],
+        scrim: null
+      };
+    }
+    wrap.backgroundImage = 'url(' + (cut ? p.cut : p.full) + ')';
+    wrap.backgroundSize = 'cover';
+    wrap.backgroundPosition = this.framePos(p, page, rect);
+    wrap.backgroundRepeat = 'no-repeat';
+    if (o.frame) {
+      const X = 'linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(0,0,0,.5) 3%,rgba(0,0,0,.92) 8%,#000 13%,#000 87%,rgba(0,0,0,.92) 92%,rgba(0,0,0,.5) 97%,rgba(0,0,0,0) 100%)';
+      const Y = 'linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.5) 2%,rgba(0,0,0,.92) 5.5%,#000 9%,#000 91%,rgba(0,0,0,.92) 94.5%,rgba(0,0,0,.5) 98%,rgba(0,0,0,0) 100%)';
+      const m = o.round === 'ovaal'
+        ? ['radial-gradient(closest-side at 50% 50%,#000 54%,rgba(0,0,0,.9) 74%,rgba(0,0,0,.45) 89%,rgba(0,0,0,0) 100%)']
+        : o.round === 'boog'
+          ? [X, 'radial-gradient(115% 122% at 50% 112%,#000 56%,rgba(0,0,0,.9) 78%,rgba(0,0,0,.42) 92%,rgba(0,0,0,0) 100%)', 'linear-gradient(to top,rgba(0,0,0,0) 0%,rgba(0,0,0,.5) 2%,rgba(0,0,0,.92) 5.5%,#000 10%)']
+          : [X, Y];
+      const mi = m.join(',');
+      wrap.maskImage = mi; wrap.WebkitMaskImage = mi;
+      wrap.maskSize = m.map(() => '100% 100%').join(','); wrap.WebkitMaskSize = wrap.maskSize;
+      wrap.maskRepeat = 'no-repeat'; wrap.WebkitMaskRepeat = 'no-repeat';
+      if (m.length > 1) { wrap.maskComposite = 'intersect'; wrap.WebkitMaskComposite = 'source-in'; }
+      wrap.filter = 'drop-shadow(0 3px 15px rgba(' + ti.scrim + ',.20))';
+    }
+    if (o.fade) {
+      const m = 'linear-gradient(to ' + (o.fade === 'left' ? 'right' : 'left') + ',rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 3%,rgba(0,0,0,.9) 6%,#000 9%)';
+      wrap.maskImage = m; wrap.WebkitMaskImage = m;
+    }
+    return { id: 'foto', wrap: wrap, inner: null, lines: [], scrim: null };
+  }
+
+  panel(st, rect, strength) {
+    const ti = this.ti(st);
+    return {
+      id: 'panel', scrim: null, inner: null, lines: [],
+      wrap: Object.assign({
+        position: 'absolute',
+        background: this.rgba(ti.paper, strength == null ? .72 : strength),
+        backdropFilter: 'blur(14px) saturate(115%)', WebkitBackdropFilter: 'blur(14px) saturate(115%)'
+      }, rect)
+    };
+  }
+
+  veil(st, rect, dir, soft) {
+    const ti = this.ti(st);
+    const p = (a) => this.rgba(ti.paper, a);
+    const to = dir === 'down' ? 'bottom' : 'top';
+    const g = soft
+      ? p(.82) + ' 0%,' + p(.7) + ' 44%,' + p(.38) + ' 72%,' + p(.12) + ' 90%,' + p(0) + ' 100%'
+      : p(.93) + ' 0%,' + p(.91) + ' 78%,' + p(.62) + ' 90%,' + p(.2) + ' 97%,' + p(0) + ' 100%';
+    return {
+      id: 'veil', scrim: null, inner: null, lines: [],
+      wrap: Object.assign({ position: 'absolute', pointerEvents: 'none', background: 'linear-gradient(to ' + to + ',' + g + ')' }, rect)
+    };
+  }
+
+  nameLines(st, page, o) {
+    o = o || {};
+    const c = this.con(st);
+    const big = o.size || 19;
+    const out = [this.line(st, page, c.call, { display: true, size: big, id: 'naam', on: o.on, lh: 1.1 })];
+    out.push(this.line(st, page, c.name, { size: 7.2, soft: !o.on, on: o.on, id: 'naam', tr: '.04em' }));
+    if (c.partner) out.push(this.line(st, page, c.partner, { size: 7.2, soft: !o.on, on: o.on, id: 'naam', it: true }));
+    out.push(this.line(st, page, '* ' + c.born + '\u2003\u2020 ' + c.died, { size: 7.6, on: o.on, id: 'naam', lh: 1.5 }));
+    return out;
+  }
+
+  spreukLines(st, page, o) {
+    o = o || {};
+    return [this.line(st, page, this.con(st).spreuk, { it: true, size: o.size || 9.8, id: 'spreuk', on: o.on, lh: 1.65, display: o.display })];
+  }
+
+  farewellLines(st, page) {
+    const c = this.con(st), out = [];
+    out.push(this.line(st, page, c.plechtigheid, { size: 8, id: 'afscheid', lh: 1.6 }));
+    if (c.groet) out.push(this.line(st, page, c.groet, { size: 8, id: 'afscheid', lh: 1.6 }));
+    if (c.condoleren) out.push(this.line(st, page, c.condoleren, { size: 8, id: 'afscheid', lh: 1.6 }));
+    return out;
+  }
+
+  namesLines(st, page, availMm) {
+    const c = this.con(st);
+    const list = c.names || [];
+    const rows = list.length + (c.head ? 1 : 0) + (c.fam ? 1 : 0);
+    const avail = availMm || 110;
+    const minPt = 5.7;
+    const lineMm = (pt) => pt * 0.5292 + 0.42;
+    const maxPer = Math.max(4, Math.floor(avail / lineMm(minPt)));
+    const cols = Math.min(3, Math.max(1, Math.ceil(rows / maxPer)));
+    const per = Math.ceil(rows / cols);
+    const step = this.step(st, 'namen');
+    const base = (rows > 30 ? 7.4 : rows > 18 ? 7.9 : rows > 10 ? 8.3 : 8.8) * step;
+    const fit = ((avail / per) - 0.42) / 0.5292;
+    const size = Math.max(minPt, Math.min(base, fit));
+    const out = [];
+    if (c.head) out.push(this.line(st, page, c.head, { size: size * .95, soft: true, id: 'fit', lh: 1.5 }));
+    list.forEach((r) => {
+      out.push(this.line(st, page, r.t + (r.x ? '  \u2020' : ''), {
+        size: r.it ? size * .92 : size, it: r.it, soft: r.it, indent: cols > 1 ? Math.min(r.l, 2) : r.l, id: 'fit', lh: 1.45
+      }));
+    });
+    if (c.fam) out.push(this.line(st, page, c.fam, { size: size * .95, id: 'fit', lh: 1.5, tr: '.06em' }));
+    return { lines: out, cols: cols };
+  }
+
+  blocksFor(st, page) {
+    const c = this.con(st), out = [];
+    const A = st.align[page];
+    const T = (id, rect, lines, o) => out.push(this.blk(st, page, id, rect, lines, o));
+    if (page === 'front') {
+      const RM = { 14: 2, 15: 3, 16: 2, 17: 10, 20: 2, 21: 10, 22: 2, 23: 2 };
+      const L = RM[st.lay.front] !== undefined ? RM[st.lay.front] : st.lay.front;
+      const SH = (st.shape || {}).front || 'recht';
+      const FR = { frame: true, round: SH === 'recht' ? false : SH };
+      const shaped = SH === 'ovaal' || SH === 'boog';
+      if (L === 0) {
+        out.push(this.photoBlock(st, page, { inset: 0 }));
+        T('spreuk', { top: 0, left: 0, right: 0 }, this.spreukLines(st, page, { on: true }), { on: true, scrimSide: 'top', jc: 'flex-start', align: A, pad: '7% 11% 0' });
+        T('naam', { bottom: 0, left: 0, right: 0 }, this.nameLines(st, page, { on: true }), { on: true, align: A, pad: '0 8% 7%' });
+      } else if (L === 1) {
+        out.push(this.photoBlock(st, page, { inset: 0 }));
+        T('naam', { top: 0, left: 0, right: 0 }, this.nameLines(st, page, { on: true, size: 17 }), { on: true, scrimSide: 'top', jc: 'flex-start', align: A, pad: '7% 8% 0' });
+        T('spreuk', { bottom: 0, left: 0, right: 0 }, this.spreukLines(st, page, { on: true }), { on: true, align: A, pad: '0 11% 7%' });
+      } else if (L === 2) {
+        out.push(this.veil(st, { left: 0, right: 0, top: '65%', bottom: 0 }, 'up'));
+        out.push(this.photoBlock(st, page, shaped ? { top: '6%', left: '14%', right: '14%', height: '60%' } : { top: '7%', left: '8%', right: '8%', height: '58%' }, FR));
+        T('naam', { top: '69%', left: '9%', right: '9%' }, this.nameLines(st, page, { size: 17 }), { jc: 'flex-start', align: A });
+        T('spreuk', { bottom: '5.5%', left: '10%', right: '10%' }, this.spreukLines(st, page, { size: 8.6 }), { align: A });
+      } else if (L === 3) {
+        out.push(this.veil(st, { left: 0, right: 0, top: 0, height: '41%' }, 'down'));
+        T('spreuk', { top: '7%', left: '10%', right: '10%' }, this.spreukLines(st, page, { size: 7.8 }), { jc: 'flex-start', align: A });
+        T('naam', { top: '17%', left: '9%', right: '9%' }, this.nameLines(st, page, { size: 16 }), { jc: 'flex-start', align: A });
+        out.push(this.photoBlock(st, page, shaped ? { bottom: '6%', left: '14%', right: '14%', height: '54%' } : { bottom: '7%', left: '8%', right: '8%', height: '52%' }, FR));
+      } else if (L === 4) {
+        out.push(this.photoBlock(st, page, { top: 0, bottom: 0, left: '40%', right: 0 }, { fade: 'left' }));
+        out.push(this.panel(st, { top: 0, bottom: 0, left: 0, right: '60%' }, .82));
+        T('naam', { top: '10%', bottom: '10%', left: '5%', right: '62%' }, this.nameLines(st, page, { size: 13 }), { jc: 'center', align: 'left', gap: 3 });
+        T('spreuk', { bottom: 0, left: '44%', right: 0 }, this.spreukLines(st, page, { on: true, size: 7.4 }), { on: true, align: 'right', pad: '0 6% 6%' });
+      } else if (L === 6) {
+        out.push(this.photoBlock(st, page, { inset: 0 }));
+        T('naam', { bottom: 0, left: 0, right: 0 }, this.nameLines(st, page, { on: true, size: 21 }), { on: true, align: A, pad: '0 8% 8%' });
+      } else if (L === 7) {
+        out.push(this.photoBlock(st, page, { inset: 0 }));
+        T('spreuk', { bottom: '25%', left: 0, right: 0 }, this.spreukLines(st, page, { on: true, size: 8.4 }), { align: A, pad: '0 11% 0' });
+        T('naam', { bottom: 0, left: 0, right: 0 }, this.nameLines(st, page, { on: true, size: 15.5 }), { on: true, align: A, pad: '0 8% 7%' });
+      } else if (L === 8) {
+        out.push(this.veil(st, { left: 0, right: 0, top: '78%', bottom: 0 }, 'up'));
+        out.push(this.photoBlock(st, page, shaped ? { top: '6%', left: '11%', right: '11%', height: '70%' } : { top: '6%', left: '7%', right: '7%', height: '72%' }, FR));
+        T('naam', { top: '54%', bottom: '23%', left: '9%', right: '9%' }, this.nameLines(st, page, { on: true, size: 14.5 }), { on: true, align: A, pad: '0 2% 3%' });
+        T('spreuk', { bottom: '6%', left: '11%', right: '11%' }, this.spreukLines(st, page, { size: 8 }), { align: A });
+      } else if (L === 9) {
+        out.push(this.photoBlock(st, page, { top: 0, bottom: 0, left: 0, right: '40%' }, { fade: 'right' }));
+        out.push(this.panel(st, { top: 0, bottom: 0, left: '60%', right: 0 }, .82));
+        T('naam', { top: '10%', bottom: '10%', left: '62%', right: '5%' }, this.nameLines(st, page, { size: 13 }), { jc: 'center', align: 'left', gap: 3 });
+        T('spreuk', { bottom: 0, left: 0, right: '44%' }, this.spreukLines(st, page, { on: true, size: 7.4 }), { on: true, align: 'left', pad: '0 6% 6%' });
+      } else if (L === 10) {
+        out.push(this.veil(st, { left: 0, right: 0, top: '51%', bottom: 0 }, 'up'));
+        out.push(this.photoBlock(st, page, shaped ? { top: '8%', left: '22%', right: '22%', height: '48%' } : { top: '9%', left: '19%', right: '19%', height: '42%' }, FR));
+        T('naam', { top: '57%', left: '9%', right: '9%' }, this.nameLines(st, page, { size: 15 }), { jc: 'flex-start', align: A });
+        T('spreuk', { bottom: '7%', left: '12%', right: '12%' }, this.spreukLines(st, page, { size: 8 }), { align: A });
+      } else if (L === 11) {
+        out.push(this.photoBlock(st, page, { inset: 0 }));
+        T('spreuk', { top: 0, left: 0, right: 0 }, this.spreukLines(st, page, { on: true }), { on: true, scrimSide: 'top', jc: 'flex-start', align: 'left', pad: '7% 16% 0 8%' });
+        T('naam', { bottom: 0, left: 0, right: 0 }, this.nameLines(st, page, { on: true, size: 16 }), { on: true, align: 'left', pad: '0 8% 7%' });
+      } else if (L === 12) {
+        out.push(this.photoBlock(st, page, { top: 0, bottom: 0, left: '40%', right: 0 }, { fade: 'left' }));
+        out.push(this.panel(st, { top: 0, bottom: 0, left: 0, right: '60%' }, .82));
+        T('naam', { top: '9%', left: '5%', right: '62%' }, this.nameLines(st, page, { size: 12.5 }), { jc: 'flex-start', align: 'left', gap: 3 });
+        T('spreuk', { bottom: '8%', left: '5%', right: '62%' }, this.spreukLines(st, page, { size: 7.2 }), { align: 'left' });
+      } else if (L === 13) {
+        out.push(this.photoBlock(st, page, { top: 0, bottom: 0, left: 0, right: '40%' }, { fade: 'right' }));
+        out.push(this.panel(st, { top: 0, bottom: 0, left: '60%', right: 0 }, .82));
+        T('naam', { top: '9%', left: '62%', right: '5%' }, this.nameLines(st, page, { size: 12.5 }), { jc: 'flex-start', align: 'left', gap: 3 });
+        T('spreuk', { bottom: '8%', left: '62%', right: '5%' }, this.spreukLines(st, page, { size: 7.2 }), { align: 'left' });
+      } else if (L === 18) {
+        out.push(this.veil(st, { left: 0, right: 0, top: '65%', bottom: 0 }, 'up'));
+        out.push(this.photoBlock(st, page, shaped ? { top: '6%', left: '14%', right: '14%', height: '60%' } : { top: '7%', left: '8%', right: '8%', height: '58%' }, FR));
+        T('spreuk', { top: '69%', left: '10%', right: '10%' }, this.spreukLines(st, page, { size: 8.4 }), { jc: 'flex-start', align: A });
+        T('naam', { bottom: '6%', left: '9%', right: '9%' }, this.nameLines(st, page, { size: 16 }), { align: A });
+      } else if (L === 19) {
+        out.push(this.veil(st, { left: 0, right: 0, top: 0, height: '41%' }, 'down'));
+        T('naam', { top: '7%', left: '9%', right: '9%' }, this.nameLines(st, page, { size: 16 }), { jc: 'flex-start', align: A });
+        T('spreuk', { top: '27%', left: '10%', right: '10%' }, this.spreukLines(st, page, { size: 7.8 }), { jc: 'flex-start', align: A });
+        out.push(this.photoBlock(st, page, shaped ? { bottom: '6%', left: '14%', right: '14%', height: '54%' } : { bottom: '7%', left: '8%', right: '8%', height: '52%' }, FR));
+      } else {
+        out.push(this.veil(st, { left: 0, right: 0, top: '22%', bottom: 0 }, 'up', true));
+        T('naam', { top: '32%', left: '9%', right: '9%' }, this.nameLines(st, page, { size: 18 }), { jc: 'flex-start', align: A });
+        T('spreuk', { bottom: '8%', left: '10%', right: '10%' }, this.spreukLines(st, page, { size: 8.2 }), { align: A });
+      }
+    } else if (page === 'inside') {
+      const L = st.lay.inside;
+      const AL = st.align.inside;
+      const lx = { left: '8%', width: '34%' };
+      const mem = (rect, size, o) => T('herinnering', Object.assign({}, rect), [this.line(st, page, c.herinnering, { size: size, it: true, soft: true, id: 'herinnering', lh: 1.72 })], o);
+      if (L >= 10) {
+        let rect = L === 13
+          ? { top: 0, bottom: 0, left: 0, width: '46%' }
+          : L === 11 ? { top: '8%', bottom: '8%', left: '5%', width: '40%' }
+            : L === 12 ? { top: '10%', bottom: '26%', left: '7%', width: '36%' }
+              : { top: '12%', bottom: '22%', left: '7%', width: '36%' };
+        const shI = (st.shape || {}).inside || 'recht';
+        if (L !== 13 && shI !== 'recht') { rect = Object.assign({}, rect, { left: '11%', width: '30%' }); }
+        out.push(this.photoBlock(st, page, rect, { frame: L !== 13, round: L === 13 || shI === 'recht' ? false : shI }));
+        if (L === 10) T('spreuk', { bottom: '9%', left: '7%', width: '36%' }, this.spreukLines(st, page, { size: 8 }), { align: 'center' });
+        if (L === 12) mem({ bottom: '8%', left: '7%', width: '36%' }, 7.8, { align: 'center' });
+      } else if (L === 0 || L === 2) {
+        T('spreuk', Object.assign({ top: '18%', bottom: '18%' }, lx), this.spreukLines(st, page, { size: 11.5, display: true, lh: 1.5 }), { jc: 'center', align: 'center' });
+      } else if (L === 6) {
+        T('spreuk', Object.assign({ top: '14%', bottom: '14%' }, lx), this.spreukLines(st, page, { size: 14, display: true, lh: 1.45 }), { jc: 'center', align: 'center' });
+      } else if (L === 3) {
+        mem(Object.assign({ top: '14%' }, lx), 8.2, { jc: 'flex-start', align: AL });
+      } else if (L === 4) {
+        mem(Object.assign({ bottom: '12%' }, lx), 8.2, { align: AL });
+      } else if (L === 5) {
+        T('spreuk', Object.assign({ top: '13%' }, lx), this.spreukLines(st, page, { size: 9.6, display: true, lh: 1.5 }), { jc: 'flex-start', align: 'center' });
+        mem(Object.assign({ bottom: '12%' }, lx), 7.8, { align: AL });
+      } else if (L === 7) {
+        mem(Object.assign({ top: '13%' }, lx), 8, { jc: 'flex-start', align: AL });
+        T('spreuk', Object.assign({ bottom: '11%' }, lx), this.spreukLines(st, page, { size: 8.4, display: true, lh: 1.55 }), { align: 'center' });
+      } else if (L === 9) {
+        T('spreuk', Object.assign({ bottom: '13%' }, lx), this.spreukLines(st, page, { size: 9.6, display: true, lh: 1.5 }), { align: 'center' });
+      }
+      const rx = { left: '54%', right: '7%' };
+      const R = {
+        0: [12, 24, 48, 76, 9], 1: [12, 24, 48, 76, 9], 2: [14, 27, 52, null, 10],
+        3: [12, 24, 48, null, 9], 4: [12, 24, 48, null, 9], 5: [12, 24, 48, null, 9],
+        6: [11, 22, 46, null, 8], 7: [12, 24, 48, null, 9], 8: [9, 19, 42, 70, 8],
+        9: [14, 26, 50, 76, 10], 10: [12, 24, 48, null, 9], 11: [10, 21, 45, null, 8],
+        12: [12, 24, 48, null, 9], 13: [12, 24, 48, null, 9]
+      };
+      const r = R[L] || R[0];
+      const rAlign = L === 2 ? 'center' : AL;
+      T('aanhef', Object.assign({ top: r[0] + '%' }, rx), [this.line(st, page, c.aanhef, { size: 7.8, it: true, soft: true, id: 'aanhef', lh: 1.65 })], { jc: 'flex-start', align: rAlign });
+      T('naam', Object.assign({ top: r[1] + '%' }, rx), this.nameLines(st, page, { size: 14 }), { jc: 'flex-start', align: rAlign });
+      T('afscheid', Object.assign({ top: r[2] + '%' }, rx), this.farewellLines(st, page), { jc: 'flex-start', align: rAlign, gap: 3 });
+      if (r[3] != null) mem(Object.assign({ top: r[3] + '%' }, rx), 7.6, { jc: 'flex-start', align: rAlign });
+      T('slot', Object.assign({ bottom: r[4] + '%' }, rx), [this.line(st, page, c.slot, { size: 7.5, it: L === 2, soft: true, id: 'slot', lh: 1.6 })], { align: rAlign });
+    } else {
+      const L = st.lay.back;
+      const ti0 = this.ti(st);
+      const prakLines = (corr) => {
+        const p = [this.line(st, page, c.online, { size: 6.8, soft: true, id: 'praktisch', lh: 1.5 })];
+        if (corr) p.unshift(this.line(st, page, c.correspondentie, { size: 6.8, soft: true, id: 'praktisch', lh: 1.5 }));
+        return p;
+      };
+      const ruleBg = { borderTop: '1px solid ' + this.rgba(ti0.ink, .16), paddingTop: this.gap(page, 3.4) };
+      if (st.format === 'enkel') {
+        const E = {
+          0: { ah: 8, af: 24, nt: 52, nb: 13 },
+          1: { ah: 8, af: 24, nt: 52, nb: 13, ctr: true },
+          2: { sp: 7, ah: 17, af: 30, nt: 56, nb: 13 },
+          3: { ah: 8, af: 24, nt: 50, nb: 21, corr: true },
+          4: { ah: 8, af: 22, nt: 46, nb: 24, spB: true },
+          5: { sp: 7, ah: 17, af: 30, nt: 56, nb: 13, ctr: true },
+          6: { ah: 8, af: 24, nt: 50, nb: 13, cols: 2 }
+        };
+        const e = E[L] || E[0];
+        const al = e.ctr ? 'center' : A;
+        if (e.sp) T('spreuk', { top: e.sp + '%', left: '10%', right: '10%' }, this.spreukLines(st, page, { size: 8 }), { jc: 'flex-start', align: e.ctr ? 'center' : A });
+        T('aanhef', { top: e.ah + '%', left: '9%', right: '9%' }, [this.line(st, page, c.aanhef, { size: 7.4, it: true, soft: true, id: 'aanhef', lh: 1.6 })], { jc: 'flex-start', align: al });
+        T('afscheid', { top: e.af + '%', left: '9%', right: '9%' }, this.farewellLines(st, page), { jc: 'flex-start', align: al, gap: 2.6 });
+        const nk = this.namesLines(st, page, 148 * (100 - e.nt - e.nb) / 100);
+        T('namen', { top: e.nt + '%', bottom: e.nb + '%', left: '9%', right: '9%' }, nk.lines, { jc: 'flex-start', align: al, gap: 1.1, cols: Math.max(e.cols || 1, nk.cols) });
+        if (e.spB) T('spreuk', { bottom: '11.5%', left: '11%', right: '11%' }, this.spreukLines(st, page, { size: 8 }), { align: 'center' });
+        T('praktisch', { bottom: '5%', left: '9%', right: '9%' }, prakLines(e.corr), { align: al, gap: 1.4 });
+      } else {
+        const B = {
+          0: { sp: 'top', t: 20, b: 12 },
+          1: { t: 9, b: 12 },
+          2: { t: 9, b: 22, corr: true },
+          3: { ah: true, t: 19, b: 12 },
+          4: { t: 15, b: 24, jc: 'center', spB: true },
+          5: { sp: 'top', t: 20, b: 12, cols: 2 },
+          6: { t: 12, b: 21, rule: true, corr: true },
+          7: { t: 8, b: 24, spB: true },
+          8: { sp: 'top', t: 22, b: 25, corr: true },
+          9: { sp: 'top', t: 21, b: 13, ctr: true }
+        };
+        const b = B[L] || B[0];
+        const al = b.ctr ? 'center' : A;
+        if (b.sp === 'top') T('spreuk', { top: '7%', left: '11%', right: '11%' }, this.spreukLines(st, page, { size: 8 }), { jc: 'flex-start', align: 'center' });
+        if (b.ah) T('aanhef', { top: '8%', left: '10%', right: '10%' }, [this.line(st, page, c.aanhef, { size: 7.4, it: true, soft: true, id: 'aanhef', lh: 1.6 })], { jc: 'flex-start', align: al });
+        const nb = this.namesLines(st, page, 148 * (100 - b.t - b.b) / 100);
+        T('namen', { top: b.t + '%', bottom: b.b + '%', left: '9%', right: '9%' }, nb.lines, { jc: b.jc || 'flex-start', align: al, gap: 1.1, cols: Math.max(b.cols || 1, nb.cols) });
+        if (b.spB) T('spreuk', { bottom: b.corr ? '13%' : '11.5%', left: '11%', right: '11%' }, this.spreukLines(st, page, { size: 8 }), { align: 'center' });
+        T('praktisch', { bottom: '5.5%', left: '9%', right: '9%' }, prakLines(b.corr), { align: al, gap: 1.4, bg: b.rule ? ruleBg : null });
+      }
+    }
+    out.forEach((b) => {
+      if (!b.scrim) b.scrim = { display: 'none' };
+      if (!b.inner) b.inner = { display: 'none' };
+      if (!b.lines) b.lines = [];
+    });
+    return out;
+  }
+
+  /* ---------------- ui ---------------- */
+
+  segBtn(on, extra) {
+    return Object.assign({
+      minHeight: '38px', borderRadius: '999px', border: 'none', cursor: 'pointer',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '7px',
+      fontSize: '12.5px', fontWeight: on ? 700 : 500, whiteSpace: 'nowrap',
+      color: on ? 'var(--foreground)' : 'var(--muted-foreground)',
+      background: on ? 'var(--background)' : 'transparent',
+      boxShadow: on ? '0 1px 3px rgba(26,26,30,.10), 0 6px 14px -8px rgba(26,26,30,.22)' : 'none',
+      transition: 'background .28s cubic-bezier(.16,1,.3,1), color .2s ease, box-shadow .28s ease'
+    }, extra || {});
+  }
+
+  seg(label, on, tap) {
+    return { label: label, tap: tap, style: this.segBtn(on, { flex: 1, padding: '0 10px', fontSize: '12px' }) };
+  }
+
+  flash(m) { this.setState({ toast: m }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: '' }), 4600); }
+
+  /* Elke wijziging landt in het dossier van de uitvaartbegeleider. */
+  edit(key, val, note) {
+    const ex = this.state.ex;
+    const e = Object.assign({}, this.state.edits);
+    e[ex] = Object.assign({}, e[ex] || {}, { [key]: val });
+    const patch = { edits: e };
+    if (note) patch.log = [{ text: note, at: '21:38' }].concat(this.state.log);
+    this.setState(patch);
+  }
+
+  note(text) { this.setState({ log: [{ text: text, at: '21:38' }].concat(this.state.log) }); }
+
+  get MAX() { return { call: 34, name: 48, partner: 48, born: 34, died: 34 }; }
+  maxFor(r, isName) { return isName ? (r.it ? 56 : 40) : (this.MAX[r.key.slice(2)] || 48); }
+
+  faces(st) { return st.format === 'gevouwen' ? ['front', 'left', 'right', 'back'] : ['front', 'back']; }
+
+  share(st) { return this.SHARES.find((s) => s.k === st.share) || this.SHARES[0]; }
+
+  setShare(k) {
+    if (k === this.state.share) return;
+    this.setState({ share: k, fade: 0 });
+    clearTimeout(this._f);
+    this._f = setTimeout(() => this.setState({ fade: 1 }), 30);
+  }
+
+  slug(st) { return this.con(st).call.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, ''); }
+
+  message(st) {
+    const c = this.con(st), L = [];
+    L.push(c.call);
+    L.push(c.name);
+    if (c.partner) L.push(c.partner);
+    L.push('Geboren ' + c.born);
+    L.push('Overleden ' + c.died);
+    L.push('');
+    if (c.plechtigheid) L.push(c.plechtigheid);
+    if (c.groet) L.push(c.groet);
+    if (c.condoleren) L.push(c.condoleren);
+    if (c.online) { L.push(''); L.push(c.online); }
+    return L.join('\n');
+  }
+
+  copy() {
+    const txt = this.message(this.state);
+    try { if (navigator.clipboard) navigator.clipboard.writeText(txt).catch(() => {}); } catch (e) {}
+    this.setState({ copied: true });
+    clearTimeout(this._c);
+    this._c = setTimeout(() => this.setState({ copied: false }), 2400);
+    this.flash('Bericht gekopieerd.');
+  }
+
+  shareArt(st, sh) {
+    const p = this.portraitOf(st), sy = this.sy(st), c = this.con(st), ti = this.ti(st), t = this.th(st);
+    const pap = (a) => this.rgba(ti.paper, a);
+    const base = { margin: 0, whiteSpace: 'pre-line', letterSpacing: sy.tr, textTransform: sy.caps ? 'uppercase' : 'none' };
+
+    /* Liggend: een portret kan nooit beeldvullend liggend staan zonder dat het gezicht
+       onder de tekst komt. Daarom staat de foto rechts, met een zachte overvloei, en
+       liggen de woorden op papier, precies zoals op de kaart naast het portret. */
+    if (sh.k === 'facebook') {
+      const cr = this.crop(p, (1200 * 0.7) / 627);
+      /* Het portret staat ongecropt in de breedte, dus het gezicht begint rond 26% van dit
+         vlak. De overvloei is daarom op 33% volledig dicht: zacht, maar nooit door het gezicht. */
+      const fade = 'linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(0,0,0,.02) 5%,rgba(0,0,0,.07) 9%,rgba(0,0,0,.16) 13%,rgba(0,0,0,.29) 17%,rgba(0,0,0,.46) 21%,rgba(0,0,0,.66) 25%,rgba(0,0,0,.83) 28%,rgba(0,0,0,.94) 31%,#000 34%)';
+      const back = ti.bare
+        ? { position: 'absolute', inset: 0, background: ti.paper }
+        : {
+          position: 'absolute', inset: 0,
+          backgroundImage: 'linear-gradient(94deg,' + pap(.9) + ' 0%,' + pap(.87) + ' 28%,' + pap(.72) + ' 44%,' + pap(.48) + ' 58%,' + pap(.24) + ' 72%,' + pap(.06) + ' 86%,' + pap(0) + ' 100%), ' + t.img,
+          backgroundSize: 'cover, cover', backgroundPosition: 'center, ' + (t.pos || 'center'), backgroundRepeat: 'no-repeat'
+        };
+      const photo = st.hasPhoto ? {
+        position: 'absolute', top: 0, bottom: 0, right: 0, width: '70%',
+        backgroundImage: 'url(' + p.full + ')', backgroundSize: 'cover', backgroundPosition: cr.pos, backgroundRepeat: 'no-repeat',
+        maskImage: fade, WebkitMaskImage: fade
+      } : { display: 'none' };
+      return {
+        back: back, photo: photo, grad: { display: 'none' },
+        wrap: {
+          position: 'absolute', left: 0, top: 0, bottom: 0, width: '44%',
+          display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1.4cqw',
+          padding: '0 6% 0 7.5%', textAlign: 'left'
+        },
+        lines: [{ text: c.spreuk, style: Object.assign({}, base, { fontFamily: sy.b, fontSize: '4cqw', lineHeight: 1.5, fontStyle: 'italic', letterSpacing: '.01em', textTransform: 'none', color: ti.ink }) }]
+      };
+    }
+
+    const cr = this.crop(p, sh.ar);
+    const on = sh.k !== 'whatsapp' && st.hasPhoto;
+    /* De gradient dekt altijd het hele tekstblok plus lucht, en stopt onder de kin. */
+    const need = sh.k === 'instagram' ? .44 : .34;
+    const hFrac = Math.max(need, Math.min(.58, 1 - cr.chin - .05));
+    const photo = st.hasPhoto
+      ? { position: 'absolute', inset: 0, backgroundImage: 'url(' + p.full + ')', backgroundSize: 'cover', backgroundPosition: cr.pos, backgroundRepeat: 'no-repeat' }
+      : { display: 'none' };
+    return {
+      back: { position: 'absolute', inset: 0, background: ti.paper },
+      photo: photo,
+      grad: on ? {
+        position: 'absolute', left: 0, right: 0, bottom: 0, height: (hFrac * 100).toFixed(1) + '%', pointerEvents: 'none',
+        background: 'linear-gradient(to top,rgba(26,26,30,.74) 0%,rgba(26,26,30,.66) 28%,rgba(26,26,30,.4) 58%,rgba(26,26,30,.14) 82%,rgba(26,26,30,0) 100%)'
+      } : { display: 'none' },
+      wrap: on ? {
+        position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column',
+        gap: '1.6cqw', padding: '0 8% 7%', textAlign: 'left'
+      } : { display: 'none' },
+      lines: on ? [
+        { text: c.call, style: Object.assign({}, base, { fontFamily: sy.d, color: '#fcfcfd', fontSize: '8.3cqw', lineHeight: 1.12, textShadow: '0 1px 14px rgba(26,26,30,.45)' }) },
+        { text: '* ' + c.born + '\u2003\u2020 ' + c.died, style: Object.assign({}, base, { fontFamily: sy.b, fontSize: '2.8cqw', lineHeight: 1.5, letterSpacing: '.04em', textTransform: 'none', color: 'rgba(255,255,255,.9)', textShadow: '0 1px 14px rgba(26,26,30,.45)' }) }
+      ] : []
+    };
+  }
+
+  /* ---------------- render ---------------- */
+
+  checkRows(st) {
+    const c = this.con(st);
+    const family = st.role === 'family';
+    const kern = [
+      ['call', 'Roepnaam', 0, ''],
+      ['name', 'Volledige naam', 0, ''],
+      ['partner', 'Partnerregel', 0, ''],
+      ['born', 'Geboren', 1, 'Ik denk dat de geboorteplaats of -datum niet klopt: '],
+      ['died', 'Overleden', 1, 'Ik denk dat de plaats of datum van overlijden niet klopt: ']
+    ]
+      .filter((f) => (c[f[0]] || '').length > 0)
+      .map((f) => ({
+        key: 'k:' + f[0], label: f[1], value: c[f[0]], locked: family && f[2] === 1, prefill: f[3],
+        set: (v, note) => this.edit(f[0], v, note)
+      }));
+    const list = c.names || [];
+    const put = (n, note) => this.edit('names', n, note);
+    const names = list.map((r, i) => ({
+      key: 'n:' + i, label: '', value: r.t, it: !!r.it, x: !!r.x, l: Math.min(r.l || 0, 2), locked: false,
+      set: (v, note) => put(list.map((z, j) => j === i ? Object.assign({}, z, { t: v }) : z), note),
+      upd: (patch, note) => put(list.map((z, j) => j === i ? Object.assign({}, z, patch) : z), note),
+      remove: () => {
+        put(list.filter((z, j) => j !== i), 'Regel weggehaald: ' + (r.t || 'lege regel'));
+        this.setState({ editRow: null });
+      }
+    }));
+    return { kern: kern, names: names };
+  }
+
+  checkRow(st, r, isName) {
+    const on = !!st.ok[r.key];
+    const editing = st.editRow === r.key;
+    const asked = !!st.asked[r.key];
+    const max = this.maxFor(r, isName);
+    const left = max - (r.value || '').length;
+    const LV = ['Kind of naaste', 'Kleinkind', 'Achterkleinkind'];
+    return {
+      key: r.key,
+      aria: on ? 'Regel is nagelopen' : 'Regel klopt',
+      outer: {
+        display: 'flex', flexDirection: 'column',
+        borderRadius: '18px',
+        background: editing ? 'var(--secondary)' : (on ? 'rgba(45,45,58,.035)' : 'transparent'),
+        transition: 'background .3s ease'
+      },
+      readOnly: !!r.locked,
+      focus: r.locked ? null : () => { if (st.editRow !== r.key) this.setState({ editRow: r.key, editFrom: r.value }); },
+      act: r.locked
+        ? (asked ? () => this.flash('De vraag staat al in het dossier, om 21:38 gesteld.') : () => this.setState({ ask: r.key, askText: r.prefill || 'Ik denk dat deze regel niet klopt: ' }))
+        : editing
+          ? () => {
+            const o = Object.assign({}, this.state.ok); o[r.key] = true;
+            const from = this.state.editFrom;
+            if (from != null && from !== r.value) this.note((r.label || 'Naamregel') + ' gewijzigd: \u201c' + from + '\u201d werd \u201c' + r.value + '\u201d');
+            this.setState({ ok: o, editRow: null, editFrom: null });
+          }
+          : () => this.setState({ editRow: r.key, editFrom: r.value }),
+      actLabel: r.locked ? (asked ? 'Vraag gesteld' : 'Vraag stellen') : editing ? 'Klaar' : 'Wijzig',
+      actStyle: {
+        flex: 'none', minHeight: '44px', padding: '0 10px', border: 'none', background: 'transparent',
+        fontSize: '11.5px', fontWeight: editing ? 700 : 500, cursor: 'pointer',
+        color: editing ? 'var(--foreground)' : 'var(--muted-foreground)', whiteSpace: 'nowrap',
+        opacity: asked ? .5 : 1
+      },
+      counter: editing ? (left > 0 ? 'Nog ' + left + (left === 1 ? ' teken' : ' tekens') + ' ruimte op de kaart' : 'De regel is zo lang als de kaart toelaat') : '',
+      counterStyle: editing ? {
+        fontSize: '11px', lineHeight: 1.5, color: left <= 6 ? 'var(--foreground)' : 'var(--muted-foreground)',
+        fontWeight: left <= 6 ? 700 : 400, padding: '0 2px 2px'
+      } : { display: 'none' },
+      panel: (isName && editing) ? { display: 'flex', flexDirection: 'column', gap: '12px', padding: '2px 12px 14px' } : { display: 'none' },
+      levelHint: 'Bepaalt hoe diep de regel inspringt onder de regel erboven.',
+      levels: (isName && editing) ? LV.map((lab, i) => ({
+        label: lab,
+        tap: () => r.upd({ l: i }, '\u201c' + (r.value || 'lege regel') + '\u201d staat nu als ' + lab.toLowerCase() + ', was ' + LV[r.l].toLowerCase()),
+        style: this.segBtn(r.l === i, { flex: '1 1 0', minWidth: 0, minHeight: '40px', padding: '0 6px', fontSize: '11px' })
+      })) : [],
+      isRel: !!r.it,
+      toggleRel: () => r.upd({ it: !r.it }, '\u201c' + (r.value || 'lege regel') + '\u201d is nu ' + (r.it ? 'een naam, was een relatieregel' : 'een relatieregel, was een naam')),
+      isDead: !!r.x,
+      toggleDead: () => r.upd({ x: !r.x }, r.x ? 'Kruisje weggehaald bij \u201c' + (r.value || 'lege regel') + '\u201d' : 'Kruisje gezet bij \u201c' + (r.value || 'lege regel') + '\u201d'),
+      delStyle: {
+        alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: '8px',
+        minHeight: '44px', padding: '0 14px', borderRadius: '999px',
+        border: '1px solid rgba(148,61,61,.28)', background: 'transparent',
+        fontSize: '12px', color: 'var(--destructive)', cursor: 'pointer'
+      },
+      remove: r.remove,
+      wrap: {
+        display: 'flex', alignItems: 'center', gap: '10px', minHeight: '48px',
+        paddingLeft: isName ? (2 + Math.min(r.l, 3) * 14) + 'px' : '2px', paddingRight: '4px',
+        transition: 'padding-left .3s cubic-bezier(.16,1,.3,1)'
+      },
+      dot: {
+        flex: 'none', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        borderRadius: '999px', cursor: 'pointer',
+        border: '1px solid ' + (on ? 'transparent' : 'var(--border-strong)'),
+        background: on ? 'var(--primary)' : 'transparent',
+        color: on ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
+        transition: 'background .28s cubic-bezier(.16,1,.3,1), border-color .28s ease, color .2s ease'
+      },
+      tick: {
+        opacity: on ? 1 : 0, transform: on ? 'none' : 'scale(.6)',
+        transition: 'opacity .24s ease, transform .34s cubic-bezier(.16,1,.3,1)'
+      },
+      toggle: () => { const o = Object.assign({}, this.state.ok); if (o[r.key]) { delete o[r.key]; } else { o[r.key] = true; } this.setState({ ok: o }); },
+      label: r.label || '',
+      labelStyle: isName
+        ? { display: 'none' }
+        : { fontSize: '10.5px', fontWeight: 400, lineHeight: 1.4, color: 'var(--muted-foreground)', opacity: .8 },
+      guide: (isName && r.l) ? { width: '10px', height: '1px', background: 'var(--border-strong)', flex: 'none' } : { display: 'none' },
+      dagger: (isName && r.x) ? { flex: 'none', fontSize: '13px', color: 'var(--muted-foreground)', padding: '0 4px' } : { display: 'none' },
+      value: r.value,
+      change: (e) => r.set((e.target.value || '').slice(0, max)),
+      text: editing ? { display: 'none' } : {
+        flex: 1, minWidth: 0, padding: isName ? '11px 2px' : '2px 2px 4px',
+        fontSize: isName ? '14.5px' : '15px', lineHeight: 1.45,
+        fontStyle: (isName && r.it) ? 'italic' : 'normal',
+        color: (isName && r.it) ? 'var(--muted-foreground)' : 'var(--foreground)',
+        opacity: r.locked ? .78 : (on ? .62 : 1),
+        overflowWrap: 'break-word', textWrap: 'pretty',
+        cursor: r.locked ? 'default' : 'text',
+        transition: 'opacity .3s ease'
+      },
+      input: editing ? {
+        flex: 1, minWidth: 0, width: '100%', outline: 'none', resize: 'none',
+        border: '1px solid var(--border-strong)', borderRadius: '14px',
+        background: 'var(--background)', padding: '11px 12px', margin: '4px 0',
+        height: (Math.ceil(Math.max(1, (r.value || '').length) / 26) * 21 + 25) + 'px',
+        fontSize: isName ? '14.5px' : '15px', lineHeight: 1.45,
+        fontStyle: (isName && r.it) ? 'italic' : 'normal',
+        color: (isName && r.it) ? 'var(--muted-foreground)' : 'var(--foreground)'
+      } : { display: 'none' }
+    };
+  }
+
+  renderVals() {
+    const st = this.state, ti = this.ti(st), c = this.con(st);
+    const faces = this.faces(st);
+    const rows = this.checkRows(st);
+    const total = rows.kern.length + rows.names.length;
+    const done = rows.kern.concat(rows.names).filter((r) => st.ok[r.key]).length;
+    const allOk = total > 0 && done === total;
+    const restOpen = rows.names.filter((r) => !st.ok[r.key]).length;
+    const sh = this.share(st);
+    const art = this.shareArt(st, sh);
+
+    const FW = 248, GAP = 14;
+    const faceCards = faces.map((f, i) => {
+      const cardPage = (f === 'left' || f === 'right') ? 'inside' : f;
+      const on = st.face === i;
+      const cardW = (f === 'left' || f === 'right') ? FW * 2 : FW;
+      const L = this.layers(st, cardPage);
+      return {
+        label: this.faceName(f),
+        wrap: {
+          flex: 'none', width: FW + 'px', display: 'flex', flexDirection: 'column', gap: '9px',
+          background: 'none', border: 'none', padding: 0, cursor: 'zoom-in', scrollSnapAlign: 'center',
+          animation: 'memLift .55s cubic-bezier(.16,1,.3,1) ' + (0.08 + i * 0.07) + 's both'
+        },
+        window: {
+          position: 'relative', overflow: 'hidden', width: FW + 'px', height: Math.round(FW / (105 / 148)) + 'px',
+          borderRadius: '3px',
+          boxShadow: on
+            ? '0 0 0 1px rgba(45,45,58,.1), 0 22px 46px -18px rgba(26,26,30,.42)'
+            : '0 0 0 1px rgba(45,45,58,.07), 0 10px 26px -14px rgba(26,26,30,.28)',
+          transform: on ? 'translateY(-3px)' : 'none',
+          opacity: on ? 1 : .82,
+          transition: 'box-shadow .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1), opacity .4s ease'
+        },
+        card: {
+          position: 'relative', containerType: 'inline-size',
+          width: cardW + 'px', height: Math.round(FW / (105 / 148)) + 'px',
+          marginLeft: f === 'right' ? -FW + 'px' : 0,
+          background: ti.paper, overflow: 'hidden'
+        },
+        wash: L.wash, glass: L.glass, orn: L.orn,
+        blocks: this.blocksFor(st, cardPage),
+        fold: cardPage === 'inside' ? { position: 'absolute', top: 0, bottom: 0, left: '50%', width: '1px', background: 'linear-gradient(180deg, transparent, ' + this.rgba(ti.ink, .16) + ' 12%, ' + this.rgba(ti.ink, .16) + ' 88%, transparent)', pointerEvents: 'none' } : { display: 'none' },
+        edge: { position: 'absolute', inset: 0, pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px ' + this.rgba(ti.ink, .07) },
+        labelStyle: {
+          fontSize: '10.5px', fontWeight: on ? 700 : 400, textAlign: 'center', lineHeight: 1.3,
+          color: on ? 'var(--foreground)' : 'var(--muted-foreground)', transition: 'color .3s ease'
+        },
+        tap: () => this.setState({ zoom: 'face', zi: i })
+      };
+    });
+
+    const zFace = faces[Math.min(st.zi, faces.length - 1)] || 'front';
+    const zPage = (zFace === 'left' || zFace === 'right') ? 'inside' : zFace;
+    const ZW = 344, ZH = Math.round(ZW / (105 / 148));
+    const zL = this.layers(st, zPage);
+    const zShareW = 344;
+
+    const isFace = st.zoom === 'face';
+    const isShareZoom = st.zoom === 'share';
+
+    return {
+      chromeTitle: c.call,
+      iconBtn: {
+        width: '34px', height: '34px', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        borderRadius: '999px', border: '1px solid var(--border-strong)', background: 'transparent',
+        color: 'var(--muted-foreground)', cursor: 'pointer'
+      },
+      back: () => this.flash('Terug naar de namencheck.'),
+      openInfo: () => this.setState({ info: !st.info }),
+      closeInfo: () => this.setState({ info: false }),
+      infoStyle: st.info ? {
+        position: 'absolute', zIndex: 60, left: '18px', right: '18px', top: '54px',
+        display: 'flex', flexDirection: 'column', gap: '10px', padding: '18px 18px 16px',
+        borderRadius: '26px', background: 'var(--glass-nav-bg)', border: '1px solid var(--glass-nav-border)',
+        backdropFilter: 'blur(40px) saturate(140%)', WebkitBackdropFilter: 'blur(40px) saturate(140%)',
+        boxShadow: '0 25px 60px rgba(0,0,0,.12)', animation: 'memRise .3s cubic-bezier(.16,1,.3,1)'
+      } : { display: 'none' },
+
+      bodyStyle: {
+        flex: 1, minHeight: 0, overflowY: 'auto', overscrollBehavior: 'contain',
+        display: 'flex', flexDirection: 'column', gap: '26px', paddingTop: '4px', paddingBottom: '132px'
+      },
+
+      promiseLine: { margin: 0, fontFamily: this.sy(st).d, fontSize: '18px', lineHeight: 1.4, color: 'var(--foreground)', textWrap: 'pretty' },
+      infoSpec: (st.format === 'gevouwen' ? 'Gevouwen, vier kanten.' : 'Enkel, twee kanten.') + ' De verhouding staat vast; het formaat kiest de uitvaartbegeleider bij het drukken.',
+
+      facesHint: st.format === 'gevouwen' ? 'Vier kanten, op ware verhouding' : 'Twee kanten, op ware verhouding',
+      carStyle: {
+        display: 'flex', gap: GAP + 'px', overflowX: 'auto', scrollSnapType: 'x mandatory',
+        padding: '8px ' + Math.round((390 - FW) / 2) + 'px 46px', marginBottom: '-32px'
+      },
+      carScroll: (e) => {
+        const el = e.currentTarget;
+        const i = Math.max(0, Math.min(faces.length - 1, Math.round(el.scrollLeft / (FW + GAP))));
+        if (i !== this.state.face) this.setState({ face: i });
+      },
+      faceCards: faceCards,
+      dots: faces.map((f, i) => ({
+        style: {
+          width: st.face === i ? '18px' : '5px', height: '5px', borderRadius: '999px',
+          background: st.face === i ? 'var(--primary)' : 'var(--border-strong)',
+          transition: 'width .35s cubic-bezier(.16,1,.3,1), background .3s ease'
+        }
+      })),
+      enlargeHint: 'Tik op een kant om die groot te bekijken.',
+      enlargeHintStyle: { fontSize: '11.5px', color: 'var(--muted-foreground)', textAlign: 'center', padding: '2px 20px 0' },
+
+      shareTabs: this.SHARES.map((s) => ({
+        label: s.n, tap: () => this.setShare(s.k),
+        style: this.segBtn(st.share === s.k, { flex: 1, minHeight: '40px' })
+      })),
+      shareStage: {
+        display: 'flex', flexDirection: 'column', gap: '14px', padding: '0 20px',
+        opacity: st.fade, transform: st.fade ? 'none' : 'translateY(8px)',
+        transition: 'opacity .34s ease, transform .44s cubic-bezier(.16,1,.3,1)'
+      },
+      shareBox: {
+        position: 'relative', containerType: 'inline-size', width: '100%', aspectRatio: String(sh.ar),
+        border: 'none', padding: 0, overflow: 'hidden', borderRadius: '18px', cursor: 'zoom-in',
+        background: 'var(--secondary)', boxShadow: '0 12px 30px -14px rgba(26,26,30,.35), 0 0 0 1px rgba(45,45,58,.06)'
+      },
+      shareBack: art.back, sharePhoto: art.photo, shareGrad: art.grad, shareTextWrap: art.wrap, shareLines: art.lines,
+      sharePlaceholder: st.hasPhoto ? { display: 'none' } : {
+        position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '12%', textAlign: 'center', fontSize: '12.5px', lineHeight: 1.6, color: 'var(--muted-foreground)'
+      },
+      sharePlaceholderText: 'Zodra wij de foto hebben, staat het portret hier binnen 24 uur.',
+      shareHint: sh.hint,
+      shareSpec: sh.spec + '  \u00b7  ' + this.slug(st) + sh.file,
+      openShareZoom: () => { if (st.hasPhoto) this.setState({ zoom: 'share' }); },
+      downloadPill: {
+        flex: 'none', minHeight: '40px', padding: '0 15px', display: 'flex', alignItems: 'center', gap: '8px',
+        borderRadius: '999px', border: '1px solid var(--border-strong)', background: 'transparent',
+        fontSize: '12.5px', fontWeight: 500, color: 'var(--foreground)', cursor: 'pointer'
+      },
+      downloadShare: () => this.flash(sh.n + '-beeld klaargezet in uw downloads.'),
+
+      isWhatsapp: st.share === 'whatsapp',
+      msgCard: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '18px 18px 16px', borderRadius: '24px', background: 'var(--secondary)' },
+      msgStyle: { margin: 0, fontSize: '13.5px', lineHeight: 1.7, color: 'var(--foreground)', whiteSpace: 'pre-line', textWrap: 'pretty' },
+      msgText: this.message(st),
+      copyPill: {
+        flex: 'none', minHeight: '36px', padding: '0 14px', borderRadius: '999px', cursor: 'pointer',
+        border: '1px solid ' + (st.copied ? 'transparent' : 'var(--border-strong)'),
+        background: st.copied ? 'var(--primary)' : 'var(--background)',
+        color: st.copied ? 'var(--primary-foreground)' : 'var(--foreground)',
+        fontSize: '12px', fontWeight: 500, transition: 'background .25s ease, color .25s ease'
+      },
+      copyLabel: st.copied ? 'Gekopieerd' : 'Bericht kopi\u00ebren',
+      copyMsg: () => this.copy(),
+
+      footerStyle: {
+        position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 30,
+        display: 'flex', flexDirection: 'column', gap: '10px', padding: '16px 20px 22px',
+        background: 'var(--glass-nav-bg)', borderTop: '1px solid var(--glass-nav-border)',
+        borderRadius: '28px 28px 0 0',
+        backdropFilter: 'blur(40px) saturate(140%)', WebkitBackdropFilter: 'blur(40px) saturate(140%)',
+        boxShadow: '0 -18px 50px -20px rgba(0,0,0,.18)'
+      },
+      sendLabel: st.sent
+        ? (st.sec === 'send' ? 'Namen nog eens nalopen' : 'Verstuurd')
+        : (st.sec === 'send' ? 'Namen nalopen' : 'Versturen'),
+      sendPill: {
+        flex: '1 1 0', minWidth: 0, minHeight: st.sec === 'send' ? '56px' : '48px', padding: '0 18px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        borderRadius: '999px', border: '1px solid transparent', cursor: 'pointer',
+        fontSize: st.sec === 'send' ? '15.5px' : '14px', fontWeight: st.sec === 'send' ? 700 : 500,
+        whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+        background: st.sent && st.sec !== 'send' ? 'var(--secondary)' : st.sent ? 'var(--background)' : 'var(--primary)',
+        color: st.sent ? 'var(--muted-foreground)' : 'var(--primary-foreground)',
+        borderColor: st.sent && st.sec === 'send' ? 'var(--border-strong)' : 'transparent',
+        boxShadow: st.sent ? 'none' : 'var(--shadow-cta)',
+        transition: 'min-height .4s cubic-bezier(.16,1,.3,1), font-size .34s cubic-bezier(.16,1,.3,1), background .3s ease, color .3s ease'
+      },
+      tapSend: () => {
+        if (st.sec !== 'send') { this.setState({ sec: 'send' }); return; }
+        this.setState({ sec: null, check: true });
+      },
+
+      dlPill: this.secPill(st.sec === 'dl', st.sec === 'send'),
+      adjPill: this.secPill(st.sec === 'adj', st.sec === 'send'),
+      dlLabel: this.secLabel(st.sec === 'dl'),
+      adjLabel: this.secLabel(st.sec === 'adj'),
+      tapDownload: () => {
+        if (st.sec !== 'dl') { this.setState({ sec: 'dl' }); return; }
+        this.setState({ sec: null });
+        this.flash('Kaart en drie deelbeelden klaargezet in uw downloads.');
+      },
+      tapAdjust: () => {
+        if (st.sec !== 'adj') { this.setState({ sec: 'adj' }); return; }
+        this.setState({ sec: null, adjust: true });
+      },
+      secCapWrap: {
+        overflow: 'hidden', textAlign: 'center',
+        maxHeight: st.sec ? '54px' : '0px', opacity: st.sec ? 1 : 0,
+        transition: 'max-height .4s cubic-bezier(.16,1,.3,1), opacity .3s ease'
+      },
+      secCapStyle: { display: 'block', paddingTop: '8px', fontSize: '11.5px', lineHeight: 1.5, color: 'var(--muted-foreground)', textWrap: 'pretty' },
+      secCap: st.sec === 'send'
+        ? (st.sent
+          ? 'Verstuurd om 21:38. ' + c.begeleider + ' verzorgt het drukwerk. Nog een tik om de namen weer na te lopen.'
+          : 'Voor het versturen lopen wij eerst de namen na. Nog een tik opent die controle.')
+        : st.sec === 'dl'
+          ? 'De kaart en de drie deelbeelden als bestand. Nog een tik om te downloaden.'
+          : st.sec === 'adj' ? 'Terug naar de woorden, de namen of het ontwerp. Nog een tik om te kiezen.' : '',
+
+      openAdjust: () => this.setState({ adjust: true }),
+      closeAdjust: () => this.setState({ adjust: false }),
+      sheetScrim: st.adjust ? { position: 'absolute', inset: 0, zIndex: 40, background: 'rgba(12,12,16,.34)', animation: 'memFade .25s ease' } : { display: 'none' },
+      sheetStyle: {
+        position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 50,
+        display: 'flex', flexDirection: 'column',
+        background: 'var(--background)', borderRadius: '32px 32px 0 0',
+        boxShadow: '0 -30px 70px -20px rgba(0,0,0,.3)',
+        transform: st.adjust ? 'translateY(0)' : 'translateY(104%)',
+        opacity: st.adjust ? 1 : 0,
+        transition: 'transform .5s cubic-bezier(.16,1,.3,1), opacity .3s ease',
+        pointerEvents: st.adjust ? 'auto' : 'none'
+      },
+      adjustRows: [
+        ['De woorden op de kaart', 'Spreuk, aanhef, herinnering en slotzin.'],
+        ['De namen', 'Terug naar de namencheck, regel voor regel.'],
+        ['Het ontwerp', 'Thema, indeling, stijl en sfeer in de editor.']
+      ].map((r) => ({
+        label: r[0], sub: r[1],
+        style: {
+          display: 'flex', alignItems: 'center', gap: '12px', width: '100%', minHeight: '64px',
+          padding: '12px 14px', borderRadius: '22px', border: 'none', background: 'transparent',
+          color: 'var(--muted-foreground)', cursor: 'pointer', textAlign: 'left'
+        },
+        tap: () => { this.setState({ adjust: false }); this.flash('Terug naar ' + r[0].toLowerCase() + '. Uw pakket blijft klaarstaan.'); }
+      })),
+
+      checkWrap: {
+        position: 'absolute', inset: 0, zIndex: 88, display: 'flex', flexDirection: 'column',
+        background: 'var(--background)', backgroundImage: 'var(--surface-page-image)',
+        transform: st.check ? 'translateY(0)' : 'translateY(100%)',
+        opacity: st.check ? 1 : 0,
+        pointerEvents: st.check ? 'auto' : 'none',
+        transition: 'transform .55s cubic-bezier(.16,1,.3,1), opacity .35s ease'
+      },
+      closeCheck: () => this.setState({ check: false }),
+      progCount: done + ' van ' + total + ' nagelopen',
+      progCountStyle: { flex: 'none', fontSize: '11px', color: 'var(--muted-foreground)', whiteSpace: 'nowrap' },
+      progTrack: { height: '2px', borderRadius: '999px', background: 'var(--border-strong)', overflow: 'hidden' },
+      progFill: {
+        height: '100%', width: (total ? (done / total) * 100 : 0).toFixed(1) + '%',
+        background: 'var(--primary)', borderRadius: '999px',
+        transition: 'width .5s cubic-bezier(.16,1,.3,1)'
+      },
+      kernRows: rows.kern.map((r) => this.checkRow(st, r, false)),
+      nameRows: rows.names.map((r) => this.checkRow(st, r, true)),
+      namesLabel: rows.names.length + ' regels op de achterkant',
+      restBtn: {
+        flex: 'none', minHeight: '36px', padding: '0 13px', borderRadius: '999px',
+        border: '1px solid var(--border-strong)', background: 'transparent',
+        fontSize: '11.5px', fontWeight: 500, color: 'var(--foreground)', cursor: 'pointer',
+        opacity: restOpen ? 1 : .35, pointerEvents: restOpen ? 'auto' : 'none',
+        transition: 'opacity .3s ease'
+      },
+      restLabel: restOpen ? 'De overige ' + restOpen + ' kloppen' : 'Alle regels nagelopen',
+      confirmRest: () => {
+        const o = Object.assign({}, this.state.ok);
+        rows.names.forEach((r) => { o[r.key] = true; });
+        this.setState({ ok: o, editRow: null });
+      },
+      addBtn: {
+        alignSelf: 'flex-start', minHeight: '44px', padding: '0 16px', marginTop: '6px',
+        borderRadius: '999px', border: 'none', background: 'var(--secondary)',
+        fontSize: '12.5px', fontWeight: 500, color: 'var(--foreground)', cursor: 'pointer'
+      },
+      addName: () => {
+        const list = (c.names || []).concat([{ t: '', l: 0 }]);
+        this.edit('names', list, 'Regel toegevoegd aan het namenblok');
+        this.setState({ editRow: 'n:' + (list.length - 1), editFrom: '' });
+      },
+      rightsStyle: {
+        display: 'flex', flexDirection: 'column', gap: '5px', padding: '14px 16px',
+        borderRadius: '22px', background: 'rgba(255,255,255,.5)', border: '1px solid var(--border)'
+      },
+      rightsWho: st.role === 'family' ? 'U bent de familie' : 'U bent de uitvaartbegeleider',
+      rightsText: st.role === 'family'
+        ? 'De namen en de partnerregel corrigeert u hier zelf. De data en plaatsen komen uit de aangifte; die wijzigt de uitvaartbegeleider voor u, op uw vraag.'
+        : 'U mag alle regels corrigeren. Wat u hier wijzigt, staat meteen op de kaart en in de drukproef.',
+      askScrim: st.ask ? { position: 'absolute', inset: 0, zIndex: 92, background: 'rgba(12,12,16,.36)', animation: 'memFade .25s ease' } : { display: 'none' },
+      askStyle: {
+        position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 94,
+        display: 'flex', flexDirection: 'column',
+        background: 'var(--background)', borderRadius: '32px 32px 0 0',
+        boxShadow: '0 -30px 70px -20px rgba(0,0,0,.3)',
+        transform: st.ask ? 'translateY(0)' : 'translateY(104%)',
+        opacity: st.ask ? 1 : 0,
+        pointerEvents: st.ask ? 'auto' : 'none',
+        transition: 'transform .5s cubic-bezier(.16,1,.3,1), opacity .3s ease'
+      },
+      askTitle: st.ask === 'k:born' ? 'Geboorteplaats en datum' : st.ask === 'k:died' ? 'Plaats en datum van overlijden' : 'Deze regel',
+      askValue: st.askText,
+      askChange: (e) => this.setState({ askText: e.target.value }),
+      askInput: {
+        width: '100%', minHeight: '96px', borderRadius: '20px', border: '1px solid var(--border-strong)',
+        background: 'var(--input-background)', padding: '13px 16px', fontSize: '15px', lineHeight: 1.55,
+        color: 'var(--foreground)', resize: 'none', outline: 'none'
+      },
+      closeAsk: () => this.setState({ ask: null }),
+      sendAsk: () => {
+        const key = this.state.ask, txt = this.state.askText;
+        const a = Object.assign({}, this.state.asked); if (key) a[key] = true;
+        const what = key === 'k:born' ? 'de geboorteplaats en datum' : key === 'k:died' ? 'de plaats en datum van overlijden' : 'deze regel';
+        this.setState({ asked: a, ask: null });
+        this.note('Vraag gesteld over ' + what + ': \u201c' + (txt || '').trim() + '\u201d');
+        this.flash('Uw vraag staat in het dossier. ' + c.begeleider + ' krijgt een seintje.');
+      },
+      logStyle: st.log.length ? {
+        display: 'flex', flexDirection: 'column', gap: '10px', padding: '16px 16px 18px',
+        borderRadius: '22px', background: 'var(--secondary)'
+      } : { display: 'none' },
+      logIntro: st.role === 'family'
+        ? 'Elke wijziging en elke vraag komt hier te staan, zodat ' + c.begeleider + ' die kan nalezen en verifi\u00ebren.'
+        : 'Alles wat u of de familie wijzigt, staat hier bij elkaar in het dossier.',
+      logRows: st.log.slice(0, 8),
+      fullProps: { style: { width: '100%', justifyContent: 'center' } },
+      checkFootStyle: {
+        flex: 'none', display: 'flex', flexDirection: 'column', gap: '10px', padding: '14px 20px 22px',
+        background: 'var(--glass-nav-bg)', borderTop: '1px solid var(--glass-nav-border)',
+        backdropFilter: 'blur(40px) saturate(140%)', WebkitBackdropFilter: 'blur(40px) saturate(140%)'
+      },
+      checkNoteStyle: { fontSize: '11.5px', lineHeight: 1.6, color: 'var(--muted-foreground)', textAlign: 'center', textWrap: 'pretty' },
+      checkNote: allOk
+        ? 'De bestanden komen in het dossier bij ' + c.begeleider + ', zij verzorgen het drukwerk.'
+        : 'Nog ' + (total - done) + (total - done === 1 ? ' regel' : ' regels') + ' na te lopen, daarna kunt u versturen.',
+      checkSendLabel: 'Versturen naar de uitvaartbegeleider',
+      checkSendProps: { disabled: !allOk, style: { width: '100%', justifyContent: 'center' } },
+      doSend: () => {
+        if (!allOk) return;
+        this.setState({ check: false, sent: true });
+        this.flash('Het pakket staat in het dossier. De uitvaartbegeleider heeft een seintje.');
+      },
+
+      zoomWrap: st.zoom ? {
+        position: 'absolute', inset: 0, zIndex: 80, background: 'rgba(12,12,16,.93)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px',
+        padding: '20px 14px', cursor: 'zoom-out', animation: 'memFade .3s ease'
+      } : { display: 'none' },
+      closeZoom: () => this.setState({ zoom: null }),
+      zoomLabel: isFace ? this.faceName(zFace) : sh.n + ', ' + sh.spec,
+      zoomLabelStyle: {
+        flex: 'none', textAlign: 'center', maxWidth: '82%',
+        fontSize: '10px', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase',
+        color: 'rgba(255,255,255,.66)', lineHeight: 1.5
+      },
+      zFaceWindow: isFace ? {
+        position: 'relative', flex: 'none', overflow: 'hidden', width: ZW + 'px', height: ZH + 'px',
+        borderRadius: '3px', boxShadow: '0 24px 60px -20px rgba(0,0,0,.6)', animation: 'memLift .45s cubic-bezier(.16,1,.3,1)'
+      } : { display: 'none' },
+      zFaceCard: {
+        position: 'relative', containerType: 'inline-size',
+        width: ((zFace === 'left' || zFace === 'right') ? ZW * 2 : ZW) + 'px', height: ZH + 'px',
+        marginLeft: zFace === 'right' ? -ZW + 'px' : 0,
+        background: ti.paper, overflow: 'hidden'
+      },
+      zWash: zL.wash, zGlass: zL.glass, zOrn: zL.orn,
+      zBlocks: isFace ? this.blocksFor(st, zPage) : [],
+      zFold: zPage === 'inside' ? { position: 'absolute', top: 0, bottom: 0, left: '50%', width: '1px', background: this.rgba(ti.ink, .16), pointerEvents: 'none' } : { display: 'none' },
+      zEdge: { position: 'absolute', inset: 0, pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px ' + this.rgba(ti.ink, .07) },
+      zShareBox: isShareZoom ? {
+        position: 'relative', containerType: 'inline-size', width: zShareW + 'px', aspectRatio: String(sh.ar),
+        overflow: 'hidden', borderRadius: '4px', boxShadow: '0 24px 60px -20px rgba(0,0,0,.6)',
+        animation: 'memLift .45s cubic-bezier(.16,1,.3,1)'
+      } : { display: 'none' },
+      zoomFoot: isFace ? 'Precies zoals u het hier ziet, komt de kaart ook gedrukt uit.' : 'Tekst op beeld stopt v\u00f3\u00f3r het gezicht.',
+      zoomFootStyle: {
+        maxWidth: '78%', textAlign: 'center', fontSize: '11.5px', lineHeight: 1.6,
+        color: 'rgba(255,255,255,.6)', textWrap: 'pretty'
+      },
+      arrowPrev: isFace ? this.arrow('left') : { display: 'none' },
+      arrowNext: isFace ? this.arrow('right') : { display: 'none' },
+      zPrev: (e) => { if (e) e.stopPropagation(); this.setState({ zi: (st.zi - 1 + faces.length) % faces.length }); },
+      zNext: (e) => { if (e) e.stopPropagation(); this.setState({ zi: (st.zi + 1) % faces.length }); },
+
+      toast: st.toast,
+      toastStyle: st.toast ? {
+        position: 'absolute', zIndex: 99, left: '22px', right: '22px', bottom: '124px',
+        padding: '12px 18px', borderRadius: '22px', background: 'rgba(26,26,30,.94)', color: '#fcfcfd',
+        fontSize: '12.5px', lineHeight: 1.5, textAlign: 'center', animation: 'memRise .3s cubic-bezier(.16,1,.3,1)',
+        boxShadow: '0 18px 40px -14px rgba(0,0,0,.5)'
+      } : { display: 'none' },
+
+      reviewCol: (this.props.showReview === false)
+        ? { display: 'none' }
+        : { width: '340px', display: 'flex', flexDirection: 'column', gap: '26px', flex: 'none' },
+      reviewGroups: [
+        { label: 'Voorbeeld', track: { display: 'flex', gap: '6px', background: 'var(--secondary)', borderRadius: '999px', padding: '4px' }, items: Object.keys(this.PERSONAS).map((k) => this.seg(this.PERSONAS[k].who.split(',')[0], st.ex === k, () => this.setState({ ex: k, face: 0, sent: false }))) },
+        { label: 'Rol', track: { display: 'flex', gap: '6px', background: 'var(--secondary)', borderRadius: '999px', padding: '4px' }, items: [['operator', 'Uitvaartbegeleider'], ['family', 'Familie']].map((o) => this.seg(o[1], st.role === o[0], () => this.setState({ role: o[0], editRow: null, ask: null }))) },
+        { label: 'Formaat', track: { display: 'flex', gap: '6px', background: 'var(--secondary)', borderRadius: '999px', padding: '4px' }, items: [['gevouwen', 'Gevouwen'], ['enkel', 'Enkel']].map((o) => this.seg(o[1], st.format === o[0], () => this.setState({ format: o[0], face: 0, zi: 0 }))) },
+        { label: 'Thema', track: { display: 'flex', flexWrap: 'wrap', gap: '6px' }, items: Object.keys(this.THEMES).map((k) => ({ label: this.THEMES[k].n, tap: () => this.setState({ theme: k, tint: 0, orn: 'geen' }), style: this.segBtn(st.theme === k, { flex: 'none', padding: '0 12px', fontSize: '12px', minHeight: '36px', border: '1px solid var(--border)' }) })) }
+      ],
+      hasPhoto: st.hasPhoto,
+      photoSwitchHint: st.hasPhoto ? 'Zet uit om de belofte-plaatshouder te zien.' : 'De kaart en de deelbeelden tonen nu de plaatshouder.',
+      togglePhoto: () => this.setState({ hasPhoto: !st.hasPhoto }),
+      notes: [
+        'De kanten van de kaart in \u00e9\u00e9n horizontale gang, op ware verhouding, groter nu de belofte onder het informatie-icoon zit.',
+        'De belofte en de uitleg staan samen achter dat icoon, zonder maat: alleen de verhouding staat vast, het formaat kiest de uitvaartbegeleider.',
+        'Vergroten per kant, met dezelfde donkere weergave en pijlen als in de editor.',
+        'Drie deelbeelden uit de kaartinhoud: vierkant zonder tekst, 4:5 met naam en data, liggend met alleen de spreuk.',
+        'De beschermgradient wordt per formaat uit de kadering van het portret berekend, dekt het hele tekstblok en stopt onder de kin.',
+        'Liggend kan een portret niet beeldvullend zonder dat het gezicht onder de woorden komt: daar staat de foto rechts met een overvloei en liggen de woorden op papier, zoals naast het portret op de kaart.',
+        'Het WhatsApp-bericht is opgebouwd uit de ingevulde gegevens en is met \u00e9\u00e9n tik te kopi\u00ebren.',
+        'De drie acties staan op \u00e9\u00e9n regel: de zwarte pil weegt het zwaarst, de twee icoontjes wachten ernaast. Een tik vouwt naam en uitleg open en laat de pil groeien terwijl de icoontjes terugtreden; de tweede tik doet de actie. De voet blijft laag, de kaart houdt de aandacht.',
+        'Voor het versturen komt de namencheck: kerngegevens en alle namen \u00e9\u00e9n voor \u00e9\u00e9n te bevestigen of te corrigeren, met een voortgangslijn. Pas als alles is nagelopen kan het pakket weg.',
+        'Corrigeren gebeurt in de regel zelf: Wijzig opent het veld met een tekenruimte die meebeweegt, zodat een regel nooit over de kaart heen loopt.',
+        'Het paneel bij een naam zegt wat het doet: waar de regel hoort (kind of naaste, kleinkind, achterkleinkind), een schakelaar voor een relatieregel met de uitleg dat die cursief staat, een schakelaar voor het kruisje, en weghalen met een icoon.',
+        'Elke wijziging en elke vraag komt onderaan in het dossier te staan, met tijd erbij, zodat de uitvaartbegeleider kan nalezen en verifi\u00ebren. Een gestelde vraag blijft in de regel zichtbaar.',
+        'Voorstel voor de rechten: de familie corrigeert de namen en de partnerregel zelf, maar de data en plaatsen komen uit de aangifte. Daar staat voor hen Vraag stellen, met een vraag die in het dossier komt. De uitvaartbegeleider mag alles wijzigen.',
+        'Volgende rondes: de namencheck, het bevestigingsmoment v\u00f3\u00f3r de drukproef, en het eindscherm.'
+      ],
+
+      boardTitle: 'Zoals ze gedownload worden, voor ' + c.call,
+      board: this.SHARES.map((s) => {
+        const a = this.shareArt(st, s);
+        return {
+          width: s.k === 'facebook' ? '400px' : s.k === 'instagram' ? '224px' : '250px',
+          box: {
+            position: 'relative', containerType: 'inline-size', width: '100%', aspectRatio: String(s.ar),
+            overflow: 'hidden', borderRadius: '2px', background: 'var(--secondary)',
+            boxShadow: '0 14px 32px -14px rgba(26,26,30,.4), 0 0 0 1px rgba(45,45,58,.07)'
+          },
+          back: a.back, photo: a.photo, grad: a.grad, textWrap: a.wrap, lines: a.lines,
+          label: s.n, sub: s.spec + '  \u00b7  ' + this.slug(st) + s.file
+        };
+      })
+    };
+  }
+
+  secPill(on, dim) {
+    const w = (dim ? 36 : 44) + 'px';
+    return {
+      flex: '0 0 auto',
+      width: on ? 'auto' : w, minWidth: on ? '44px' : w,
+      minHeight: dim ? '40px' : '44px', padding: on ? '0 16px' : '0',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: on ? '8px' : '0',
+      borderRadius: '999px', cursor: 'pointer',
+      border: '1px solid ' + (on ? 'transparent' : 'var(--border-strong)'),
+      background: on ? 'var(--secondary)' : 'transparent',
+      color: on ? 'var(--foreground)' : 'var(--muted-foreground)',
+      opacity: dim ? .5 : 1,
+      transition: 'width .38s cubic-bezier(.16,1,.3,1), min-width .38s cubic-bezier(.16,1,.3,1), min-height .34s cubic-bezier(.16,1,.3,1), padding .38s cubic-bezier(.16,1,.3,1), opacity .3s ease, background .3s ease, color .3s ease, border-color .3s ease'
+    };
+  }
+
+  secLabel(on) {
+    return {
+      overflow: 'hidden', whiteSpace: 'nowrap',
+      maxWidth: on ? '180px' : '0px', opacity: on ? 1 : 0,
+      fontSize: '12.5px', fontWeight: 500,
+      transition: 'max-width .38s cubic-bezier(.16,1,.3,1), opacity .28s ease'
+    };
+  }
+
+  arrow(side) {
+    return {
+      position: 'absolute', zIndex: 12, top: '50%', transform: 'translateY(-50%)',
+      [side]: '6px', width: '40px', height: '40px', padding: 0,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      borderRadius: '999px', cursor: 'pointer', color: 'rgba(255,255,255,.86)',
+      border: '1px solid rgba(255,255,255,.2)', background: 'rgba(255,255,255,.12)',
+      backdropFilter: 'blur(20px) saturate(120%)', WebkitBackdropFilter: 'blur(20px) saturate(120%)',
+      transition: 'background .25s ease'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

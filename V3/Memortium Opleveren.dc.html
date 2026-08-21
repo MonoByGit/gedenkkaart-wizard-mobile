@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/colors.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/typography.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/shape.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/motion.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/levenslied.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/tokens/base.css">
+<link rel="stylesheet" href="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/styles.css">
+<script src="_ds/memortium-design-system-1472ca96-5688-4696-a8fa-7c68150c98c0/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Lora:ital,wght@0,400;1,400&display=swap">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#e7e7ea;font-family:var(--font-family)}
+  a{color:#1a1a1e;text-decoration:none}
+  a:hover{color:#6b6b7a}
+  button{font-family:var(--font-family);-webkit-tap-highlight-color:transparent}
+  button:focus{outline:none}
+  button:focus-visible{outline:1.5px solid rgba(45,45,58,.35);outline-offset:3px}
+  .mem-scroll::-webkit-scrollbar{display:none}
+  .mem-scroll{scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  @keyframes memRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes memFade{from{opacity:0}to{opacity:1}}
+  @keyframes memLift{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:none}}
+  @keyframes memSweep{from{transform:translateX(-78%)}to{transform:translateX(78%)}}
+</style>
+</helmet>
+
+<section data-screen-label="Dossier, het oplevermoment" style="padding:56px 56px 80px;display:flex;flex-direction:column;gap:40px;font-family:var(--font-family)">
+  <div style="display:flex;align-items:flex-start;gap:20px">
+    <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cta-foreground);background:var(--primary);border-radius:999px;padding:9px 16px">1a</span>
+    <div style="display:flex;flex-direction:column;gap:8px;max-width:660px">
+      <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Het dossier &middot; het portret is net geleverd</span>
+      <h1 style="margin:0;font-size:34px;font-weight:700;line-height:1.2;color:var(--foreground);text-wrap:pretty">Het oplevermoment, de vork en de verleiding</h1>
+      <p style="margin:0;font-size:15px;line-height:1.7;color:var(--muted-foreground);text-wrap:pretty">De foto opent het dossier. Het portret ligt als print op tafel; een tik erop maakt hem groot, een tik op de randen eronder legt zwart-wit en sepia ernaast. Daaronder de twee wegen, gelijk in gewicht, en daarna hetzelfde portret op een kaart.</p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:44px;align-items:flex-start;flex-wrap:wrap">
+
+    <div style="width:414px;height:868px;border-radius:52px;background:#0c0c0f;padding:12px;box-shadow:0 40px 90px -30px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.5);flex:none">
+      <div style="position:relative;width:390px;height:844px;border-radius:41px;overflow:hidden;background:var(--background);background-image:var(--surface-page-image);display:flex;flex-direction:column">
+
+        <div style="height:46px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 6px;font-size:13px;font-weight:500;color:var(--foreground)">
+          <span>11:24</span>
+          <span style="display:flex;gap:6px;align-items:center;opacity:.75">
+            <span style="width:17px;height:10px;border:1px solid currentColor;border-radius:3px;display:block"></span>
+          </span>
+        </div>
+
+        <div style="flex:none;padding:4px 18px 12px;display:flex;align-items:center;gap:12px">
+          <button type="button" onClick="{{ back }}" style="{{ iconBtn }}" aria-label="Terug naar uw dossiers">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="arrow-left" size="18" hint-size="18px,18px"></x-import>
+          </button>
+          <div style="display:flex;flex-direction:column;gap:1px;min-width:0;flex:1">
+            <span style="font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Dossier</span>
+            <span style="font-size:15px;font-weight:700;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ chromeTitle }}</span>
+          </div>
+          <button type="button" onClick="{{ openInfo }}" style="{{ iconBtn }}" aria-label="Over dit dossier">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+          </button>
+        </div>
+
+        <div class="mem-scroll" style="{{ bodyStyle }}">
+
+          <div style="display:flex;flex-direction:column;gap:12px;animation:memRise .5s cubic-bezier(.16,1,.3,1) .06s both">
+            <div style="display:flex;align-items:baseline;gap:10px;padding:0 20px">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--foreground)">{{ portraitLabel }}</span>
+              <span style="font-size:11px;color:var(--muted-foreground);flex:1;min-width:0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ deliveredAt }}</span>
+            </div>
+
+            <sc-if value="{{ hasPortrait }}" hint-placeholder-val="{{ true }}">
+              <div style="{{ stageStyle }}">
+                <sc-for list="{{ prints }}" as="p" hint-placeholder-count="3">
+                  <button type="button" onClick="{{ p.tap }}" style="{{ p.wrap }}" aria-label="{{ p.aria }}">
+                    <div style="{{ p.inner }}">
+                      <div style="{{ p.photo }}"></div>
+                      <div style="{{ p.veil }}"></div>
+                      <div style="{{ p.sweep }}"></div>
+                      <span style="{{ p.tagStyle }}">{{ p.tag }}</span>
+                    </div>
+                  </button>
+                </sc-for>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:5px;padding:0 20px">
+                <span style="font-size:12.5px;line-height:1.5;color:var(--foreground);text-wrap:pretty">{{ bijschriftNaam }}</span>
+                <span style="font-size:12px;line-height:1.5;color:var(--muted-foreground)">{{ bijschriftData }}</span>
+                <span style="font-size:11.5px;line-height:1.55;color:var(--muted-foreground);text-wrap:pretty">{{ variantLine }}</span>
+                <button type="button" onClick="{{ legTerug }}" style="{{ legTerugStyle }}">Leg ze terug</button>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:12px;padding:6px 20px 0">
+                <button type="button" onClick="{{ openSheet }}" style="{{ downloadPill }}">
+                  <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="download" size="15" hint-size="15px,15px"></x-import>
+                  Downloaden
+                </button>
+                <span style="font-size:11px;line-height:1.5;color:var(--muted-foreground);flex:1;min-width:0;text-wrap:pretty">Per variant of alle drie in &eacute;&eacute;n keer, op drukkwaliteit.</span>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ waiting }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 20px">
+                <div style="{{ placeholderCard }}">
+                  <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Wij zijn begonnen</span>
+                  <p style="{{ promiseLine }}">Zodra wij de foto hebben, staat het portret hier binnen 24 uur.</p>
+                  <span style="font-size:12px;line-height:1.6;color:var(--muted-foreground);text-wrap:pretty">U hoeft niets te doen. Wij laten het weten zodra het klaarstaat.</span>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px;animation:memRise .5s cubic-bezier(.16,1,.3,1) .14s both">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--foreground);padding:0 20px">Hoe verder</span>
+            <div style="display:flex;flex-direction:column;gap:10px;padding:0 20px">
+              <button type="button" onClick="{{ tapStartCard }}" style="{{ forkCardA }}">
+                <div style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0;text-align:left">
+                  <span style="{{ forkTitleA }}">{{ forkTitleTextA }}</span>
+                  <span style="{{ forkSubA }}">{{ forkSubTextA }}</span>
+                </div>
+                <span style="{{ forkIconA }}">
+                  <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="chevron-right" size="17" hint-size="17px,17px"></x-import>
+                </span>
+              </button>
+              <button type="button" onClick="{{ tapDownloadPath }}" style="{{ forkCardB }}">
+                <div style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0;text-align:left">
+                  <span style="{{ forkTitleB }}">De foto&rsquo;s downloaden</span>
+                  <span style="{{ forkSubB }}">{{ forkSubTextB }}</span>
+                </div>
+                <span style="{{ forkIconB }}">
+                  <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="download" size="17" hint-size="17px,17px"></x-import>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:14px;animation:memRise .5s cubic-bezier(.16,1,.3,1) .22s both">
+            <div style="display:flex;flex-direction:column;gap:6px;padding:0 20px">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">{{ seduceLabel }}</span>
+              <h2 style="{{ seduceTitleStyle }}">{{ seduceTitle }}</h2>
+              <p style="margin:0;font-size:12.5px;line-height:1.65;color:var(--muted-foreground);text-wrap:pretty">{{ seduceSub }}</p>
+            </div>
+
+            <div class="mem-scroll" style="{{ gangStyle }}">
+              <sc-for list="{{ previews }}" as="pv" hint-placeholder-count="2">
+                <button type="button" onClick="{{ pv.tap }}" style="{{ pv.btn }}">
+                  <div style="{{ pv.wrap }}">
+                    <div style="{{ pv.paper }}"></div>
+                    <div style="{{ pv.photo }}"></div>
+                    <div style="{{ pv.veilTop }}"></div>
+                    <div style="{{ pv.veil }}"></div>
+                    <div style="{{ pv.topStyle }}">{{ pv.topText }}</div>
+                    <div style="{{ pv.textWrap }}">
+                      <sc-for list="{{ pv.lines }}" as="l" hint-placeholder-count="4">
+                        <div style="{{ l.style }}">{{ l.text }}</div>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <span style="{{ pv.labelStyle }}">{{ pv.label }}</span>
+                </button>
+              </sc-for>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px;padding:0 20px">
+              <span style="font-size:11px;line-height:1.55;color:var(--muted-foreground);text-wrap:pretty">{{ gangCaption }}</span>
+
+              <button type="button" onClick="{{ tapConfig }}" style="{{ configPill }}">{{ configLabel }}</button>
+              <span style="font-size:11px;line-height:1.55;color:var(--muted-foreground);text-align:center;text-wrap:pretty">{{ configNote }}</span>
+              <button type="button" onClick="{{ tapLaterOrder }}" style="{{ laterOrderStyle }}">Nu al bijbestellen</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="{{ offerBar }}">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0">
+              <span style="font-size:16px;font-weight:700;color:var(--foreground);white-space:nowrap">{{ barTotal }}</span>
+              <span style="font-size:11px;line-height:1.45;color:var(--muted-foreground);text-wrap:pretty">{{ barLine }}</span>
+            </div>
+            <sc-if value="{{ started }}" hint-placeholder-val="{{ false }}">
+              <a href="Memortium Wizard.dc.html" style="{{ startedPill }}">Verder in de editor</a>
+            </sc-if>
+            <sc-if value="{{ notStarted }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onClick="{{ startCard }}" style="{{ startPill }}">De kaart starten</button>
+            </sc-if>
+          </div>
+        </div>
+
+        <div style="{{ infoStyle }}">
+          <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Dit dossier</span>
+          <p style="{{ promiseLine }}">{{ infoHead }}</p>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <sc-for list="{{ infoRows }}" as="ir" hint-placeholder-count="3">
+              <div style="display:flex;gap:12px;align-items:baseline">
+                <span style="font-size:11.5px;color:var(--muted-foreground);width:96px;flex:none">{{ ir.k }}</span>
+                <span style="font-size:12.5px;line-height:1.5;color:var(--foreground);flex:1;text-wrap:pretty">{{ ir.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <button type="button" onClick="{{ closeInfo }}" style="align-self:flex-start;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--border-strong);background:transparent;font-size:12.5px;color:var(--foreground);cursor:pointer;margin-top:2px">Duidelijk</button>
+        </div>
+
+        <div style="{{ sheetScrim }}" onClick="{{ closeSheet }}"></div>
+        <div style="{{ sheetStyle }}">
+          <div style="display:flex;flex-direction:column;gap:4px;padding:22px 22px 12px">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Downloaden</span>
+            <span style="font-size:17px;font-weight:700;color:var(--foreground)">Wat wilt u meenemen?</span>
+          </div>
+          <div style="display:flex;flex-direction:column;padding:0 12px 8px">
+            <sc-for list="{{ dlRows }}" as="d" hint-placeholder-count="4">
+              <button type="button" onClick="{{ d.tap }}" style="{{ d.style }}">
+                <span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;text-align:left">
+                  <span style="{{ d.labelStyle }}">{{ d.label }}</span>
+                  <span style="font-size:11px;color:var(--muted-foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.spec }}</span>
+                </span>
+                <span style="color:var(--muted-foreground);display:flex">
+                  <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="download" size="16" hint-size="16px,16px"></x-import>
+                </span>
+              </button>
+            </sc-for>
+          </div>
+          <div style="padding:0 22px 24px;display:flex;flex-direction:column;gap:12px">
+            <span style="font-size:11px;line-height:1.55;color:var(--muted-foreground);text-wrap:pretty">De vrijgesneden versie gebruiken wij voor de kaart; die hoeft u niet zelf te bewaren.</span>
+            <button type="button" onClick="{{ closeSheet }}" style="align-self:flex-start;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--border-strong);background:transparent;font-size:13px;color:var(--foreground);cursor:pointer">Sluiten</button>
+          </div>
+        </div>
+
+        <div style="{{ orderScrim }}" onClick="{{ closeOrder }}"></div>
+        <div style="{{ orderSheet }}">
+          <div style="display:flex;flex-direction:column;gap:8px;padding:22px 22px 6px">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Bijbestellen</span>
+            <span style="font-size:18px;font-weight:700;line-height:1.3;color:var(--foreground);text-wrap:pretty">Deze kaart staat nog niet in uw bestelling</span>
+            <p style="margin:0;font-size:12.5px;line-height:1.65;color:var(--muted-foreground);text-wrap:pretty">{{ orderIntro }}</p>
+          </div>
+
+          <div style="padding:6px 22px 0;display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{ offerRows }}" as="r" hint-placeholder-count="2">
+              <button type="button" onClick="{{ r.tap }}" style="{{ r.style }}">
+                <span style="{{ r.boxStyle }}">
+                  <span style="{{ r.checkStyle }}">
+                    <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="check" size="13" hint-size="13px,13px"></x-import>
+                  </span>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;text-align:left">
+                  <span style="{{ r.labelStyle }}">{{ r.label }}</span>
+                  <span style="font-size:11px;line-height:1.45;color:var(--muted-foreground);text-wrap:pretty">{{ r.sub }}</span>
+                </span>
+                <span style="{{ r.priceStyle }}">{{ r.price }}</span>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="padding:0 22px">
+            <div style="{{ totalRow }}">
+              <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0">
+                <span style="font-size:12px;font-weight:500;color:var(--foreground)">Totaal</span>
+                <span style="{{ saveLine }}">{{ saveText }}</span>
+              </div>
+              <span style="font-size:17px;font-weight:700;color:var(--foreground)">{{ totalText }}</span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;padding:18px 22px 24px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <button type="button" onClick="{{ tapOrderConfirm }}" style="{{ orderConfirm }}">{{ orderConfirmLabel }}</button>
+              <button type="button" onClick="{{ closeOrder }}" style="flex:none;min-height:50px;padding:0 16px;border-radius:999px;border:1px solid var(--border-strong);background:transparent;font-size:13px;color:var(--muted-foreground);cursor:pointer">Later</button>
+            </div>
+            <span style="font-size:11px;line-height:1.55;color:var(--muted-foreground);text-wrap:pretty">Samenstellen kan ook zonder bestellen: kies niets en ga verder, dan beslist u aan het einde. Wat u maakt blijft in het dossier staan. Bijbestellen komt op dezelfde factuur als het portret.</span>
+          </div>
+        </div>
+
+        <div style="{{ lbWrap }}">
+          <button type="button" onClick="{{ closeLb }}" style="{{ lbClose }}" aria-label="Sluiten">
+            <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="x" size="18" hint-size="18px,18px"></x-import>
+          </button>
+          <div style="{{ lbViewport }}" onClick="{{ closeLb }}" onTouchStart="{{ lbTouchStart }}" onTouchEnd="{{ lbTouchEnd }}">
+            <div style="{{ lbTrack }}">
+              <sc-for list="{{ lbSlides }}" as="s" hint-placeholder-count="3">
+                <div style="{{ s.slide }}">
+                  <div style="{{ s.wrap }}">
+                    <div style="{{ s.paper }}"></div>
+                    <div style="{{ s.photo }}"></div>
+                    <div style="{{ s.veilTop }}"></div>
+                    <div style="{{ s.veil }}"></div>
+                    <div style="{{ s.topStyle }}">{{ s.topText }}</div>
+                    <div style="{{ s.textWrap }}">
+                      <sc-for list="{{ s.lines }}" as="l" hint-placeholder-count="0">
+                        <div style="{{ l.style }}">{{ l.text }}</div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+            <button type="button" onClick="{{ lbConfig }}" style="{{ lbAction }}">Deze kaart configureren</button>
+          <div style="{{ lbFoot }}">
+            <button type="button" onClick="{{ lbPrev }}" style="{{ lbArrow }}" aria-label="Vorige">
+              <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="arrow-left" size="18" hint-size="18px,18px"></x-import>
+            </button>
+            <div style="display:flex;flex-direction:column;gap:9px;align-items:center;flex:1;min-width:0">
+              <span style="{{ lbLabelStyle }}">{{ lbLabel }}</span>
+              <div style="display:flex;gap:6px;align-items:center">
+                <sc-for list="{{ lbDots }}" as="d" hint-placeholder-count="3">
+                  <span style="{{ d.style }}"></span>
+                </sc-for>
+              </div>
+            </div>
+            <button type="button" onClick="{{ lbNext }}" style="{{ lbArrow }}" aria-label="Volgende">
+              <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="arrow-right" size="18" hint-size="18px,18px"></x-import>
+            </button>
+          </div>
+        </div>
+
+        <div style="{{ toastStyle }}">{{ toast }}</div>
+
+      </div>
+    </div>
+
+    <div style="width:300px;display:flex;flex-direction:column;gap:22px;padding-top:8px">
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">De onthulling</span>
+        <p style="margin:0;font-size:13px;line-height:1.7;color:var(--foreground);text-wrap:pretty">Het portret komt op met een enkele lichtstreek en ligt als print op tafel, met een haarlijn als rand. De originele foto komt hier niet meer in beeld: wat de begeleider ziet, is het eindresultaat.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">Groot bekijken</span>
+        <p style="margin:0;font-size:13px;line-height:1.7;color:var(--foreground);text-wrap:pretty">Elke variant gaat groot, met pijlen en vegen ertussen. Ook de twee kaartvoorbeelden openen zo, dus alles wat klein staat kan van dichtbij bekeken worden.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">De vork</span>
+        <p style="margin:0;font-size:13px;line-height:1.7;color:var(--foreground);text-wrap:pretty">Beide wegen hebben dezelfde maat, dezelfde koptekst en dezelfde regel eronder. De een is gevuld, de ander heeft een rand; downloaden is geen kleine letter.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground)">De verleiding</span>
+        <p style="margin:0;font-size:13px;line-height:1.7;color:var(--foreground);text-wrap:pretty">Geen belofte dat wij kaarten maken, maar vijf keer dit portret op een kaart: volledig in beeld, vrijgesneden op een andere achtergrond, en drie kadervormen op papier. Geen prijs in beeld, alleen nieuwsgierigheid. Het bedrag komt pas als de begeleider de configuratie start, en dan meteen met de reden erbij: deze kaart zat niet in de bestelling.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1480,&quot;height&quot;:1080},&quot;voorbeeld&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Greet van Doorn&quot;,&quot;Carien Bosman&quot;,&quot;Richard Kastelein&quot;],&quot;default&quot;:&quot;Greet van Doorn&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Dossier&quot;},&quot;portretGeleverd&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Dossier&quot;},&quot;aanbodStart&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Niets gekozen&quot;,&quot;Rouwkaart&quot;,&quot;Rouw- en bedankkaart&quot;],&quot;default&quot;:&quot;Niets gekozen&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Dossier&quot;}}">
+class Component extends DCLogic {
+  state = {
+    ex: /Carien/.test(this.props.voorbeeld || '') ? 'carien' : /Richard/.test(this.props.voorbeeld || '') ? 'richard' : 'greet',
+    hasPortrait: this.props.portretGeleverd !== false,
+    sel: { rouw: /Rouw/.test(this.props.aanbodStart || ''), bedank: /bedank/.test(this.props.aanbodStart || '') },
+    variant: 0, spread: false, reveal: true, sheet: false, info: false, path: null, toast: '',
+    lbKind: '', lbI: 0, order: false
+  };
+
+  componentDidMount() { this._r = setTimeout(() => this.setState({ reveal: false }), 2200); }
+  componentWillUnmount() { clearTimeout(this._r); clearTimeout(this._t); }
+
+  componentDidUpdate(prev) {
+    if (prev.voorbeeld !== this.props.voorbeeld) {
+      this.setState({
+        ex: /Carien/.test(this.props.voorbeeld || '') ? 'carien' : /Richard/.test(this.props.voorbeeld || '') ? 'richard' : 'greet',
+        variant: 0, spread: false, reveal: true, path: null, lbKind: ''
+      });
+      clearTimeout(this._r); this._r = setTimeout(() => this.setState({ reveal: false }), 2200);
+    }
+    if (prev.portretGeleverd !== this.props.portretGeleverd) this.setState({ hasPortrait: this.props.portretGeleverd !== false });
+    if (prev.aanbodStart !== this.props.aanbodStart) {
+      this.setState({ sel: { rouw: /Rouw/.test(this.props.aanbodStart || ''), bedank: /bedank/.test(this.props.aanbodStart || '') } });
+    }
+  }
+
+  /* ---------------- data, 1:1 met de wizard ---------------- */
+
+  get PORTRAITS() {
+    return {
+      nana: { full: 'assets/nana.jpg', cut: 'assets/nana-cutout.png', pos: '50% 42%' },
+      carien: { full: 'assets/carien.jpg', cut: 'assets/carien-cutout.png', pos: '50% 38%' },
+      richard: { full: 'assets/richard.jpg', cut: 'assets/richard-cutout.png', pos: '50% 38%' }
+    };
+  }
+
+  get PERSONAS() {
+    return {
+      greet: {
+        call: 'Greet van Doorn', name: 'Margaretha Johanna van Doorn-Verheij', portrait: 'nana',
+        partner: 'echtgenote van Hendrik van Doorn',
+        born: '14 maart 1946', died: '8 augustus 2026',
+        bornPlace: 'Zwolle', diedPlace: 'Deventer',
+        spreuk: 'Het licht is uit de kamer,\nniet uit ons hart.',
+        begeleider: 'Uitvaartzorg De Vijverhof',
+        pakket: 'Impuls portret, \u20ac 99', besteld: '8 augustus, 09:10',
+        geleverd: 'Vandaag om 11:20', vervalt: '7 oktober 2026'
+      },
+      carien: {
+        call: 'Carien Bosman', name: 'Carien Bosman-de Vries', portrait: 'carien',
+        partner: 'weduwe van Ton Bosman',
+        born: '2 juni 1958', died: '3 augustus 2026',
+        bornPlace: 'Haarlem', diedPlace: 'Bloemendaal',
+        spreuk: 'Zij liep het liefst\nwaar de wind stond.',
+        begeleider: 'Uitvaartzorg Duin en Berg',
+        pakket: 'Essentieel portret, \u20ac 49', besteld: '4 augustus, 16:40',
+        geleverd: 'Vandaag om 11:20', vervalt: '2 oktober 2026'
+      },
+      richard: {
+        call: 'Richard Kastelein', name: 'Richard Johannes Kastelein', portrait: 'richard',
+        partner: 'echtgenoot van Mia Kastelein-Peeters',
+        born: '11 januari 1951', died: '6 augustus 2026',
+        bornPlace: 'Sittard', diedPlace: 'Maastricht',
+        spreuk: 'Wat hij bouwde,\nstaat nog overeind.',
+        begeleider: 'Uitvaartzorg Sint-Martinus',
+        pakket: 'Essentieel portret, \u20ac 49', besteld: '7 augustus, 08:05',
+        geleverd: 'Vandaag om 11:20', vervalt: '5 oktober 2026'
+      }
+    };
+  }
+
+  get VARIANTS() {
+    return [
+      { k: 'kleur', n: 'Kleur', f: 'saturate(1.06) contrast(1.05) brightness(1.02)' },
+      { k: 'zwartwit', n: 'Zwart-wit', f: 'grayscale(1) contrast(1.08) brightness(1.02)' },
+      { k: 'sepia', n: 'Sepia', f: 'sepia(.58) saturate(1.15) contrast(1.02) brightness(1.03)' }
+    ];
+  }
+
+  /* ---------------- helpers ---------------- */
+
+  c() { return this.PERSONAS[this.state.ex]; }
+  p() { return this.PORTRAITS[this.c().portrait]; }
+  slug() { return this.c().call.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, ''); }
+  flash(m) { this.setState({ toast: m }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: '' }), 4600); }
+
+  total() {
+    const s = this.state.sel;
+    if (s.rouw && s.bedank) return 80;
+    return (s.rouw ? 48 : 0) + (s.bedank ? 32 : 0);
+  }
+
+  geo(i) {
+    const st = this.state, act = st.variant;
+    const others = [0, 1, 2].filter((x) => x !== act);
+    if (!st.spread) {
+      if (i === act) return { w: 268, h: 357, x: 61, y: 16, rot: 0, z: 5, veil: 0 };
+      const k = others.indexOf(i);
+      return k === 0
+        ? { w: 256, h: 341, x: 48, y: 28, rot: -3.4, z: 3, veil: .5 }
+        : { w: 248, h: 331, x: 86, y: 36, rot: 3.2, z: 2, veil: .6 };
+    }
+    if (i === act) return { w: 216, h: 288, x: 18, y: 44, rot: 0, z: 5, veil: 0 };
+    const k = others.indexOf(i);
+    return { w: 122, h: 163, x: 250, y: k === 0 ? 22 : 201, rot: 0, z: 4, veil: .1 };
+  }
+
+  lbStep(d) {
+    const st = this.state;
+    const n = st.lbKind === 'kaart' ? this.CARDS.length : 3;
+    const i = Math.max(0, Math.min(n - 1, st.lbI + d));
+    if (i === st.lbI) return;
+    this.setState(st.lbKind === 'kaart' ? { lbI: i } : { lbI: i, variant: i });
+  }
+
+  printTap(i) {
+    const st = this.state;
+    if (i === st.variant) { this.setState({ lbKind: 'portret', lbI: st.variant }); return; }
+    if (!st.spread) { this.setState({ spread: true }); return; }
+    this.setState({ variant: i });
+  }
+
+  /* Vijf kaartvoorbeelden, alle met dit portret er al in. Opmaak, kadervormen en tinten
+     komen uit de editor; de data staan altijd direct onder de naam. */
+  get CARDS() {
+    return [
+      { k: 'vol', label: 'Volledig in beeld', mode: 'full' },
+      { k: 'vrij', label: 'Vrijgesneden', mode: 'cutout', bg: 'assets/thema-avondwater.jpg' },
+      { k: 'recht', label: 'Kader op papier', mode: 'frame', shape: 'rect', paper: '#f8f8f9', ink: '#212124', soft: 'rgba(33,33,36,.66)' },
+      { k: 'ovaal', label: 'Ovaal op zand', mode: 'frame', shape: 'oval', paper: '#efe7da', ink: '#302a22', soft: 'rgba(48,42,34,.68)' },
+      { k: 'boog', label: 'Boog, papier donker', mode: 'frame', shape: 'arch', paper: '#1b2033', ink: '#eaecf3', soft: 'rgba(234,236,243,.7)' }
+    ];
+  }
+
+  cardPreview(kind, W) {
+    const c = this.c(), p = this.p();
+    const spec = this.CARDS.find((x) => x.k === kind) || this.CARDS[0];
+    const H = Math.round(W * 1.4095);
+    const f = (frac) => (W * frac).toFixed(2) + 'px';
+    const D = '"EB Garamond", serif';
+    const over = spec.mode !== 'frame';
+    const cut = spec.mode === 'cutout';
+    const ink = over ? '#fff' : spec.ink;
+    const soft = over ? 'rgba(255,255,255,.86)' : spec.soft;
+    const dates = '\u2217 ' + c.bornPlace + ', ' + c.born + '\u2003\u2020 ' + c.diedPlace + ', ' + c.died;
+
+    const shapeStyle = () => {
+      if (spec.shape === 'oval') {
+        return {
+          borderRadius: '50%',
+          maskImage: 'radial-gradient(closest-side,#000 76%,rgba(0,0,0,0) 100%)',
+          WebkitMaskImage: 'radial-gradient(closest-side,#000 76%,rgba(0,0,0,0) 100%)'
+        };
+      }
+      if (spec.shape === 'arch') {
+        return {
+          borderRadius: '48% 48% ' + f(.02) + ' ' + f(.02) + ' / 34% 34% ' + f(.02) + ' ' + f(.02),
+          maskImage: 'linear-gradient(180deg,#000 0%,#000 88%,rgba(0,0,0,0) 100%)',
+          WebkitMaskImage: 'linear-gradient(180deg,#000 0%,#000 88%,rgba(0,0,0,0) 100%)'
+        };
+      }
+      return {
+        borderRadius: f(.02),
+        maskImage: 'linear-gradient(180deg,#000 0%,#000 90%,rgba(0,0,0,0) 100%)',
+        WebkitMaskImage: 'linear-gradient(180deg,#000 0%,#000 90%,rgba(0,0,0,0) 100%)'
+      };
+    };
+
+    return {
+      label: spec.label,
+      wrap: {
+        position: 'relative', width: W + 'px', height: H + 'px', flex: 'none',
+        borderRadius: f(.042), overflow: 'hidden',
+        boxShadow: '0 16px 38px -18px rgba(26,26,30,.4), 0 0 0 1px rgba(45,45,58,.06)'
+      },
+      paper: cut ? {
+        position: 'absolute', inset: 0,
+        backgroundImage: 'url(' + spec.bg + ')', backgroundSize: 'cover', backgroundPosition: 'center'
+      } : { position: 'absolute', inset: 0, background: over ? '#dfe3e6' : spec.paper },
+      photo: over ? {
+        position: 'absolute', inset: 0,
+        backgroundImage: 'url(' + (cut ? p.cut : p.full) + ')',
+        backgroundSize: 'cover', backgroundPosition: p.pos,
+        filter: cut
+          ? 'saturate(1.02) contrast(1.02) drop-shadow(0 ' + f(.02) + ' ' + f(.05) + ' rgba(10,20,30,.4))'
+          : 'saturate(1.04) contrast(1.04)'
+      } : Object.assign({
+        position: 'absolute', left: f(.12), right: f(.12), top: f(.09), height: '46%',
+        backgroundImage: 'url(' + p.cut + ')', backgroundSize: 'cover', backgroundPosition: p.pos,
+        filter: 'saturate(1.02) contrast(1.03)'
+      }, shapeStyle()),
+      veilTop: over ? {
+        position: 'absolute', left: 0, right: 0, top: 0, height: '30%',
+        background: 'linear-gradient(180deg,rgba(18,22,28,.34) 0%,rgba(18,22,28,.1) 60%,rgba(18,22,28,0) 100%)'
+      } : { display: 'none' },
+      veil: over ? {
+        position: 'absolute', left: 0, right: 0, bottom: 0, height: '44%',
+        background: 'linear-gradient(180deg,rgba(18,22,28,0) 0%,rgba(18,22,28,.42) 52%,rgba(18,22,28,.72) 100%)'
+      } : { display: 'none' },
+      topText: c.spreuk,
+      topStyle: Object.assign({
+        position: 'absolute', left: f(.1), right: f(.1),
+        fontFamily: D, fontStyle: 'italic', fontSize: f(.0317), lineHeight: 1.75,
+        color: soft, whiteSpace: 'pre-line', textAlign: 'center', letterSpacing: '.01em'
+      }, over ? { top: f(.075), color: 'rgba(255,255,255,.95)' } : { bottom: f(.075) }),
+      textWrap: Object.assign({
+        position: 'absolute', left: f(.08), right: f(.08),
+        display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center'
+      }, over ? { bottom: f(.062) } : { top: '60%' }),
+      lines: [
+        { text: c.call, style: { fontFamily: D, fontSize: f(.05), lineHeight: 1.25, color: ink, letterSpacing: '.02em' } },
+        { text: dates, style: { fontFamily: D, fontSize: f(.0233), lineHeight: 1.6, color: soft, marginTop: f(.018) } },
+        { text: c.name, style: { fontFamily: D, fontSize: f(.024), lineHeight: 1.6, color: soft, marginTop: f(.024) } },
+        { text: c.partner, style: { fontFamily: D, fontStyle: 'italic', fontSize: f(.0224), lineHeight: 1.6, color: soft, marginTop: f(.008) } }
+      ]
+    };
+  }
+
+  offerRow(key, label, sub, price) {
+    const st = this.state;
+    const quiet = key === 'prent';
+    const on = !quiet && !!st.sel[key];
+    return {
+      label: label, sub: sub, price: price,
+      tap: quiet
+        ? () => this.flash('Het gedachtenisprentje kunt u straks bijbestellen. De prijs volgt.')
+        : () => {
+          const sel = Object.assign({}, st.sel);
+          sel[key] = !sel[key];
+          this.setState({ sel: sel, path: (sel.rouw || sel.bedank) ? st.path : null });
+        },
+      style: {
+        display: 'flex', alignItems: 'center', gap: '12px', width: '100%',
+        minHeight: '62px', padding: '10px 4px', border: 'none', background: 'transparent',
+        cursor: 'pointer', borderTop: '1px solid var(--border)'
+      },
+      boxStyle: {
+        width: '22px', height: '22px', flex: 'none', borderRadius: '7px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        border: quiet ? '1px solid var(--border)' : '1px solid ' + (on ? 'transparent' : 'var(--border-strong)'),
+        background: on ? 'var(--primary)' : 'transparent',
+        color: 'var(--primary-foreground)',
+        transition: 'background .22s ease, border-color .22s ease'
+      },
+      checkStyle: {
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        opacity: on ? 1 : 0, transform: on ? 'scale(1)' : 'scale(.7)',
+        transition: 'opacity .2s ease, transform .28s cubic-bezier(.16,1,.3,1)'
+      },
+      labelStyle: { fontSize: '13.5px', fontWeight: on ? 700 : 500, color: quiet ? 'var(--muted-foreground)' : 'var(--foreground)', transition: 'font-weight .2s ease' },
+      priceStyle: { fontSize: quiet ? '11.5px' : '13.5px', fontWeight: quiet ? 400 : 500, color: quiet ? 'var(--muted-foreground)' : 'var(--foreground)', whiteSpace: 'nowrap', flex: 'none' }
+    };
+  }
+
+  /* ---------------- render ---------------- */
+
+  renderVals() {
+    const st = this.state, c = this.c(), p = this.p(), V = this.VARIANTS;
+    const has = st.hasPortrait;
+    const tot = this.total();
+    const foto = /Impuls/.test(c.pakket) ? 99 : 49;
+    const both = st.sel.rouw && st.sel.bedank;
+    const started = st.path === 'card';
+    const configuring = st.path === 'config';
+    const inEditor = started || configuring;
+    const slug = this.slug();
+
+    return {
+      chromeTitle: c.call,
+      hasPortrait: has,
+      waiting: !has,
+      iconBtn: {
+        width: '34px', height: '34px', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        borderRadius: '999px', border: '1px solid var(--border-strong)', background: 'transparent',
+        color: 'var(--muted-foreground)', cursor: 'pointer'
+      },
+      back: () => this.flash('Terug naar uw dossiers.'),
+
+      bodyStyle: {
+        flex: 1, minHeight: 0, overflowY: 'auto', overscrollBehavior: 'contain',
+        display: 'flex', flexDirection: 'column', gap: '30px', paddingTop: '4px',
+        paddingBottom: inEditor ? '150px' : '48px'
+      },
+
+      portraitLabel: has ? 'Het portret is klaar' : 'Het portret',
+      deliveredAt: has ? c.geleverd : 'Binnen 24 uur',
+
+      stageStyle: { position: 'relative', height: '386px', animation: 'memLift .85s cubic-bezier(.16,1,.3,1) both' },
+
+      prints: V.map((v, i) => {
+        const g = this.geo(i), big = g.w > 170, act = i === st.variant;
+        return {
+          aria: v.n + (act ? ', nu groot in beeld' : ', naar voren halen'),
+          tap: () => this.printTap(i),
+          wrap: {
+            position: 'absolute', left: g.x + 'px', top: g.y + 'px', width: g.w + 'px', height: g.h + 'px',
+            zIndex: g.z, padding: big ? '3px' : '2px', border: 'none', borderRadius: big ? '19px' : '13px',
+            background: 'var(--background)', cursor: 'pointer',
+            transform: 'rotate(' + g.rot + 'deg)',
+            boxShadow: act
+              ? '0 26px 56px -24px rgba(26,26,30,.45), 0 2px 8px -4px rgba(26,26,30,.2)'
+              : '0 14px 34px -18px rgba(26,26,30,.34), 0 1px 4px -2px rgba(26,26,30,.14)',
+            transition: 'left .62s cubic-bezier(.16,1,.3,1), top .62s cubic-bezier(.16,1,.3,1), width .62s cubic-bezier(.16,1,.3,1), height .62s cubic-bezier(.16,1,.3,1), transform .62s cubic-bezier(.16,1,.3,1), padding .5s ease, border-radius .5s ease, box-shadow .5s ease'
+          },
+          inner: { position: 'relative', width: '100%', height: '100%', borderRadius: big ? '16px' : '11px', overflow: 'hidden', background: '#e9eaef' },
+          aria2: v.n,
+          photo: {
+            position: 'absolute', inset: 0,
+            backgroundImage: 'url(' + p.full + ')', backgroundSize: 'cover', backgroundPosition: p.pos,
+            filter: v.f
+          },
+          veil: g.veil > 0
+            ? { position: 'absolute', inset: 0, background: 'rgba(252,252,253,' + g.veil + ')', transition: 'background .5s ease' }
+            : { display: 'none' },
+          sweep: (act && st.reveal) ? {
+            position: 'absolute', inset: '-30% -10%',
+            background: 'linear-gradient(102deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.4) 50%,rgba(255,255,255,0) 60%)',
+            animation: 'memSweep 1.5s cubic-bezier(.16,1,.3,1) .4s both', pointerEvents: 'none'
+          } : { display: 'none' },
+          tag: v.n,
+          tagStyle: (st.spread && !act) ? {
+            position: 'absolute', left: '8px', bottom: '8px', padding: '4px 9px', borderRadius: '999px',
+            fontSize: '8.5px', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase',
+            color: '#fff', background: 'rgba(18,18,24,.44)',
+            backdropFilter: 'blur(14px) saturate(140%)', WebkitBackdropFilter: 'blur(14px) saturate(140%)',
+            animation: 'memFade .4s ease both'
+          } : { display: 'none' }
+        };
+      }),
+
+      bijschriftNaam: c.name,
+      bijschriftData: c.bornPlace + ', ' + c.born + '   \u2013   ' + c.diedPlace + ', ' + c.died,
+      variantLine: st.spread
+        ? V[st.variant].n + ' staat voor. Tik op een variant om die naar voren te halen, of op het portret om het groot te zien.'
+        : V[st.variant].n + '. Tik op het portret om het groot te zien, of op de randen eronder voor zwart-wit en sepia.',
+      legTerug: () => this.setState({ spread: false }),
+      legTerugStyle: st.spread ? {
+        alignSelf: 'flex-start', minHeight: '32px', padding: '0 12px', marginTop: '2px',
+        borderRadius: '999px', border: '1px solid var(--border-strong)', background: 'transparent',
+        fontSize: '11.5px', color: 'var(--muted-foreground)', cursor: 'pointer',
+        animation: 'memFade .3s ease both'
+      } : { display: 'none' },
+
+      placeholderCard: {
+        display: 'flex', flexDirection: 'column', gap: '10px', justifyContent: 'center',
+        aspectRatio: '3 / 4', padding: '24px', borderRadius: '26px',
+        background: 'var(--secondary)', border: '1px solid var(--border)'
+      },
+      promiseLine: { margin: 0, fontFamily: '"EB Garamond", serif', fontSize: '20px', lineHeight: 1.35, color: 'var(--foreground)', textWrap: 'pretty' },
+
+      downloadPill: {
+        minHeight: '40px', flex: 'none', display: 'flex', alignItems: 'center', gap: '8px',
+        padding: '0 16px', borderRadius: '999px', border: '1px solid var(--border-strong)',
+        background: 'transparent', fontSize: '13px', fontWeight: 500, color: 'var(--foreground)', cursor: 'pointer'
+      },
+      openSheet: () => this.setState({ sheet: true }),
+      closeSheet: () => this.setState({ sheet: false }),
+
+      /* de vork */
+      forkCardA: {
+        display: 'flex', alignItems: 'center', gap: '14px', width: '100%', minHeight: '92px',
+        padding: '18px', borderRadius: '26px', border: '1px solid transparent', cursor: 'pointer',
+        background: has ? 'var(--primary)' : 'var(--secondary)',
+        boxShadow: has ? 'var(--shadow-cta)' : 'none',
+        opacity: has ? 1 : .7,
+        transition: 'opacity .3s ease, background .3s ease'
+      },
+      forkTitleTextA: inEditor ? 'De kaart is gestart' : 'De kaart starten',
+      forkTitleA: { fontSize: '16px', fontWeight: 700, color: has ? 'var(--primary-foreground)' : 'var(--muted-foreground)' },
+      forkSubTextA: has
+        ? (inEditor ? 'Het portret staat er al in. U werkt verder in de editor.' : 'Vijf voorbeelden met dit portret erin. Samenstellen kan zonder bestellen.')
+        : 'Dit gaat open zodra het portret er staat.',
+      forkSubA: { fontSize: '12.5px', lineHeight: 1.5, color: has ? 'rgba(255,255,255,.74)' : 'var(--muted-foreground)', textWrap: 'pretty' },
+      forkIconA: { display: 'flex', flex: 'none', color: has ? 'rgba(255,255,255,.74)' : 'var(--muted-foreground)' },
+      tapStartCard: () => {
+        if (!has) { this.flash('De kaart gaat open zodra het portret in dit dossier staat.'); return; }
+        this.setState({ order: true });
+      },
+
+      forkCardB: {
+        display: 'flex', alignItems: 'center', gap: '14px', width: '100%', minHeight: '92px',
+        padding: '18px', borderRadius: '26px', cursor: 'pointer',
+        background: 'var(--background)', border: '1px solid ' + (st.path === 'photo' ? 'var(--primary)' : 'var(--border-strong)'),
+        boxShadow: 'var(--shadow-card)', transition: 'border-color .3s ease'
+      },
+      forkTitleB: { fontSize: '16px', fontWeight: 700, color: has ? 'var(--foreground)' : 'var(--muted-foreground)' },
+      forkSubTextB: has
+        ? 'Kleur, zwart-wit en sepia, op drukkwaliteit.'
+        : 'Er staat nog niets klaar om mee te nemen.',
+      forkSubB: { fontSize: '12.5px', lineHeight: 1.5, color: 'var(--muted-foreground)', textWrap: 'pretty' },
+      forkIconB: { display: 'flex', flex: 'none', color: 'var(--muted-foreground)' },
+      tapDownloadPath: () => {
+        if (!has) { this.flash('Zodra het portret er staat, kunt u alles downloaden.'); return; }
+        this.setState({ sheet: true, path: 'photo' });
+      },
+
+      /* de verleiding */
+      seduceLabel: started ? 'Bijbesteld' : configuring ? 'In de maak' : st.path === 'photo' ? 'Altijd mogelijk' : 'Op een kaart',
+      seduceTitleStyle: { margin: 0, fontSize: '20px', fontWeight: 700, lineHeight: 1.25, color: 'var(--foreground)', textWrap: 'pretty' },
+      seduceTitle: inEditor
+        ? 'Uw kaart staat klaar in de editor'
+        : st.path === 'photo'
+          ? 'De kaart kan ook later nog'
+          : 'Zo staat ' + c.call.split(' ')[0] + ' op een kaart',
+      seduceSub: started
+        ? 'Thema, woorden en indeling kiest u in de editor. Het portret is al geplaatst.'
+        : configuring
+          ? 'Stel de kaart rustig samen. Er is nog niets besteld; aan het einde beslist u of u hem afneemt.'
+          : st.path === 'photo'
+            ? 'Uw foto\u2019s staan klaar. Dit aanbod blijft in het dossier staan, ook als u er nu niets mee doet.'
+            : 'Het portret is al bewerkt, dus wij kunnen het u meteen op een kaart laten zien. U kiest het thema, de woorden en de indeling.',
+
+      gangStyle: {
+        display: 'flex', gap: '14px', overflowX: 'auto', scrollSnapType: 'x mandatory',
+        padding: '4px 20px 6px', scrollPaddingLeft: '20px'
+      },
+      previews: this.CARDS.map((cd, i) => {
+        const pv = this.cardPreview(cd.k, 250);
+        return Object.assign(pv, {
+          btn: {
+            display: 'flex', flexDirection: 'column', gap: '9px', flex: 'none', padding: 0,
+            border: 'none', background: 'transparent', cursor: 'pointer', scrollSnapAlign: 'center'
+          },
+          labelStyle: { fontSize: '10px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--muted-foreground)' },
+          tap: () => this.setState({ lbKind: 'kaart', lbI: i })
+        });
+      }),
+      gangCaption: 'Vijf voorbeelden, met dit portret er al in: volledig in beeld, vrijgesneden op een andere achtergrond, en drie kadervormen op papier. Tik om groot te bekijken.',
+
+      configPill: {
+        display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%',
+        minHeight: '52px', padding: '0 20px', borderRadius: '999px', border: '1px solid transparent',
+        background: has ? 'var(--primary)' : 'var(--secondary)',
+        color: has ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
+        fontSize: '15px', fontWeight: 700, cursor: 'pointer',
+        boxShadow: has ? 'var(--shadow-cta)' : 'none'
+      },
+      configLabel: inEditor ? 'Verder in de kaartconfiguratie' : 'Start kaartconfiguratie',
+      configNote: started
+        ? 'Bijbesteld om 11:24. U kunt de kaart nu opmaken.'
+        : configuring
+          ? 'U stelt de kaart samen zonder bestelling. Aan het einde beslist u of u hem afneemt.'
+          : 'U legt hier nog niets vast. Wat het kost, ziet u voordat u kiest.',
+      tapConfig: () => {
+        if (!has) { this.flash('De kaartconfiguratie gaat open zodra het portret er staat.'); return; }
+        if (inEditor) { this.flash('De kaartconfiguratie staat klaar in de editor.'); return; }
+        this.setState({ order: true });
+      },
+      laterOrderStyle: configuring ? {
+        alignSelf: 'center', minHeight: '42px', padding: '0 18px',
+        display: 'flex', alignItems: 'center', borderRadius: '999px',
+        border: '1px solid var(--border-strong)', background: 'transparent',
+        fontSize: '13px', color: 'var(--foreground)', cursor: 'pointer',
+        animation: 'memFade .35s ease both'
+      } : { display: 'none' },
+      tapLaterOrder: () => this.setState({ order: true }),
+
+      /* bijbestellen, want de kaart zat niet in de oorspronkelijke bestelling */
+      orderScrim: st.order
+        ? { position: 'absolute', inset: 0, zIndex: 44, background: 'rgba(12,12,16,.34)', animation: 'memFade .25s ease' }
+        : { display: 'none' },
+      orderSheet: {
+        position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 54,
+        display: 'flex', flexDirection: 'column',
+        background: 'var(--background)', borderRadius: '32px 32px 0 0',
+        boxShadow: '0 -30px 70px -20px rgba(0,0,0,.3)',
+        transform: st.order ? 'translateY(0)' : 'translateY(104%)',
+        opacity: st.order ? 1 : 0,
+        transition: 'transform .5s cubic-bezier(.16,1,.3,1), opacity .3s ease',
+        pointerEvents: st.order ? 'auto' : 'none'
+      },
+      closeOrder: () => this.setState({ order: false }),
+      orderIntro: 'U bestelde bij ons het portret: ' + c.pakket + '. De kaart zat daar niet bij, en die kunt u er nu bij nemen. Wij zetten dit portret er al in.',
+      orderConfirm: {
+        flex: 1, minHeight: '50px', padding: '0 18px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        borderRadius: '999px', border: '1px solid transparent', cursor: 'pointer',
+        fontSize: '14.5px', fontWeight: 700, whiteSpace: 'nowrap',
+        background: 'var(--primary)', color: 'var(--primary-foreground)', boxShadow: 'var(--shadow-cta)'
+      },
+      orderConfirmLabel: tot > 0 ? 'Bijbestellen voor \u20ac ' + tot : 'Kaart samenstellen',
+      tapOrderConfirm: () => {
+        if (tot < 1) {
+          this.setState({ order: false, path: 'config' });
+          this.flash('De kaart staat klaar om samen te stellen. Bestellen kan aan het einde.');
+          return;
+        }
+        this.setState({ order: false, path: 'card' });
+        this.flash('Bijbesteld. De kaart staat klaar met dit portret erin.');
+      },
+
+      offerRows: [
+        this.offerRow('rouw', 'Rouwkaart', 'Voor familie, vrienden en buren.', '\u20ac 48'),
+        this.offerRow('bedank', 'Bedankkaart', 'Na de uitvaart, in dezelfde opmaak.', '\u20ac 32')
+      ],
+      totalRow: {
+        display: 'flex', alignItems: 'center', gap: '12px',
+        paddingTop: '12px', marginTop: '2px', borderTop: '1px solid var(--primary)'
+      },
+      totalText: tot > 0 ? '\u20ac ' + tot : '\u20ac 0',
+      saveLine: {
+        fontSize: '11px', lineHeight: 1.45, color: 'var(--muted-foreground)',
+        maxHeight: both ? '20px' : '18px', opacity: 1, textWrap: 'pretty'
+      },
+      saveText: both
+        ? 'Met het portret erbij komt u op \u20ac ' + (foto + tot) + ', alles samen'
+        : tot > 0 ? 'U kunt hier later nog iets bij nemen' : 'Nog niets gekozen',
+
+      /* de balk onderaan */
+      offerBar: {
+        position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 30,
+        padding: '16px 20px 22px',
+        background: 'var(--glass-nav-bg)', borderTop: '1px solid var(--glass-nav-border)',
+        borderRadius: '28px 28px 0 0',
+        backdropFilter: 'blur(40px) saturate(140%)', WebkitBackdropFilter: 'blur(40px) saturate(140%)',
+        boxShadow: '0 -18px 50px -20px rgba(0,0,0,.18)',
+        transform: inEditor ? 'translateY(0)' : 'translateY(120%)',
+        opacity: inEditor ? 1 : 0,
+        pointerEvents: inEditor ? 'auto' : 'none',
+        transition: 'transform .55s cubic-bezier(.16,1,.3,1), opacity .3s ease'
+      },
+      barTotal: started
+        ? (both ? 'Rouw- en bedankkaart' : st.sel.rouw ? 'Rouwkaart' : 'Bedankkaart')
+        : 'Nog niet besteld',
+      barLine: started
+        ? 'Bijbesteld voor \u20ac ' + tot + '. Het portret staat er al in.'
+        : 'U stelt de kaart samen en beslist aan het einde.',
+      started: inEditor,
+      notStarted: !inEditor,
+      startPill: {
+        flex: 'none', minHeight: '48px', padding: '0 20px', display: 'flex', alignItems: 'center',
+        borderRadius: '999px', border: '1px solid transparent', cursor: 'pointer',
+        fontSize: '14.5px', fontWeight: 700, whiteSpace: 'nowrap',
+        background: 'var(--primary)', color: 'var(--primary-foreground)', boxShadow: 'var(--shadow-cta)'
+      },
+      startCard: () => {
+        this.setState({ path: 'card' });
+        this.flash('De kaart is gestart. Het portret staat er al in.');
+      },
+      startedPill: {
+        flex: 'none', minHeight: '48px', padding: '0 20px', display: 'flex', alignItems: 'center',
+        borderRadius: '999px', border: '1px solid var(--border-strong)',
+        fontSize: '14px', fontWeight: 500, whiteSpace: 'nowrap',
+        background: 'transparent', color: 'var(--foreground)', textDecoration: 'none'
+      },
+
+      /* info */
+      openInfo: () => this.setState({ info: !st.info }),
+      closeInfo: () => this.setState({ info: false }),
+      infoStyle: st.info ? {
+        position: 'absolute', zIndex: 60, left: '18px', right: '18px', top: '54px',
+        display: 'flex', flexDirection: 'column', gap: '12px', padding: '18px 18px 16px',
+        borderRadius: '26px', background: 'var(--glass-nav-bg)', border: '1px solid var(--glass-nav-border)',
+        backdropFilter: 'blur(40px) saturate(140%)', WebkitBackdropFilter: 'blur(40px) saturate(140%)',
+        boxShadow: '0 25px 60px rgba(0,0,0,.12)', animation: 'memRise .3s cubic-bezier(.16,1,.3,1)'
+      } : { display: 'none' },
+      infoHead: has ? 'Het portret staat klaar in dit dossier.' : 'Wij wachten nog op de foto.',
+      infoRows: [
+        { k: 'Bestelling', v: c.pakket },
+        { k: 'Besteld', v: c.besteld },
+        { k: 'Geleverd', v: has ? c.geleverd.replace('Vandaag', 'vandaag') : 'nog niet' },
+        { k: 'Uw kantoor', v: c.begeleider },
+        { k: 'Vervalt', v: c.vervalt + '. Daarna verwijderen wij alle gegevens uit dit dossier.' }
+      ],
+
+      /* downloadblad */
+      sheetScrim: st.sheet
+        ? { position: 'absolute', inset: 0, zIndex: 40, background: 'rgba(12,12,16,.34)', animation: 'memFade .25s ease' }
+        : { display: 'none' },
+      sheetStyle: {
+        position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 50,
+        display: 'flex', flexDirection: 'column',
+        background: 'var(--background)', borderRadius: '32px 32px 0 0',
+        boxShadow: '0 -30px 70px -20px rgba(0,0,0,.3)',
+        transform: st.sheet ? 'translateY(0)' : 'translateY(104%)',
+        opacity: st.sheet ? 1 : 0,
+        transition: 'transform .5s cubic-bezier(.16,1,.3,1), opacity .3s ease',
+        pointerEvents: st.sheet ? 'auto' : 'none'
+      },
+      dlRows: [
+        { label: 'Kleur', spec: slug + '-portret-kleur.jpg \u00b7 2400 \u00d7 3200' },
+        { label: 'Zwart-wit', spec: slug + '-portret-zwartwit.jpg \u00b7 2400 \u00d7 3200' },
+        { label: 'Sepia', spec: slug + '-portret-sepia.jpg \u00b7 2400 \u00d7 3200' },
+        { label: 'Alle drie in \u00e9\u00e9n keer', spec: slug + '-portret.zip \u00b7 drie bestanden' }
+      ].map((d, i) => ({
+        label: d.label, spec: d.spec,
+        labelStyle: { fontSize: '14px', fontWeight: i === 3 ? 700 : 500, color: 'var(--foreground)' },
+        style: {
+          display: 'flex', alignItems: 'center', gap: '12px', width: '100%', minHeight: '62px',
+          padding: '10px 10px', border: 'none', background: 'transparent', cursor: 'pointer',
+          borderRadius: '18px', borderTop: i === 3 ? '1px solid var(--border)' : 'none'
+        },
+        tap: () => {
+          this.setState({ sheet: false, path: st.path || 'photo' });
+          this.flash(i === 3 ? 'Drie varianten klaargezet in uw downloads.' : d.label + ' klaargezet in uw downloads.');
+        }
+      })),
+
+      /* lightbox, voor de varianten en voor de kaartvoorbeelden */
+      lbOpen: !!st.lbKind,
+      lbWrap: {
+        position: 'absolute', inset: 0, zIndex: 80, display: 'flex', flexDirection: 'column',
+        background: 'rgba(10,10,14,.96)',
+        opacity: st.lbKind ? 1 : 0, pointerEvents: st.lbKind ? 'auto' : 'none',
+        transition: 'opacity .32s ease'
+      },
+      lbClose: {
+        position: 'absolute', zIndex: 4, top: '18px', right: '18px',
+        width: '38px', height: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        borderRadius: '999px', border: '1px solid rgba(255,255,255,.24)', background: 'rgba(255,255,255,.06)',
+        color: '#fff', cursor: 'pointer'
+      },
+      closeLb: () => this.setState({ lbKind: '' }),
+      lbViewport: { flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', alignItems: 'center' },
+      lbTrack: {
+        display: 'flex', width: '390px',
+        transform: 'translateX(-' + (st.lbI * 390) + 'px)',
+        transition: 'transform .5s cubic-bezier(.16,1,.3,1)'
+      },
+      lbTouchStart: (e) => { this._sx = e.touches && e.touches[0] ? e.touches[0].clientX : 0; },
+      lbTouchEnd: (e) => {
+        const t = e.changedTouches && e.changedTouches[0];
+        if (!t) return;
+        const dx = t.clientX - (this._sx || 0);
+        if (Math.abs(dx) < 40) return;
+        this.lbStep(dx < 0 ? 1 : -1);
+      },
+      lbSlides: (st.lbKind === 'kaart' ? this.CARDS.map((x) => x.k) : V).map((v, i) => {
+        if (st.lbKind === 'kaart') {
+          const pv = this.cardPreview(v, 300);
+          return Object.assign(pv, {
+            slide: { width: '390px', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }
+          });
+        }
+        return {
+          slide: { width: '390px', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+          wrap: {
+            position: 'relative', width: '336px', height: '448px', flex: 'none',
+            borderRadius: '18px', overflow: 'hidden', background: '#1a1a1e',
+            boxShadow: '0 30px 70px -30px rgba(0,0,0,.7)'
+          },
+          paper: { display: 'none' },
+          photo: {
+            position: 'absolute', inset: 0,
+            backgroundImage: 'url(' + p.full + ')', backgroundSize: 'cover', backgroundPosition: p.pos,
+            filter: v.f
+          },
+          veilTop: { display: 'none' },
+          veil: { display: 'none' },
+          topStyle: { display: 'none' },
+          topText: '',
+          textWrap: { display: 'none' },
+          lines: []
+        };
+      }),
+      lbLabel: st.lbKind === 'kaart'
+        ? (this.CARDS[Math.min(st.lbI, this.CARDS.length - 1)] || this.CARDS[0]).label
+        : V[Math.min(st.lbI, 2)].n,
+      lbAction: st.lbKind === 'kaart' ? {
+        alignSelf: 'center', minHeight: '46px', padding: '0 20px', marginBottom: '4px',
+        display: 'flex', alignItems: 'center', borderRadius: '999px', border: '1px solid transparent',
+        background: '#fcfcfd', color: '#1a1a1e', fontSize: '14px', fontWeight: 700, cursor: 'pointer'
+      } : { display: 'none' },
+      lbConfig: () => this.setState({ lbKind: '', order: true }),
+      lbLabelStyle: { fontSize: '12.5px', fontWeight: 500, color: 'rgba(255,255,255,.86)', textAlign: 'center' },
+      lbFoot: { flex: 'none', display: 'flex', alignItems: 'center', gap: '14px', padding: '10px 20px 28px' },
+      lbArrow: {
+        width: '42px', height: '42px', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        borderRadius: '999px', border: '1px solid rgba(255,255,255,.24)', background: 'transparent',
+        color: '#fff', cursor: 'pointer'
+      },
+      lbPrev: () => this.lbStep(-1),
+      lbNext: () => this.lbStep(1),
+      lbDots: (st.lbKind === 'kaart' ? this.CARDS.map((x, i) => i) : [0, 1, 2]).map((i) => ({
+        style: {
+          width: i === st.lbI ? '18px' : '6px', height: '6px', borderRadius: '999px',
+          background: i === st.lbI ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.32)',
+          transition: 'width .4s cubic-bezier(.16,1,.3,1), background .3s ease'
+        }
+      })),
+
+      toast: st.toast,
+      toastStyle: {
+        position: 'absolute', zIndex: 70, left: '20px', right: '20px',
+        bottom: st.toast ? (inEditor ? '108px' : '28px') : '8px',
+        padding: '13px 16px', borderRadius: '20px',
+        background: 'rgba(26,26,30,.94)', color: '#fff',
+        fontSize: '12.5px', lineHeight: 1.5, textWrap: 'pretty',
+        opacity: st.toast ? 1 : 0, pointerEvents: 'none',
+        transition: 'opacity .3s ease, bottom .45s cubic-bezier(.16,1,.3,1)'
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>
