@@ -1,0 +1,12 @@
+/* Levenslied is een subproduct van Memortium en draagt als enige een warme
+   tint. Uitsluitend op Levenslied-pagina's en in Levenslied-drukwerk.
+   Nooit in het woordmerk, de navigatie, de footer of bij een portret.
+   De primaire knop blijft #1a1a1e, ook binnen Levenslied. */
+
+:root {
+  --levenslied-accent: #a8814f;   /* vlak, lijn, golf. 3,2:1, dus geen lopende tekst */
+  --levenslied-tekst: #8c6a3f;    /* tekstvariant, 4,9:1 */
+  --levenslied-papier: #fdfbf7;   /* hover-vulling, vervangt nooit --background */
+  --levenslied-vulling: rgba(168, 129, 79, 0.1);
+  --levenslied-rand: rgba(168, 129, 79, 0.25);
+}

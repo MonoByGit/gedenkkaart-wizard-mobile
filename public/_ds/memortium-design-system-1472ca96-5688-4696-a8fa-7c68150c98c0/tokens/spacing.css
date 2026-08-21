@@ -1,0 +1,15 @@
+:root {
+  --space-1: 4px;    /* 1 mm  regelparen, label boven waarde */
+  --space-2: 8px;    /* 2 mm  binnen een groepje tekst */
+  --space-3: 16px;   /* 4 mm  label naar titel naar subtitel */
+  --space-4: 24px;   /* 6 mm  tussen kaarten, grid-gap */
+  --space-5: 40px;   /* 10 mm kop naar inhoud, kaartpadding */
+  --space-6: 56px;   /* 14 mm grote kaartpadding, blokrand */
+  --space-7: 80px;   /* 20 mm tussen secties */
+  --space-8: 120px;  /* 30 mm boven de eerste sectie, omslagrust */
+
+  --control-height: 52px;   /* velden en knoppen */
+  --control-height-lg: 56px; /* grote actieknop */
+  --control-height-sm: 40px; /* knop in de navigatie */
+  --control-padding-x: 32px;
+}

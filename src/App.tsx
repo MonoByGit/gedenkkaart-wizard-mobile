@@ -1,122 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { V3State, PersonaId, ScreenMode } from './types/v3';
-import { INITIAL_V3_STATE, PERSONAS } from './constants/v3data';
-import { PersonaSwitcher } from './components/v3/PersonaSwitcher';
-import { OmgevingView } from './components/v3/OmgevingView';
-import { DossierView } from './components/v3/DossierView';
-import { EditorView } from './components/v3/EditorView';
-import { DrukproefView } from './components/v3/DrukproefView';
-import { Check } from 'lucide-react';
+import React from 'react';
 
 export const App: React.FC = () => {
-  const [state, setState] = useState<V3State>(INITIAL_V3_STATE);
+  const [screen, setScreen] = React.useState<'portaal' | 'opleveren' | 'wizard' | 'drukproef'>('wizard');
 
-  const updateState = (patch: Partial<V3State>) => {
-    setState((prev) => ({ ...prev, ...patch }));
-  };
-
-  // Toast clear timer
-  useEffect(() => {
-    if (state.toast) {
-      const timer = setTimeout(() => {
-        updateState({ toast: '' });
-      }, 3500);
-      return () => clearTimeout(timer);
-    }
-  }, [state.toast]);
-
-  const handleOpenDossier = (id: PersonaId) => {
-    updateState({
-      persona: id,
-      screen: 'dossier',
-      hasPhoto: id !== 'richard'
-    });
-  };
-
-  const handleOpenEditor = (id: PersonaId) => {
-    updateState({
-      persona: id,
-      screen: 'editor',
-      theme: id === 'greet' ? 'stilte' : id === 'carien' ? 'dons' : 'gloed',
-      photo: id === 'carien' ? 'vrijgezet' : 'volledig',
-      hasPhoto: id !== 'richard'
-    });
-  };
-
-  const handleOpenDrukproef = (id: PersonaId) => {
-    updateState({
-      persona: id,
-      screen: 'drukproef',
-      theme: id === 'greet' ? 'stilte' : id === 'carien' ? 'dons' : 'gloed',
-      hasPhoto: true
-    });
-  };
+  const screens = [
+    { id: 'portaal', label: '1. Omgeving (Portaal)', path: '/portaal.html' },
+    { id: 'opleveren', label: '2. Dossier (Opleveren)', path: '/opleveren.html' },
+    { id: 'wizard', label: '3. Editor (Wizard)', path: '/wizard.html' },
+    { id: 'drukproef', label: '4. Drukproef (Stap 3)', path: '/drukproef.html' }
+  ] as const;
 
   return (
-    <div
-      data-theme={state.darkTheme ? 'dark' : 'light'}
-      className={`min-h-screen bg-[var(--background)] flex flex-col items-center selection:bg-[#c99f6c]/30 ${
-        state.darkTheme ? 'dark' : ''
-      }`}
-    >
-      {/* 360 Persona Switcher Floating Bar */}
-      <PersonaSwitcher state={state} onUpdateState={updateState} />
-
-      {/* Main Mobile App Frame */}
-      <main className="w-full max-w-[480px] min-h-screen bg-[var(--background)] shadow-2xl relative flex flex-col transition-colors duration-300">
-        {/* Screen 1: Omgeving / Portaal */}
-        {state.screen === 'omgeving' && (
-          <OmgevingView
-            state={state}
-            onUpdateState={updateState}
-            onOpenDossier={handleOpenDossier}
-            onOpenEditor={handleOpenEditor}
-            onOpenDrukproef={handleOpenDrukproef}
-          />
-        )}
-
-        {/* Screen 2: Dossier / Oplevermoment */}
-        {state.screen === 'dossier' && (
-          <DossierView
-            state={state}
-            onUpdateState={updateState}
-            onBack={() => updateState({ screen: 'omgeving' })}
-            onStartEditor={handleOpenEditor}
-          />
-        )}
-
-        {/* Screen 3: Editor (Stap 2) */}
-        {state.screen === 'editor' && (
-          <EditorView
-            state={state}
-            onUpdateState={updateState}
-            onBack={() => updateState({ screen: 'dossier' })}
-            onGoToDrukproef={() => handleOpenDrukproef(state.persona)}
-          />
-        )}
-
-        {/* Screen 4: Drukproef & Deelvarianten (Stap 3) */}
-        {state.screen === 'drukproef' && (
-          <DrukproefView
-            state={state}
-            onUpdateState={updateState}
-            onBack={() => updateState({ screen: 'editor' })}
-            onFinished={() => {
-              updateState({
-                screen: 'omgeving',
-                toast: 'Kaartpakket verstuurd naar de uitvaartbegeleider!'
-              });
-            }}
-          />
-        )}
-
-        {/* Global Toast Notification */}
-        {state.toast && (
-          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[150] px-4 py-2.5 rounded-full bg-[#1a1a1e] text-white text-[12.5px] font-medium shadow-2xl flex items-center gap-2 border border-white/10 animate-bounce">
-            <Check size={14} className="text-emerald-400" />
-            <span>{state.toast}</span>
+    <div className="fixed inset-0 w-full h-full bg-[#0c0c0f] flex flex-col items-center overflow-hidden">
+      {/* Top Floating Master Navigation */}
+      <header className="w-full bg-[rgba(26,26,30,0.95)] backdrop-blur-xl text-[#fcfcfd] border-b border-[rgba(255,255,255,0.1)] shadow-xl z-50 flex-none select-none">
+        <div className="max-w-[1200px] mx-auto px-4 py-2 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#a1a1aa]">
+              Memortium V3
+            </span>
           </div>
-        )}
+
+          {/* Screen Navigation */}
+          <div className="flex items-center gap-1 bg-[rgba(255,255,255,0.08)] rounded-full p-1 border border-[rgba(255,255,255,0.06)] overflow-x-auto mem-scroll">
+            {screens.map((s) => {
+              const on = screen === s.id;
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => setScreen(s.id)}
+                  className={`px-3 py-1 rounded-full text-[12px] font-medium transition-all cursor-pointer whitespace-nowrap ${
+                    on
+                      ? 'bg-white text-[#1a1a1e] font-bold shadow-sm'
+                      : 'text-[#d4d4d8] hover:text-white'
+                  }`}
+                >
+                  {s.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </header>
+
+      {/* Main Native Interactive Claude Designer App Frame */}
+      <main className="w-full flex-1 relative flex items-center justify-center bg-[#0c0c0f] overflow-hidden">
+        <iframe
+          key={screen}
+          src={`/${screen}.html`}
+          title="Memortium V3 Design"
+          className="w-full h-full border-none bg-[#e7e7ea]"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        />
       </main>
     </div>
   );
