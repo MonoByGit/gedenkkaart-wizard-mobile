@@ -5,3 +5,7 @@ dist
 .cache
 .turbo
 *.log
+*.zip
+V3/*.zip
+V3/screenshots/
+screenshots/
