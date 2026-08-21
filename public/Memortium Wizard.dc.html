@@ -4,6 +4,66 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+
+<style id="pure-mobile-style">
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100dvh !important;
+    background: var(--background, #fcfcfd) !important;
+    overflow-x: hidden !important;
+  }
+  section {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100dvh !important;
+    gap: 0 !important;
+  }
+  section > div:first-child {
+    display: none !important;
+  }
+  section > div:nth-child(2) {
+    display: flex !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    justify-content: center !important;
+  }
+  /* The phone mock wrapper - full screen */
+  section > div:nth-child(2) > div:first-child {
+    width: 100% !important;
+    max-width: 480px !important;
+    height: 100% !important;
+    min-height: 100dvh !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    flex: 1 !important;
+  }
+  /* The mobile screen viewport */
+  section > div:nth-child(2) > div:first-child > div:first-child {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100dvh !important;
+    border-radius: 0 !important;
+    background-color: var(--background) !important;
+  }
+  /* Hide the desktop review / persona debugger column on mobile */
+  section > div:nth-child(2) > div:nth-child(2) {
+    display: none !important;
+  }
+</style>
+
 </head>
 <body>
 <x-dc>
