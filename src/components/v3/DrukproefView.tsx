@@ -250,7 +250,7 @@ export const DrukproefView: React.FC<DrukproefViewProps> = ({
                 <button
                   type="button"
                   onClick={handleCopyWhatsApp}
-                  className="w-full h-11 rounded-full bg-emerald-700 text-white font-bold text-[12.5px] flex items-center justify-center gap-2 hover:bg-emerald-800 transition-colors cursor-pointer shadow-xs"
+                  className="w-full h-11 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-[12.5px] flex items-center justify-center gap-2 hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
                 >
                   {copied ? <Check size={16} /> : <Copy size={16} />}
                   <span>{copied ? 'Bericht gekopieerd!' : 'Kopieer WhatsApp bericht'}</span>
@@ -281,8 +281,8 @@ export const DrukproefView: React.FC<DrukproefViewProps> = ({
 
             {shareChannel === 'facebook' && (
               <div className="flex flex-col gap-3 items-center">
-                <div className="relative w-full aspect-[1200/627] rounded-2xl overflow-hidden shadow-xl bg-zinc-800 border border-black/10 flex">
-                  <div className="w-1/2 p-4 flex flex-col justify-center text-left text-white bg-zinc-900/90 z-10">
+                <div className="relative w-full aspect-[1200/627] rounded-2xl overflow-hidden shadow-xl bg-[var(--primary)] border border-black/10 flex">
+                  <div className="w-1/2 p-4 flex flex-col justify-center text-left text-white bg-black/80 z-10">
                     <p className="italic text-[11px] font-serif leading-relaxed m-0 opacity-90">
                       "{c.spreuk}"
                     </p>
@@ -290,7 +290,7 @@ export const DrukproefView: React.FC<DrukproefViewProps> = ({
                   </div>
                   <div className="w-1/2 relative">
                     <img src={p.photoFull} alt={c.call} className="w-full h-full object-cover object-top" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-zinc-900/90 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent" />
                   </div>
                 </div>
 
@@ -313,14 +313,14 @@ export const DrukproefView: React.FC<DrukproefViewProps> = ({
             <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted-foreground)]">
               Namencheck
             </span>
-            <span className={`text-[11.5px] font-bold ${allChecked ? 'text-emerald-600' : 'text-amber-600'}`}>
+            <span className="text-[11.5px] font-bold text-[var(--foreground)]">
               {checkedCount} van {totalRows} nagelopen
             </span>
           </div>
 
           <div className="w-full bg-[var(--border-strong)] h-2 rounded-full overflow-hidden">
             <div
-              className="bg-emerald-600 h-full transition-all duration-500 rounded-full"
+              className="bg-[var(--primary)] h-full transition-all duration-500 rounded-full"
               style={{ width: `${(checkedCount / totalRows) * 100}%` }}
             />
           </div>
@@ -347,11 +347,7 @@ export const DrukproefView: React.FC<DrukproefViewProps> = ({
               setNamencheckOpen(true);
             }
           }}
-          className={`w-full h-13 rounded-full font-bold text-[14px] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg ${
-            allChecked
-              ? 'bg-emerald-600 hover:bg-emerald-700 text-white animate-pulse'
-              : 'bg-[var(--primary)] hover:opacity-90 text-[var(--primary-foreground)]'
-          }`}
+          className="w-full h-13 rounded-full font-bold text-[14px] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg bg-[var(--primary)] hover:opacity-90 text-[var(--primary-foreground)]"
         >
           {allChecked ? (
             <>
