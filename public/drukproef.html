@@ -64,6 +64,34 @@
   }
 </style>
 
+
+<style id="mobile-polish-v4">
+  /* Hide fake mockup status bar */
+  div[style*="height:46px"][style*="justify-content:space-between"],
+  div[style*="height: 46px"][style*="justify-content: space-between"] {
+    display: none !important;
+  }
+  
+  /* Smooth iOS scrolling */
+  body, html {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+    overscroll-behavior-y: auto !important;
+  }
+
+  /* Ensure the mobile container is always centered and smooth */
+  section > div:nth-child(2) {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  section > div:nth-child(2) > div:first-child {
+    margin: 0 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+</style>
+
 </head>
 <body>
 <x-dc>

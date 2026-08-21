@@ -64,6 +64,34 @@
   }
 </style>
 
+
+<style id="mobile-polish-v4">
+  /* Hide fake mockup status bar */
+  div[style*="height:46px"][style*="justify-content:space-between"],
+  div[style*="height: 46px"][style*="justify-content: space-between"] {
+    display: none !important;
+  }
+  
+  /* Smooth iOS scrolling */
+  body, html {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+    overscroll-behavior-y: auto !important;
+  }
+
+  /* Ensure the mobile container is always centered and smooth */
+  section > div:nth-child(2) {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  section > div:nth-child(2) > div:first-child {
+    margin: 0 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+</style>
+
 </head>
 <body>
 <x-dc>
@@ -155,7 +183,7 @@
           <div style="display:flex;flex-direction:column;gap:10px;padding:0 20px">
             <sc-for list="{{ dossiers }}" as="d" hint-placeholder-count="3">
               <div style="{{ d.card }}">
-                <a href="Memortium Dossier.dc.html" style="{{ d.link }}">
+                <a href="Memortium Dossier.dc.html?ex={{ d.k }}" style="{{ d.link }}">
                   <div style="{{ d.thumb }}">
                     <span style="{{ d.initials }}">{{ d.ini }}</span>
                   </div>
@@ -197,7 +225,7 @@
                     </span>
                     <span style="font-size:12.5px;font-weight:500;color:var(--foreground);white-space:nowrap">{{ d.labelB }}</span>
                   </button>
-                  <a href="Memortium Dossier.dc.html" style="{{ d.openBtn }}" aria-label="{{ d.openAria }}">
+                  <a href="Memortium Dossier.dc.html?ex={{ d.k }}" style="{{ d.openBtn }}" aria-label="{{ d.openAria }}">
                     <x-import component-from-global-scope="MemortiumDesignSystem_1472ca.Icon" name="chevron-right" size="17" hint-size="17px,17px"></x-import>
                   </a>
                 </div>
@@ -683,7 +711,8 @@ class Component extends DCLogic {
             : none,
           statusStyle: { fontSize: '12.5px', fontWeight: 500, color: 'var(--foreground)' },
           nextStyle: { fontSize: '12px', lineHeight: 1.5, color: 'var(--muted-foreground)', textWrap: 'pretty' },
-          openAria: 'Het dossier van ' + d.name + ' openen',
+          openAria: "Het dossier van " + d.name + " openen",
+          openHref: "Memortium Dossier.dc.html?ex=" + d.k,
           openBtn: {
             width: '38px', height: '38px', flex: 'none', marginLeft: 'auto',
             display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '999px',

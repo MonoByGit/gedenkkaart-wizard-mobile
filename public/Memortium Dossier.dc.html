@@ -64,6 +64,34 @@
   }
 </style>
 
+
+<style id="mobile-polish-v4">
+  /* Hide fake mockup status bar */
+  div[style*="height:46px"][style*="justify-content:space-between"],
+  div[style*="height: 46px"][style*="justify-content: space-between"] {
+    display: none !important;
+  }
+  
+  /* Smooth iOS scrolling */
+  body, html {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+    overscroll-behavior-y: auto !important;
+  }
+
+  /* Ensure the mobile container is always centered and smooth */
+  section > div:nth-child(2) {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  section > div:nth-child(2) > div:first-child {
+    margin: 0 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+</style>
+
 </head>
 <body>
 <x-dc>
@@ -510,16 +538,20 @@ class Component extends DCLogic {
   geo(i) {
     const st = this.state, act = st.variant;
     const others = [0, 1, 2].filter((x) => x !== act);
+    const W = typeof window !== "undefined" ? Math.min(window.innerWidth || 390, 480) : 390;
     if (!st.spread) {
-      if (i === act) return { w: 268, h: 357, x: 61, y: 16, rot: 0, z: 5, veil: 0 };
+      const centerX = Math.round((W - 268) / 2);
+      if (i === act) return { w: 268, h: 357, x: centerX, y: 16, rot: 0, z: 5, veil: 0 };
       const k = others.indexOf(i);
       return k === 0
-        ? { w: 256, h: 341, x: 48, y: 28, rot: -3.4, z: 3, veil: .5 }
-        : { w: 248, h: 331, x: 86, y: 36, rot: 3.2, z: 2, veil: .6 };
+        ? { w: 256, h: 341, x: centerX - 13, y: 28, rot: -3.4, z: 3, veil: .5 }
+        : { w: 248, h: 331, x: centerX + 15, y: 36, rot: 3.2, z: 2, veil: .6 };
     }
-    if (i === act) return { w: 216, h: 288, x: 18, y: 44, rot: 0, z: 5, veil: 0 };
+    const leftX = Math.max(14, Math.round((W - 356) / 2 + 10));
+    const rightX = Math.round(W - 136);
+    if (i === act) return { w: 216, h: 288, x: leftX, y: 44, rot: 0, z: 5, veil: 0 };
     const k = others.indexOf(i);
-    return { w: 122, h: 163, x: 250, y: k === 0 ? 22 : 201, rot: 0, z: 4, veil: .1 };
+    return { w: 122, h: 163, x: rightX, y: k === 0 ? 22 : 201, rot: 0, z: 4, veil: .1 };
   }
 
   lbStep(d) {
@@ -532,8 +564,14 @@ class Component extends DCLogic {
 
   printTap(i) {
     const st = this.state;
-    if (i === st.variant) { this.setState({ lbKind: 'portret', lbI: st.variant }); return; }
-    if (!st.spread) { this.setState({ spread: true }); return; }
+    if (!st.spread) {
+      this.setState({ spread: true, variant: i });
+      return;
+    }
+    if (i === st.variant) {
+      this.setState({ lbKind: "portret", lbI: st.variant });
+      return;
+    }
     this.setState({ variant: i });
   }
 
@@ -691,7 +729,7 @@ class Component extends DCLogic {
         borderRadius: '999px', border: '1px solid var(--border-strong)', background: 'transparent',
         color: 'var(--muted-foreground)', cursor: 'pointer'
       },
-      back: () => this.flash('Terug naar uw dossiers.'),
+      back: () => { window.location.href = "Memortium Portaal.dc.html"; },
 
       bodyStyle: {
         flex: 1, minHeight: 0, overflowY: 'auto', overscrollBehavior: 'contain',
