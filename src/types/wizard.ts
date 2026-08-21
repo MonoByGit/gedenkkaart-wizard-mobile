@@ -4,6 +4,7 @@ export type Smaak = 'volledige-foto' | 'vrijgezet';
 export type Indeling = 'volledig' | 'kader' | 'naast-tekst' | 'sfeer-voorop';
 export type Side = 'voor' | 'binnen' | 'achter';
 export type Uitstraling = 'automatisch' | 'licht' | 'donker';
+export type SfeerId = 'automatisch' | 'warm-amber' | 'nachtblauw' | 'zacht-linnen' | 'salie-groen' | 'blush-roos' | 'oker-brons';
 export type Uitlijning = 'links' | 'gecentreerd' | 'rechts';
 export type SpreukPositie = 'boven' | 'onder';
 export type SfeerZinPositie = 'boven' | 'tussenin' | 'midden';
@@ -12,6 +13,7 @@ export type OrnamentId = 'geen' | 'rand' | 'hoeken' | 'waas';
 export type SizeOption = 'klein' | 'normaal' | 'groot';
 export type SpreukTone = 'algemeen' | 'ziekte' | 'onverwacht' | 'religieus';
 export type ActiveSheet = 'naam' | 'data' | 'spreuk' | 'binnen' | 'praktisch' | 'familie' | 'stijl' | 'thema' | null;
+export type ActiveDockCategory = 'foto' | 'thema' | 'indeling' | 'stijl' | 'sfeer' | 'tekst' | 'praktisch' | 'familie' | null;
 export type BinnenZoom = 'links' | 'rechts' | null;
 
 export interface FamilieLid {
@@ -57,6 +59,19 @@ export interface OrnamentDef {
   hint: string;
 }
 
+export interface SfeerDef {
+  id: SfeerId;
+  label: string;
+  sublabel: string;
+  swatch: string;
+  overlayGradient?: string;
+  matLight: string;
+  matDark: string;
+  textColorLight: string;
+  textColorDark: string;
+  scrimMode: 'licht' | 'donker' | 'auto';
+}
+
 export interface PersonaDef {
   id: 'nana' | 'carien' | 'richard';
   naam: string;
@@ -87,6 +102,7 @@ export interface WizardState {
   thema: string | null;
   side: Side;
   uitstraling: Uitstraling;
+  sfeer: SfeerId;
   uitlijning: Uitlijning;
   spreukPositie: SpreukPositie;
   sfeerZinPositie: SfeerZinPositie;

@@ -1,7 +1,9 @@
-import React from 'react';
-import { ArrowLeft, Home, Bookmark } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, Home, Bookmark, Maximize2 } from 'lucide-react';
 import { CardPreview } from './CardPreview';
-import { WizardState, Side, ActiveSheet } from '../types/wizard';
+import { RightCategoryDock } from './RightCategoryDock';
+import { BottomOptionCarousel } from './BottomOptionCarousel';
+import { WizardState, Side, ActiveSheet, ActiveDockCategory } from '../types/wizard';
 
 interface Step2PersonalizeProps {
   state: WizardState;
@@ -14,6 +16,7 @@ interface Step2PersonalizeProps {
   onZoomBinnen: (side: 'links' | 'rechts' | null) => void;
   onOpenLockDialog: () => void;
   onOpenLightbox: () => void;
+  onUpdateState: (patch: Partial<WizardState>) => void;
 }
 
 export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
@@ -26,16 +29,34 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
   onOpenSheet,
   onZoomBinnen,
   onOpenLockDialog,
-  onOpenLightbox
+  onOpenLightbox,
+  onUpdateState
 }) => {
   const isGevouwen = s.formaat === 'gevouwen';
-  const isSheetOpen = !!s.activeSheet;
+
+  // Active Category in Right Dock
+  const [activeCategory, setActiveCategory] = useState<ActiveDockCategory>('foto');
+
+  // Reset active category sensibly when changing sides
+  useEffect(() => {
+    if (s.side === 'voor') {
+      setActiveCategory('foto');
+    } else if (s.side === 'binnen') {
+      setActiveCategory('tekst');
+    } else if (s.side === 'achter') {
+      setActiveCategory('familie');
+    }
+  }, [s.side]);
+
+  const handleCategorySelect = (cat: ActiveDockCategory) => {
+    setActiveCategory(cat);
+  };
 
   return (
-    <div className="flex flex-col min-h-full pb-28">
-      {/* Top Bar */}
-      <div className="px-5 pt-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+    <div className="flex flex-col min-h-screen pb-24 bg-[var(--surface-canvas)]">
+      {/* Top Header Bar */}
+      <header className="px-4 pt-3 pb-1 flex items-center justify-between z-20">
+        <div className="flex items-center gap-2.5">
           <button
             type="button"
             onClick={onGoHome}
@@ -48,7 +69,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
             type="button"
             onClick={onBack}
             aria-label="Terug naar Stap 1"
-            className="flex items-center gap-1.5 bg-transparent border-none py-1.5 text-[#1a1a1e] font-medium text-[0.9375rem] cursor-pointer hover:opacity-75 transition-opacity"
+            className="flex items-center gap-1 bg-transparent border-none py-1 text-[#1a1a1e] font-medium text-[0.875rem] cursor-pointer hover:opacity-75 transition-opacity"
           >
             <ArrowLeft size={16} />
             <span>Stap 2 van 3</span>
@@ -59,29 +80,29 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
           <button
             type="button"
             onClick={onSaveCreation}
-            className="px-3 py-1.5 rounded-[999px] border border-[rgba(45,45,58,0.14)] text-[0.8125rem] font-medium text-[#1a1a1e] hover:bg-[#f0f1f4] transition-all cursor-pointer flex items-center gap-1"
+            className="px-2.5 py-1.5 rounded-[999px] border border-[rgba(45,45,58,0.14)] text-[0.75rem] font-medium text-[#1a1a1e] hover:bg-[#f0f1f4] transition-all cursor-pointer flex items-center gap-1"
           >
-            <Bookmark size={13} />
+            <Bookmark size={12} />
             <span>Opslaan</span>
           </button>
 
           <button
             type="button"
             onClick={onOpenLockDialog}
-            className={`px-3.5 py-1.5 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-[999px] text-[0.75rem] font-medium transition-all cursor-pointer ${
               s.locked
-                ? 'bg-[#f0f1f4] text-[#1a1a1e] font-bold tracking-wide'
+                ? 'bg-[#1a1a1e] text-white font-semibold'
                 : 'border border-[rgba(45,45,58,0.14)] text-[#1a1a1e] hover:bg-[rgba(45,45,58,0.04)]'
             }`}
           >
             {s.locked ? 'Vastgezet' : 'Vastzetten'}
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Segmented Side Tabs */}
-      <div className="flex justify-center mt-3 px-5">
-        <div className="inline-flex bg-[#f0f1f4] rounded-[999px] p-1 gap-1 w-full max-w-[340px]">
+      {/* Segmented Side Tabs (Voorkant | Binnenzijde | Achterkant) */}
+      <nav aria-label="Kaartzijde selectie" className="flex justify-center mt-1 px-4 z-20">
+        <div className="inline-flex bg-[#f0f1f4] rounded-[999px] p-1 gap-1 w-full max-w-[340px] shadow-sm">
           <button
             type="button"
             onClick={() => {
@@ -90,7 +111,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
             }}
             className={`flex-1 py-1.5 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
               s.side === 'voor'
-                ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)]'
+                ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_2px_8px_rgba(0,0,0,0.08)] font-semibold'
                 : 'text-[#6b6b7a] hover:text-[#1a1a1e]'
             }`}
           >
@@ -106,7 +127,7 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
               }}
               className={`flex-1 py-1.5 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
                 s.side === 'binnen'
-                  ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)]'
+                  ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_2px_8px_rgba(0,0,0,0.08)] font-semibold'
                   : 'text-[#6b6b7a] hover:text-[#1a1a1e]'
               }`}
             >
@@ -122,170 +143,78 @@ export const Step2Personalize: React.FC<Step2PersonalizeProps> = ({
             }}
             className={`flex-1 py-1.5 rounded-[999px] text-[0.8125rem] font-medium transition-all cursor-pointer ${
               s.side === 'achter'
-                ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.08)]'
+                ? 'bg-[#ffffff] text-[#1a1a1e] shadow-[0_2px_8px_rgba(0,0,0,0.08)] font-semibold'
                 : 'text-[#6b6b7a] hover:text-[#1a1a1e]'
             }`}
           >
             Achterkant
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Inside Zoom Back Button (when zoomed into left or right inside page) */}
-      {s.side === 'binnen' && s.binnenZoom && (
-        <div className="px-6 pt-2">
-          <button
-            type="button"
-            onClick={() => onZoomBinnen(null)}
-            className="flex items-center gap-1.5 text-[0.8125rem] font-medium text-[#6b6b7a] hover:text-[#1a1a1e] py-1 cursor-pointer transition-colors"
-          >
-            <ArrowLeft size={15} />
-            <span>Beide pagina's</span>
-          </button>
+      {/* Main Canvas Area: Card Preview (left/center) + Right Category Dock */}
+      <main className="flex-1 flex items-center justify-center px-3 sm:px-4 py-3 min-h-[360px] relative">
+        <div className="w-full max-w-[390px] flex items-center justify-between gap-3">
+          {/* Card Preview with floating expand button */}
+          <div className="relative flex-1 flex justify-center">
+            {/* Expand / Lightbox Button */}
+            <button
+              type="button"
+              onClick={onOpenLightbox}
+              aria-label="Vergroot weergave (Lightbox)"
+              className="absolute top-2.5 left-2.5 z-30 flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md text-white text-[11px] font-medium shadow-md transition-all active:scale-95 cursor-pointer"
+            >
+              <Maximize2 size={12} />
+              <span>Vergroot</span>
+            </button>
+
+            <div
+              onClick={onOpenLightbox}
+              className="w-full max-w-[260px] sm:max-w-[280px] cursor-zoom-in transition-transform active:scale-[0.99]"
+            >
+              <CardPreview
+                state={s}
+                interactive={false}
+                onOpenSheet={onOpenSheet}
+                onZoomBinnen={onZoomBinnen}
+                onCardClick={onOpenLightbox}
+              />
+            </div>
+          </div>
+
+          {/* Vertical Category Dock on the Right */}
+          <div className="flex-shrink-0">
+            <RightCategoryDock
+              side={s.side}
+              activeCategory={activeCategory}
+              onSelectCategory={handleCategorySelect}
+              disabled={s.locked}
+            />
+          </div>
         </div>
-      )}
+      </main>
 
-      {/* Card Canvas: responsive size + tap to lightbox when sheet is open */}
-      <div className={`px-6 flex flex-col items-center transition-all duration-300 ${isSheetOpen ? 'pt-2 pb-1' : 'pt-4'}`}>
-        <div
-          onClick={() => {
-            if (isSheetOpen) {
-              onOpenLightbox();
-            }
-          }}
-          className={`transition-all duration-300 ${
-            isSheetOpen
-              ? 'w-[44vw] max-w-[190px] cursor-pointer hover:scale-[1.02] active:scale-[0.98]'
-              : 'w-full max-w-[340px]'
-          }`}
-        >
-          <CardPreview
-            state={s}
-            interactive={!isSheetOpen}
-            isMini={isSheetOpen}
-            onOpenSheet={onOpenSheet}
-            onZoomBinnen={onZoomBinnen}
-            onCardClick={onOpenLightbox}
-          />
-        </div>
-
-        {isSheetOpen && (
-          <button
-            type="button"
-            onClick={onOpenLightbox}
-            className="mt-1 text-[11px] text-[#6b6b7a] hover:text-[#1a1a1e] font-medium transition-colors cursor-pointer"
-          >
-            Tik op kaart voor ware grootte
-          </button>
-        )}
-      </div>
-
-      {/* Subtitle / Hint */}
-      <div className="px-6 pt-3.5 text-center">
-        <span className="text-[0.8125rem] text-[#6b6b7a]">
-          {s.side === 'binnen' && !s.binnenZoom
-            ? 'Tik op een pagina om die te bewerken.'
-            : 'Precies zoals u het hier ziet, komt de kaart ook gedrukt uit.'}
-        </span>
-      </div>
-
-      {/* Action Buttons for Customization */}
-      <div className="px-6 pt-4 pb-2">
-        {s.side === 'voor' && (
-          <div className="flex gap-2.5">
-            <button
-              type="button"
-              disabled={s.locked}
-              onClick={() => onOpenSheet('stijl')}
-              className={`flex-1 h-[52px] rounded-[999px] bg-[#ffffff] border border-[rgba(45,45,58,0.14)] text-[0.9375rem] font-medium text-[#1a1a1e] transition-all ${
-                s.locked
-                  ? 'opacity-40 cursor-not-allowed'
-                  : 'hover:bg-[#f0f1f4] active:scale-[0.99] cursor-pointer shadow-sm'
-              }`}
-            >
-              Stijl
-            </button>
-            <button
-              type="button"
-              disabled={s.locked}
-              onClick={() => onOpenSheet('thema')}
-              className={`flex-1 h-[52px] rounded-[999px] bg-[#ffffff] border border-[rgba(45,45,58,0.14)] text-[0.9375rem] font-medium text-[#1a1a1e] transition-all ${
-                s.locked
-                  ? 'opacity-40 cursor-not-allowed'
-                  : 'hover:bg-[#f0f1f4] active:scale-[0.99] cursor-pointer shadow-sm'
-              }`}
-            >
-              Thema &amp; sfeer
-            </button>
-          </div>
-        )}
-
-        {s.side === 'binnen' && s.binnenZoom && (
-          <div className="flex gap-2.5">
-            {s.binnenZoom === 'links' ? (
-              <button
-                type="button"
-                disabled={s.locked}
-                onClick={() => onOpenSheet('binnen')}
-                className={`flex-1 h-[52px] rounded-[999px] bg-[#ffffff] border border-[rgba(45,45,58,0.14)] text-[0.9375rem] font-medium text-[#1a1a1e] transition-all ${
-                  s.locked
-                    ? 'opacity-40 cursor-not-allowed'
-                    : 'hover:bg-[#f0f1f4] active:scale-[0.99] cursor-pointer shadow-sm'
-                }`}
-              >
-                Tekst
-              </button>
-            ) : (
-              <button
-                type="button"
-                disabled={s.locked}
-                onClick={() => onOpenSheet('praktisch')}
-                className={`flex-1 h-[52px] rounded-[999px] bg-[#ffffff] border border-[rgba(45,45,58,0.14)] text-[0.9375rem] font-medium text-[#1a1a1e] transition-all ${
-                  s.locked
-                    ? 'opacity-40 cursor-not-allowed'
-                    : 'hover:bg-[#f0f1f4] active:scale-[0.99] cursor-pointer shadow-sm'
-                }`}
-              >
-                Praktische informatie
-              </button>
-            )}
-          </div>
-        )}
-
-        {s.side === 'achter' && (
-          <div className="flex gap-2.5">
-            <button
-              type="button"
-              disabled={s.locked}
-              onClick={() => onOpenSheet('familie')}
-              className={`flex-1 h-[52px] rounded-[999px] bg-[#ffffff] border border-[rgba(45,45,58,0.14)] text-[0.9375rem] font-medium text-[#1a1a1e] transition-all ${
-                s.locked
-                  ? 'opacity-40 cursor-not-allowed'
-                  : 'hover:bg-[#f0f1f4] active:scale-[0.99] cursor-pointer shadow-sm'
-              }`}
-            >
-              Namen
-            </button>
-          </div>
-        )}
-
-        {s.locked && (
-          <p className="text-[0.8125rem] text-[#6b6b7a] mt-3 text-center">
-            De uitvaartbegeleider heeft het ontwerp vastgezet. U kunt de woorden nog altijd aanpassen.
-          </p>
-        )}
+      {/* Dynamic Bottom Option Carousel / Mini-Editor */}
+      <div className="w-full mt-auto">
+        <BottomOptionCarousel
+          state={s}
+          activeCategory={activeCategory}
+          side={s.side}
+          onUpdateState={onUpdateState}
+          onOpenSheet={onOpenSheet}
+        />
       </div>
 
       {/* Sticky Bottom CTA Bar */}
-      <div className="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-[#fcfcfd]/90 backdrop-blur-md border-t border-[rgba(45,45,58,0.06)] px-6 py-4 pb-8 z-30">
+      <footer className="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-[#fcfcfd]/95 backdrop-blur-md border-t border-[rgba(45,45,58,0.08)] px-4 py-3 z-30">
         <button
           type="button"
           onClick={onNext}
-          className="w-full h-[52px] rounded-[999px] bg-[#1a1a1e] text-[#fcfcfd] font-medium text-[1rem] hover:opacity-90 active:scale-[0.99] transition-all cursor-pointer shadow-lg flex items-center justify-center"
+          className="w-full h-[48px] rounded-[999px] bg-[#1a1a1e] text-[#fcfcfd] font-medium text-[0.9375rem] hover:opacity-90 active:scale-[0.99] transition-all cursor-pointer shadow-md flex items-center justify-center"
         >
           Naar overzicht
         </button>
-      </div>
+      </footer>
     </div>
   );
 };

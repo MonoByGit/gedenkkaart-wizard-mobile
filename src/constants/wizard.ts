@@ -5,8 +5,95 @@ import {
   SpreukTone,
   WizardState,
   PersonaDef,
-  SavedCreation
+  SavedCreation,
+  SfeerDef
 } from '../types/wizard';
+
+export const SFEREN: SfeerDef[] = [
+  {
+    id: 'automatisch',
+    label: 'Foto-ambiance',
+    sublabel: 'Harmonieus afgestemd op de foto',
+    swatch: 'linear-gradient(135deg, #d8d0c5 0%, #3e332a 100%)',
+    matLight: '#f4f2ee',
+    matDark: '#221f1d',
+    textColorLight: '#1a1a1e',
+    textColorDark: '#fcfcfd',
+    scrimMode: 'auto'
+  },
+  {
+    id: 'warm-amber',
+    label: 'Warm Amber',
+    sublabel: 'Goudgloed en intieme warmte',
+    swatch: 'linear-gradient(135deg, #f59e0b 0%, #92400e 100%)',
+    overlayGradient: 'linear-gradient(160deg, rgba(245, 158, 11, 0.14) 0%, rgba(180, 83, 9, 0.26) 100%)',
+    matLight: '#fdf8f0',
+    matDark: '#2c1e12',
+    textColorLight: '#2c1e12',
+    textColorDark: '#fffbeb',
+    scrimMode: 'donker'
+  },
+  {
+    id: 'nachtblauw',
+    label: 'Nachtblauw',
+    sublabel: 'Diepe sereniteit en rust',
+    swatch: 'linear-gradient(135deg, #334155 0%, #0f172a 100%)',
+    overlayGradient: 'linear-gradient(160deg, rgba(30, 41, 59, 0.18) 0%, rgba(15, 23, 42, 0.32) 100%)',
+    matLight: '#eef2f6',
+    matDark: '#0f172a',
+    textColorLight: '#0f172a',
+    textColorDark: '#f8fafc',
+    scrimMode: 'donker'
+  },
+  {
+    id: 'zacht-linnen',
+    label: 'Zacht Linnen',
+    sublabel: 'Licht, ademend en puur',
+    swatch: 'linear-gradient(135deg, #f5f5f4 0%, #d6d3d1 100%)',
+    overlayGradient: 'linear-gradient(160deg, rgba(255, 255, 255, 0.22) 0%, rgba(214, 211, 209, 0.18) 100%)',
+    matLight: '#fafaf9',
+    matDark: '#292524',
+    textColorLight: '#1c1917',
+    textColorDark: '#fafaf9',
+    scrimMode: 'licht'
+  },
+  {
+    id: 'salie-groen',
+    label: 'Saliegroen',
+    sublabel: 'Natuur, hoop en verstilling',
+    swatch: 'linear-gradient(135deg, #84cc16 0%, #365314 100%)',
+    overlayGradient: 'linear-gradient(160deg, rgba(132, 204, 22, 0.14) 0%, rgba(54, 83, 20, 0.26) 100%)',
+    matLight: '#f4f7f2',
+    matDark: '#1c2417',
+    textColorLight: '#1c2417',
+    textColorDark: '#f7fee7',
+    scrimMode: 'donker'
+  },
+  {
+    id: 'blush-roos',
+    label: 'Blush Roze',
+    sublabel: 'Zachtheid, tederheid en liefde',
+    swatch: 'linear-gradient(135deg, #fb7185 0%, #881337 100%)',
+    overlayGradient: 'linear-gradient(160deg, rgba(251, 113, 133, 0.14) 0%, rgba(136, 19, 55, 0.24) 100%)',
+    matLight: '#fdf2f4',
+    matDark: '#2d151c',
+    textColorLight: '#2d151c',
+    textColorDark: '#fff1f2',
+    scrimMode: 'donker'
+  },
+  {
+    id: 'oker-brons',
+    label: 'Oker & Brons',
+    sublabel: 'Klassiek aards en nobel',
+    swatch: 'linear-gradient(135deg, #eab308 0%, #713f12 100%)',
+    overlayGradient: 'linear-gradient(160deg, rgba(234, 179, 8, 0.15) 0%, rgba(113, 63, 18, 0.26) 100%)',
+    matLight: '#fdfbf2',
+    matDark: '#281c0e',
+    textColorLight: '#281c0e',
+    textColorDark: '#fefce8',
+    scrimMode: 'donker'
+  }
+];
 
 export const THEMES: ThemeDef[] = [
   {
@@ -393,6 +480,7 @@ export const INITIAL_STATE: WizardState = {
   thema: null,
   side: 'voor',
   uitstraling: 'automatisch',
+  sfeer: 'automatisch',
   uitlijning: 'gecentreerd',
   spreukPositie: 'boven',
   sfeerZinPositie: 'boven',

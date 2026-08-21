@@ -295,6 +295,7 @@ export const App: React.FC = () => {
             onZoomBinnen={(side) => setState((s) => ({ ...s, binnenZoom: side }))}
             onOpenLockDialog={() => setState((s) => ({ ...s, lockDialogOpen: true }))}
             onOpenLightbox={() => setState((s) => ({ ...s, previewLightboxOpen: true }))}
+            onUpdateState={(patch) => setState((s) => ({ ...s, ...patch }))}
           />
         )}
 
@@ -515,6 +516,7 @@ export const App: React.FC = () => {
           isOpen={state.previewLightboxOpen}
           state={state}
           onClose={() => setState((s) => ({ ...s, previewLightboxOpen: false }))}
+          onSetSide={setSide}
         />
       </div>
     </div>

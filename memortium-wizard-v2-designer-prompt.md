@@ -7,10 +7,9 @@
 
 1. Start een geheel nieuw project in Claude Designer.
 2. Koppel je Memortium design system aan het project.
-3. Voeg als extra bijlage toe: `memortium-wizard-v2-prototype.html` (staat in je map Memortium Wizard). Dit is een functionele referentie: het laat de flows, de regels en de content zien. Het is géén visueel uitgangspunt.
-4. Plak de volledige prompt uit Deel 2 hieronder als eerste bericht.
-5. Beoordeel per scherm, in deze volgorde: Toneel → De kaart (drie kanten) → Sheets → Controle. Eén scherm per ronde, dan blijft de feedback scherp.
-6. Klaar in Designer? Dan schrijf ik de bouwprompt voor Claude Code (nieuwe editormodule naast de bestaande in memortium-service-portal).
+3. Plak de volledige prompt uit Deel 2 hieronder als eerste bericht. Verder niets: geen prototype, geen mockups. De prompt beschrijft het volledige interactiemodel; de designer begint met een schone lei binnen het design system. (Het HTML-prototype blijft in je map Memortium Wizard als ons eigen naslagwerk, het gaat niet mee.)
+4. Beoordeel per ronde, in deze volgorde: de editor (rail + strips, voorkant) → de andere pagina's → tekstbewerking → stap 1 en 3. Eén onderwerp per ronde, dan blijft de feedback scherp.
+5. Klaar in Designer? Dan schrijf ik de bouwprompt voor Claude Code (nieuwe editormodule naast de bestaande in memortium-service-portal).
 
 ---
 
@@ -20,9 +19,7 @@
 
 ---
 
-Ontwerp de Memortium gedenkkaart-wizard. De lat: **world class design**. Dit moet zich kunnen meten met het beste digitale productontwerp dat er is, gelikt tot in het kleinste detail. Jij bent de designer en jij bepaalt hoe. Wat hieronder staat is het wát: de productbeslissingen, de flows en de regels. Die staan vast. Alles daarbuiten, de complete visuele taal, interactiedetails, motion, hiërarchie, is jouw domein, binnen ons design system.
-
-Bijgevoegd is een werkend HTML-prototype. Gebruik het uitsluitend als functionele referentie om de flows en de content te begrijpen. Het is nadrukkelijk geen visueel voorbeeld; jij begint visueel met een schone lei.
+Ontwerp de Memortium gedenkkaart-wizard. De lat: **world class design**. Dit moet zich kunnen meten met het beste digitale productontwerp dat er is, gelikt tot in het kleinste detail. Jij bent de designer en jij bepaalt hoe. Wat hieronder staat is het wát: de productbeslissingen, de flows en de regels. Die staan vast. Alles daarbuiten, de complete visuele taal, interactiedetails, motion, hiërarchie, is jouw domein, binnen ons design system. Je begint met een schone lei.
 
 ### Context
 
@@ -30,26 +27,58 @@ Memortium is een B2B-bedrijf voor memorial portrait editing voor uitvaartbegelei
 
 Mobile first. Een desktopversie volgt later; ontwerp niets dat die onmogelijk maakt.
 
-### De flow: drie stappen
+### De flow: drie stappen — ontwerp de complete keten
 
-**Stap 1 — Het toneel.** Drie keuzes en de kaart staat: formaat, de foto, thema. Bewust kaal en snel, want daarna gebeurt alles op de kaart zelf.
+**Stap 1 — De voorbereiding (door de uitvaartbegeleider).** Het onderzoek is hier stellig: de ondernemer heeft de feiten en de logistiek, de familie heeft de woorden en de namen. Twee mensen, twee momenten, dus niet één scherm. De ondernemer vult in:
 
-- Formaat: Enkel of Gevouwen.
-- De foto, twee smaken: **Volledige foto** (onze bewerking is het beeld, persoon en achtergrond als één geheel, zoals bij de ceremonie) of **Vrijgezet op thema** (wij zetten het portret vrij en plaatsen het op een van onze handgemaakte themabeelden).
-- Indeling, geldt voor beide smaken: Volledig, In kader, Naast tekst, en op de gevouwen kaart ook Sfeer voorop (themabeeld voorop, portret binnenin links). Er is géén optie zonder foto.
-- Thema: altijd zichtbaar als echt themabeeld. Vier thema's bij launch (Avondwater, Nachtbloem, Stilte, Veldbloei), het systeem is gebouwd op acht.
+- **De persoon**: volledige naam en roepnaam, aanspreektitel, partnerregel ("echtgenoot van" / "weduwe van", met is-overleden), geboorte- en sterfdatum, geboorte- en overlijdensplaats.
+- **Het afscheid**, als bijeenkomsten-model: de plechtigheid, en los aan of uit te zetten: groetmoment vooraf (met tijdvak), condoleren na de dienst, online condoleren (URL), eventueel koffietafel. Plus besloten kring, en dan staat er géén tijd op de kaart.
+- **Het formaat**: Enkel of Gevouwen.
 
-**Stap 2 — De kaart als canvas.** Geen formulier. De gebruiker tikt op een tekstblok óp de kaart en schrijft daar, elke letter verschijnt live op de kaart. Kanten wisselen: Voorkant, Binnenzijde (alleen gevouwen), Achterkant.
+Daarna het **splitmoment**: de ondernemer kiest "Klaar voor de familie" (met de keuze het ontwerp vast te zetten, daarna deelt hij de link via zijn eigen kanaal) óf hij werkt zelf door in de editor. De familie begint dus nooit op een leeg canvas. Regel voor de familie-kant: alles wat de ondernemer invulde is aanpasbaar (namen, data, plaatsen — de familie weet details soms beter), **behalve het afscheid**: de logistiek is van de ondernemer en is voor de familie alleen-lezen.
 
-**Stap 3 — Controle.** Namencheck, drukproef-walkthrough, versturen.
+**Stap 2 — De editor: kaart centraal, alles als overlay.** Dit is het hart en het interactiemodel ligt vast (het patroon van moderne foto-editors, bewust gekozen omdat iedereen het kent):
+
+- De kaart staat groot en permanent in beeld. Pagina's wisselen via tabs: Voorkant, Binnenzijde (alleen gevouwen), Achterkant.
+- Een **categorie-rail** naast de kaart: Foto, Thema, Indeling, Stijl, Sfeer.
+- Kies je een categorie, dan verschijnt onder de kaart een **smaken-strip**: de gecureerde opties van die categorie, doorheen te swipen, en elke tik toont het gevolg direct live op de kaart. Geen schermen die de kaart bedekken, geen back-and-forth.
+- **De woorden lopen níet via de rail.** Tekst bewerk je door op een tekstblok óp de kaart te tikken; het invoerveld komt met het toetsenbord omhoog en elke letter verschijnt live. De rail is uitsluitend ontwerp.
+- Bovenin: Opslaan en Vastzetten (de lock van de uitvaartbegeleider).
+
+De categorieën:
+- **Foto**: de twee smaken — Volledige foto (onze bewerking is het beeld, persoon en achtergrond als één geheel) of Vrijgezet op thema (wij zetten het portret vrij op een van onze handgemaakte themabeelden). Er is géén optie zonder foto.
+- **Thema**: de handgemaakte themabeelden, altijd getoond als echt beeld. Vier bij launch (Avondwater, Nachtbloem, Stilte, Veldbloei), het systeem is gebouwd op acht. Het thema geldt voor de hele kaart en zet alle pagina's in één keer goed.
+- **Indeling**: per pagina twee tot zes vaste, door ons uitgedachte **complete layouts** — niet alleen waar het beeld staat, maar het hele arrangement van die pagina: naam en data boven of onder de foto, het zinnetje boven of onder, gespiegeld. De familie swipet erdoorheen en ziet elke layout direct op de kaart. Voor de voorkant omvatten de layouts de beeldvarianten Volledig, In kader en Naast tekst, en op gevouwen ook Sfeer voorop (portret binnenin links); binnen die varianten zijn de tekstarrangementen de smaken. Elke pagina heeft zijn eigen setje.
+- **Stijl**: de acht benoemde fontcombinaties, en wat daar verder bij hoort.
+- **Sfeer**: de licht/donker/tint-varianten van deze kaart (zie functionele eisen).
+
+**Per pagina versus kaartbreed:** het thema erft kaartbreed als vertrekpunt; daarbinnen is alles per pagina bij te stellen via de rail. De curatie is het vangnet: élke smaak in élke strip is door ons per thema ontworpen, dus geen enkele combinatie kan vloeken. De kaart moet als één geheel blijven voelen, ook als elke pagina eigen keuzes draagt.
+
+**Stap 3 — Controle en oplevering, volwaardig mee-ontwerpen.** De namencheck als toegewijd rustmoment (een verkeerde naam is de pijnlijkste fout op een rouwkaart), de drukproef-walkthrough van alle kanten, de deelvarianten (WhatsApp als doorstuurpakket: foto los plus de uitnodigingstekst als kopieerbaar bericht; Instagram met naam en data op de foto; Facebook met alleen het zinnetje), de drie acties (Stuur naar de uitvaartbegeleider als primaire, Alles downloaden, Ik wil iets aanpassen) en het eindscherm: het pakket staat in het dossier, de begeleider krijgt een seintje.
+
+### Wat er op de kaart staat (contentstandaard, uit ons veldonderzoek — vast)
+
+Gebaseerd op negen echte rouwbrieven, tien drukkerssjablonen, zeshonderd voorbeeldzinnen en zestien getelde kaarten. Drie lagen:
+
+- **Essentieel** (moet kunnen, vrijwel altijd aanwezig): naam met roepnaam, geboorte- en sterfdatum, de **aanhef of openingszin bóven de naam**, de namen van nabestaanden, afscheidsinformatie, condoleance-informatie, geboorte- en overlijdensplaats, de partnerregel.
+- **Veelvoorkomend** (aan of uit te zetten): spreuk of dichtregel (kort, twee tot vier regels; níet verplicht, een kwart van de kaarten heeft er geen), besloten kring, correspondentieadres, dankwoord aan een zorginstelling, bloemenwens, online condoleren via een URL.
+- **Zeldzaam** (niet ontwerpen): giften, kledingwens, QR-codes.
+
+**Het namenblok is een boom, geen lijst — en hét moeilijkste invoerpaneel van de wizard, geef het de meeste ontwerpaandacht.** Drie tot vier generatieniveaus waar de inspringing de betekenis ís: kopregel ("Dit melden u met diepe droefheid:"), partner eerst met relatielabel, kinderen als koppels, kleinkinderen ingesprongen, achterkleinkinderen dieper, kruisje bij overleden familieleden, samenvattende cursieve regel ("haar kinderen en kleinkinderen"), bredere kring, en een afsluitende familienamenregel. Drie tot veertig namen; het ontwerp moet beide uitersten mooi dragen.
+
+**Per vlak** (en er is altijd precies één portret op de kaart): de voorzijde draagt spreuk, beeld, naam en data. Binnen links: het portret als het niet voorop staat, of de spreuk, of leeg. Binnen rechts: aanhef, naam en data, plechtigheids- en condoleance-regels, herinnering, slotzin. De achterzijde: spreuk, het namenblok en de praktische regel(s). Op de **enkele kaart** (twee vlakken) geldt de gecureerde kern: melden, uitnodigen, ondertekenen; het vrije herinneringsblok vervalt en de wizard verwijst warm naar de gevouwen kaart als de familie meer kwijt wil.
+
+**Leesbaarheid**: onder elke tekstgroep op beeld ligt een verloop dat naar nul uitloopt, nooit een harde rand, en het verloop stopt vóór het gezicht — een wassing die de kaaklijn raakt verraadt zichzelf. De dekking is per thema begrensd. Er is géén schuifje waarmee de familie de foto lichter of donkerder maakt: de foto is ons vakwerk en die beslissing is al genomen.
+
+Nederland eerst, België-bewust: de velden die Vlaanderen nodig heeft (plaatsen, rouwadres) bestaan gewoon in het model; een aparte Belgische variant (tweekoloms binnenzijde) is nu geen ontwerpopdracht.
 
 ### Functionele eisen (vastgelegd)
 
 - Typografie op de kaart is **1:1 met druk**: puntgroottes zoals ze op A6 gedrukt worden, meeschalend met de preview. De preview houdt altijd het vaste kaartformaat, zo groot als past. De gebruiker moet de kaart ook op maximaal formaat kunnen bekijken.
 - Per tekstblok drie fontstappen: klein, normaal, groot. Wij bepalen wat die stappen betekenen.
-- Eén uitlijning per kaart (links, gecentreerd, rechts), alle blokken volgen. De enige extra positiekeuze: spreuk boven of onder op de voorkant.
+- Uitlijning (links, gecentreerd, rechts) hoort bij Stijl en volgt de per-pagina-regel hierboven. Er zijn géén losse positieknoppen: waar tekstblokken staan is volledig gevangen in de gecureerde layouts van de Indeling-categorie.
 - Vaste, gecureerde volgordes van blokken per kant en formaat. Er is geen sorteer-UI.
-- Uitstraling: Automatisch, Licht, Donker. Automatisch leunt naar licht. Deze keuze hoort direct bij de kaart in beeld, want het effect moet meteen beoordeeld kunnen worden. Tekst op beeld moet altijd goed leesbaar zijn, óók bij het lichte gevoel dat families meestal kiezen.
+- Sfeer: per thema een gecureerd setje — licht, donker, en één of twee tinten die wíj bij dat thema ontwerpen (Veldbloei bijvoorbeeld een zachtroze, Avondwater een diepblauw). Nooit een universele kleurenlijst over elk thema. Het systeem kiest standaard zelf en leunt naar licht; de keuze blijft aan de mensen. Tekst op beeld moet altijd goed leesbaar zijn.
 - Acht benoemde fontcombinaties. Ons vertrekpunt: Ingetogen (EB Garamond), Klassiek (Playfair Display + Lora), Sereen (Cormorant Garamond + EB Garamond), Statig (Marcellus + Crimson Pro), Warm (Merriweather), Helder (Montserrat + Lora), Modern (Raleway + Crimson Pro), Sierlijk (Great Vibes voor de naam + EB Garamond). Weet jij betere pairings voor deze context, stel ze voor; het blijven er acht, met namen.
 - Thema bepaalt alles: voorkantbeeld, binnenzijde met ornamentlaag, en de achterkant als variant van de voorkant, zodat de kaart voelbaar één geheel is. Ook bij In kader en Naast tekst is het thema als beeld aanwezig op de kaart.
 - Ornament is paginavullende versiering met heel lichte aanwezigheid, hoort bij het thema. Per thema twee of drie varianten plus Geen, de familie kiest. Nooit bovenop het portret.
@@ -70,19 +99,27 @@ Mobile first. Een desktopversie volgt later; ontwerp niets dat die onmogelijk ma
 
 - Nederlands, u-vorm richting de familie. Warm en precies, nooit klinisch, nooit joviaal.
 - Vaste zinnen die blijven: "Precies zoals u het hier ziet, komt de kaart ook gedrukt uit." / "Zodra wij de foto hebben, staat het portret hier binnen 24 uur." / "Wijzigingen worden meteen bewaard."
-- Kies per interactietype één consistent component uit het design system; het prototype wisselt daar nog in, dat is een bekende zwakte.
+### Mobiel moet het leven
+
+Dit product wordt op de telefoon gemaakt, vaak 's nachts, vaak samen. De mobiele interactie moet daarom niet gewoon werken maar optimaal zijn: swipen door de strips moet vloeiend en vanzelfsprekend voelen, elke aanraking krijgt een reactie, en overgangen, animaties en micro-animaties horen volwaardig bij het ontwerp. De ervaring moet leven en warm aanvoelen, en als geheel iets zijn dat mensen in deze branche nog niet eerder in handen hebben gehad: een vernieuwende ervaring, geen digitaal formulier. Ontwerp de beweging erbij, niet alleen de schermen.
+
+### Interactie-vakmanschap
+
+Naast hoe het eruitziet, beoordelen we dit ontwerp hard op de júiste interactiebeslissingen. Elke invoer krijgt het component dat bij de aard van de beslissing past: iets dat aan of uit staat met direct zichtbaar effect is een toggle, nooit een checkbox; wederzijds uitsluitende smaken zijn een segmented control of een strip, nooit een rij losse vinkjes; een checkbox is er alleen voor meervoudige selectie of een expliciete bevestiging. Per interactietype bestaat er in de hele wizard precies één component, overal hetzelfde. Dit is een bekende zwakte van de huidige versie (checkboxes waar toggles horen, en andere gekke keuzes), dus wees hierin de strengste reviewer van je eigen werk: bij elk element de vraag of dít het juiste instrument voor déze beslissing is, en of de beste ontwerpteams ter wereld het zo zouden doen.
 
 ### Buiten scope
 
-- "Help me schrijven" (AI-schrijfhulp): backlog.
+- Drieluik (zes vlakken): geparkeerd als v2 van het product. Alleen Enkel en Gevouwen.
+- "Help me schrijven" (AI-schrijfhulp): backlog. De formuleringshulp met beproefde zinnen per toon is de tussenstap die wél meegaat.
+- Een aparte Belgische kaartvariant (tweekoloms binnenzijde): later.
 - Desktopversie: later, mobile first nu.
 - Echte foto-uploads en het portaal eromheen: bestaan al elders in het product.
 
 ### Wat je oplevert
 
-Alle schermen van de drie stappen, world class, mobile first, in het design system. Inclusief: beide formaten, beide foto-smaken, de vier indelingen, de vier thema's, alle invoerpanelen (tekstveld, thema en versiering, lettertype, namen, afscheid), de vergrote kaartweergave, de lock-state, lege en gevulde staten van elk tekstblok, de actieve staat van een blok tijdens het typen, de namencheck, de drukproef met deelvarianten, en het eindscherm.
+De complete keten, world class, mobile first, in het design system: de voorbereidingsstap van de ondernemer (persoon, afscheid met het bijeenkomsten-model, formaat) met het splitmoment (Klaar voor de familie, met lock-keuze en link delen, óf zelf doorwerken), de editor met rail en smaken-strip voor alle vijf categorieën, beide formaten, beide foto-smaken, de indelingen per pagina, de vier thema's met hun sfeersetjes, de tekstbewerking op de kaart (leeg, gevuld en actief tijdens het typen), het namenblok-boompaneel in al zijn diepte (van drie tot veertig namen), het afscheid-paneel (alleen-lezen in de familieweergave), de vergrote kaartweergave, de lock-state, de namencheck, de drukproef met de drie acties en de deelvarianten, en het eindscherm.
 
-Begin met stap 1 (Het toneel) en de voorkant van stap 2, dan itereren we per scherm.
+Begin met de editor (stap 2) op de voorkant, met de rail, de Thema-strip en de Indeling-strip werkend uitgetekend, dan itereren we per categorie en per scherm. De voorbereidingsstap en de controle volgen daarna, maar horen volwaardig bij deze opdracht.
 
 ---
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { WizardState, ThemeDef, FontPairingDef } from '../types/wizard';
-import { THEMES, PAIRINGS, formatDateDutch, ptcqw } from '../constants/wizard';
+import { THEMES, PAIRINGS, SFEREN, formatDateDutch, ptcqw } from '../constants/wizard';
 
 interface CardPreviewProps {
   state: WizardState;
@@ -26,6 +26,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
   const isVrijgezet = s.smaak === 'vrijgezet';
   const thema: ThemeDef | null = THEMES.find((t) => t.id === s.thema) || null;
   const pairing: FontPairingDef = PAIRINGS.find((p) => p.id === s.fontPairing) || PAIRINGS[1];
+  const sfeerDef = SFEREN.find((sf) => sf.id === s.sfeer) || SFEREN[0];
 
   // Uitstraling mode
   const effectiveMode =
